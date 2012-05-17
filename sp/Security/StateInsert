@@ -1,0 +1,49 @@
+CREATE OR REPLACE FUNCTION SecurityStateInsert(
+StateName VARCHAR,
+StateDescription VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    ctid INTEGER;
+BEGIN 
+temp := 0;
+ctid := 0;
+
+IF EXISTS ( SELECT id FROM "Security_securitystates" WHERE "StateName"=StateName) THEN
+	result := 2;
+  	rescode := 51;
+	RETURN;
+END IF;
+
+INSERT INTO "Security_securitystates"( "StateName", "StateDescription")
+    						VALUES (StateName,StateDescription);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 52;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Security_securitystates" WHERE "StateName" = StateName;
+SELECT id INTO ctid FROM django_content_type WHERE app_label='Security' AND model ='securitystates';
+
+INSERT INTO "Security_securitylogs"(id, "User", "ContentType_id", "TimeStamp", ip, "Desc")
+							VALUES(rescode,by_user,ctid,now(),ip,'StateInsert');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

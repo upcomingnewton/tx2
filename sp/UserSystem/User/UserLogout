@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION UserLogout
+(
+	loginid INTEGER,
+	logout_from INTEGER,
+	OUT result INTEGER,
+	OUT rescode INTEGER
+) 
+RETURNS RECORD AS $$
+DECLARE
+	temp INTEGER;
+	varrec1 RECORD;
+BEGIN 
+
+IF NOT EXISTS ( SELECT id from "Users_userloginlog" WHERE id=loginid ) THEN 
+	result = -1;
+	rescode = 2011;
+END IF;
+
+UPDATE "Users_userloginlog"
+SET "LogoutTime"=now(),
+	"Logout_From"=logout_from
+WHERE id=loginid;
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 2012;
+	result := -1;
+	RETURN;
+ELSE
+	rescode := 2015;
+	result := 1;
+	RETURN;
+END IF;
+RETURN;
+END;
+$$ LANGUAGE plpgsql;

@@ -1,0 +1,58 @@
+CREATE OR REPLACE FUNCTION UserLogin
+(
+	emailid VARCHAR,
+	password VARCHAR,
+	login_type INTEGER,
+	time_stamp timestamp with time zone,
+	ip VARCHAR,
+	OUT userid INTEGER,
+	OUT loginid INTEGER,
+	OUT groupid INTEGER,
+	OUT result INTEGER,
+	OUT rescode INTEGER
+) 
+RETURNS RECORD AS $$
+DECLARE
+	varrec1 RECORD;
+	login_type_int INTEGER;
+	temp INTEGER;
+BEGIN 
+
+IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=emailid ) THEN
+	result := -1;
+	rescode = 2001;
+	groupid := -1;
+	loginid := -1;
+	userid := -1;
+	RETURN;
+END IF;
+
+IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=emailid AND "UserPassword"=password ) THEN
+	result := -1;
+	rescode = 2002;
+	groupid := -1;
+	loginid := -1;
+	userid := -1;
+	RETURN;
+END IF;
+
+SELECT id INTO userid FROM "Users_user" WHERE "UserEmail"=emailid;
+SELECT "Group_id" INTO groupid FROM "Users_usergroup" WHERE "User_id"=userid;
+
+INSERT INTO "Users_userloginlog"(user_id,"Login_From","LoginTime","LoginIP","LogoutTime","Logout_From")
+VALUES(userid,login_type,time_stamp,ip,now(),-1);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 2003;
+	result := -1;
+	loginid := -1;
+	RETURN;
+ELSE
+	rescode := 2005;
+	result := 1;
+	SELECT id INTO loginid FROM "Users_userloginlog" WHERE user_id=userid AND "LoginIP"=ip AND "LoginTime"=time_stamp;
+	RETURN;
+END IF;
+RETURN;
+END;
+$$ LANGUAGE plpgsql;

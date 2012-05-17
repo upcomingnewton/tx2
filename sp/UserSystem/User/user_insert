@@ -1,0 +1,91 @@
+CREATE OR REPLACE FUNCTION txUser_user_insert(
+email VARCHAR,
+pass VARCHAR,
+fname VARCHAR,
+mname VARCHAR,
+lname VARCHAR,
+gender VARCHAR,
+bday DATE,
+userentity VARCHAR,
+request_permission VARCHAR,
+request_group VARCHAR,
+logsdec VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    in_userid INTEGER;
+    varrec RECORD;
+    varrec1 RECORD;
+BEGIN 
+temp := 0;
+/*
+1. check if user exists or not 
+2. if does not exists , then check for all contraints 
+3. insert data
+4. check for inserted data
+5. insert logs , check for logs and commit
+*/
+
+/*  1. check if user exists or not   */
+IF EXISTS ( SELECT id FROM "txUser_user" WHERE "UserEmail"=email) THEN
+    SELECT id INTO rescode  FROM "txUser_user" WHERE "UserEmail"=email;
+	result := 2;
+    RETURN;
+END IF;
+
+/*  2. check if requesting user has right to register this user at this state  */
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,'txUser','user',request_permission);
+IF varrec.status <> 500 THEN
+	result := -2;
+	rescode := varrec.status;
+    RETURN;
+END IF;
+
+/*  3. check if requesting user has right to insert user in usergroup  */
+SELECT * INTO varrec1 FROM CheckUserForPermission(by_user,'txUser','usergroup','INSERT');
+IF varrec.status <> 500 THEN
+	result := -3;
+	rescode := varrec1.status;
+    RETURN;
+END IF;
+
+/*  3. INSERT DATA INTO USER TABLE */
+INSERT INTO "txUser_user"("UserEmail","UserPassword","UserFirstName","UserMiddleName","UserLastName","UserGender","UserBirthDate","UserEntity_id","SCI_id") 
+					VALUES(email,pass,fname,mname,lname,gender,bday,(SELECT id FROM "txMisc_entity" WHERE "EntityName"=userentity),varrec.varsci);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN
+	result := -1;
+	rescode := 2132;
+    RETURN;
+END IF;
+SELECT id INTO in_userid FROM "txUser_user" WHERE "UserEmail"=email;
+
+
+
+INSERT INTO "txUser_usergroup"("User_id","Group_id","SCI_id") VALUES(in_userid,(SELECT id FROM "txUser_group" where "GroupName"=request_group ),varrec.varsci);
+IF temp <> 1 THEN 
+	result := -1;
+	rescode := 2133;
+    RETURN;
+END IF;
+
+/* 4. MAKE A LOG ENTRY */
+INSERT INTO "txUser_userlogs"("LogsUser_id","LogsPCI_id","LogsObject","LogsTimeStamp","LogsIP","LogsDescription","LogsPreviousState") 
+						VALUES(varrec.userid,varrec.varpci,in_userid,now(),ip,logsdec,'NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	result := -1;
+	rescode := 999;
+    RETURN;
+ELSE
+	result := 1;
+	rescode := in_userid;
+    RETURN;
+END IF;
+RETURN;
+END;
+$$ LANGUAGE plpgsql;

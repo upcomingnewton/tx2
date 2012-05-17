@@ -1,0 +1,141 @@
+{% extends "master1.html" %}
+{% block title %}{{ title }}{% endblock%}
+{% block start_script %}
+	$('#RegisterUser_dob').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate : new Date(1985,1,1,0,0,0,0),
+			maxDate : new Date(1995,21,31,23,59,59,0),
+	});
+
+{% endblock %}
+{% block add_start_script %}
+    <link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+{% endblock %}
+
+{% block master_content_center %}
+
+	<!-- empty line  -->
+		<div class="w648 h30 mb4"></div>
+   <!--  =============================== -->
+   <!-- ====== ###### TITLE ######## === -->
+    <!--  =============================== -->
+		<div class="w648 border_bottom h45 mb4 center">
+				<div style="font-size: 35px;">
+                       create user
+                </div>
+		</div>
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		
+	<!--  =============================== -->
+   <!-- ====== ###### MESSAGE LIST ######## === -->
+    <!--  =============================== -->
+		{% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+                </div>
+			{% endfor %}
+		{% endif %}
+		
+	<!--  =============================== -->
+   <!-- ====== ###### CONTENT ######## === -->
+    <!--  =============================== -->
+    <form  action="/user/register/new/" method="post">
+		{% csrf_token %}
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		<!--  emailid  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Email Id
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input id="RegisterUser_email" name="RegisterUser_email" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+     	<!--  password  -->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Password
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="RegisterUser_pass" id="RegisterUser_pass" type="password" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  password 2 -->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Password
+                     </div>
+                     <div class="w300 hinherit float_left">
+                           <input name="RegisterUser_pass2" id="RegisterUser_pass2" type="password" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  fname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           fname
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <input name="RegisterUser_fname" id="RegisterUser_fname" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+         <!--  mname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           mnane                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="RegisterUser_mname" id="RegisterUser_mname" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  lname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           lname
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="RegisterUser_lname" id="RegisterUser_lname" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+          <!--  dob  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           dob
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <input name="RegisterUser_dob" id="RegisterUser_dob" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+          <!--  gender  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           gender
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="RegisterUser_gender" id="RegisterUser_gender"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                             		<option value="-1">select</option>
+									<option value="M">male</option>
+									<option value="F">female</option>
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+            
+      	<!--  submit -->
+      			<div class="w648 border_bottom h30 mb4 center" >
+                     <input type="submit" value="LOGIN" class="center"/>
+                </div>
+		</form>
+{% endblock %}
+
+

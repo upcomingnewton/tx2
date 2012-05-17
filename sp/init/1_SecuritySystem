@@ -1,0 +1,12 @@
+INSERT INTO "Security_entity"( "EntityName", "EntityDescription") VALUES ('SystemInit','SystemInit');
+INSERT INTO "Security_securitypermissions"("PermissionName", "PermissionDescription") VALUES ('SystemInit_Insert','SystemInit_Insert');
+INSERT INTO "Security_securitystates"("StateName", "StateDescription") VALUES ('SystemInit_Active','SystemInit_Active');
+INSERT INTO "Users_user"("UserEmail", "UserPassword", "UserBirthDate", "UserFirstName", "UserMiddleName", "UserLastName", "UserEntity_id", "State_id",  "UserGender") VALUES ('SystemInit@init.com','SystemInit',current_date,'SystemInit','SystemInit','SystemInit',1,1,'M');
+INSERT INTO "Users_logintype"("LoginTypeName", "LoginTypeDesc") VALUES('SystemInit','SystemInit');
+
+INSERT INTO "Users_grouptype"("GroupTypeName","GroupTypeDescription") VALUES('SystemInit','SystemInit');
+INSERT INTO "Users_group"( "GroupName", "GroupDescription", "GroupType_id", "State_id", "GroupEntity_id") VALUES('SystemInit','SystemInit',1,1,1);
+INSERT INTO "Users_usergroup"("User_id","Group_id","State_id") VALUES(1,1,1);
+
+SELECT  userlogin('SystemInit@init.com','SystemInit',1,now(),'test');
+SELECT  userlogout(5,10);
