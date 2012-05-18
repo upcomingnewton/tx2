@@ -17,7 +17,7 @@ QueryLogger = logging.getLogger(LoggerQuery)
 def DBInsertState(details):
     try:
         #query = "SELECT * FROM txUser_user_insert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "','" + userdetails['gender'] + "','" + userdetails['bday'] + "','" + userdetails['entity'] + "','" + userdetails['state'] + "','" + userdetails['group'] + "','" + userdetails['logsdesc'] + "','" + str(userdetails['by_email']) + "','" + userdetails['ip'] +"'); "
-        query = "SELECT * FROM securitystateinsert('" + details['name'] + "','" + details['desc'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        query = "SELECT * FROM securitystateinsert('" + details['name'] + "','" + details['desc'] + "','" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         SecurityLogger.debug('[%s] %s'%('DBInsertState',query))
         QueryLogger.debug('[%s] %s'%('DBInsertState',query))
         result =  DBhelper.CallFunction(query)
@@ -31,7 +31,7 @@ def DBInsertState(details):
 def DBInsertPermission(details):
     try:
         #query = "SELECT * FROM txUser_user_insert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "','" + userdetails['gender'] + "','" + userdetails['bday'] + "','" + userdetails['entity'] + "','" + userdetails['state'] + "','" + userdetails['group'] + "','" + userdetails['logsdesc'] + "','" + str(userdetails['by_email']) + "','" + userdetails['ip'] +"'); "
-        query = "SELECT * FROM securitypermissioninsert('" + details['name'] + "','" + details['desc'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        query = "SELECT * FROM securitypermissioninsert('" + details['name'] + "','" + details['desc'] + "','" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         SecurityLogger.debug('[%s] %s'%('DBInsertPermission',query))
         QueryLogger.debug('[%s] %s'%('DBInsertPermission',query))
         result =  DBhelper.CallFunction(query)

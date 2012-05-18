@@ -1,0 +1,65 @@
+CREATE OR REPLACE FUNCTION CheckUserForPermission(
+UserID INTEGER,
+RequestedPermission VARCHAR,
+ModelName VARCHAR,
+AppName VARCHAR,
+OUT varpci INTEGER,
+OUT varsci INTEGER,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE
+	var_ctid INTEGER;
+	var_usersci INTEGER;
+	var_usergrpid INTEGER;
+BEGIN 
+-- 1. See if user exists
+-- 2. see if operation exists and collects it's id
+-- 3. see if model and app exists and collect it's id
+-- 4. find an entry in the table and collect resulting state
+
+IF NOT EXISTS ( SELECT id FROM  "Users_user" WHERE id=UserID ) THEN 
+	varpci := -1;
+	varsci := -1;
+	result := -1;
+	-- User does not exists :P
+	rescode := 501;
+	RETURN;
+END IF;
+SELECT "State_id" INTO var_usersci FROM "Users_user"  WHERE id=UserID;
+SELECT "Group_id" INTO var_usergrpid FROM "Users_usergroup" WHERE "State_id"=var_usersci AND "User_id"=UserID;
+
+IF NOT EXISTS ( SELECT id FROM  "Security_securitypermissions" WHERE "PermissionName"=RequestedPermission ) THEN 
+	varpci := -1;
+	varsci := -1;
+	result := -1;
+	-- Operation is not supported by the system
+	rescode := 502;
+	RETURN;
+END IF;
+SELECT id INTO varpci FROM  "Security_securitypermissions" WHERE "PermissionName"=RequestedPermission;
+
+IF NOT EXISTS ( SELECT id FROM  django_content_type WHERE app_label=AppName AND model=ModelName ) THEN 
+	varpci := -1;
+	varsci := -1;
+	result := -1;
+	-- No such model and app on which operation is being performed
+	rescode := 503;
+	RETURN;
+END IF;
+SELECT id INTO var_ctid FROM django_content_type WHERE app_label=AppName AND model=ModelName;
+
+IF NOT EXISTS ( SELECT id FROM  "Security_securitygroupcontent" WHERE "Group"=var_usergrpid AND "ContentType_id"=var_ctid AND "Permission_id"=varpci AND "Active"=1) THEN 
+	varsci := -1;
+	result := -1;
+	-- Operation is not supported by system
+	rescode := 504;
+	RETURN;
+ELSE
+	SELECT "State_id" INTO varsci FROM  "Security_securitygroupcontent" WHERE "Group"=var_usergrpid AND "ContentType_id"=var_ctid AND "Permission_id"=varpci AND "Active"=1;
+	result := 1;
+	rescode = 500;
+	RETURN;
+END IF;
+END
+$$ LANGUAGE plpgsql;

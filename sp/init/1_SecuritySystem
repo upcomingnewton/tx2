@@ -10,3 +10,17 @@ INSERT INTO "Users_usergroup"("User_id","Group_id","State_id") VALUES(1,1,1);
 
 SELECT  userlogin('SystemInit@init.com','SystemInit',1,now(),'test');
 SELECT  userlogout(5,10);
+
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Security' AND model='securitypermissions'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Security' AND model='securitystates'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Security' AND model='securitygroupcontent'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Security' AND model='entity'),1,1,1);
+
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Users' AND model='grouptype'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Users' AND model='group'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Users' AND model='usergroup'),1,1,1);
+INSERT INTO "Security_securitygroupcontent"("Group", "ContentType_id", "Permission_id", "State_id", "Active") VALUES(1,(SELECT id FROM django_content_type WHERE app_label='Users' AND model='user'),1,1,1);
+
+SELECT CheckUserForPermission(1,'SystemInit_Insert','securitypermissions','Security');
+SELECT CheckUserForPermission(1,'SystemInit_Insert','securitystates','Security');
+SELECT CheckUserForPermission(1,'SystemInit_Insert','securitygroupcontent','Security');
