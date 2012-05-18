@@ -165,6 +165,10 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_Query','smtp'],
                                     'level':'DEBUG',
                                 },
+               'LOGGER_User':{
+                                    'handlers':['File_User','smtp'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
         'File_Security': {
@@ -180,6 +184,14 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/home/nitin/logs/QueryLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_User': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
