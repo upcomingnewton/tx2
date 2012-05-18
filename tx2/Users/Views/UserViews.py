@@ -38,7 +38,7 @@ def log_in(HttpRequest):
         ip = HttpRequest.META['REMOTE_ADDR']
         encdec = Encrypt()
         try:
-            CheckAndlogout(HttpRequest)
+            #CheckAndlogout(HttpRequest)
             email = ''
             password = ''
             if 'LoginUser_email' in HttpRequest.POST.keys():
@@ -246,17 +246,19 @@ def CheckAndlogout(HttpRequest):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return []
 
-#
-#@never_cache
-#def view_dashboard(HttpRequest):
-#    msglist = []
-#    try:
-#    print 'i am here, i have come here', HttpRequest.session.keys()
-#        if "details" in HttpRequest.session:
-#        return HttpResponse(str(HttpRequest.session["details"]))
-#            return render_to_response('txUser/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
-#        else:
-#            return HttpResponseRedirect('/user/login/')
-#    except:
-#        ExceptionLog.UserExceptionLog(HttpRequest.META['REMOTE_ADDR'], 'view_dashboard')
-#        return render_to_response('txUser/ErrorPage.html',{},context_instance=RequestContext(HttpRequest))
+
+def view_dashboard(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    try:
+        #print 'i am here, i have come here', HttpRequest.session.keys()
+        if "details" in HttpRequest.session:
+            #return HttpResponse(str(HttpRequest.session["details"]))
+            return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
+        else:
+            return HttpResponseRedirect('/user/login/')
+    except:
+        LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'view_dashboard'))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/message/')

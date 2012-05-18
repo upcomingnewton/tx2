@@ -5,12 +5,12 @@ urlpatterns = patterns('',
                          
     # USER REGISTRATION , LOGIN AND RELATED STUFF
         #INDEX PAGES
-        url(r'^login/$','txUser.views.Views_User.Login_index'),
-        url(r'^dashboard/$','txUser.views.Views_User.view_dashboard'),
+        url(r'^login/$','Users.Views.UserViews.Login_index'),
+        url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
         
         #POSTV REQUESTS
-        url(r'^login/log_in/$','txUser.views.Views_User.log_in'),
-        url(r'^login/log_out/$','txUser.views.Views_User.log_out'),
+        url(r'^login/log_in/$','Users.Views.UserViews.log_in'),
+        url(r'^login/log_out/$','Users.Views.UserViews.log_out'),
         
         url(r'^register/$','txUser.views.Views_User.CreateUserIndex'),
         url(r'^register/new/$','txUser.views.Views_User.CreateUserFromSite'),
@@ -32,6 +32,11 @@ urlpatterns = patterns('',
    url(r'^group/create/new/$','txUser.views.Views_Group.CreateGroup'),
    url(r'^group/list/(?P<req_type>\S+)/$','txUser.views.Views_Group.ListGroups'),
     
+    
+   url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
+   url(r'^grouptype/create/$','Users.Views.GroupTypeViews.CreateNewGroupTypeIndex'),
+   url(r'^grouptype/create/new/$','Users.Views.GroupTypeViews.CreateNewGroup'), 
+   url(r'^grouptype/list/$','Users.Views.GroupTypeViews.ListAllGroupTypes'), 
  #   url(r'^group/(?P<gid>\d+)/users/add/$','txUser.Views_Group.AddUsers_Index'),
   #  url(r'^group/(?P<gid>\d+)/users/add/new/$','txUser.Views_Group.AddUsersToGroup'),
   #  url(r'^group/(?P<gid>\d+)/users/edit/$','txUser.Views_Group.EditUsers_Index'),

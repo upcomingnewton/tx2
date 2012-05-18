@@ -79,7 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/nitin/ThoughtXplore2/static',
+    "/home/nitin/tx2/static",
    #'/home/nitin/projects/temp/ThoughtXplore/static',
 )
 
@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/nitin/ThoughtXplore2/templates',
+    "/home/nitin/tx2/templates",
    #'/home/nitin/projects/temp/ThoughtXplore/templates',
 )
 
@@ -146,7 +146,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'ThoughtXplore.txContextProcessors.MenuContextProcessor',
     #'ThoughtXplore.txContextProcessors.UserContextProcessor',
     #'ThoughtXplore.txContextProcessors.TEMPLATE_PARAM_USER_NOT_LOGGED_IN',
-    #'ThoughtXplore.txContextProcessors.MessageContextProcessor',
+    'tx2.ContextProcessors.MessageContextProcessor',
     
 )
 # A sample logging configuration. The only tangible logging
@@ -158,15 +158,18 @@ LOGGING = LOG_SETTINGS = {
     'version': 1,
     'loggers':{
                'LOGGER_Security':{
-                                    'handlers':['File_Security','smtp'],
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Security'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_Query':{
-                                    'handlers':['File_Query','smtp'],
+                                    #'handlers':['File_Query','smtp'],
+                                    'handlers':['File_Query'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_User':{
-                                    'handlers':['File_User','smtp'],
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_User'],
                                     'level':'DEBUG',
                                 },
                },

@@ -60,6 +60,7 @@ class UserFnx():
                        'login_type':_type,
                         'ip':ip,
                        }
+            #print self.encrypt.encrypt(password)
             result = DBLoginUser(details)
             if( int(result['result']) >= 1):
                 #MakeGroupMenu(result['groupid'])
