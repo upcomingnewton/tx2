@@ -91,10 +91,42 @@ def CreateNewState(HttpRequest,init):
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
+        name = ''
+        desc = ''
+        if 'EditStateCreate_Name' in HttpRequest.POST:
+            name = HttpRequest.POST['EditStateCreate_Name']
+            if len(name) < 1:
+                msglist.append('Proper Name required')
+        else:
+            msglist.append('Name required')
+        if 'EditStateCreate_Desc' in HttpRequest.POST:
+            desc = HttpRequest.POST['EditStateCreate_Desc']
+            if len(desc) < 1:
+                msglist.append('Proper Desc required')
+        else:
+            msglist.append('Desc required')
+        if len(msglist) > 0:
+            msglist.append('PLEASE CORRECT THESE ERRORS')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            if ( init == 1):
+                return HttpResponseRedirect('/security/init/state/create/')
+            else:
+                return HttpResponseRedirect('/security/state/create/')
+        else:
+            StatesClassObj = StateFnx()
+            res = StatesClassObj.CreateState(name, desc, int(logindetails['userid']), ip)
+            msglist.append('result code : %s , message %s'%(res[0],res[1]))
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/security/state/')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return render_to_response("SecuritySystem/EditStates.html",{},context_instance=RequestContext(HttpRequest))
+    except KeyError as msg:
+        Logger_User.exception('[%s][%s] == EXCEPTION =='%('CreateNewState',ip))
+        msglist.append(str(msg))
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/admin/security/states/create/')
     except:
-        Logger_User.exception('[][] == EXCEPTION =='%('CreateNewState',ip))
+        Logger_User.exception('[%s][%s] == EXCEPTION =='%('CreateNewState',ip))
         msglist.append('Error Occured while fetching your request')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         HttpResponseRedirect('/message/')
