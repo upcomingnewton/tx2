@@ -1,0 +1,69 @@
+CREATE OR REPLACE FUNCTION User_Create(
+UserEmail varchar,
+UserPassword varchar,
+UserBirthDate date,
+UserFirstName varchar,
+UserMiddleName varchar,
+UserLastName varchar,
+UserEntity_id INTEGER,
+UserGender character varying(1),
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+)
+RETURNS RECORD AS $$
+DECLARE 
+    recid INTEGER;
+    varrec RECORD;
+    temp INTEGER;
+BEGIN 
+
+IF EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=UserEmail) THEN
+	result := -1;
+	rescode := 2031;
+	RETURN;
+END IF;
+
+
+SELECT * INTO varrec FROM checkuserforpermission(by_user,'INSERT','txUser','user');
+IF varrec.status <> 500 THEN
+	result := -2;
+	rescode := varrec.rescode;
+	RETURN;
+END IF;
+
+INSERT INTO "Users_user"(
+            "UserEmail", "UserPassword", "UserBirthDate", "UserFirstName", 
+            "UserMiddleName", "UserLastName", "UserEntity_id", "State_id", 
+            "UserGender")
+    VALUES (UserEmail, UserPassword, UserBirthDate, UserFirstName, UserMiddleName, 
+            UserLastName, UserEntity_id, State_id, UserGender); 
+            
+SELECT id INTO recid FROM "Users_user" WHERE "UserEmail"=UserEmail;
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	result := -1;
+	rescode := 2032;
+        RETURN;
+END IF;
+
+
+INSERT INTO "Users_userlogs"("LogsUser_id","LogsPermission_id","LogsObject","LogsTimeStamp","LogsIP","LogsDescription","LogsPreviousState") 
+						VALUES(by_user,varrec.varpci,recid,now(),ip,'INSERT','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	result := -1;
+	rescode := 2033;
+        RETURN;
+ELSE
+	result := 1;
+	rescode := recid;
+END IF;
+RETURN;
+
+
+
+END;
+$$ LANGUAGE plpgsql;

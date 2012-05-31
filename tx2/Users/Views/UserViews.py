@@ -10,7 +10,7 @@ from tx2.Misc.Encryption import Encrypt
 #from ThoughtXplore.txMisc.Validation.Validation import EmailValidate , StringValidate
 #from ThoughtXplore.txMisc.Encryption.enc_dec import Encrypt
 #from ThoughtXplore.txCommunications.CommunicationFunctions import send_validation_email
-from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type,SESSION_USER_EXPIRY_TIME
+from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type
 import logging
 
 
