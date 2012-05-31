@@ -2,7 +2,7 @@ LoggerSecurity = 'LOGGER_Security'
 LoggerQuery = 'LOGGER_Query'
 LoggerUser = 'LOGGER_User'
 
-
+CACHE_LOGGED_IN_USERS_DICT = 'CACHE_LOGGED_IN_USERS_DICT'
 
 
 SECONDAR_GROUP = {

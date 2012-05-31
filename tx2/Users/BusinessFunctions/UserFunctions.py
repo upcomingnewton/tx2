@@ -1,7 +1,8 @@
 from tx2.Misc.Encryption import Encrypt
 from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser
 from tx2.Users.DBFunctions.DBMessages import decode
-#from cPickle import dumps, loads
+from tx2.Users.HelperFunctions.LoginDetails import AddLoginIdToLoggedInUsersDict, ClearLoginIdFromLoggedInUsersDict 
+#from cPickle import dumps, loads 
 from tx2.CONFIG import LoggerUser
 import logging
 from tx2.Misc.Email import sendMail
@@ -64,6 +65,7 @@ class UserFnx():
             result = DBLoginUser(details)
             if( int(result['result']) >= 1):
                 #MakeGroupMenu(result['groupid'])
+                AddLoginIdToLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
                 return(result, decode(int(result['result']),result['rescode']))
             else:
                 return(result, decode(int(result['result']),result['rescode']))
@@ -78,6 +80,8 @@ class UserFnx():
                        'logout_from':out_from,
                       }
             result = DBLogoutUser(details)
+            if (result['result'] == 1 ):
+                ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
             return(result, decode(int(result['result']),result['rescode']))
         except:
             exception_log = ('[%s] %s')%('LogoutUser',loginid)

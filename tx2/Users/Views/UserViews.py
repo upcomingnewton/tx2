@@ -4,12 +4,13 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.BusinessFunctions.UserFunctions import UserFnx
+from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Misc.Encryption import Encrypt
 #from ThoughtXplore.txUser.views.Views_MiscFnx import CheckAndlogout
 #from ThoughtXplore.txMisc.Validation.Validation import EmailValidate , StringValidate
 #from ThoughtXplore.txMisc.Encryption.enc_dec import Encrypt
 #from ThoughtXplore.txCommunications.CommunicationFunctions import send_validation_email
-from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type
+from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type,SESSION_USER_EXPIRY_TIME
 import logging
 
 
@@ -238,7 +239,8 @@ def CheckAndlogout(HttpRequest):
                     msglist.append(res[1])
                     HttpRequest.session[SESSION_MESSAGE] = msglist
         else:
-            msglist.append('user not logged in')
+            #msglist.append('user not logged in')
+            pass
         return msglist
     except:
             LoggerUser.exception('[CheckAndlogout][%s] Exception '%(ip))
@@ -249,6 +251,11 @@ def CheckAndlogout(HttpRequest):
 
 def view_dashboard(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        msglist.append('Please Login.')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        HttpResponseRedirect('/user/login/')
     ip = HttpRequest.META['REMOTE_ADDR']
     try:
         #print 'i am here, i have come here', HttpRequest.session.keys()

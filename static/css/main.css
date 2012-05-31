@@ -184,3 +184,8 @@ body
 {
 	visible:true;
 }
+
+.font_color_red
+{
+	color: :red;
+}
