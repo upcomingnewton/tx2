@@ -41,3 +41,19 @@ def DBInsertPermission(details):
         exception_log = "[%s] %s"%('DBInsertPermission',query)
         SecurityLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
+        
+        
+def DBGroupContentSecurityInsert(details):
+    try:
+        query = "SELECT * FROM SecurityGroupContent_Insert(" + str(details['groupid']) + "," + str(details['ctid']) + "," + str(details['permissionid']) + "," + str(details['stateid']) + "," + str(details['userid']) + ",'" + details['ip'] + "');"
+        SecurityLogger.debug('[%s] %s'%('DBGroupContentSecurityInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupContentSecurityInsert',query))
+        result =  DBhelper.CallFunction(query)
+        SecurityLogger.debug('[%s] %s'%('DBGroupContentSecurityInsert',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupContentSecurityInsert',query)
+        SecurityLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+
+

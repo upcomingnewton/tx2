@@ -17,6 +17,8 @@ class SecurityGroupContent(models.Model):
     State = models.ForeignKey(SecurityStates)
     Active = models.IntegerField()
     
+ 
+    
 class SecurityLogs(models.Model):
     User = models.IntegerField()
     ContentType = models.ForeignKey(ContentType)
