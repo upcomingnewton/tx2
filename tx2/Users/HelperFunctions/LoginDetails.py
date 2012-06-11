@@ -20,22 +20,27 @@ def GetLoginDetails(request):
         return {"userid":-1}
     
 def AddLoginIdToLoggedInUsersDict(loginid):
+    print loginid
     try:
         # 1. check if there is already some cached dict
         LoggedInUsers = {}
         CacheKey = CACHE_LOGGED_IN_USERS_DICT
         LoggedInUsers = cache.get(CacheKey)
         if LoggedInUsers is None:
+            print 'LoggedInUsers is None- making a new one'
+            LoggedInUsers = {loginid:str(time())}
             # make a new dictionary
-            LoggedInUsers[loginid] = time()
+            #LoggedInUsers[str()] = 
             cache.add(CacheKey,LoggedInUsers)
             LOGGERUSER.debug('[AddLoginIdToLoggedInUsersDict] Adding.. %s: %s'%(loginid,str(time())) )
         else:
             #get this dict
             if loginid in LoggedInUsers:
+                print 'loginid in LoggedInUsers'
                 LoggedInUsers[loginid] = time()
                 print 'UpdateLoggedInUsersDict, THERE %s'%(loginid)
             else:
+                print 'loginid in LoggedInUsers'
                 LoggedInUsers[loginid] = time()
                 print 'UpdateLoggedInUsersDict,NOT THERE %s'%(loginid)
             cache.set(CacheKey,LoggedInUsers)
@@ -76,6 +81,7 @@ def ClearLoginIdFromLoggedInUsersDict(loginid):
             if loginid in LoggedInUsers:
                 del LoggedInUsers[loginid] 
             LOGGERUSER.debug('[ClearLoginIdFromLoggedInUsersDict]  %s'%(loginid) )
+        print (str(LoggedInUsers))
     except:
         LOGGERUSER.exception('EXCEPTION IN ClearLoginIdFromLoggedInUsersDict')
         

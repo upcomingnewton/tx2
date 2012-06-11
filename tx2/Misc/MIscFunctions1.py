@@ -2,6 +2,11 @@ from tx2.CONFIG import SESSION_MESSAGE
 
 def AppendMessageList(HttpRequest):
     msglist = []
-    if SESSION_MESSAGE in HttpRequest.session.keys():
-        msglist = HttpRequest.session[SESSION_MESSAGE]
+    try:
+	    if SESSION_MESSAGE in HttpRequest.session.keys():
+		msglist = HttpRequest.session[SESSION_MESSAGE]
+		print '=== message list appended'
+    except:
+   	pass
+    print '||msglist||' + str(msglist)
     return msglist

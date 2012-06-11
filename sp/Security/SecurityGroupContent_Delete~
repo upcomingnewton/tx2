@@ -1,0 +1,56 @@
+CREATE OR REPLACE FUNCTION SecurityGroupContent_Delete(
+  id_ integer,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    ctid INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+ctid := 0;
+
+IF NOT EXISTS ( SELECT id FROM "Security_securitygroupcontent" WHERE id=id_ AND Active=1) THEN
+	result := -1;
+  	rescode := 85;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'securitygroupcontent','Security');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+UPDATE  "Security_securitygroupcontent"
+SET  "Active"=0
+WHERE id=id_;
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 87;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO ctid FROM django_content_type WHERE app_label='Security' AND model ='securitygroupcontent';
+INSERT INTO "Security_securitylogs"(id, "User", "ContentType_id", "TimeStamp", ip, "Desc")
+				VALUES(id_,by_user,ctid,now(),ip,'Delete');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	rescode := 1;
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

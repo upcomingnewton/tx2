@@ -33,26 +33,27 @@ class UserFnx():
 #            exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
 #            self.UserLogger.exception(exception_log)
         
-#    def InsertUserFromSite(self,email,password,fname,mname,lname,gender,bday,entity,ip):
-#        try:
-#            user = {'email':email, 
-#                    'pass':self.encrypt.encrypt(password),
-#                    'fname':fname,
-#                    'lname':lname,
-#                    'mname':mname,
-#                    'gender':gender,
-#                    'bday':str(bday),
-#                    'entity':'system',
-#                    'state':'INSERT',
-#                    'group':'created_users',
-#                    'logsdesc':'INSERT;created_users',
-#                    'by_email':2,
-#                    'ip':ip}
-#            result = DBInsertUser(user)
-#            return(result, decode(int(result['result']),result['rescode']))
-#        except:
-#            exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
-#            self.UserLogger.exception(exception_log)
+    def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,ip):
+        try:
+            user = {'email':email, 
+                    'pass':self.encrypt.encrypt(password),
+                    'fname':fname,
+                    'lname':lname,
+                    'mname':mname,
+                    'gender':gender,
+                    'bday':str(bday), #date
+                    'entity':'system',
+                    'state':'INSERT',
+                    
+                     'group':'created_users',
+                    'logsdesc':'INSERT;created_users',
+                    'by_email':2,
+                    'ip':ip}
+            result = DBInsertUser(user)
+            return(result, decode(int(result['result']),result['rescode']))
+        except:
+            exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
+            self.UserLogger.exception(exception_log)
     
     def LoginUser(self,email,password,_type,ip):
         try:
@@ -81,7 +82,7 @@ class UserFnx():
                       }
             result = DBLogoutUser(details)
             if (result['result'] == 1 ):
-                ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
+                ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
             return(result, decode(int(result['result']),result['rescode']))
         except:
             exception_log = ('[%s] %s')%('LogoutUser',loginid)

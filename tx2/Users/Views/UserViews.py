@@ -1,5 +1,5 @@
 # Create your views here.
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
@@ -87,9 +87,11 @@ def log_in(HttpRequest):
         
 def log_out(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
+    print '*** ip ', str(ip)
     msglist = AppendMessageList(HttpRequest)
     try:
         if "details" in HttpRequest.session.keys():
+            print '---+++--- yes it is there'
             token = HttpRequest.session['details']
             print token
             logout_user = UserFnx()
@@ -97,7 +99,9 @@ def log_out(HttpRequest):
             if ( res[0] != -1):
                     result = res[0]
                     if( result['result'] == 1):
-                        del HttpRequest.session['details']
+                    	for sesskey in HttpRequest.session.keys():
+                    		print '++-- SESSION KEY = ' + str(sesskey)
+                        	del HttpRequest.session[sesskey]
                         return HttpResponseRedirect('/user/login/')
                     else:
                         # handle other cases here like user is not active and all that
@@ -109,6 +113,9 @@ def log_out(HttpRequest):
                     msglist.append(res[1])
                     HttpRequest.session[SESSION_MESSAGE] = msglist
                     return HttpResponseRedirect('/message/')
+        else:
+                print '||==|| NO SESSION DATA'
+    		return HttpResponse('error')
     except:
             LoggerUser.exception('[log_out][%s] Exception '%(ip))
             msglist.append('Some Error has occoured')
@@ -117,63 +124,67 @@ def log_out(HttpRequest):
 
     
 #@never_cache
-#def CreateUserFromSite(HttpRequest):
-#    return HttpResponse(str(HttpRequest))
-#    ip = HttpRequest.META['REMOTE_ADDR']
-#    msglist = []
-#    try:
-#        email = HttpRequest.POST['RegisterUser_email']
-#        email_val = EmailValidate(email)
-#        if( email_val.validate() != 1):
-#            msglist.append('invalid email adress')
-#        pass1 = HttpRequest.POST['RegisterUser_pass']
-#        pass2 = HttpRequest.POST['RegisterUser_pass2']
-#        if( pass1 != pass2):
-#            msglist.append('passwords do not match')
-#        str_val = StringValidate()
-#        fname = HttpRequest.POST['RegisterUser_fname']
-#        if(str_val.validate_alphastring(fname) != 1):
-#                msglist.append('first name should contain only alphabets')
-#        mname = HttpRequest.POST['RegisterUser_mname']
-#        if( len(mname) > 0 ):
-#            if(str_val.validate_alphastring(mname) != 1):
-#                msglist.append('middle name should contain only alphabets')
-#        lname = HttpRequest.POST['RegisterUser_lname']
-#        if(str_val.validate_alphastring(lname) != 1):
-#                msglist.append('last name should contain only alphabets')
-#        bday = HttpRequest.POST['RegisterUser_dob']
-#        bday = bday.split('/')
-#        try:
-#            bday = datetime.date(int(bday[2]),int(bday[0]),int(bday[1]))
-#        except ValueError as err:
-#            msglist.append('Invalid Birthdate, '+ err.message)
-#        gender = HttpRequest.POST['RegisterUser_gender']
-#        if gender== "-1" :
-#            msglist.append('Please select your gender')
-#            
-#        if ( len(msglist) > 0 ):
-#            HttpRequest.session[SESSION_MESSAGE] = msglist
-#            return HttpResponseRedirect('/user/register/')
-#        else:
-#            insfnx = UserFunctions.UserFnx()
-#            res = insfnx.InsertUserFromSite(email, pass2, fname, mname, lname, gender, bday,'system',HttpRequest.META['REMOTE_ADDR'])
-#            result = res[0]
-#            if( result['result'] >= 1 ):
-#                msglist.append('account created. an email has been sent in this regard.')
-#                HttpRequest.session[SESSION_MESSAGE] = msglist
-#                insfnx.send_mail_test(email, result['rescode'], fname, HttpRequest.META['REMOTE_ADDR'])
-#                encrypt = Encrypt()
-#                return HttpResponseRedirect('/user/register')
-#            else:
-#                LoggerUser.error(res)
-#                msglist.append(res[1])
-#                HttpRequest.session[SESSION_MESSAGE] = msglist
-#                return HttpResponseRedirect('/error/')
-#    except:
-#        LoggerUser.exception('[CreateUserFromSite][%s] Exception '%(ip))
-#        msglist.append('Some Error has occoured')
-#        HttpRequest.session[SESSION_MESSAGE] = msglist
-#        return HttpResponseRedirect('/error/')
+def CreateUserFromSite(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        msglist.append('Please Login.')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        HttpResponseRedirect('/user/login/')
+    ip = HttpRequest.META['REMOTE_ADDR']
+    try:
+        email = HttpRequest.POST['RegisterUser_email']
+        email_val = EmailValidate(email)
+        if( email_val.validate() != 1):
+            msglist.append('invalid email adress')
+        pass1 = HttpRequest.POST['RegisterUser_pass']
+        pass2 = HttpRequest.POST['RegisterUser_pass2']
+        if( pass1 != pass2):
+            msglist.append('passwords do not match')
+        str_val = StringValidate()
+        fname = HttpRequest.POST['RegisterUser_fname']
+        if(str_val.validate_alphastring(fname) != 1):
+                msglist.append('first name should contain only alphabets')
+        mname = HttpRequest.POST['RegisterUser_mname']
+        if( len(mname) > 0 ):
+            if(str_val.validate_alphastring(mname) != 1):
+                msglist.append('middle name should contain only alphabets')
+        lname = HttpRequest.POST['RegisterUser_lname']
+        if(str_val.validate_alphastring(lname) != 1):
+                msglist.append('last name should contain only alphabets')
+        bday = HttpRequest.POST['RegisterUser_dob']
+        bday = bday.split('/')
+        try:
+            bday = datetime.date(int(bday[2]),int(bday[0]),int(bday[1]))
+        except ValueError as err:
+            msglist.append('Invalid Birthdate, '+ err.message)
+        gender = HttpRequest.POST['RegisterUser_gender']
+        if gender== "-1" :
+            msglist.append('Please select your gender')
+            
+        if ( len(msglist) > 0 ):
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/user/register/')
+        else:
+            insfnx = UserFunctions.UserFnx()
+            res = insfnx.InsertUserFromSite(email, pass2, fname, mname, lname, gender, bday,'system',HttpRequest.META['REMOTE_ADDR'])
+            result = res[0]
+            if( result['result'] >= 1 ):
+                msglist.append('account created. an email has been sent in this regard.')
+                HttpRequest.session[SESSION_MESSAGE] = msglist
+                insfnx.send_mail_test(email, result['rescode'], fname, HttpRequest.META['REMOTE_ADDR'])
+                encrypt = Encrypt()
+                return HttpResponseRedirect('/user/register')
+            else:
+                LoggerUser.error(res)
+                msglist.append(res[1])
+                HttpRequest.session[SESSION_MESSAGE] = msglist
+                return HttpResponseRedirect('/error/')
+    except:
+        LoggerUser.exception('[CreateUserFromSite][%s] Exception '%(ip))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/error/')
 #        
 #        
 #@never_cache
@@ -218,6 +229,7 @@ def log_out(HttpRequest):
 #
 #FOLLOWING FUNCTION LOGS OUT A USER
 def CheckAndlogout(HttpRequest):
+    LoggerUser.debug('enterted CheckAndlogout')
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     try:
@@ -229,7 +241,9 @@ def CheckAndlogout(HttpRequest):
             if ( res[0] != -1):
                     result = res[0]
                     if( result['result'] == 1):
-                        del HttpRequest.session['details']
+                        for sesskey in HttpRequest.session.keys():
+                    		print '++-- SESSION KEY = ' + str(sesskey)
+                        	del HttpRequest.session[sesskey]
                     else:
                         # handle other cases here like user is not active and all that
                         LoggerUser.error(res)
@@ -240,6 +254,7 @@ def CheckAndlogout(HttpRequest):
                     HttpRequest.session[SESSION_MESSAGE] = msglist
         else:
             #msglist.append('user not logged in')
+            LoggerUser.debug('==||== no session data is present for this request')
             pass
         return msglist
     except:

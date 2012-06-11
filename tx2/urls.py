@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^user/',include('Users.urls')),
     url(r'^security/',include('Security.urls')),
+    #url(r'^message/',)
 )
