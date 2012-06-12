@@ -1,4 +1,4 @@
-# Django settings for tx2 project.
+# Django settings for ThoughtXplore project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -63,7 +63,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static1'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -79,8 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #"/home/nitin/tx2/static",
-    "/home/nitin/projects/tx2/static",
+    '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -92,7 +91,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '*3nkk)^+t1*8xvsdo=ll%aqhhjc!by@&8s4ud4$$2b+9-1#afp'
+SECRET_KEY = '!wo!*jq0!lrkw5lr1*(#+$6a9zm(16sdo&zhvtj6pn*q$+j7u&'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -117,8 +116,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #"/home/nitin/tx2/templates",
-    "/home/nitin/projects/tx2/templates",
+    "/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/templates"
 )
 
 INSTALLED_APPS = (
@@ -178,7 +176,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/SecurityLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/SecurityLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -186,7 +184,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/QueryLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/QueryLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -194,7 +192,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/UserLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
