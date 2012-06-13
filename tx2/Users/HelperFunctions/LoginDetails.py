@@ -31,7 +31,7 @@ def AddLoginIdToLoggedInUsersDict(loginid):
             LoggedInUsers = {loginid:str(time())}
             # make a new dictionary
             #LoggedInUsers[str()] = 
-            cache.add(CacheKey,LoggedInUsers)
+            cache.set(CacheKey,LoggedInUsers)
             LOGGERUSER.debug('[AddLoginIdToLoggedInUsersDict] Adding.. %s: %s'%(loginid,str(time())) )
         else:
             #get this dict
@@ -56,6 +56,7 @@ def UpdateLoggedInUsersDict(loginid):
         LoggedInUsers = cache.get(CacheKey)
         if LoggedInUsers is None:
             # make a new dictionary
+            LoggedInUsers = {}
             LoggedInUsers[loginid] = time()
             cache.add(CacheKey,LoggedInUsers)
             LOGGERUSER.debug('[UpdateLoggedInUsersDict] Adding... %s: %s'%(loginid,str(time())) )
@@ -82,6 +83,7 @@ def ClearLoginIdFromLoggedInUsersDict(loginid):
                 del LoggedInUsers[loginid] 
             LOGGERUSER.debug('[ClearLoginIdFromLoggedInUsersDict]  %s'%(loginid) )
         print (str(LoggedInUsers))
+        cache.set(CacheKey,LoggedInUsers)
     except:
         LOGGERUSER.exception('EXCEPTION IN ClearLoginIdFromLoggedInUsersDict')
         
@@ -93,6 +95,7 @@ def ClearAllValuesFromLoggedInUserDict():
         if LoggedInUsers is not None:
             LoggedInUsers.clear()
             LOGGERUSER.debug('[ClearAllValuesFromLoggedInUserDict] Clearing All values' )
+        cache.delete(CacheKey)
     except:
         LOGGERUSER.exception('EXCEPTION IN ClearAllValuesFromLoggedInUserDict')
         

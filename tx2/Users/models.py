@@ -1,5 +1,6 @@
 from django.db import models
 from tx2.Security.models import SecurityStates,Entity,SecurityPermissions
+from django.contrib.contenttypes.models import ContentType
 
 # Create your models here.
 class User(models.Model):
@@ -50,6 +51,7 @@ class UserLogs(models.Model):
     # user making changes
     LogsUser = models.ForeignKey(User)
     # row id being changed
+    ContentType = models.ForeignKey(ContentType)
     LogsObject = models.IntegerField()
     LogsPermission = models.ForeignKey(SecurityPermissions)
     LogsIP = models.CharField(max_length=20)

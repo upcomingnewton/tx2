@@ -172,6 +172,11 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_User'],
                                     'level':'DEBUG',
                                 },
+               'SYSTEM_INITIALISE_LOGGER':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Initialise'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
         'File_Security': {
@@ -195,6 +200,14 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/home/nitin/logs/UserLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Initialise': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

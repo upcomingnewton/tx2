@@ -1,0 +1,5 @@
+SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','INSERT',1,'test');
+SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','SystemInit_Insert',1,'test');
+
+SELECT * FROM GroupInsert('testfromdb','testfromdb',3,2,'INSERT',10,'test');
+

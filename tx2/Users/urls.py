@@ -33,9 +33,8 @@ urlpatterns = patterns('',
     
     
    url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
-   url(r'^grouptype/create/$','Users.Views.GroupTypeViews.CreateNewGroupTypeIndex'),
+   url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/new/$','Users.Views.GroupTypeViews.CreateNewGroup'), 
-   url(r'^grouptype/list/$','Users.Views.GroupTypeViews.ListAllGroupTypes'), 
  #   url(r'^group/(?P<gid>\d+)/users/add/$','txUser.Views_Group.AddUsers_Index'),
   #  url(r'^group/(?P<gid>\d+)/users/add/new/$','txUser.Views_Group.AddUsersToGroup'),
   #  url(r'^group/(?P<gid>\d+)/users/edit/$','txUser.Views_Group.EditUsers_Index'),

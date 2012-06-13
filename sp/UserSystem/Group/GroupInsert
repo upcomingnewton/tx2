@@ -1,0 +1,60 @@
+CREATE OR REPLACE FUNCTION GroupInsert(
+GroupName VARCHAR,
+GroupDescription VARCHAR,
+GroupType_id INTEGER,
+GroupEntity INTEGER,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    ctid INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+ctid := 0;
+
+IF EXISTS ( SELECT id FROM "Users_group" WHERE "GroupName"=GroupName) THEN
+	result := 2;
+  	rescode := 51;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'group','Users');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "Users_group"("GroupName", "GroupDescription", "GroupType_id", "State_id", "GroupEntity_id")
+VALUES (GroupName,GroupDescription,GroupType_id,varrec.varsci,GroupEntity);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 52;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Users_group"  WHERE "GroupName"=GroupName;
+SELECT id INTO ctid FROM django_content_type WHERE app_label='Users' AND model ='group';
+
+INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES(by_user,ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'INSERT');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

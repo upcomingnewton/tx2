@@ -1,0 +1,85 @@
+{% extends "master1.html" %}
+{% block title %}{{ title }}{% endblock%}
+{% block master_content_center %}
+
+	<!-- empty line  -->
+		<div class="w648 h30 mb4"></div>
+   <!--  =============================== -->
+   <!-- ====== ###### TITLE ######## === -->
+    <!--  =============================== -->
+		<div class="w648 border_bottom h45 mb4 center">
+				<div style="font-size: 35px;">
+                          ADMIN login page
+                </div>
+		</div>
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+
+
+	<!--  =============================== -->
+   <!-- ====== ###### CONTENT ######## === -->
+    <!--  =============================== -->
+    {% if isLoggedIn == "false" %}
+    <form  action="/security/admin/login/" method="post">
+		{% csrf_token %}
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Email Id
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input id="LoginUser_email" name="LoginUser_email" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+     	<!--  password  -->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Password
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input id="LoginUser_pass" name="LoginUser_pass" type="password" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+      	<!--  submit -->
+      			<div class="w648 border_bottom h30 mb4 center" >
+                     <input type="submit" value="LOGIN AS ADMIN TO INITIALIZE SYSTEM" class="center"/>
+                </div>
+		</form>
+	{% endif %}
+	{% if isLoggedIn == "true" %}
+		<table id="hor-minimalist-a" class="tableclass" >
+				    <thead>
+				    	<tr>
+				            <th scope="col" style="width:180px;">DESC</th>
+				            <th scope="col" style="width:250px;">LINK</th>
+				        </tr>
+		    		    </thead>
+		    	            <tbody>
+					<tr>
+						<td>LOGOUT</td>
+						<td><a href="/security/admin/logout/">CLICK HERE</a></td>
+					</tr>
+					<tr>
+						<td>InsertSystemStates</td>
+						<td><a href="/security/admin/InsertSystemStates/">CLICK HERE</a></td>
+					</tr>
+					<tr>
+						<td>InsertSystemPermissions</td>
+						<td><a href="/security/admin/InsertSystemPermissions/">CLICK HERE</a></td>
+					</tr>
+					<tr>
+						<td>DefaultUserSystem</td>
+						<td><a href="/security/admin/DefaultUserSystem/">CLICK HERE</a></td>
+					</tr>
+					<tr>
+						<td>DefaultSecurityContentSystem</td>
+						<td><a href="/security/admin/DefaultSecurityContentSystem/">CLICK HERE</a></td>
+					</tr>
+				    </tbody>
+				</table>
+	{% endif %}
+{% endblock %}
+

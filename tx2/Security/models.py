@@ -24,6 +24,7 @@ class SecurityLogs(models.Model):
     ContentType = models.ForeignKey(ContentType)
     TimeStamp = models.DateTimeField()
     ip = models.CharField(max_length=20)
+    Record = models.IntegerField()
     Desc = models.CharField(max_length=1000)
 
 

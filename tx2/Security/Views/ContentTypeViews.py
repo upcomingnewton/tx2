@@ -64,7 +64,7 @@ def GroupSecurity(HttpRequest,ctid):
             if( len (ContentSecurityList) == 0):
                 msglist.append('There are no content types in the system yet')
             HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("SecuritySystem/GroupContentSecurity.html",{'ContentSecurityList':ContentSecurityList},context_instance=RequestContext(HttpRequest))
+            return render_to_response("SecuritySystem/GroupContentSecurity.html",{'ContentSecurityList':ContentSecurityList,'GroupSecurityList':'true'},context_instance=RequestContext(HttpRequest))
         else:
             msglist.append('Error Occured while fetching your request')
             HttpRequest.session[SESSION_MESSAGE] = msglist

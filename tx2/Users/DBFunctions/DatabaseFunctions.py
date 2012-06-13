@@ -125,4 +125,20 @@ def DBAddUsertoSecGroupForCommunications(details):
     print query
     result =  DBhelper.CallFunction(query)
     return result[0]
-
+    
+    
+### ========================================================================================================  ###     
+### ========================================================================================================  ### 
+def DBGroupTypeInsert(details):
+    try:
+    	#SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','SystemInit_Insert',1,'test');
+        query = "SELECT * FROM GroupTypeInsert('"+ details['name'] +"','"+ details['desc'] +"','"+ details['req_op'] +"',"+ str(details['by']) +",'"+ details['ip'] +"');"
+        UserLogger.debug('[%s] %s'%('DBGroupTypeInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupTypeInsert',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBGroupTypeInsert',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupTypeInsert',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
