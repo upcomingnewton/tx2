@@ -27,14 +27,15 @@ urlpatterns = patterns('',
     
     # GROUP 
 
-   url(r'^group/create/$','txUser.views.Views_Group.CreateGroup_Index'),
-   url(r'^group/create/new/$','txUser.views.Views_Group.CreateGroup'),
-   url(r'^group/list/(?P<req_type>\S+)/$','txUser.views.Views_Group.ListGroups'),
     
     
    url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/new/$','Users.Views.GroupTypeViews.CreateNewGroup'), 
+   
+   url(r'^group/$','Users.Views.GroupViews.GroupIndex',{'__list':'true','__create':'false'}),
+   url(r'^group/create/$','Users.Views.GroupViews.GroupIndex',{'__list':'false','__create':'true'}),
+   url(r'^group/create/new/$','Users.Views.GroupViews.CreateNewGroup'), 
  #   url(r'^group/(?P<gid>\d+)/users/add/$','txUser.Views_Group.AddUsers_Index'),
   #  url(r'^group/(?P<gid>\d+)/users/add/new/$','txUser.Views_Group.AddUsersToGroup'),
   #  url(r'^group/(?P<gid>\d+)/users/edit/$','txUser.Views_Group.EditUsers_Index'),

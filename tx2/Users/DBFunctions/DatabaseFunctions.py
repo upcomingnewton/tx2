@@ -142,3 +142,21 @@ def DBGroupTypeInsert(details):
         exception_log = "[%s] %s"%('DBGroupTypeInsert',query)
         UserLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
+        
+    
+def DBGroupInsert(details):
+    try:
+    	#SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','SystemInit_Insert',1,'test');
+        query = "SELECT * FROM GroupInsert('" + details['GroupName'] + "','" + details['GroupDescription'] + "'," + str(details['GroupType']) + "," + str(details['GroupEntity']) + ",'" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        UserLogger.debug('[%s] %s'%('DBGroupInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupInsert',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBGroupInsert',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupInsert',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+      
+
+

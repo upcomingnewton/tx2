@@ -183,6 +183,23 @@ def  DefaultSecurityContentSystem(HttpRequest):
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
 
-
+def  RegisterUserFromSiteSystem(HttpRequest):
+    msglist = []
+    ip = HttpRequest.META['REMOTE_ADDR']
+    try:
+        if SYSTEM_INITIALISE_SESSION_NAME in HttpRequest.session.keys():
+        	#process here
+        	AdminObj = AdminInitialize()
+        	result = AdminObj._RegisterUserFromSiteSystem()
+        	msglist.append(result[1])
+        	HttpRequest.session[SESSION_MESSAGE] = msglist
+        	del HttpRequest.session[SYSTEM_INITIALISE_SESSION_NAME]
+		return HttpResponseRedirect('/security/admin/')
+    except:
+    	msg = "== UNKNOWN SYSTEM EXCEPTION GENERATED =="
+        InitAdminLogger.exception('[%s][%s] %s'%('RegisterUserFromSiteSystem',ip,msg))
+        msglist.append(msg)
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
 
 

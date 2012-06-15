@@ -1,6 +1,10 @@
 from django.db import models
 from tx2.Users.models import Group
+from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert
 from tx2.CONFIG import LoggerUser
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
+from tx2.Misc.CacheManagement import setCache,getCache
+from tx2.Security.models import Entity
 import logging
 
 class GroupFnx(models.Model):
@@ -11,25 +15,30 @@ class GroupFnx(models.Model):
             
         #CRUD FUNCTIONS
         
-#        def CreateGroup(self,gname,gdesc,gtype,entity,by,ip):
-#            try:
-#                self.UserLogger.debug('inside CreateGroup')
-#                details = {
-#                           'ip':ip,
-#                           'by':by,
-#                           'request':'INSERT',
-#                           'entity':entity,
-#                           'group_type_id':gtype,
-#                           'groupname':gname,
-#                           'groupdesc':gdesc,
-#                           }
-#                result = DBCreateGroup(details)
-#                self.UserLogger.debug('[%s] %s,%s'%('CreateGroup',str(details),str(result)))
-#                return (result,decode(int(result['result']), result['rescode']))
-#            except:
-#                exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
-#                self.UserLogger.exception(exception_log)
-#                return (-1,'Exception Occoured at Business Functions while creating group')
+        def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
+            eid = entity
+            if entity == -1:
+            	e_obj = Entity.objects.get(EntityName=SYSTEM_ENTITY)
+            	setCache(CACHE_KEY_SYSTEM_ENTITY,e_obj.id)
+            	eid = e_obj.id
+            try:
+                self.UserLogger.debug('inside CreateGroup')
+                details = {
+                           'ip':ip,
+                           'by':by,
+                           'RequestedOperation':req_op,
+                           'GroupEntity':eid,
+                           'GroupType':gtype,
+                           'GroupName':gname,
+                           'GroupDescription':gdesc,
+                           }
+                result = DBGroupInsert(details)
+                self.UserLogger.debug('[%s] %s,%s'%('CreateGroup',str(details),str(result)))
+                return (result)
+            except:
+                exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
+                self.UserLogger.exception(exception_log)
+                return (-1,'Exception Occoured at Business Functions while creating group')
 
 
         # SELECTION AND QUERY FUNCTIONS

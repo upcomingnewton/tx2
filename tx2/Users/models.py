@@ -3,19 +3,7 @@ from tx2.Security.models import SecurityStates,Entity,SecurityPermissions
 from django.contrib.contenttypes.models import ContentType
 
 # Create your models here.
-class User(models.Model):
-    UserEmail = models.CharField(max_length=500)
-    UserPassword = models.CharField(max_length=500)
-    UserBirthDate = models.DateField()
-    UserFirstName = models.CharField(max_length=100)
-    UserMiddleName = models.CharField(max_length=100)
-    UserLastName = models.CharField(max_length=100)
-    UserEntity = models.ForeignKey(Entity)
-    State = models.ForeignKey(SecurityStates)
-    UserGender = models.CharField(max_length=1)
-    
-    def __unicode__(self):
-        return self.UserEmail
+
     
 class GroupType(models.Model):
     GroupTypeName = models.CharField(max_length=50)
@@ -27,12 +15,21 @@ class Group(models.Model):
     GroupType = models.ForeignKey(GroupType)
     State = models.ForeignKey(SecurityStates)
     GroupEntity = models.ForeignKey(Entity)
-    
-class UserGroup(models.Model):
-    User = models.ForeignKey(User)
-    Group = models.ForeignKey(Group)
+        
+class User(models.Model):
+    UserEmail = models.CharField(max_length=500)
+    UserPassword = models.CharField(max_length=500)
+    UserBirthDate = models.DateField()
+    UserFirstName = models.CharField(max_length=100)
+    UserMiddleName = models.CharField(max_length=100)
+    UserLastName = models.CharField(max_length=100)
+    UserEntity = models.ForeignKey(Entity)
     State = models.ForeignKey(SecurityStates)
-    
+    UserGender = models.CharField(max_length=1)
+    Group = models.ForeignKey(Group)
+    def __unicode__(self):
+        return self.UserEmail
+        
 class Menu(models.Model):
     MenuName = models.CharField(max_length=100)
     MenuDesc = models.CharField(max_length=500)
@@ -70,3 +67,5 @@ class UserLoginLog(models.Model):
     LogoutTime = models.DateTimeField()
     LoginIP = models.CharField(max_length=20)
     Logout_From = models.IntegerField()
+    
+

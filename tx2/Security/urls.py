@@ -28,4 +28,5 @@ urlpatterns = patterns('',
                        url(r'^admin/InsertSystemPermissions/$','Security.Views.AdminInitializeViews.InsertSystemPermissions'),
                        url(r'^admin/DefaultUserSystem/$','Security.Views.AdminInitializeViews.DefaultUserSystem'),
                        url(r'^admin/DefaultSecurityContentSystem/$','Security.Views.AdminInitializeViews.DefaultSecurityContentSystem'),
+                       url(r'^admin/RegisterUserFromSiteSystem/$','Security.Views.AdminInitializeViews.RegisterUserFromSiteSystem'),
                     )
