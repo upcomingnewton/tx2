@@ -51,7 +51,7 @@ class UserFnx():
                     'ip':ip}
             result = DBInsertUser(user)
             if ( result['result'] == 1):
-            	 send_mail_test(email,result['rescode'],fname,ip)
+            	 self.send_mail_test(email,result['rescode'],fname,ip)
             return(result, decode(int(result['result']),result['rescode']))
         except:
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
