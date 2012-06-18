@@ -6,10 +6,10 @@ AppName VARCHAR,
 OUT varpci INTEGER,
 OUT varsci INTEGER,
 OUT result INTEGER,
-OUT rescode INTEGER
+OUT rescode INTEGER,
+OUT var_ctid INTEGER
 ) RETURNS RECORD AS $$
 DECLARE
-	var_ctid INTEGER;
 	var_usersci INTEGER;
 	var_usergrpid INTEGER;
 BEGIN 
@@ -22,18 +22,18 @@ IF NOT EXISTS ( SELECT id FROM  "Users_user" WHERE id=UserID ) THEN
 	varpci := -1;
 	varsci := -1;
 	result := -1;
-	-- User does not exists :P
+	RAISE NOTICE 'User does not exists';
 	rescode := 501;
 	RETURN;
 END IF;
 SELECT "State_id" INTO var_usersci FROM "Users_user"  WHERE id=UserID;
-SELECT "Group_id" INTO var_usergrpid FROM "Users_usergroup" WHERE "State_id"=var_usersci AND "User_id"=UserID;
+SELECT "Group_id" INTO var_usergrpid FROM "Users_user" WHERE "State_id"=var_usersci AND id=UserID;
 
 IF NOT EXISTS ( SELECT id FROM  "Security_securitypermissions" WHERE "PermissionName"=RequestedPermission ) THEN 
 	varpci := -1;
 	varsci := -1;
 	result := -1;
-	-- Operation is not supported by the system
+	RAISE NOTICE 'permission name is not there in permissions-table';
 	rescode := 502;
 	RETURN;
 END IF;
@@ -43,7 +43,7 @@ IF NOT EXISTS ( SELECT id FROM  django_content_type WHERE app_label=AppName AND 
 	varpci := -1;
 	varsci := -1;
 	result := -1;
-	-- No such model and app on which operation is being performed
+	RAISE NOTICE 'content-type does not exists';
 	rescode := 503;
 	RETURN;
 END IF;
@@ -52,7 +52,7 @@ SELECT id INTO var_ctid FROM django_content_type WHERE app_label=AppName AND mod
 IF NOT EXISTS ( SELECT id FROM  "Security_securitygroupcontent" WHERE "Group"=var_usergrpid AND "ContentType_id"=var_ctid AND "Permission_id"=varpci AND "Active"=1) THEN 
 	varsci := -1;
 	result := -1;
-	-- Operation is not supported by system
+	RAISE NOTICE 'ERROR, GROUPID = %, Permissionid = %, ctid = %',var_usergrpid,varpci,var_ctid;
 	rescode := 504;
 	RETURN;
 ELSE

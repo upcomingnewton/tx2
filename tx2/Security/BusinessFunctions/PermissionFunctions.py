@@ -3,6 +3,7 @@ from tx2.CONFIG import LoggerSecurity
 from tx2.Security.SecurityConfig import InitPermission, PermissionInsert
 from tx2.Security.DBFunctions.DatabaseFunctions import DBInsertPermission
 from tx2.Security.DBFunctions.DBMessages import decode
+from tx2.conf.LocalProjectConfig import *
 import logging
 
 class PermissionFnx():
@@ -12,13 +13,9 @@ class PermissionFnx():
             
         #CRUD FUNCTIONS
         
-        def CreatePermission(self,PermName,PermDesc,OperationFlag,entity,by,ip):
+        def CreatePermission(self,PermName,PermDesc,entity,by,ip,Operation=SYSTEM_PERMISSION_INSERT):
             try:
                 self.SecurityLogger.debug('inside CreatePermission')
-                if OperationFlag == 1:
-                    Operation = InitPermission
-                else:
-                    Operation = PermissionInsert
                 details = {
                            'ip':ip,
                            'by':by,

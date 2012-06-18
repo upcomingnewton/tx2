@@ -3,9 +3,10 @@ CREATE OR REPLACE FUNCTION UserLogin
 	emailid VARCHAR,
 	password VARCHAR,
 	login_type INTEGER,
-	time_stamp timestamp with time zone,
 	ip VARCHAR,
+	time_stamp timestamp with time zone,
 	OUT userid INTEGER,
+	OUT userstate INTEGER,
 	OUT loginid INTEGER,
 	OUT groupid INTEGER,
 	OUT result INTEGER,
@@ -13,6 +14,8 @@ CREATE OR REPLACE FUNCTION UserLogin
 ) 
 RETURNS RECORD AS $$
 DECLARE
+	user__id INTEGER;
+	varrec RECORD;
 	varrec1 RECORD;
 	login_type_int INTEGER;
 	temp INTEGER;
@@ -20,35 +23,47 @@ BEGIN
 
 IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=emailid ) THEN
 	result := -1;
-	rescode = 2001;
+	rescode = 111;
 	groupid := -1;
 	loginid := -1;
+	userstate := -1;
 	userid := -1;
 	RETURN;
 END IF;
 
 IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=emailid AND "UserPassword"=password ) THEN
 	result := -1;
-	rescode = 2002;
+	rescode = 112;
 	groupid := -1;
 	loginid := -1;
+	userstate := -1;
 	userid := -1;
 	RETURN;
 END IF;
 
 SELECT id INTO userid FROM "Users_user" WHERE "UserEmail"=emailid;
-SELECT "Group_id" INTO groupid FROM "Users_usergroup" WHERE "User_id"=userid;
+SELECT "Group_id" INTO groupid FROM "Users_user" WHERE id=userid;
+SELECT "State_id" INTO userstate FROM "Users_user" WHERE id=userid;
+
+
+SELECT id INTO login_type_int FROM "Users_logintype" WHERE id=login_type;
+IF login_type_int IS NULL THEN 
+	rescode := 113;
+	result := -1;
+	loginid := -1;
+	RETURN;
+END IF;
 
 INSERT INTO "Users_userloginlog"(user_id,"Login_From","LoginTime","LoginIP","LogoutTime","Logout_From")
-VALUES(userid,login_type,time_stamp,ip,now(),-1);
+VALUES(userid,login_type_int,time_stamp,ip,now(),login_type_int);
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
-	rescode := 2003;
+	rescode := 114;
 	result := -1;
 	loginid := -1;
 	RETURN;
 ELSE
-	rescode := 2005;
+	rescode := 115;
 	result := 1;
 	SELECT id INTO loginid FROM "Users_userloginlog" WHERE user_id=userid AND "LoginIP"=ip AND "LoginTime"=time_stamp;
 	RETURN;

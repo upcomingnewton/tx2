@@ -9,11 +9,9 @@ OUT rescode INTEGER
 ) RETURNS RECORD AS $$
 DECLARE 
     temp INTEGER;
-    ctid INTEGER;
     varrec RECORD;
 BEGIN 
 temp := 0;
-ctid := 0;
 
 IF EXISTS ( SELECT id FROM "Security_securitypermissions" WHERE "PermissionName"=PermissionName) THEN
 	result := 2;
@@ -39,10 +37,10 @@ IF temp <> 1 THEN
 END IF;
 
 SELECT id INTO rescode FROM "Security_securitypermissions" WHERE "PermissionName" = PermissionName;
-SELECT id INTO ctid FROM django_content_type WHERE app_label='Security' AND model ='securitypermissions';
 
-INSERT INTO "Security_securitylogs"(id, "User", "ContentType_id", "TimeStamp", ip, "Desc")
-							VALUES(rescode,by_user,ctid,now(),ip,'PermissionInsert');
+
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", ip, "Desc")
+							VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'PermissionInsert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

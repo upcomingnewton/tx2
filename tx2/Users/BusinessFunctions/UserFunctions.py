@@ -1,7 +1,9 @@
 from tx2.Misc.Encryption import Encrypt
-from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser
+from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser,DBInsertUser
 from tx2.Users.DBFunctions.DBMessages import decode
 from tx2.Users.HelperFunctions.LoginDetails import AddLoginIdToLoggedInUsersDict, ClearLoginIdFromLoggedInUsersDict 
+from tx2.conf.LocalProjectConfig import *
+from tx2.Misc.CacheManagement import setCache,getCache
 #from cPickle import dumps, loads 
 from tx2.CONFIG import LoggerUser
 import logging
@@ -33,7 +35,7 @@ class UserFnx():
 #            exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
 #            self.UserLogger.exception(exception_log)
         
-    def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,ip):
+    def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
         try:
             user = {'email':email, 
                     'pass':self.encrypt.encrypt(password),
@@ -42,14 +44,14 @@ class UserFnx():
                     'mname':mname,
                     'gender':gender,
                     'bday':str(bday), #date
-                    'entity':'system',
-                    'state':'INSERT',
-                    
-                     'group':'created_users',
-                    'logsdesc':'INSERT;created_users',
-                    'by_email':2,
+                     'entity':entity,
+                    'group':group,
+                     'op':op,
+                    'by':by,
                     'ip':ip}
             result = DBInsertUser(user)
+            if ( result['result'] == 1):
+            	 send_mail_test(email,result['rescode'],fname,ip)
             return(result, decode(int(result['result']),result['rescode']))
         except:
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
@@ -90,10 +92,13 @@ class UserFnx():
             return (-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
 
     def send_mail_test(self,email,userid,fname,ip):
-        token= self.encrypt.encrypt(str(userid) + '___' + email)
-        import time
-        refs = int(time.time())
-        token="http://labs-nitin.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
-        sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
+    	try:
+		token= self.encrypt.encrypt(str(userid) + '___' + email)
+		import time
+		refs = int(time.time())
+		token="http://labs-nitin.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
+		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
+	except:
+		pass
     
     

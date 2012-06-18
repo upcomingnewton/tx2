@@ -7,14 +7,16 @@ urlpatterns = patterns('',
         #INDEX PAGES
         url(r'^login/$','Users.Views.UserViews.Login_index'),
         url(r'^logout/$','Users.Views.UserViews.log_out'),
+        url(r'^register/$','Users.Views.UserViews.CreateUserIndex'),
         # post-back for logging in 
         url(r'^login/log_in/$','Users.Views.UserViews.log_in'),
         url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
+        url(r'^register/new/$','Users.Views.UserViews.CreateUserFromSite'),
         
     
     ###########################################################################################
-        url(r'^register/$','txUser.views.Views_User.CreateUserIndex'),
-        url(r'^register/new/$','txUser.views.Views_User.CreateUserFromSite'),
+        
+        
     
   #  url(r'^forgetpassword/$','txUser.UserViews.Forget_Pass_index'),
   #  url(r'^forget_pass/$','txUser.UserViews.forget_pass'),

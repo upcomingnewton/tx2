@@ -2,6 +2,7 @@ CREATE OR REPLACE FUNCTION UserLogout
 (
 	loginid INTEGER,
 	logout_from INTEGER,
+	time_stamp timestamp with time zone,
 	OUT result INTEGER,
 	OUT rescode INTEGER
 ) 
@@ -13,20 +14,29 @@ BEGIN
 
 IF NOT EXISTS ( SELECT id from "Users_userloginlog" WHERE id=loginid ) THEN 
 	result = -1;
-	rescode = 2011;
+	rescode = 116;
+	RETURN;
+END IF;
+
+
+SELECT id INTO temp FROM "Users_logintype" WHERE id=logout_from;
+IF temp IS NULL THEN 
+	result = -1;
+	rescode = 117;
+	RETURN;
 END IF;
 
 UPDATE "Users_userloginlog"
-SET "LogoutTime"=now(),
-	"Logout_From"=logout_from
+SET "LogoutTime"=time_stamp,
+	"Logout_From"=temp
 WHERE id=loginid;
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
-	rescode := 2012;
+	rescode := 118;
 	result := -1;
 	RETURN;
 ELSE
-	rescode := 2015;
+	rescode := 120;
 	result := 1;
 	RETURN;
 END IF;

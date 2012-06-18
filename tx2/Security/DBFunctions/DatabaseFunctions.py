@@ -16,8 +16,8 @@ QueryLogger = logging.getLogger(LoggerQuery)
 
 def DBInsertState(details):
     try:
-        #query = "SELECT * FROM txUser_user_insert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "','" + userdetails['gender'] + "','" + userdetails['bday'] + "','" + userdetails['entity'] + "','" + userdetails['state'] + "','" + userdetails['group'] + "','" + userdetails['logsdesc'] + "','" + str(userdetails['by_email']) + "','" + userdetails['ip'] +"'); "
-        query = "SELECT * FROM securitystateinsert('" + details['name'] + "','" + details['desc'] + "','" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        #SELECT * FROM SecurityStateInsert('testfromdb','testfromdb','SYS_PER_INSERT',1,'testfromdb');
+        query = "SELECT * FROM SecurityStateInsert('" + details['name'] + "','" + details['desc'] + "','" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         SecurityLogger.debug('[%s] %s'%('DBInsertState',query))
         QueryLogger.debug('[%s] %s'%('DBInsertState',query))
         result =  DBhelper.CallFunction(query)
@@ -30,7 +30,7 @@ def DBInsertState(details):
         
 def DBInsertPermission(details):
     try:
-        #query = "SELECT * FROM txUser_user_insert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "','" + userdetails['gender'] + "','" + userdetails['bday'] + "','" + userdetails['entity'] + "','" + userdetails['state'] + "','" + userdetails['group'] + "','" + userdetails['logsdesc'] + "','" + str(userdetails['by_email']) + "','" + userdetails['ip'] +"'); "
+        #SELECT * FROM SecurityPermissionInsert('testfromdb','testfromdb','SYS_PER_INSERT',1,'testfromdb');
         query = "SELECT * FROM securitypermissioninsert('" + details['name'] + "','" + details['desc'] + "','" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         SecurityLogger.debug('[%s] %s'%('DBInsertPermission',query))
         QueryLogger.debug('[%s] %s'%('DBInsertPermission',query))
@@ -45,7 +45,8 @@ def DBInsertPermission(details):
         
 def DBGroupContentSecurityInsert(details):
     try:
-        query = "SELECT * FROM SecurityGroupContent_Insert(" + str(details['groupid']) + "," + str(details['ctid']) + "," + str(details['permissionid']) + "," + str(details['stateid']) + "," + str(details['userid']) + ",'" + details['ip'] + "');"
+    	#SELECT * FROM SecurityGroupContent_Insert(  2, 9, 1,  1,  'SYS_PER_INSERT',1,'testfromdb');
+        query = "SELECT * FROM SecurityGroupContent_Insert(" + str(details['groupid']) + "," + str(details['ctid']) + "," + str(details['permissionid']) + "," + str(details['stateid']) + ",'"+ details['op'] +"'," + str(details['userid']) + ",'" + details['ip'] + "');"
         SecurityLogger.debug('[%s] %s'%('DBGroupContentSecurityInsert',query))
         QueryLogger.debug('[%s] %s'%('DBGroupContentSecurityInsert',query))
         result =  DBhelper.CallFunction(query)
@@ -53,6 +54,20 @@ def DBGroupContentSecurityInsert(details):
         return result[0]
     except:
         exception_log = "[%s] %s"%('DBGroupContentSecurityInsert',query)
+        SecurityLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+        
+def DBGroupContentSecurityDelete(details):
+    try:
+    	#SELECT * FROM  SecurityGroupContent_Delete(16,'SYS_PER_DELETE',1,'testfromdb');
+        query = "SELECT * FROM SecurityGroupContent_Delete(" + str(details['ctid']) + ",'" + details['op'] + "'," + str(details['userid']) + ",'" + details['ip'] + "');"
+        SecurityLogger.debug('[%s] %s'%('DBGroupContentSecurityDelete',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupContentSecurityDelete',query))
+        result =  DBhelper.CallFunction(query)
+        SecurityLogger.debug('[%s] %s'%('DBGroupContentSecurityDelete',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupContentSecurityDelete',query)
         SecurityLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
 

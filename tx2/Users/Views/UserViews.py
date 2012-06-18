@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.BusinessFunctions.UserFunctions import UserFnx
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
+from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity,getSystemGroup_NewUsers, getSystemUser_DaemonCreateUser
 from tx2.Misc.Encryption import Encrypt
 #from ThoughtXplore.txUser.views.Views_MiscFnx import CheckAndlogout
 #from ThoughtXplore.txMisc.Validation.Validation import EmailValidate , StringValidate
@@ -12,7 +13,7 @@ from tx2.Misc.Encryption import Encrypt
 #from ThoughtXplore.txCommunications.CommunicationFunctions import send_validation_email
 from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type
 import logging
-
+import datetime
 
 LoggerUser = logging.getLogger(LoggerUser)
 
@@ -125,33 +126,21 @@ def log_out(HttpRequest):
     
 #@never_cache
 def CreateUserFromSite(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    details = GetLoginDetails(HttpRequest)
-    if( details['userid'] == -1):
-        msglist.append('Please Login.')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
-        HttpResponseRedirect('/user/login/')
+    msglist = []
     ip = HttpRequest.META['REMOTE_ADDR']
+    details = GetLoginDetails(HttpRequest)
+    by = getSystemUser_DaemonCreateUser()
+    print by
+    #return HttpResponse('good')
+    if( details['userid'] != -1):
+        by = int(details['userid'])
     try:
         email = HttpRequest.POST['RegisterUser_email']
-        email_val = EmailValidate(email)
-        if( email_val.validate() != 1):
-            msglist.append('invalid email adress')
         pass1 = HttpRequest.POST['RegisterUser_pass']
         pass2 = HttpRequest.POST['RegisterUser_pass2']
-        if( pass1 != pass2):
-            msglist.append('passwords do not match')
-        str_val = StringValidate()
         fname = HttpRequest.POST['RegisterUser_fname']
-        if(str_val.validate_alphastring(fname) != 1):
-                msglist.append('first name should contain only alphabets')
         mname = HttpRequest.POST['RegisterUser_mname']
-        if( len(mname) > 0 ):
-            if(str_val.validate_alphastring(mname) != 1):
-                msglist.append('middle name should contain only alphabets')
         lname = HttpRequest.POST['RegisterUser_lname']
-        if(str_val.validate_alphastring(lname) != 1):
-                msglist.append('last name should contain only alphabets')
         bday = HttpRequest.POST['RegisterUser_dob']
         bday = bday.split('/')
         try:
@@ -164,22 +153,13 @@ def CreateUserFromSite(HttpRequest):
             
         if ( len(msglist) > 0 ):
             HttpRequest.session[SESSION_MESSAGE] = msglist
-            return HttpResponseRedirect('/user/register/')
+            return HttpResponseRedirect('/message/')
         else:
-            insfnx = UserFunctions.UserFnx()
-            res = insfnx.InsertUserFromSite(email, pass2, fname, mname, lname, gender, bday,'system',HttpRequest.META['REMOTE_ADDR'])
-            result = res[0]
-            if( result['result'] >= 1 ):
-                msglist.append('account created. an email has been sent in this regard.')
-                HttpRequest.session[SESSION_MESSAGE] = msglist
-                insfnx.send_mail_test(email, result['rescode'], fname, HttpRequest.META['REMOTE_ADDR'])
-                encrypt = Encrypt()
-                return HttpResponseRedirect('/user/register')
-            else:
-                LoggerUser.error(res)
-                msglist.append(res[1])
-                HttpRequest.session[SESSION_MESSAGE] = msglist
-                return HttpResponseRedirect('/error/')
+            insfnx = UserFnx()
+            res = insfnx.InsertUser(email, pass2, fname, mname, lname, gender, bday,getSystemEntity(),getSystemGroup_NewUsers(),by,ip)
+            msglist.append(res)
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/user/register')
     except:
         LoggerUser.exception('[CreateUserFromSite][%s] Exception '%(ip))
         msglist.append('Some Error has occoured')
@@ -221,8 +201,8 @@ def CreateUserFromSite(HttpRequest):
 #    return render_to_response("txUser/ListUsers.html",{'title':'list users', 'users':User.objects.all()},context_instance=RequestContext(request))
 #
 #
-#def CreateUserIndex(request):
-#    return render_to_response('UserSystem/User/CreateUser.html',{'title':'create user page'},context_instance=RequestContext(request))
+def CreateUserIndex(request):
+    return render_to_response('UserSystem/User/CreateUser.html',{'title':'create user page'},context_instance=RequestContext(request))
 #
 #
 # HELPER FUNCTION

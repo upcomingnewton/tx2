@@ -15,9 +15,12 @@ QueryLogger = logging.getLogger(LoggerQuery)
 
 
 def DBInsertUser(userdetails):
+    
+    	#SELECT * FROM UserInsert('testfromdb1','testfromdb1',current_date,'testfromdb1','testfromdb1','testfromdb1',1,'S',3,'SYS_PER_INSERT',2,'RequestedOperation');
+    query = "SELECT * FROM UserInsert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
     try:
-        query = "SELECT * FROM txUser_user_insert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "','" + userdetails['gender'] + "','" + userdetails['bday'] + "','" + userdetails['entity'] + "','" + userdetails['state'] + "','" + userdetails['group'] + "','" + userdetails['logsdesc'] + "','" + str(userdetails['by_email']) + "','" + userdetails['ip'] +"'); "
         UserLogger.debug('[%s] %s'%('DBInsertUser',query))
+        QueryLogger.debug('[%s] %s'%('DBLogoutUser',query))
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBInsertUser',result))
         return result[0]
@@ -26,9 +29,24 @@ def DBInsertUser(userdetails):
         UserLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
         
-def DBLoginUser(logindetails):
+def DBUpdateUser(userdetails):
     try:
-        query = "SELECT * FROM userlogin('" + logindetails['email'] + "','" + logindetails['pass'] + "'," + str(logindetails['login_type']) + ",'" + str(datetime.now()) + "','" + logindetails['ip'] + "');"
+    	#SELECT * FROM UserUpdate('testfromdb1','pass-update1',current_date,'fname-update1','mname-updat1','lname-update1',1,'U','testing update','testing update',4,'SYS_PER_USER_AU_EMAIL',4,'update');
+
+        query = "SELECT * FROM UserUpdate('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "','" + details['LogsDesc'] + "','" + details['PreviousState']  + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
+        UserLogger.debug('[%s] %s'%('DBUpdateUser',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBUpdateUser',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBUpdateUser',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+        
+def DBLoginUser(logindetails):
+	#SELECT * FROM UserLogin('SystemInit1@init.com','41MCGF_P4L5U6S98h0viy4QQ2mOBhZdsWPSHVqCQ6Il6mwkyNY1k=',1,'testfromdb',now());
+    try:
+        query = "SELECT * FROM UserLogin('" + logindetails['email'] + "','" + logindetails['pass'] + "'," + str(logindetails['login_type']) + ",'" + logindetails['ip'] + "','" + str(datetime.now()) + "');"
         UserLogger.debug('[%s] %s'%('DBLoginUser',query))
         QueryLogger.debug('[%s] %s'%('DBLoginUser',query))
         result =  DBhelper.CallFunction(query)
@@ -40,8 +58,9 @@ def DBLoginUser(logindetails):
         return {'result':-1,'rescode':-1}
     
 def DBLogoutUser(details):
+	#SELECT * FROM UserLogout(1,1,now());
     try:
-        query = "SELECT * FROM userlogout(" + str(details['loginid']) + "," +  str(details['logout_from']) + ");"
+        query = "SELECT * FROM userlogout(" + str(details['loginid']) + "," +  str(details['logout_from']) + ",'" + str(datetime.now()) + "');"
         UserLogger.debug('[%s] %s'%('DBLogoutUser',query))
         QueryLogger.debug('[%s] %s'%('DBLogoutUser',query))
         result =  DBhelper.CallFunction(query)
@@ -52,83 +71,8 @@ def DBLogoutUser(details):
         UserLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
     
-def DBAuthenicateUser(auth_details):
-    try:
-        #"SELECT * FROM txUser_user_statechange('" + auth_details['to_email'] + "','" + auth_details['by_email'] + "','" + auth_details['state'] + "','" + auth_details['perm'] + "','" + auth_details['ip'] + "','" + auth_details['logsdesc'] + "');"
-        query = "SELECT * FROM txUser_user_statechange('" + auth_details['to_email'] + "','" + auth_details['by_email'] + "','" + auth_details['state'] + "','" + auth_details['perm'] + "','" + auth_details['ip'] + "','" + auth_details['logsdesc'] + "');"
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',query))
-        result =  DBhelper.CallFunction(query)
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',result))
-        return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBAuthenicateUser',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
-        
-def DB_ChangeStateOfASingleUser(details):
-    try:
-        query = "SELECT * FROM txUser_user_statechange_single(" + str(details['userid']) + "," + str(details['by']) + ",'" + details['request_group'] + "','" + details['request_permission'] + "','" + details['ip'] + "','" + details['logsdesc'] + "');"
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',query))
-        result =  DBhelper.CallFunction(query)
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',result))
-        return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBAuthenicateUser',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
-### ========================================================================================================  ###        
-        
-# GROUP FUNCTIONS
-
-def DBCreateGroup(details):
-    try:
-        query=  "SELECT * FROM txUser_group_insert('" + details['groupname']  + "','" + details['groupdesc'] + "'," + str(details['group_type_id']) + ",'" + details['entity']  + "','" + details['request'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',query))
-        result =  DBhelper.CallFunction(query)
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',result))
-        return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBAuthenicateUser',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
-
 ### ========================================================================================================  ###  
 
-# USER GROUP FUNCTIONS
-
-def DBAddUserToGroup(details):
-    try:
-        query =  "SELECT * FROM txUser_usergroup_insert("  + str(details['groupid']) + ",'" + details['userid'] + "','" + details['logsdesc'] + "'," + str(details['by_user']) + ",'" + details['ip'] + "');"
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',query))
-        result =  DBhelper.CallFunction(query)
-        UserLogger.debug('[%s] %s'%('DBAuthenicateUser',result))
-        return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBAuthenicateUser',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
-    
-### ========================================================================================================  ###  
-
-def DBCreateSecGroupForCommunications(details):
-    query = "SELECT * FROM  SecGroup_Comm_insert('" + details['groupid'] + "','" + details['permission'] + "','" + details['params'] + "','[-1]','" + details['logdesc'] + "'," + details['by'] + ",'" + details['ip'] + "');"
-    print query
-    #result =  DBhelper.CallFunction(query)
-    #return result
-
-
-
-
-
-def DBAddUsertoSecGroupForCommunications(details):
-    query= "SELECT * FROM SecGroup_Comm_appned(" + str(details['groupid']) + ",'" + details['userid'] + "','" + details['params'] + "','" + details['permission'] + "','" + str(details['by']) + "');"
-    print query
-    result =  DBhelper.CallFunction(query)
-    return result[0]
-    
-    
-### ========================================================================================================  ###     
-### ========================================================================================================  ### 
 def DBGroupTypeInsert(details):
     try:
     	#SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','SystemInit_Insert',1,'test');

@@ -3,6 +3,7 @@ CREATE OR REPLACE FUNCTION SecurityGroupContent_Insert(
   ContentType_id integer,
   Permission_id integer,
   State_id integer,
+  RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
 OUT result INTEGER,
@@ -10,19 +11,17 @@ OUT rescode INTEGER
 ) RETURNS RECORD AS $$
 DECLARE 
     temp INTEGER;
-    ctid INTEGER;
     varrec RECORD;
 BEGIN 
 temp := 0;
-ctid := 0;
 
 IF EXISTS ( SELECT id FROM "Security_securitygroupcontent" WHERE "Group"=Group_id AND "ContentType_id"=ContentType_id AND "Permission_id"=Permission_id AND "State_id"=State_id AND "Active"=1) THEN
 	result := 2;
-  	rescode := 81;
+  	rescode := 71;
 	RETURN;
 END IF;
 
-SELECT * INTO varrec FROM CheckUserForPermission(by_user,'Insert','securitygroupcontent','Security');
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'securitygroupcontent','Security');
 IF varrec.result <> 1 THEN
 	rescode :=  varrec.rescode;
 	result := -2;
@@ -35,7 +34,7 @@ INSERT INTO "Security_securitygroupcontent"(
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
-	rescode := 82;
+	rescode := 72;
 	result := -1;
         RETURN;
 END IF;
@@ -48,8 +47,8 @@ SELECT id INTO rescode FROM "Security_securitygroupcontent"
 	  "Active"=1;
 
 
-INSERT INTO "Security_securitylogs"(id, "User", "ContentType_id", "TimeStamp", ip, "Desc")
-				VALUES(rescode,by_user,ContentType_id,now(),ip,'Insert');
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", ip, "Desc")
+				VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'Insert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

@@ -1,6 +1,9 @@
-CREATE OR REPLACE FUNCTION GroupTypeInsert(
-GroupTypeName VARCHAR,
-GroupTypeDescription VARCHAR,
+CREATE OR REPLACE FUNCTION MenuInsert(
+MenuName VARCHAR,
+MenuDesc VARCHAR,
+MenuUrl VARCHAR,
+MenuPid integer,
+MenuIcon VARCHAR,
 RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
@@ -13,31 +16,30 @@ DECLARE
 BEGIN 
 temp := 0;
 
-IF EXISTS ( SELECT id FROM "Users_grouptype" WHERE "GroupTypeName"=GroupTypeName) THEN
+IF  EXISTS ( SELECT id FROM "Users_menu" WHERE "MenuUrl"=MenuUrl AND "MenuPid"=MenuPid) THEN
 	result := 2;
-  	rescode := 81;
+  	rescode := 101;
 	RETURN;
 END IF;
 
-SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'grouptype','Users');
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'menu','Users');
 IF varrec.result <> 1 THEN
 	rescode :=  varrec.rescode;
 	result := -2;
 	RETURN;
 END IF;
 
-INSERT INTO "Users_grouptype"("GroupTypeName", "GroupTypeDescription")
-VALUES (GroupTypeName,GroupTypeDescription);
+INSERT INTO  "Users_menu"("MenuName", "MenuDesc", "MenuUrl", "MenuPid", "State_id",  "MenuIcon") 
+VALUES(MenuName,MenuDesc,MenuUrl,MenuPid,varrec.varsci,MenuIcon);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
-	rescode := 82;
+	rescode := 102;
 	result := -1;
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "Users_grouptype"  WHERE "GroupTypeName"=GroupTypeName;
-
+ SELECT id INTO rescode FROM "Users_menu" WHERE "MenuUrl"=MenuUrl AND "MenuPid"=MenuPid;
 INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
 VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'INSERT');
 GET DIAGNOSTICS temp := ROW_COUNT;

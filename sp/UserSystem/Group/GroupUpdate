@@ -1,9 +1,12 @@
-CREATE OR REPLACE FUNCTION GroupInsert(
+CREATE OR REPLACE FUNCTION GroupUpdate(
+GroupId integer,
 GroupName VARCHAR,
 GroupDescription VARCHAR,
-GroupType INTEGER,
+GroupType_id INTEGER,
 GroupEntity INTEGER,
 RequestedOperation VARCHAR,
+LogDesc VARCHAR,
+LogPreviousState VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
 OUT result INTEGER,
@@ -15,9 +18,9 @@ DECLARE
 BEGIN 
 temp := 0;
 
-IF EXISTS ( SELECT id FROM "Users_group" WHERE "GroupName"=GroupName AND "GroupType_id"=GroupType AND "GroupEntity_id"=GroupEntity ) THEN
-	result := 2;
-  	rescode := 84;
+IF NOT EXISTS ( SELECT id FROM "Users_group" WHERE id=GroupId) THEN
+	result := -1;
+  	rescode := 87;
 	RETURN;
 END IF;
 
@@ -28,21 +31,26 @@ IF varrec.result <> 1 THEN
 	RETURN;
 END IF;
 
-INSERT INTO "Users_group"("GroupName","GroupDescription","GroupType_id","State_id","GroupEntity_id")
-VALUES (GroupName,GroupDescription,GroupType,varrec.varsci,GroupEntity);
+UPDATE "Users_group"
+SET "GroupName"=GroupName, 
+    "GroupDescription"=GroupDescription, 
+    "GroupType_id"=GroupType_id, 
+    "State_id"=varrec.varsci,
+     "GroupEntity_id"=GroupEntity_id
+WHERE  id=GroupId;
 
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
-	rescode := 85;
+	rescode := 88;
 	result := -1;
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "Users_group" WHERE "GroupName"=GroupName AND "GroupType_id"=GroupType AND "GroupEntity_id"=GroupEntity;
+SELECT id INTO rescode FROM "Users_group" WHERE "GroupName"=GroupName AND "GroupType_id"=GroupType_id AND "GroupEntity_id"=GroupEntity;
 
 INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
-VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'Insert');
+VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),LogDesc,LogPreviousState);
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

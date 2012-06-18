@@ -3,3 +3,9 @@ SELECT * FROM GroupTypeInsert('testfromdb','testfromdb','SystemInit_Insert',1,'t
 
 SELECT * FROM GroupInsert('testfromdb','testfromdb',3,2,'INSERT',10,'test');
 
+
+SELECT * FROM UserInsert('testfromdb1','testfromdb1',current_date,'testfromdb1','testfromdb1','testfromdb1',1,'S',3,'SYS_PER_INSERT',2,'RequestedOperation');
+
+
+SELECT * FROM UserUpdate('testfromdb1','pass-update1',current_date,'fname-update1','mname-updat1','lname-update1',1,'U','testing update','testing update',4,'SYS_PER_USER_AU_EMAIL',4,'update');
+

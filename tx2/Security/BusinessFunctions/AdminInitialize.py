@@ -14,7 +14,10 @@ class AdminInitialize():
 		
 	def _DefaultSecurityContentSystem(self):
 		SystemInsertPermissionObject = SecurityPermissions.objects.get(PermissionName=SYSTEM_PERMISSION_INSERT)
+		SystemDeletePermissionObject = SecurityPermissions.objects.get(PermissionName=SYSTEM_PERMISSION_DELETE)
+		SystemUpdatePermissionObject = SecurityPermissions.objects.get(PermissionName=SYSTEM_PERMISSION_UPDATE)
 		SystemActiveStateObject = SecurityStates.objects.get(StateName=SYSTEM_STATE_ACTIVE)
+		SystemDeleteStateObject = SecurityStates.objects.get(StateName=SYSTEM_STATE_DELETED)
 		e_obj = Entity.objects.get(EntityName=SYSTEM_ENTITY)
 		gt_obj = GroupType.objects.get(GroupTypeName=SYSTEM_GROUPTYPE);
 		SystemGroupObject = Group.objects.get(GroupName=SYSTEM_GROUP,GroupType=gt_obj,GroupEntity=e_obj,State=SystemActiveStateObject)
@@ -25,6 +28,16 @@ class AdminInitialize():
 			for x in djangoctlist:
 				if x.app_label == 'Security' or x.app_label == 'Users':
 					Obj,created = SecurityGroupContent.objects.get_or_create(Group=SystemGroupObject.id,ContentType=x,Permission=SystemInsertPermissionObject,State=SystemActiveStateObject,Active=1)
+					msg = 'OBJECT = %s, RESULT = %s\t%s'%(x.name,"object",created)
+					self.SecurityLogger.debug('[%s] %s'%('_DefaultSecurityContentSystem',msg))
+					msglist.append(msg)
+					
+					Obj,created = SecurityGroupContent.objects.get_or_create(Group=SystemGroupObject.id,ContentType=x,Permission=SystemUpdatePermissionObject,State=SystemActiveStateObject,Active=1)
+					msg = 'OBJECT = %s, RESULT = %s\t%s'%(x.name,"object",created)
+					self.SecurityLogger.debug('[%s] %s'%('_DefaultSecurityContentSystem',msg))
+					msglist.append(msg)
+					
+					Obj,created = SecurityGroupContent.objects.get_or_create(Group=SystemGroupObject.id,ContentType=x,Permission=SystemDeletePermissionObject,State=SystemDeleteStateObject,Active=1)
 					msg = 'OBJECT = %s, RESULT = %s\t%s'%(x.name,"object",created)
 					self.SecurityLogger.debug('[%s] %s'%('_DefaultSecurityContentSystem',msg))
 					msglist.append(msg)

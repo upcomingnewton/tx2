@@ -1,0 +1,75 @@
+CREATE OR REPLACE FUNCTION UserUpdate(
+UserEmail character varying(500),
+UserPassword character varying(500),
+UserBirthDate date,
+UserFirstName character varying(100),
+UserMiddleName character varying(100),
+UserLastName character varying(100),
+UserEntity_id integer,
+UserGender character varying(1),
+LogsDesc VARCHAR,
+PreviousState VARCHAR,
+Group_id integer,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    ctid INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+ctid := 0;
+
+IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=UserEmail) THEN
+	result := -1;
+  	rescode := 96;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'user','Users');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+UPDATE "Users_user"
+SET	"UserPassword"=UserPassword, 
+	"UserBirthDate"=UserBirthDate, 
+	"UserFirstName"=UserFirstName, 
+	"UserMiddleName"=UserMiddleName, 
+	"UserLastName"=UserLastName, 
+	"UserEntity_id"=UserEntity_id, 
+	"State_id"=varrec.varsci, 
+	"UserGender"=UserGender,
+	 "Group_id"=Group_id
+WHERE  "UserEmail"=UserEmail;
+
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 97;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Users_user" WHERE "UserEmail"=UserEmail;
+INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),LogsDesc,PreviousState);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

@@ -1,0 +1,63 @@
+CREATE OR REPLACE FUNCTION UserInsert(
+UserEmail character varying(500),
+UserPassword character varying(500),
+UserBirthDate date,
+UserFirstName character varying(100),
+UserMiddleName character varying(100),
+UserLastName character varying(100),
+UserEntity_id integer,
+UserGender character varying(1),
+Group_id integer,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    ctid INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+ctid := 0;
+
+IF EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=UserEmail) THEN
+	result := 2;
+  	rescode := 91;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'user','Users');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "Users_user"("UserEmail", "UserPassword", "UserBirthDate", "UserFirstName", "UserMiddleName", "UserLastName", "UserEntity_id", "State_id", "UserGender", "Group_id")
+	VALUES(UserEmail,UserPassword,UserBirthDate,UserFirstName,UserMiddleName,UserLastName,UserEntity_id,varrec.varsci,UserGender,Group_id);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 92;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Users_user" WHERE "UserEmail"=UserEmail;
+INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
