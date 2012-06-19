@@ -53,7 +53,7 @@ class UserFnx():
             self.UserLogger.debug('userid = %d, details = %s' % (userid, str(details)))
             result = DBUpdateUser(details)
             self.UserLogger.debug('result = %s' % (result))
-            return(result, decode(int(result['result']),result['rescode']))
+            return result
         except:
             exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
             self.UserLogger.exception(exception_log)
@@ -76,7 +76,7 @@ class UserFnx():
             result = DBInsertUser(user)
             if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
-            return(result, decode(int(result['result']),result['rescode']))
+            return result
         except:
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
             self.UserLogger.exception(exception_log)
@@ -109,7 +109,7 @@ class UserFnx():
             result = DBLogoutUser(details)
             if (result['result'] == 1 ):
                 ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
-            return(result, decode(int(result['result']),result['rescode']))
+            return result
         except:
             exception_log = ('[%s] %s')%('LogoutUser',loginid)
             self.UserLogger.exception(exception_log)
