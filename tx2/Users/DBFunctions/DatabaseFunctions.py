@@ -30,11 +30,10 @@ def DBInsertUser(userdetails):
         return {'result':-1,'rescode':-1}
         
 def DBUpdateUser(userdetails):
+    query = "SELECT * FROM UserUpdate('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "','" + userdetails['LogsDesc'] + "','" + userdetails['PreviousState']  + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
     try:
-    	#SELECT * FROM UserUpdate('testfromdb1','pass-update1',current_date,'fname-update1','mname-updat1','lname-update1',1,'U','testing update','testing update',4,'SYS_PER_USER_AU_EMAIL',4,'update');
-
-        query = "SELECT * FROM UserUpdate('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "','" + details['LogsDesc'] + "','" + details['PreviousState']  + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
         UserLogger.debug('[%s] %s'%('DBUpdateUser',query))
+        QueryLogger.debug('[%s] %s'%('DBLogoutUser',query))
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBUpdateUser',result))
         return result[0]

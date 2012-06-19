@@ -1,8 +1,10 @@
 from tx2.Misc.Encryption import Encrypt
-from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser,DBInsertUser
+from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser,DBInsertUser,DBUpdateUser
 from tx2.Users.DBFunctions.DBMessages import decode
 from tx2.Users.HelperFunctions.LoginDetails import AddLoginIdToLoggedInUsersDict, ClearLoginIdFromLoggedInUsersDict 
+from tx2.Users.HelperFunctions.DefaultValues import *
 from tx2.conf.LocalProjectConfig import *
+from tx2.Users.models import *
 from tx2.Misc.CacheManagement import setCache,getCache
 #from cPickle import dumps, loads 
 from tx2.CONFIG import LoggerUser
@@ -17,23 +19,45 @@ class UserFnx():
         self.encrypt = Encrypt()
         self.UserLogger = logging.getLogger(LoggerUser)
         
-#    def AuthenticateUserFromSite(self,emailid,ip):
-#        try:
-#            to_emailid = self.encrypt.decrypt(emailid)
-#            s = to_emailid.split('___')
-#            details = {
-#                       'userid':int(s[0]),
-#                       'by':1,
-#                       'request_group':'authenticated_users',
-#                       'request_permission':'USER_AU',
-#                       'ip':ip,
-#                       'logsdesc':'UserAuthentication',
-#                       }
-#            result = DB_ChangeStateOfASingleUser(details)
-#            return(result, decode(int(result['result']),result['rescode']))
-#        except:
-#            exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
-#            self.UserLogger.exception(exception_log)
+    def AuthenticateUserFromSite(self,emailid,ip):
+        try:
+            to_emailid = self.encrypt.decrypt(emailid)
+            s = to_emailid.split('___')
+            userid = int(s[0])
+            # get the user
+            user_obj = User.objects.get(id=userid)
+            self.UserLogger.debug('userid = %d, userid from token %d' % (user_obj.id, userid))
+            if( user_obj is None ):
+            	self.UserLogger.exception('user does not exists')
+            	return -1
+	    groupid = getSystemGroup_EmailAU();
+	    if( groupid == -1):
+	    	self.UserLogger.exception('group id is -1')
+	    	return -1
+            details = {
+                       'email':user_obj.UserEmail,
+                       'pass':user_obj.UserPassword,
+                       'bday':str(user_obj.UserBirthDate),
+                       'fname':user_obj.UserFirstName,
+                       'mname':user_obj.UserMiddleName,
+                       'lname':user_obj.UserLastName,
+                       'entity':user_obj.UserEntity.id,
+                       'gender':user_obj.UserGender,
+                       'LogsDesc':'UserAuthenticationByEmail',
+                       'PreviousState':'UserAuthenticationByEmail',
+                       'group':groupid,
+                       'op':SYSTEM_PERMISSION_EMAIL_AU,
+                       'by':userid,
+                       'ip':ip,
+                       }
+            self.UserLogger.debug('userid = %d, details = %s' % (userid, str(details)))
+            result = DBUpdateUser(details)
+            self.UserLogger.debug('result = %s' % (result))
+            return(result, decode(int(result['result']),result['rescode']))
+        except:
+            exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
+            self.UserLogger.exception(exception_log)
+            return -1
         
     def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
         try:
@@ -90,6 +114,7 @@ class UserFnx():
             exception_log = ('[%s] %s')%('LogoutUser',loginid)
             self.UserLogger.exception(exception_log)
             return (-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
+            
 
     def send_mail_test(self,email,userid,fname,ip):
     	try:

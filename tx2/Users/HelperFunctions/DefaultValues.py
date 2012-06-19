@@ -31,6 +31,18 @@ def getSystemGroup_NewUsers():
 	except:
 		return s_entity
 		
+def getSystemGroup_EmailAU():
+	s_entity = -1
+	try:
+		s_entity = getCache(CACHE_KEY_SYSTEM_DAEMON_USERAU_USER_GROUP)
+		if s_entity is None or s_entity == -1:
+			e_obj = Group.objects.get(GroupName=SYSTEM_DAEMON_USERAU_USER_GROUP)
+			setCache(CACHE_KEY_SYSTEM_DAEMON_USERAU_USER_GROUP,e_obj.id)
+			s_entity = e_obj.id
+		return s_entity
+	except:
+		return s_entity
+		
 def getSystemUser_DaemonCreateUser():
 	s_entity = -1
 	print 'DaemonCreateUser %d' % (s_entity)

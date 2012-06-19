@@ -168,25 +168,20 @@ def CreateUserFromSite(HttpRequest):
 #        
 #        
 #@never_cache
-#def AuthenticateUserFromEmail(HttpRequest,token,refs):
-#    au_user = UserFunctions.UserFnx()
-#    ip = HttpRequest.META['REMOTE_ADDR']
-#    msglist = []
-#    try:
-#        res = au_user.AuthenticateUserFromSite(token, ip)
-#        result = res[0]
-#        if( result['result'] >= 1 ):
-#            encrypt = Encrypt()
-#            return HttpResponseRedirect('/user/login/')
-#        else:
-#            msglist.append(res[1])
-#            HttpRequest.session[SESSION_MESSAGE] = msglist
-#            return HttpResponseRedirect('/error/')
-#    except:
-#        LoggerUser.exception('[AuthenticateUserFromEmail][%s] Exception token=%s'%(ip,token))
-#        msglist.append('Some Error has occoured')
-#        HttpRequest.session[SESSION_MESSAGE] = msglist
-#        return HttpResponseRedirect('/error/')
+def AuthenticateUserFromEmail(HttpRequest,token,refs):
+    au_user = UserFnx()
+    ip = HttpRequest.META['REMOTE_ADDR']
+    msglist = []
+    try:
+        res = au_user.AuthenticateUserFromSite(token, ip)
+        msglist.append(res)
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    except:
+        LoggerUser.exception('[AuthenticateUserFromEmail][%s] Exception token=%s'%(ip,token))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/error/')
 #    
 #        
 #

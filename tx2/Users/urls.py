@@ -12,25 +12,9 @@ urlpatterns = patterns('',
         url(r'^login/log_in/$','Users.Views.UserViews.log_in'),
         url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
         url(r'^register/new/$','Users.Views.UserViews.CreateUserFromSite'),
-        
+        url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViews.AuthenticateUserFromEmail'),
     
     ###########################################################################################
-        
-        
-    
-  #  url(r'^forgetpassword/$','txUser.UserViews.Forget_Pass_index'),
-  #  url(r'^forget_pass/$','txUser.UserViews.forget_pass'),
-    url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','txUser.views.Views_User.AuthenticateUserFromEmail'),
-    
-    
-    # USER GROUP MENU STUFF
-
-    
-    
-    # GROUP 
-
-    
-    
    url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/new/$','Users.Views.GroupTypeViews.CreateNewGroup'), 
