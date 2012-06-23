@@ -36,7 +36,7 @@ class ContentTypeFnx():
 			
 	def DeleteGroupContentSecurity(self,ctid,userid,ip,Operation=SYSTEM_PERMISSION_DELETE):
         	try:
-			if groupid == -1 or stateid == -1 or permissionid == -1 or ctid == -1:\
+			if groupid == -1 or stateid == -1 or permissionid == -1 or ctid == -1:
 				self.SecurityLogger.debug('Invalid Values ctid = %d,userid = %d,ip = %s,op = %s'%(ctid,userid,ip,Operation))
 				return (-1,'Invalid values. Values Passed are not proper')
 			details = {

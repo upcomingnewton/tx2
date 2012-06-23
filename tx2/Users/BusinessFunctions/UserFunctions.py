@@ -53,11 +53,11 @@ class UserFnx():
             self.UserLogger.debug('userid = %d, details = %s' % (userid, str(details)))
             result = DBUpdateUser(details)
             self.UserLogger.debug('result = %s' % (result))
-            return result
+            return (1,result)
         except:
             exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
             self.UserLogger.exception(exception_log)
-            return -1
+            return (-1,'error in authenticating user')
         
     def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
         try:
@@ -76,11 +76,90 @@ class UserFnx():
             result = DBInsertUser(user)
             if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
-            return result
+            return (1,result)
         except:
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
             self.UserLogger.exception(exception_log)
+            return (-1,'error in inserting user')
     
+    def ResetPass(self,password,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
+    	try:
+            details = {
+                       'email':user_obj.UserEmail,
+                       'pass':password,
+                       'bday':str(user_obj.UserBirthDate),
+                       'fname':user_obj.UserFirstName,
+                       'mname':user_obj.UserMiddleName,
+                       'lname':user_obj.UserLastName,
+                       'entity':user_obj.UserEntity.id,
+                       'gender':user_obj.UserGender,
+                       'LogsDesc':_LogsDesc,
+                       'PreviousState':_PreviousState,
+                       'group':user_obj.Group.id,
+                       'op':op,
+                       'by':by,
+                       'ip':ip,
+                       }
+            result = DBUpdateUser(details)
+            self.UserLogger.debug('result = %s' % (result))
+            return (1,result)
+        except:
+            exception_log = ('[%s] %s')%('ResetPass',ip)
+            self.UserLogger.exception(exception_log)
+            return (-1,'error in ResetPass')
+    
+    
+    # do not send encrypted passes
+    def ChangePassword(self,oldpass,newpass,by,ip,userid=-1,op=SYSTEM_PERMISSION_UPDATE):
+    	try:
+    		if len(oldpass) < 4 or len(newpass) < 4:
+    			self.UserLogger.debug('Error, length less than 4 oldpass = %s, newpass = %s, ip = %s , userid = %d' % (oldpass,newpass,ip,userid))
+    			return (-1,'ERROR: Length of password should be atleast 4')
+    		oldpass = self.encrypt.encrypt(oldpass)
+    		newpass = self.encrypt.encrypt(newpass)
+    		user_obj = User()
+    		if userid == -1:
+    			self.UserLogger.debug('Error, no userid or emailid provided oldpass = %s, newpass = %s, ip = %s , userid = %d' % (oldpass,newpass,ip,userid))
+    			return (-1,'ERROR: either pass userid or emailid')
+    		user_obj = User.objects.get(id=userid)
+    		if user_obj is None:
+    			self.UserLogger.debug('Error,no user object retrieved oldpass = %s, newpass = %s, ip = %s , emailid = %s, userid = %d' % (oldpass,newpass,ip,str(emailid),userid))
+    			return (-1,'ERROR: No such user exists')
+            	if user_obj.UserPassword != oldpass:
+            		self.UserLogger.debug('Error,Old Pasword does not match oldpass = %s, newpass = %s, ip = %s , userid = %d' % (oldpass,newpass,ip,userid))
+    			return (-1,'ERROR: Old Pasword does not match')
+    		PreviousState = "{oldpass:"+ oldpass + "}"
+    		LogsDesc = 'Changed Password'
+		return self.ResetPass(newpass,user_obj,LogsDesc,PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE)
+    	except:
+            exception_log = ('[%s] %s,%d')%('ChangePassword',ip,userid)
+            self.UserLogger.exception(exception_log)
+            return (-1,'error in Changing password')
+            
+            
+    def ForgetPassword(self,emailid,by,ip,op=SYSTEM_PERMISSION_UPDATE):
+    	try:
+    		user_obj = User()
+    		user_obj = User.objects.get(UserEmail=emailid)
+    		if by == -1:
+    			by = user_obj.id
+    		if user_obj is None:
+    			self.UserLogger.debug('Error,no user object retrieved')
+    			return (-1,'ERROR: No such user exists')
+    		PreviousState = "{oldpass:"+ user_obj.UserPassword + "}"
+    		LogsDesc = 'Forget Password'
+    		import random
+    		password = str(random.randint(100000,999999))
+    		# send an email 
+    		self.send_email_forget_pass(emailid,password)
+    		#generate a new password
+    		self.UserLogger.exception("password reset for " + emailid + " new password is " + str(password))
+		return self.ResetPass(self.encrypt.encrypt(password),user_obj,LogsDesc,PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE)
+    	except:
+            exception_log = ('[%s] %s,%s')%('ForgetPassword',ip,emailid)
+            self.UserLogger.exception(exception_log)
+            return (-1,'error in Changing password')
+
     def LoginUser(self,email,password,_type,ip):
         try:
             details = {'email':email,
@@ -125,5 +204,22 @@ class UserFnx():
 		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
 	except:
 		pass
+		
+
+    def send_email_forget_pass(self,email,password):
+    	try:
+		import time
+		refs = int(time.time())
+		token= "password reset for " + email + " <br />new password is " + str(password) 
+		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
+	except:
+		pass
     
+    def getUserObjectByEmailid(self,emailid):
+    	try:
+    		return User.objects.get(UserEmail=emailid)
+    	except:
+    		exception_log = ('[%s] emailid =  %s')%('getUserObjectByEmailid',emailid)
+            	self.UserLogger.exception(exception_log)
+    		return None
     

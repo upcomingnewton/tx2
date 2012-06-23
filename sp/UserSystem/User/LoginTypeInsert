@@ -1,0 +1,52 @@
+CREATE OR REPLACE FUNCTION LoginTypeInsert
+(
+	LoginTypeName VARCHAR,
+	LoginTypeDesc VARCHAR,
+	by INTEGER,
+	ip VARCHAR,
+	RequestedOperation VARCHAR,
+	OUT result INTEGER,
+	OUT rescode INTEGER
+) 
+RETURNS RECORD AS $$
+DECLARE
+	temp INTEGER;
+	varrec RECORD;
+BEGIN 
+
+IF EXISTS ( SELECT id FROM "Users_logintype" WHERE "LoginTypeName"=LoginTypeName ) THEN
+	rescode = 141;
+	result := -1;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by,RequestedOperation,'logintype','Users');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "Users_logintype"("LoginTypeName","LoginTypeDesc") VALUES(LoginTypeName,LoginTypeDesc);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 142;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Users_logintype" WHERE "LoginTypeName"=LoginTypeName;
+
+INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;

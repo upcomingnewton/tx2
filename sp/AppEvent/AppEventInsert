@@ -1,0 +1,63 @@
+CREATE OR REPLACE FUNCTION AppEventInsert(
+EventType INTEGER,
+EventName VARCHAR,
+EventDesc VARCHAR,
+EventStart timestamp,
+EventDuration INTEGER,
+EventRounds INTEGER,
+EventRef INTEGER,
+EventFolders VARCHAR,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "AppEvent_appevent" WHERE "EventName"=EventName AND "EventType_id"=EventType  AND "EventStart"=EventStart AND "EventRef"=EventRef ) THEN
+	result := 2;
+  	rescode := 165;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'appevent','AppEvent');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "AppEvent_appevent"("EventType_id","EventName","EventDesc","EventStart","EventDuration","EventRounds","EventRef","EventFolders")
+    			VALUES (EventType,EventName,EventDesc,EventStart,EventDuration,EventRounds,EventRef,EventFolders);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 166;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "AppEvent_appevent" WHERE "EventName"=EventName AND "EventType_id"=EventType  AND "EventStart"=EventStart AND "EventRef"=EventRef;
+
+
+INSERT INTO "AppEvent_appeventlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

@@ -132,8 +132,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'UserReg',
     'Security',
     'Users',
+    'AppEvent',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -177,8 +179,22 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_Initialise'],
                                     'level':'DEBUG',
                                 },
+               
+               'LOGGER_UserReg':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserReg'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
+        'File_UserReg': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/UserRegLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_Security': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',

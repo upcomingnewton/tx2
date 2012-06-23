@@ -96,7 +96,8 @@ def log_out(HttpRequest):
             token = HttpRequest.session['details']
             print token
             logout_user = UserFnx()
-            res =  logout_user.LogoutUser(token['loginid'],LogOut_From_Type)
+            #res =  logout_user.LogoutUser(token['loginid'],LogOut_From_Type)
+            res =  logout_user.LogoutUser(token['loginid'],10)
             if ( res[0] != -1):
                     result = res[0]
                     if( result['result'] == 1):
@@ -130,7 +131,6 @@ def CreateUserFromSite(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
     details = GetLoginDetails(HttpRequest)
     by = getSystemUser_DaemonCreateUser()
-    print by
     #return HttpResponse('good')
     if( details['userid'] != -1):
         by = int(details['userid'])
@@ -256,6 +256,110 @@ def view_dashboard(HttpRequest):
             return HttpResponseRedirect('/user/login/')
     except:
         LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'view_dashboard'))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/message/')
+        
+        
+########################## FUNCTIONS FOR CHANGING AND RESETTING PASSWORD ############################
+def ChangePassIndex(HttpRequest):
+    msglist = []
+    ip = HttpRequest.META['REMOTE_ADDR']
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+    	HttpRequest.session[SESSION_MESSAGE] = msglist
+    	return render_to_response("UserSystem/User/ChangePass.html",{},context_instance=RequestContext(HttpRequest))
+    except:
+    	LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'ChangePassIndex'))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/message/')
+	
+def ResetPasswordIndex(HttpRequest):
+    msglist = []
+    ip = HttpRequest.META['REMOTE_ADDR']
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] != -1):
+	CheckAndlogout(HttpRequest)
+    try:
+    	HttpRequest.session[SESSION_MESSAGE] = msglist
+    	return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
+    except:
+    	LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'ResetPasswordIndex'))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/message/')
+
+def ChangePass(HttpRequest):
+    msglist = []
+    ip = HttpRequest.META['REMOTE_ADDR']
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+    	HttpRequest.session[SESSION_MESSAGE] = msglist
+    	flag = -1
+    	oldpass = ''
+    	newpass = ''
+    	if 'OldPassword' in HttpRequest.POST:
+    		oldpass = HttpRequest.POST['OldPassword']
+    	else:
+    		flag = 1
+    		msglist.append('old password required')
+    	if 'NewPassword1' in HttpRequest.POST:
+    		newpass = HttpRequest.POST['NewPassword1']
+    	else:
+    		flag = 1
+    		msglist.append('new password required')
+    	if flag == 1:
+    		HttpRequest.session[SESSION_MESSAGE] = msglist
+    		HttpResponseRedirect('/user/password/change/')
+    	else:
+    		UserObj = UserFnx()
+    		res = UserObj.ChangePassword(oldpass,newpass,int(details['userid']),ip,userid=int(details['userid']))
+    		msglist.append(res)
+    		HttpRequest.session[SESSION_MESSAGE] = msglist
+    		HttpResponseRedirect('/user/password/change/')
+    except:
+    	LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'ResetPasswordIndex'))
+        msglist.append('Some Error has occoured')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/message/')
+	
+def ResetPass(HttpRequest):
+    msglist = []
+    ip = HttpRequest.META['REMOTE_ADDR']
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] != -1):
+	CheckAndlogout(HttpRequest)
+    try:
+    	HttpRequest.session[SESSION_MESSAGE] = msglist
+    	if 'ResetPasswordEmail' in HttpRequest.POST:
+    		emailid = HttpRequest.POST['ResetPasswordEmail']
+    		UserObj = UserFnx()
+    		obj = UserObj.getUserObjectByEmailid(emailid)
+    		if obj is None:
+    			msglist.append('user does not exist')
+    			HttpRequest.session[SESSION_MESSAGE] = msglist
+    			return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
+    		else:
+    			res = UserObj.ForgetPassword(emailid,obj.id,ip)
+    			msglist.append(res)
+    			HttpRequest.session[SESSION_MESSAGE] = msglist
+    			HttpResponseRedirect('/user/password/reset/')
+    			
+    	else:
+    		msglist.append('email required')
+    		HttpRequest.session[SESSION_MESSAGE] = msglist
+    		return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
+    except:
+    	LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'ResetPasswordIndex'))
         msglist.append('Some Error has occoured')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/message/')

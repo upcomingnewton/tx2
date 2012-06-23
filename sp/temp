@@ -9,3 +9,10 @@ SELECT * FROM UserInsert('testfromdb1','testfromdb1',current_date,'testfromdb1',
 
 SELECT * FROM UserUpdate('testfromdb1','pass-update1',current_date,'fname-update1','mname-updat1','lname-update1',1,'U','testing update','testing update',4,'SYS_PER_USER_AU_EMAIL',4,'update');
 
+SELECT * FROM  UserRegInsert('MetaInfo','_Desc','Users',1,1,'SYS_PER_INSERT',1,'ip');
+
+SELECT * FROM  UserRegUpdate('MetaInfo-updated','_Desc-updated','Users-updated',1,1,'SYS_PER_UPDATE','update test from db',1,'testfromdb');
+SELECT * FROM AppEventTypeInsert('TEST-FROM-DB','TEST-FROM-DB','SYS_PER_INSERT',13,'TEST-FROM-DB');
+SELECT * FROM AppEventInsert(1,'TEST-FROM-DB','TEST-FROM-DB','now()',3600,2,-1,'[1,2,3]','SYS_PER_INSERT',13,'TEST-FROM-DB');
+
+
