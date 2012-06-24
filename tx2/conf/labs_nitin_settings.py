@@ -190,7 +190,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/UserRegLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserRegLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -218,7 +218,7 @@ LOGGING = LOG_SETTINGS = {
             'maxBytes': 10485760,
             'backupCount': 5,
         },
-		'File_Initialise': {
+	'File_Initialise': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
