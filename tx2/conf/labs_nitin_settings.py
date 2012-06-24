@@ -132,7 +132,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'Security',
     'UserReg',
+    'Security',
     'Users',
+    'AppEvent',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -171,8 +173,27 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_User'],
                                     'level':'DEBUG',
                                 },
+               'SYSTEM_INITIALISE_LOGGER':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Initialise'],
+                                    'level':'DEBUG',
+                                },
+               
+               'LOGGER_UserReg':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserReg'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
+        'File_UserReg': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/UserRegLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_Security': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
@@ -194,6 +215,14 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+		'File_Initialise': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

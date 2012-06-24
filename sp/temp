@@ -16,3 +16,6 @@ SELECT * FROM AppEventTypeInsert('TEST-FROM-DB','TEST-FROM-DB','SYS_PER_INSERT',
 SELECT * FROM AppEventInsert(1,'TEST-FROM-DB','TEST-FROM-DB','now()',3600,2,-1,'[1,2,3]','SYS_PER_INSERT',13,'TEST-FROM-DB');
 
 
+SELECT * FROM AppEventRoundInsert(1,'Round1','Round1','now()',3600,-1,'SYS_PER_INSERT',13,'test-from-db');
+
+
