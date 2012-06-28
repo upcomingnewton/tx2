@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION SecurityGroupContent_Insert(
   State_id integer,
   RequestedOperation VARCHAR,
 by_user INTEGER,
-ip VARCHAR,
+_ip VARCHAR,
 OUT result INTEGER,
 OUT rescode INTEGER
 ) RETURNS RECORD AS $$
@@ -47,8 +47,8 @@ SELECT id INTO rescode FROM "Security_securitygroupcontent"
 	  "Active"=1;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", "ip", "Desc")
-				VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'Insert');
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp",ip, "Desc")
+				VALUES(rescode,by_user,varrec.var_ctid,now(),_ip,'Insert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

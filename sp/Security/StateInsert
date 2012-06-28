@@ -3,7 +3,7 @@ StateName VARCHAR,
 StateDescription VARCHAR,
 RequestedOperation VARCHAR,
 by_user INTEGER,
-ip VARCHAR,
+_ip VARCHAR,
 OUT result INTEGER,
 OUT rescode INTEGER
 ) RETURNS RECORD AS $$
@@ -40,8 +40,8 @@ END IF;
 SELECT id INTO rescode FROM "Security_securitystates" WHERE "StateName" = StateName;
 
 
-INSERT INTO "Security_securitylogs"( "Record","User", "ContentType_id", "TimeStamp", "ip", "Desc")
-							VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'StateInsert');
+INSERT INTO "Security_securitylogs"( "Record","User", "ContentType_id", "TimeStamp",ip, "Desc")
+							VALUES(rescode,by_user,varrec.var_ctid,now(),_ip,'StateInsert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

@@ -3,7 +3,7 @@ PermissionName VARCHAR,
 PermissionDescription VARCHAR,
 RequestedOperation VARCHAR,
 by_user INTEGER,
-ip VARCHAR,
+_ip VARCHAR,
 OUT result INTEGER,
 OUT rescode INTEGER
 ) RETURNS RECORD AS $$
@@ -39,8 +39,8 @@ END IF;
 SELECT id INTO rescode FROM "Security_securitypermissions" WHERE "PermissionName" = PermissionName;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp","ip", "Desc")
-							VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'PermissionInsert');
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp",ip, "Desc")
+							VALUES(rescode,by_user,varrec.var_ctid,now(),_ip,'PermissionInsert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

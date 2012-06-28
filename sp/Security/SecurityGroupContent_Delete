@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION SecurityGroupContent_Delete(
   id_ integer,
   RequestedOperation VARCHAR,
 by_user INTEGER,
-ip VARCHAR,
+_ip VARCHAR,
 OUT result INTEGER,
 OUT rescode INTEGER
 ) RETURNS RECORD AS $$
@@ -37,8 +37,8 @@ IF temp <> 1 THEN
 END IF;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", "ip", "Desc")
-				VALUES(id_,by_user,varrec.var_ctid,now(),ip,'Delete');
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp",ip, "Desc")
+				VALUES(id_,by_user,varrec.var_ctid,now(),_ip,'Delete');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;
