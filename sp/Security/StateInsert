@@ -40,7 +40,7 @@ END IF;
 SELECT id INTO rescode FROM "Security_securitystates" WHERE "StateName" = StateName;
 
 
-INSERT INTO "Security_securitylogs"( "Record","User", "ContentType_id", "TimeStamp", ip, "Desc")
+INSERT INTO "Security_securitylogs"( "Record","User", "ContentType_id", "TimeStamp", "ip", "Desc")
 							VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'StateInsert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

@@ -17,7 +17,10 @@ urlpatterns = patterns('',
         url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
         url(r'^register/new/$','Users.Views.UserViews.CreateUserFromSite'),
         url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViews.AuthenticateUserFromEmail'),
-    
+        
+        url(r'^admin/$','Users.Views.UserAdminViews.ListAllUsers'),
+        url(r'^admin/(?P<userid>\d+)/edit/$','Users.Views.UserAdminViews.EditUserIndex'),
+        url(r'^admin/(?P<userid>\d+)/edit/edit/$','Users.Views.UserAdminViews.EditUser'),
     ###########################################################################################
    url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
    url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),

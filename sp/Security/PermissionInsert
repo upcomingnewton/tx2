@@ -39,7 +39,7 @@ END IF;
 SELECT id INTO rescode FROM "Security_securitypermissions" WHERE "PermissionName" = PermissionName;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", ip, "Desc")
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp","ip", "Desc")
 							VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'PermissionInsert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

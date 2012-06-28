@@ -37,7 +37,7 @@ IF temp <> 1 THEN
 END IF;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", ip, "Desc")
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", "ip", "Desc")
 				VALUES(id_,by_user,varrec.var_ctid,now(),ip,'Delete');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

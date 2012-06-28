@@ -47,7 +47,7 @@ SELECT id INTO rescode FROM "Security_securitygroupcontent"
 	  "Active"=1;
 
 
-INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", ip, "Desc")
+INSERT INTO "Security_securitylogs"("Record", "User", "ContentType_id", "TimeStamp", "ip", "Desc")
 				VALUES(rescode,by_user,varrec.var_ctid,now(),ip,'Insert');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

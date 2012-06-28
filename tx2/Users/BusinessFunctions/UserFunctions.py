@@ -81,6 +81,39 @@ class UserFnx():
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
             self.UserLogger.exception(exception_log)
             return (-1,'error in inserting user')
+            
+    def UpdateUser(self,email,password,bday,fname,mname,lname,entity,gender,group,by,ip,op=SYSTEM_PERMISSION_UPDATE):
+        try:
+#            to_emailid = self.encrypt.decrypt(emailid)
+#            user_obj = User.objects.get(id=userid)
+#            self.UserLogger.debug('userid = %d, userid from token %d' % (user_obj.id, userid))
+#	    self.UserLogger.exception('group id is -1')
+#	    return -1
+#            details = {
+#                       'email':email,
+#                       'pass':password,
+#                       'bday':str(bday),
+#                       'fname':fname,
+#                       'mname':mname,
+#                       'lname':lname,
+#                       'entity':user_obj.UserEntity.id,
+#                       'gender':gender,
+#                       'LogsDesc':'UserAuthenticationByEmail',
+#                       'PreviousState':'UserAuthenticationByEmail',
+#                       'group':groupid,
+#                       'op':SYSTEM_PERMISSION_EMAIL_AU,
+#                       'by':userid,
+#                       'ip':ip,
+#                       }
+#            self.UserLogger.debug('userid = %d, details = %s' % (userid, str(details)))
+#            result = DBUpdateUser(details)
+#            self.UserLogger.debug('result = %s' % (result))
+            return (1,'')
+        except:
+            exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
+            self.UserLogger.exception(exception_log)
+            return (-1,'error in authenticating user')
+        ##################################################################
     
     def ResetPass(self,password,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
     	try:
@@ -205,6 +238,16 @@ class UserFnx():
 	except:
 		pass
 		
+		
+    def getAllUsers(self):
+    	try:
+                UsersList =  User.objects.all()
+                self.UserLogger.debug('[%s] %s'%('getAllUsers',str(len(UsersList))))                
+                return (1,UsersList)
+    	except:
+                exception_log = ('[%s]')%('getAllUsers')
+                self.UserLogger.exception(exception_log)
+                return (-1,[])
 
     def send_email_forget_pass(self,email,password):
     	try:
@@ -220,6 +263,14 @@ class UserFnx():
     		return User.objects.get(UserEmail=emailid)
     	except:
     		exception_log = ('[%s] emailid =  %s')%('getUserObjectByEmailid',emailid)
+            	self.UserLogger.exception(exception_log)
+    		return None
+    		
+    def getUserObjectByUserId(self,UserId):
+    	try:
+    		return User.objects.get(id=UserId)
+    	except:
+    		exception_log = ('[%s] UserId =  %d')%('getUserObjectByUserId',UserId)
             	self.UserLogger.exception(exception_log)
     		return None
     
