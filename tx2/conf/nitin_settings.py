@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'Security',
     'Users',
     'AppEvent',
+    'Communication',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -185,6 +186,11 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_UserReg'],
                                     'level':'DEBUG',
                                 },
+               'LOGGER_Communication':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Communcation'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
         'File_UserReg': {
@@ -224,6 +230,14 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/home/nitin/logs/InitLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Communcation': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/CommunicationLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

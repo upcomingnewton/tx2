@@ -1,0 +1,65 @@
+CREATE OR REPLACE FUNCTION MessgaeInsert(
+Title VARCHAR,
+Content TEXT,
+UsersReg INTEGER,
+Comment INTEGER,
+_Timestamp timestamp,
+CommunicationType INTEGER,
+State INTEGER,
+RefContentType INTEGER,
+Record INTEGER,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+_ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+    tstamp timestamp with time zone;
+BEGIN 
+temp := 0;
+tstamp = now();
+
+IF EXISTS ( SELECT id FROM "Communication_messages" WHERE "Title"= Title AND "CommunicationType_id"=CommunicationType ) THEN 
+	rescode := 212;
+	result := 2;
+END IF;
+
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'messages','Communication');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "Communication_messages"( "Title","Content","UsersReg_id","Comment","User_id","Timestamp","CommunicationType_id","State_id","RefContentType","Record")
+    		VALUES (Title,Content,UsersReg,Comment,by_user,_Timestamp,CommunicationType,State,RefContentType,Record);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 222;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Communication_messages" WHERE "Title"= Title AND "CommunicationType_id"=CommunicationType;
+
+
+INSERT INTO "Communication_communicationlogs"( "LogsUser_id","ContentType_id", "LogsObject", "LogsPermission_id","LogsIP", "LogsTimeStamp","LogsDescription")
+					VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,_ip,now(),'MessageInsert');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

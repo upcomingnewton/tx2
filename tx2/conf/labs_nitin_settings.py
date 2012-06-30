@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'Security',
     'Users',
     'AppEvent',
+    'Communication',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -185,6 +186,12 @@ LOGGING = LOG_SETTINGS = {
                                     'level':'DEBUG',
                                 },
                },
+               'LOGGER_Communication':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Communcation'],
+                                    'level':'DEBUG',
+                                },
+               },
     'handlers': {
         'File_UserReg': {
             'class': 'logging.handlers.RotatingFileHandler',
@@ -218,11 +225,19 @@ LOGGING = LOG_SETTINGS = {
             'maxBytes': 10485760,
             'backupCount': 5,
         },
-	'File_Initialise': {
+        'File_Initialise': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/InitLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Communcation': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/CommunicationLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

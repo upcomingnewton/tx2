@@ -19,3 +19,14 @@ SELECT * FROM AppEventInsert(1,'TEST-FROM-DB','TEST-FROM-DB','now()',3600,2,-1,'
 SELECT * FROM AppEventRoundInsert(1,'Round1','Round1','now()',3600,-1,'SYS_PER_INSERT',13,'test-from-db');
 
 
+
+
+
+
+SELECT * FROM  CommunicationTypeInsert ( 'TEST-FROM-DB','TEST-FROM-DB','SYS_PER_INSERT',13,'TEST-FROM-DB');
+
+SELECT * FROM  MessgaeInsert('Title','Content',1,1,'now()',1,1,-1,-1,'SYS_PER_INSERT',13,'ip');
+
+SELECT * FROM  MessgaeUpdate(1,'Title-updated','Content-updated',1,1,'now()',1,1,-1,-1,'SYS_PER_UPDATE','LogsDesc',13,'ip');
+
+SELECT * FROM  CommentInsert(1,1,13,1,'CommentText','SYS_PER_INSERT',13,'IP');

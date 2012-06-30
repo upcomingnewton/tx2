@@ -1,0 +1,55 @@
+CREATE OR REPLACE FUNCTION CommentStateChange(
+ContentType INTEGER,
+RecordID INTEGER,
+UserID INTEGER,
+State INTEGER,
+CommentText text,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+_ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+    tstamp timestamp with time zone;
+BEGIN 
+temp := 0;
+tstamp = now();
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'comment','Communication');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "Communication_comment"( "ContentType_id", "Record","User_id","Timestamp","State_id","Comment")
+    			VALUES (ContentType,RecordID,UserID,tstamp,State,CommentText);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 212;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "Communication_comment" WHERE "ContentType_id"=ContentType AND "Record"=RecordID AND "User_id"=UserID AND "Timestamp"=tstamp;
+
+
+INSERT INTO "Communication_communicationlogs"( "LogsUser_id","ContentType_id", "LogsObject", "LogsPermission_id","LogsIP", "LogsTimeStamp","LogsDescription")
+					VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,_ip,now(),'CommentInsert');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
