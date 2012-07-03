@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 	('nitin','upcomingnewton@gmail.com'),
-	('sarvpriye','sarvpriye98@gmail.com'),
+	('jivjot','jivjot@gmail.com'),
 	('nitin','nitin@thoughtxplore.com'),
 )
 
@@ -16,9 +16,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'tx2',                      # Or path to database file if using sqlite3.
-        'USER': 'test123',                      # Not used with sqlite3.
-        'PASSWORD': 'test123db',                  # Not used with sqlite3.
-        'HOST': '119.18.58.214',                      # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': 'jivjot',                  # Not used with sqlite3.
+        'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -39,8 +39,8 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'thoughtxplore@gmail.com'
-EMAIL_HOST_PASSWORD = 'NewalaTX:)'
+EMAIL_HOST_USER = 'jivjot@gmail.com'
+EMAIL_HOST_PASSWORD = 'iamuptogood6790'
 EMAIL_PORT = 587
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -80,7 +80,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/static",
-    "/home/nitin/projects/tx2/static",
+    "/home/jivjot/django/experiment/tx2/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -118,7 +118,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/templates",
-    "/home/nitin/projects/tx2/templates",
+    "/home/jivjot/django/experiment/tx2/templates",
 )
 
 INSTALLED_APPS = (
@@ -136,7 +136,7 @@ INSTALLED_APPS = (
     'Security',
     'Users',
     'AppEvent',
-    'Communication',
+    'UserProfile',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -186,9 +186,9 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_UserReg'],
                                     'level':'DEBUG',
                                 },
-               'LOGGER_Communication':{
+               'LOGGER_UserProfile':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Communcation'],
+                                    'handlers':['File_UserProfile'],
                                     'level':'DEBUG',
                                 },
                },
@@ -197,7 +197,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/UserRegLogs',
+            'filename': '/home/jivjot/logs/UserRegLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -205,7 +205,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/SecurityLogs',
+            'filename': '/home/jivjot/logs/SecurityLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -213,7 +213,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/QueryLogs',
+            'filename': '/home/jivjot/logs/QueryLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -221,7 +221,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/UserLogs',
+            'filename': '/home/jivjot/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -229,15 +229,15 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/InitLogs',
+            'filename': '/home/jivjot/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
-        'File_Communcation': {
+        'File_UserProfile': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/home/nitin/logs/CommunicationLogs',
+            'filename': '/home/jivjot/logs/UserProfile',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -246,8 +246,8 @@ LOGGING = LOG_SETTINGS = {
             'level': 'ERROR',
             'formatter': 'email',
             'mailhost': 'localhost',
-            'fromaddr': 'no-reply@thoughtxplore.com',
-            'toaddrs': ['upcomingnewton@gmail.com', 'sarvpriye98@gmail.com'],
+            'fromaddr': 'jivjot@gmail.co,',
+            'toaddrs': ['jivjot@gmail.com'],
             'subject': '[ThoughtXplore] Error encountered.',
         },
     },
