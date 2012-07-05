@@ -5,7 +5,6 @@ from django.contrib.contenttypes.models import ContentType
 
 class DegreeType(models.Model):
 	Name=models.CharField(max_length=100)
-	level=models.IntegerField()
 
 class Board(models.Model):
 	Name=models.CharField(max_length=100)
@@ -13,17 +12,17 @@ class Board(models.Model):
 class Degree(models.Model):
 	Name=models.CharField(max_length=100)
 
-class Session(models.Model):
+class SessionType(models.Model):
 	Name=models.CharField(max_length=100)
 
 
 class Marks(models.Model):
 	Start=models.DateField()
 	End=models.DateField()
-	SessionNo=models.ForeignKey(Session)
-	SessionType=models.IntegerField()
+	SessionNo=models.IntegerField()
+	SessionType=models.ForeignKey(SessionType) # we require  session type as forreign key, not which session it is ..
 	TotalMarks=models.IntegerField()
-	Marks=models.IntegerField()
+	SecuredMarks=models.IntegerField() # model name and field name, better to use alt name for any conflicts
 	TotalReappers=models.IntegerField()
 	ReappersRemaining=models.IntegerField()
 	DegreeType=models.ForeignKey(DegreeType)
@@ -34,6 +33,9 @@ class Marks(models.Model):
 
 class ExtraAcademicInfo(models.Model):
 	Name=models.CharField(max_length=100)
+	
+class FunctionAreaList(models.Model):
+	FunctionalArea = models.CharField(max_length=100)
 
 class ExtraAcademicInfoDetails(models.Model):
 	Title=models.CharField(max_length=500)
@@ -42,10 +44,11 @@ class ExtraAcademicInfoDetails(models.Model):
 	Organisation=models.CharField(max_length=500)
 	Role=models.CharField(max_length=500)
 	Details=models.CharField(max_length=1000)
-	Venue=models.CharField(max_length=1000)
+	PlaceOfWork=models.CharField(max_length=1000) # this should be changed to adress id 
 	Duration_in_weeks=models.IntegerField()
 	UserId=models.ForeignKey(User)
 	ExtraAcadmicInfoId=models.ForeignKey(ExtraAcademicInfo)
+	FunctionalArea = models.ForeignKey(FunctionAreaList)
 	
 class UserProfileLogs(models.Model):
 	# user making changes
