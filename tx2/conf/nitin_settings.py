@@ -137,7 +137,7 @@ INSTALLED_APPS = (
     'Users',
     'AppEvent',
     'UserProfile',
-    'ExtraAcademicInfo'
+    
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -192,11 +192,6 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_UserProfile'],
                                     'level':'DEBUG',
                                 },
-               'LOGGER_ExtraAcademicInfo':{
-                                    #'handlers':['File_User','smtp'],
-                                    'handlers':['File_ExtraAcademicInfo'],
-                                    'level':'DEBUG',
-                                },
                },
     'handlers': {
         'File_UserReg': {
@@ -247,14 +242,7 @@ LOGGING = LOG_SETTINGS = {
             'maxBytes': 10485760,
             'backupCount': 5,
         },
-        'File_ExtraAcademicInfo': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'level': 'DEBUG',
-            'formatter': 'detailed',
-            'filename': '/home/jivjot/logs/ExtraAcdemicInfo',
-            'maxBytes': 10485760,
-            'backupCount': 5,
-        },
+        
         'smtp': {
             'class': 'logging.handlers.SMTPHandler',
             'level': 'ERROR',
