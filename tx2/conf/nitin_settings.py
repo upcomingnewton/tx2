@@ -7,6 +7,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 	('nitin','upcomingnewton@gmail.com'),
 	('sarvpriye','sarvpriye98@gmail.com'),
+    ('jivjot','jivjot@gmail.com'),
 	('nitin','nitin@thoughtxplore.com'),
 )
 
@@ -139,6 +140,7 @@ INSTALLED_APPS = (
     'Communication',
     'UserAdress',
     'UserProfile',
+    
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
