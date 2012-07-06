@@ -19,6 +19,7 @@ class AppEvent(models.Model):
 	EventRounds = models.IntegerField()
 	EventRef = models.IntegerField()
 	EventFolders = models.CharField(max_length=500)
+	EventState = models.ForeignKey(SecurityStates)
 
 class AppEventRound(models.Model):
 	RoundName = models.CharField(max_length=100)
@@ -27,6 +28,7 @@ class AppEventRound(models.Model):
 	RoundDuration = models.IntegerField()
 	Event = models.ForeignKey(AppEvent)
 	RoundRegUsers = models.ForeignKey(RegisterUser)
+	EventRoundState = models.ForeignKey(SecurityStates)
 	
 class AppEventLogs(models.Model):
     # user making changes

@@ -101,5 +101,64 @@ def DBGroupInsert(details):
         UserLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
       
+# MENU SYSTEM
+### ========================================================================================================  ### 
 
+def DBMenuInsert(details):
+    try:
+	#SELECT * FROM  MenuInsert('MenuName','MenuDesc','MenuUrl','MenuPid','MenuIcon','RequestedOperation','by_user','_ip');
+        query = "SELECT * FROM MenuInsert('" + details['MenuName'] + "','" + details['MenuDesc'] + "','" + details['MenuUrl'] + "'," + str(details['MenuPid']) + ",'" + details['MenuIcon'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        UserLogger.debug('[%s] %s'%('DBMenuInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBMenuInsert',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBMenuInsert',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBMenuInsert',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+        
+def DBMenuUpdate(details):
+    try:
+	#SELECT * FROM  MenuUpdate(MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,RequestedOperation,LogDesc,LogPreviousState,'by_user','_ip');
+        query = "SELECT * FROM MenuUpdate(" + str(details['MenuId']) + ",'" + details['MenuName'] + "','" + details['MenuDesc'] + "','" + details['MenuUrl'] + "'," + str(details['MenuPid']) + ",'" + details['MenuIcon'] + "','" + details['RequestedOperation'] + "','" + details['LogDesc'] + "','" + details['LogPreviousState'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        UserLogger.debug('[%s] %s'%('DBMenuUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBMenuUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBMenuUpdate',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBMenuUpdate',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+        
+        
+def DBGroupMenuInsert(details):
+    try:
+	#SELECT * FROM  GroupMenuInsert(MenuStr,GroupID,PermissionStr,RequestedOperation,by_user,ip);
+        query = "SELECT * FROM GroupMenuInsert('" + details['MenuStr'] + "'," + str(details['GroupID']) + ",'" + details['PermissionStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        UserLogger.debug('[%s] %s'%('DBGroupMenuInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupMenuInsert',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBGroupMenuInsert',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupMenuInsert',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
+        
+        
+def DBGroupMenuDelete(details):
+    try:
+	#SELECT * FROM  GroupMenuDelete(MenuIDStr,RequestedOperation,by_user,ip);
+        query = "SELECT * FROM GroupMenuDelete('" + details['MenuIDStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        UserLogger.debug('[%s] %s'%('DBGroupMenuDelete',query))
+        QueryLogger.debug('[%s] %s'%('DBGroupMenuDelete',query))
+        result =  DBhelper.CallFunction(query)
+        UserLogger.debug('[%s] %s'%('DBGroupMenuDelete',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBGroupMenuDelete',query)
+        UserLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
 

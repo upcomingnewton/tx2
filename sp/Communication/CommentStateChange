@@ -1,6 +1,5 @@
 CREATE OR REPLACE FUNCTION CommentStateChange(
 CommentID INTEGER,
-State INTEGER,
 LogsDesc text,
 RequestedOperation VARCHAR,
 by_user INTEGER,
@@ -29,7 +28,7 @@ IF varrec.result <> 1 THEN
 END IF;
 
 UPDATE "Communication_comment" 
-SET "State_id" = State
+SET "State_id" = varrec.varsci
 WHERE id=CommentID;
 
 GET DIAGNOSTICS temp := ROW_COUNT;

@@ -11,7 +11,7 @@ class CommentFnx():
 	def __init__(self):
 		self.CommunicationLogger = logging.getLogger(LOGGER_COMMUNICATION)
 		
-	def AddComment(self,_AppLabel,_Model,RecordID,UserID,StateName,CommentText,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
+	def AddComment(self,_AppLabel,_Model,RecordID,UserID,CommentText,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
 		try:
 			ctid = getContentTypesByAppNameAndModel(_AppLabel,_Model)
 			if ctid == -1:
@@ -27,7 +27,6 @@ class CommentFnx():
 					'ContentType':ctid,
 					'RecordID':RecordID,
 					'UserID':UserID,
-					'State':StateID,
 					'CommentText':CommentText,
 					'op':RequestedOperation,
 					'by':by,
@@ -40,7 +39,7 @@ class CommentFnx():
 			self.CommunicationLogger.exception('[%s] == Exception =='%('AddComment'))
 			return (-5,error_msg)
 			
-	def CommentStateChange(self,CommentID,StateName,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,PreviousState=-1):
+	def CommentStateChange(self,CommentID,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,PreviousState=-1):
 		try:
 			if PreviousState == -1:
 				CommentObj = Comment.objects.get(id=CommentID)
@@ -56,7 +55,6 @@ class CommentFnx():
 				return (-1,error_msg)
 			details = {
 					'CommentID':CommentID,
-					'State':StateID,
 					'LogsDesc': 'PrState ' + str(PreviousState),
 					'op':RequestedOperation,
 					'by':by,

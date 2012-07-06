@@ -1,0 +1,65 @@
+CREATE OR REPLACE FUNCTION GroupMenuInsert(
+MenuStr VARCHAR,
+GroupID integer,
+PermissionStr VARCHAR,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    temp2 INTEGER;
+    varrec RECORD;
+    MenuArray INTEGER[];
+    PermissionArray INTEGER[];
+    MenuArraySize INTEGER;
+    LogsDesc VARCHAR;
+BEGIN 
+temp := 0;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'groupmenu','Users');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+MenuArray := string_to_array(MenuStr,',');
+PermissionArray :=  string_to_array(PermissionStr,',');
+MenuArraySize := array_upper(MenuArray,1);
+
+FOR temp in 1..MenuArraySize LOOP
+	IF NOT EXISTS ( SELECT id FROM "Users_groupmenu" WHERE  "Menu_id"=MenuArray[temp] AND "Group_id"=GroupID AND "Active"=1 AND "Permission"= PermissionArray[temp]) THEN 
+		INSERT INTO "Users_groupmenu"("Menu_id","Group_id","Active","Permission")
+		VALUES (MenuArray[temp],GroupID,1,PermissionArray[temp]);
+		GET DIAGNOSTICS temp2 := ROW_COUNT;
+		IF temp2 <> 1 THEN 
+			rescode := 85;
+			result := -1;
+        	RETURN;
+END IF;
+	END IF;
+END LOOP;
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+RAISE NOTICE 'SIZE OF ARRAY = %, NO OF ROWS CHANGED = %',MenuArraySize,temp;
+
+LogsDesc = 'Menu = ' || array_to_string(MenuArray,',') || ' Permissiom = ' || array_to_string(PermissionArray,',');
+
+INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES(by_user,varrec.var_ctid,-1,varrec.varpci,ip,now(),RequestedOperation,LogsDesc);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

@@ -32,8 +32,7 @@ def DBInsertCommunicationType(details):
 
 
 def DBInsertMessage(details):
-
-    query = "SELECT * FROM CommunicationTypeInsert('" + details['Title'] + "','" + details['Content'] + "',"+str(details['UsersReg'])+","+str(details['Comment'])+",'"+str(details['Timestamp'])+"',"+str(details['CommunicationType'])+","+str(details['State'])+","+str(details['RefContentType'])+","+str(details['Record'])+",'" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
+    query = "SELECT * FROM MessgaeInsert('" + details['Title'] + "','" + details['Content'] + "',"+str(details['UsersReg'])+","+str(details['Comment'])+",'"+str(details['Timestamp'])+"',"+str(details['CommunicationType'])+","+str(details['RefContentType'])+","+str(details['Record'])+",'" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
     try:
         CommunicationLogger.debug('[%s] %s'%('DBInsertMessage',query))
         QueryLogger.debug('[%s] %s'%('DBInsertMessage',query))
@@ -47,7 +46,7 @@ def DBInsertMessage(details):
         
        
 def DBUpdateMessage(details):
-    query = "SELECT * FROM CommunicationTypeInsert(" + str(details['MessageID'])  +",'" + details['Title'] + "','" + details['Content'] + "'," + str(details['UsersReg']) + "," + str(details['Comment']) + ",'" + str(details['Timestamp']) + "'," + str(details['CommunicationType']) + "," + str(details['State']) + "," + str(details['RefContentType']) + "," + str(details['Record']) + ",'" + details['op'] + "','" + details['LogsDesc'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
+    query = "SELECT * FROM MessgaeUpdate(" + str(details['MessageID'])  +",'" + details['Title'] + "','" + details['Content'] + "'," + str(details['UsersReg']) + "," + str(details['Comment']) + ",'" + str(details['Timestamp']) + "'," + str(details['CommunicationType']) + "," + str(details['RefContentType']) + "," + str(details['Record']) + ",'" + details['op'] + "','" + details['LogsDesc'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
     try:
         CommunicationLogger.debug('[%s] %s'%('DBUpdateMessage',query))
         QueryLogger.debug('[%s] %s'%('DBUpdateMessage',query))
@@ -61,7 +60,7 @@ def DBUpdateMessage(details):
         
 
 def DBInsertComment(details):
-    query = "SELECT * FROM CommentInsert(" + str(details['ContentType'])  +"," + str(details['RecordID']) + "," + str(details['UserID'])+ "," + str(details['State']) + ",'" + details['CommentText'] +"','" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
+    query = "SELECT * FROM CommentInsert(" + str(details['ContentType'])  +"," + str(details['RecordID']) + "," + str(details['UserID'])+ ",'" + details['CommentText'] +"','" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
     try:
         CommunicationLogger.debug('[%s] %s'%('DBInsertComment',query))
         QueryLogger.debug('[%s] %s'%('DBInsertComment',query))
@@ -75,7 +74,7 @@ def DBInsertComment(details):
         
 
 def DBStateChangeComment(details):
-    query = "SELECT * FROM CommentStateChange(" + str(details['CommentID'])  + "," + str(details['State']) + ",'" + details['LogsDesc'] + "','" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
+    query = "SELECT * FROM CommentStateChange(" + str(details['CommentID'])  + ",'" + details['LogsDesc'] + "','" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
     try:
         CommunicationLogger.debug('[%s] %s'%('DBStateChangeComment',query))
         QueryLogger.debug('[%s] %s'%('DBStateChangeComment',query))

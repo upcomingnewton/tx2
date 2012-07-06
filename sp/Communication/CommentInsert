@@ -2,7 +2,6 @@ CREATE OR REPLACE FUNCTION CommentInsert(
 ContentType INTEGER,
 RecordID INTEGER,
 UserID INTEGER,
-State INTEGER,
 CommentText text,
 RequestedOperation VARCHAR,
 by_user INTEGER,
@@ -26,7 +25,7 @@ IF varrec.result <> 1 THEN
 END IF;
 
 INSERT INTO "Communication_comment"( "ContentType_id", "Record","User_id","Timestamp","State_id","Comment")
-    			VALUES (ContentType,RecordID,UserID,tstamp,State,CommentText);
+    			VALUES (ContentType,RecordID,UserID,tstamp,varrec.varsci,CommentText);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

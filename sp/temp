@@ -19,7 +19,11 @@ SELECT * FROM AppEventInsert(1,'TEST-FROM-DB','TEST-FROM-DB','now()',3600,2,-1,'
 SELECT * FROM AppEventRoundInsert(1,'Round1','Round1','now()',3600,-1,'SYS_PER_INSERT',13,'test-from-db');
 
 
+SELECT * FROM  MenuInsert('MenuName','MenuDesc','MenuUrl','MenuPid','MenuIcon','RequestedOperation','by_user','_ip');
+SELECT * FROM  MenuInsert('test-from-db','test-from-db','test-from-db',-1,'test-from-db','SYS_PER_INSERT',13,'test-from-db');
 
+SELECT * FROM  MenuUpdate(MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,RequestedOperation,LogDesc,LogPreviousState,'by_user','_ip');
+SELECT * FROM  MenuUpdate(1,'test-from-db-updated','test-from-db-updated','test-from-db-updated',2,'test-from-db-updated','SYS_PER_UPDATE','test-from-db-updated','test-from-db-updated',13,'test-from-db-updated');
 
 
 
@@ -30,3 +34,13 @@ SELECT * FROM  MessgaeInsert('Title','Content',1,1,'now()',1,1,-1,-1,'SYS_PER_IN
 SELECT * FROM  MessgaeUpdate(1,'Title-updated','Content-updated',1,1,'now()',1,1,-1,-1,'SYS_PER_UPDATE','LogsDesc',13,'ip');
 
 SELECT * FROM  CommentInsert(1,1,13,1,'CommentText','SYS_PER_INSERT',13,'IP');
+
+
+SELECT * FROM  GroupMenuInsert(MenuStr,GroupID,PermissionStr,RequestedOperation,by_user,ip);
+select * from "Users_groupmenu";
+SELECT * FROM  GroupMenuInsert('1,2,3,4',1,'1,1,1,1','SYS_PER_INSERT',13,'test');
+SELECT * FROM  GroupMenuDelete(MenuIDStr,RequestedOperation,by_user,ip);
+SELECT * FROM  GroupMenuDelete('20,21,22,23','SYS_PER_DELETE',13,'ip');
+
+
+

@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION MenuUpdate(
-MenuId VARCHAR,
+MenuId INTEGER,
 MenuName VARCHAR,
 MenuDesc VARCHAR,
 MenuUrl VARCHAR,
@@ -50,13 +50,14 @@ END IF;
 
 
 INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
-VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),LogDesc,LogPreviousState);
+VALUES(by_user,varrec.var_ctid,MenuId,varrec.varpci,ip,now(),LogDesc,LogPreviousState);
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;
 	result := -1;
         RETURN;
 ELSE
+	rescode := 110;
 	result := 1;
 RETURN;
 END IF;

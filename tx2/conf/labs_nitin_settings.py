@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'Users',
     'AppEvent',
     'Communication',
+    'UserAdress',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

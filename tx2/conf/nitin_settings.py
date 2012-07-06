@@ -137,6 +137,8 @@ INSTALLED_APPS = (
     'Users',
     'AppEvent',
     'Communication',
+    'UserAdress',
+    'UserProfile',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -191,6 +193,16 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_Communcation'],
                                     'level':'DEBUG',
                                 },
+               'LOGGER_UserProfile':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserProfile'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Adress':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Adress'],
+                                    'level':'DEBUG',
+                                },
                },
     'handlers': {
         'File_UserReg': {
@@ -238,6 +250,22 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': '/home/nitin/logs/CommunicationLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_UserProfile': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/UserProfileLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Adress': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/Adress',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

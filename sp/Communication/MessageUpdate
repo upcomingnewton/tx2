@@ -6,7 +6,6 @@ UsersReg INTEGER,
 Comment INTEGER,
 _Timestamp timestamp,
 CommunicationType INTEGER,
-State INTEGER,
 RefContentType INTEGER,
 Record INTEGER,
 RequestedOperation VARCHAR,
@@ -40,12 +39,12 @@ END IF;
 UPDATE "Communication_messages"
 SET  "Title"=Title,
 	"Content"=Content,
-	"UsersReg_id"=UsersReg,
+	"UsersReg"=UsersReg,
 	"Comment"=Comment,
 	"User_id"=by_user,
 	"Timestamp"=_Timestamp,
 	"CommunicationType_id"=CommunicationType,
-	"State_id"=State,
+	"State_id"=varrec.varsci,
 	"RefContentType"=RefContentType,
 	"Record"=Record
 WHERE id=MessageID;

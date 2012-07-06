@@ -13,7 +13,7 @@ class Messages(models.Model):
 	Content = models.TextField()
 	UsersReg = models.ForeignKey(RegisterUser)
 	Comment = models.IntegerField()
-	User = models.ForeignKey(User)
+	User = models.IntegerField()
 	Timestamp = models.DateTimeField()
 	CommunicationType = models.ForeignKey(CommunicationType)
 	State = models.ForeignKey(SecurityStates)
