@@ -1,0 +1,75 @@
+CREATE OR REPLACE FUNCTION MarksInsert(
+_SessionStart timestamp without time zone,
+_SessionEnd timestamp without time zone,
+_SessionNumber INTEGER,
+_SessionType INTEGER,
+_TotaMarks INTEGER,
+_SecuredMarks INTEGER,
+_TotalReappears INTEGER,
+_ReappearsRemaining INTEGER,
+_DegreeType INTEGER,
+_Board INTEGER,
+_Degree INTEGER,
+_UserId INTEGER,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "UserProfile_marks" WHERE "UserId_id"=_UserId and "SessionNumber"=_SessionNumber and "Degree_id"=_Degree) THEN
+	result := 2;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'marks','UserProfile');
+
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+
+
+INSERT INTO "UserProfile_marks"(
+            "SessionStart", "SessionEnd", "SessionNumber", "SessionType_id", 
+            "TotalMarks", "SecuredMarks", "TotalReappers", "ReappersRemaining", 
+            "DegreeType_id", "Board_id", "Degree_id", "UserId_id", "State_id")
+    VALUES (_SessionStart, _SessionEnd, _SessionNumber, _SessionType, 
+            _TotaMarks, _SecuredMarks, _TotalReappears, _ReappearsRemaining, 
+            _DegreeType, _Board, _Degree, _UserId,varrec.varsci);
+
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id into rescode FROM "UserProfile_marks" WHERE "UserId_id"=_UserId and "SessionNumber"=_SessionNumber and "Degree_id"=_Degree;
+
+INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
