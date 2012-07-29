@@ -233,8 +233,12 @@ class UserFnx():
 		token= self.encrypt.encrypt(str(userid) + '___' + email)
 		import time
 		refs = int(time.time())
-		token="http://labs-nitin.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
-		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
+		token = "hey " + fname + "\n"
+		token += "please click on following link to authenticate your profile \n"
+		token += "http://uiet.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
+		
+		token += "Regards \n Training and Placement Cell, UIET"
+		sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Training and Placement Cell, UIET",token)
 	except:
 		pass
 		

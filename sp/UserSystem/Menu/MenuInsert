@@ -41,7 +41,7 @@ END IF;
 
  SELECT id INTO rescode FROM "Users_menu" WHERE "MenuUrl"=MenuUrl AND "MenuPid"=MenuPid;
 INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
-VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'INSERT');
+VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,_ip,now(),RequestedOperation,'INSERT');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

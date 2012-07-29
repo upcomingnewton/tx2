@@ -128,6 +128,7 @@ def log_out(HttpRequest):
 #@never_cache
 def CreateUserFromSite(HttpRequest):
     msglist = []
+    errmsg = []
     ip = HttpRequest.META['REMOTE_ADDR']
     details = GetLoginDetails(HttpRequest)
     by = getSystemUser_DaemonCreateUser()
@@ -136,12 +137,26 @@ def CreateUserFromSite(HttpRequest):
         by = int(details['userid'])
     try:
         email = HttpRequest.POST['RegisterUser_email']
+        if len(email) < 4:
+            errmsg.append('email required')
         pass1 = HttpRequest.POST['RegisterUser_pass']
+        if len(pass1) < 4 or len(pass1) > 10:
+            errmsg.append('password should be between 4 to 10 characters')
         pass2 = HttpRequest.POST['RegisterUser_pass2']
+        if pass1 != pass2:
+            errmsg.append('passwords do not match ')
         fname = HttpRequest.POST['RegisterUser_fname']
+        if len(fname) < 2:
+            errmsg.append('first name required')
         mname = HttpRequest.POST['RegisterUser_mname']
+        if len(mname) < 2:
+            mname = "--"
         lname = HttpRequest.POST['RegisterUser_lname']
+        if len(lname) < 4:
+            errmsg.append('last name required')
         bday = HttpRequest.POST['RegisterUser_dob']
+        if len(bday) < 10:
+            errmsg.append('birth date required')
         bday = bday.split('/')
         try:
             bday = datetime.date(int(bday[2]),int(bday[0]),int(bday[1]))
@@ -149,8 +164,8 @@ def CreateUserFromSite(HttpRequest):
             msglist.append('Invalid Birthdate, '+ err.message)
         gender = HttpRequest.POST['RegisterUser_gender']
         if gender== "-1" :
-            msglist.append('Please select your gender')
-            
+            errmsg.append('Please select your gender')
+        msglist = errmsg
         if ( len(msglist) > 0 ):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
