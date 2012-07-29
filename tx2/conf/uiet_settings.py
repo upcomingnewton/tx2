@@ -7,6 +7,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 	('nitin','upcomingnewton@gmail.com'),
 	('sarvpriye','sarvpriye98@gmail.com'),
+    	('jivjot','jivjot@gmail.com'),
 	('nitin','nitin@thoughtxplore.com'),
 )
 
@@ -15,9 +16,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'tx2',                      # Or path to database file if using sqlite3.
-        'USER': 'test123',                      # Not used with sqlite3.
-        'PASSWORD': 'test123db',                  # Not used with sqlite3.
+        'NAME': 'tnpuiet2013',                      # Or path to database file if using sqlite3.
+        'USER': 'ThoughtXplore',                      # Not used with sqlite3.
+        'PASSWORD': 'Nath@3728',                  # Not used with sqlite3.
         'HOST': '119.18.58.214',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -63,7 +64,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static1'
+STATIC_ROOT = '/var/www/vhosts/thoughtxplore.com/uiet/tx2/static1'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -79,7 +80,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static',
+    '/var/www/vhosts/thoughtxplore.com/uiet/tx2/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -136,6 +137,9 @@ INSTALLED_APPS = (
     'Users',
     'AppEvent',
     'Communication',
+    'UserAdress',
+    'UserProfile',
+    
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -185,10 +189,20 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_UserReg'],
                                     'level':'DEBUG',
                                 },
-               },
+               
                'LOGGER_Communication':{
                                     #'handlers':['File_User','smtp'],
                                     'handlers':['File_Communcation'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_UserProfile':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserProfile'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Adress':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Adress'],
                                     'level':'DEBUG',
                                 },
                },
@@ -197,7 +211,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserRegLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserRegLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -205,7 +219,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/SecurityLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/SecurityLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -213,7 +227,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/QueryLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/QueryLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -221,7 +235,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -229,7 +243,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/InitLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -237,7 +251,23 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/CommunicationLogs',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/CommunicationLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_UserProfile': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserProfileLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Adress': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/Adress',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

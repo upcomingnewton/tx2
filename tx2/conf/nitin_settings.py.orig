@@ -1,4 +1,4 @@
-# Django settings for ThoughtXplore project.
+# Django settings for tx2 project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 	('nitin','upcomingnewton@gmail.com'),
-	('sarvpriye','sarvpriye98@gmail.com'),
+	('jivjot','jivjot@gmail.com'),
 	('nitin','nitin@thoughtxplore.com'),
 )
 
@@ -39,8 +39,8 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'thoughtxplore@gmail.com'
-EMAIL_HOST_PASSWORD = 'NewalaTX:)'
+EMAIL_HOST_USER = 'jivjot@gmail.com'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -63,7 +63,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static1'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -79,7 +79,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/static',
+    #"/home/nitin/tx2/static",
+    "/home/jivjot/django/experiment/tx2/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -91,7 +92,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '!wo!*jq0!lrkw5lr1*(#+$6a9zm(16sdo&zhvtj6pn*q$+j7u&'
+SECRET_KEY = '*3nkk)^+t1*8xvsdo=ll%aqhhjc!by@&8s4ud4$$2b+9-1#afp'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -116,7 +117,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/templates"
+    #"/home/nitin/tx2/templates",
+    "/home/jivjot/django/experiment/tx2/templates",
 )
 
 INSTALLED_APPS = (
@@ -130,12 +132,18 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'Security',
     'UserReg',
     'Security',
     'Users',
     'AppEvent',
+<<<<<<< HEAD
     'Communication',
+    'UserAdress',
+    'UserProfile',
+=======
+    'UserProfile',
+    
+>>>>>>> be7256d24389110e3ac32263fa77ee75c4f1a580
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -185,10 +193,19 @@ LOGGING = LOG_SETTINGS = {
                                     'handlers':['File_UserReg'],
                                     'level':'DEBUG',
                                 },
-               },
-               'LOGGER_Communication':{
+               'LOGGER_UserProfile':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Communcation'],
+                                    'handlers':['File_UserProfile'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_UserProfile':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserProfile'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Adress':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Adress'],
                                     'level':'DEBUG',
                                 },
                },
@@ -197,7 +214,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserRegLogs',
+            'filename': '/home/jivjot/logs/UserRegLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -205,7 +222,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/SecurityLogs',
+            'filename': '/home/jivjot/logs/SecurityLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -213,7 +230,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/QueryLogs',
+            'filename': '/home/jivjot/logs/QueryLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -221,7 +238,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/UserLogs',
+            'filename': '/home/jivjot/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -229,25 +246,45 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/InitLogs',
+            'filename': '/home/jivjot/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
-        'File_Communcation': {
+        'File_UserProfile': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/labs_nitin/tx2/logs/CommunicationLogs',
+            'filename': '/home/jivjot/logs/UserProfile',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
+<<<<<<< HEAD
+        'File_UserProfile': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/UserProfileLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Adress': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/nitin/logs/Adress',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+=======
+        
+>>>>>>> be7256d24389110e3ac32263fa77ee75c4f1a580
         'smtp': {
             'class': 'logging.handlers.SMTPHandler',
             'level': 'ERROR',
             'formatter': 'email',
             'mailhost': 'localhost',
-            'fromaddr': 'no-reply@thoughtxplore.com',
-            'toaddrs': ['upcomingnewton@gmail.com', 'sarvpriye98@gmail.com'],
+            'fromaddr': 'jivjot@gmail.co,',
+            'toaddrs': ['jivjot@gmail.com'],
             'subject': '[ThoughtXplore] Error encountered.',
         },
     },
