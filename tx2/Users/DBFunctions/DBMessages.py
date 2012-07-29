@@ -2,12 +2,13 @@ from tx2.Misc.DBMessages import  db_messages
 
 
 def decode(result,rescode):
+    msg = ''
     if result == 1:
-        return 'SUCCESS'
+        msg += 'SUCCESS'
     elif result == 2:
-        return 'Requested object already exists'
-    else: 
-        return db_messages[str(rescode)]
+        msg += 'Requested object already exists' 
+    msg += db_messages[str(rescode)]
+    return msg
     
 # insert function messages
 db_messages.update({'601':'User registration failed. Please try again later, if problem persists, contact system administrator.',

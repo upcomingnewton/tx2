@@ -53,7 +53,10 @@ class UserFnx():
             self.UserLogger.debug('userid = %d, details = %s' % (userid, str(details)))
             result = DBUpdateUser(details)
             self.UserLogger.debug('result = %s' % (result))
-            return (1,result)
+            if result['result'] == 1 :
+                return (1,"Your profile has been sucessfully updated. </ br>You can login now") 
+            else:
+                return (-1,"Some Error has occured") 
         except:
             exception_log = ('[%s] %s,%s')%('AuthenticateUserFromSite',ip,emailid)
             self.UserLogger.exception(exception_log)
@@ -76,7 +79,10 @@ class UserFnx():
             result = DBInsertUser(user)
             if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
-            return (1,result)
+            if result['result'] == 1 :
+                return (1,"Your profile has been sucessfully created.< /br> Please check your email for activation email") 
+            else:
+                return (-1,"Some Error has occured") 
         except:
             exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
             self.UserLogger.exception(exception_log)

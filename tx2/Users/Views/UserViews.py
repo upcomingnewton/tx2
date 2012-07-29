@@ -179,7 +179,7 @@ def CreateUserFromSite(HttpRequest):
         LoggerUser.exception('[CreateUserFromSite][%s] Exception '%(ip))
         msglist.append('Some Error has occoured')
         HttpRequest.session[SESSION_MESSAGE] = msglist
-        return HttpResponseRedirect('/error/')
+        return HttpResponseRedirect('/message/')
 #        
 #        
 #@never_cache
@@ -189,14 +189,17 @@ def AuthenticateUserFromEmail(HttpRequest,token,refs):
     msglist = []
     try:
         res = au_user.AuthenticateUserFromSite(token, ip)
-        msglist.append(res)
+        msglist.append(res[1])
         HttpRequest.session[SESSION_MESSAGE] = msglist
-        return HttpResponseRedirect('/user/login/')
+        if( res[0] == 1):
+            return HttpResponseRedirect('/user/login/')
+        else:
+            return HttpResponseRedirect('/message/')
     except:
         LoggerUser.exception('[AuthenticateUserFromEmail][%s] Exception token=%s'%(ip,token))
         msglist.append('Some Error has occoured')
         HttpRequest.session[SESSION_MESSAGE] = msglist
-        return HttpResponseRedirect('/error/')
+        return HttpResponseRedirect('/message/')
 #    
 #        
 #
