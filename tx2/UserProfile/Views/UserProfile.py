@@ -8,12 +8,12 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
+from tx2.CONFIG import  SESSION_MESSAGE, LoggerUser
 from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
 from tx2.UserProfile.models import Degree,Branch,Category
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
-Logger_User = logging.getLogger(LoggerSecurity)
+LogUser = logging.getLogger(LoggerUser)
 
 
 def BranchIndex(HttpRequest):
@@ -156,7 +156,10 @@ def StudentDetailsInsert(HttpRequest):
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
         except Exception as inst:
-            pass
+            LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'StudentDetailsInsert'))
+            msglist.append('Some Error has occoured')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/message/')
 
 
 
