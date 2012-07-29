@@ -77,10 +77,10 @@ class UserFnx():
                     'by':by,
                     'ip':ip}
             result = DBInsertUser(user)
-            if ( result['result'] == 1):
+            if ( result['result'] >= 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
-            if result['result'] == 1 :
-                return (1,"Your profile has been sucessfully created.< /br> Please check your email for activation email") 
+            if result['result'] >= 1 :
+                return (1,"Your profile has been sucessfully created.Please check your email for activation link.") 
             else:
                 return (-1,"Some Error has occured") 
         except:
@@ -263,7 +263,7 @@ class UserFnx():
     	try:
 		import time
 		refs = int(time.time())
-		token= "password reset for " + email + " <br />new password is " + str(password) 
+		token= "password reset for " + email + " new password is " + str(password) 
 		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
 	except:
 		pass

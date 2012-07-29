@@ -166,7 +166,7 @@ def CreateUserFromSite(HttpRequest):
         if gender== "-1" :
             errmsg.append('Please select your gender')
         msglist = errmsg
-        if ( len(msglist) > 0 ):
+        if ( len(errmsg) > 0 ):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
         else:
