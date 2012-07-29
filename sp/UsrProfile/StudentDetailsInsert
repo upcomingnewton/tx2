@@ -1,0 +1,65 @@
+CREATE OR REPLACE FUNCTION StudentDetailsInsert(
+_User_id integer,
+_RollNo VARCHAR,
+_BranchMajor_id integer,
+_BranchMinor integer,
+_DegreePursuing_id integer, 
+_Category_id integer,
+_ComputerProficiency VARCHAR,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "UserProfile_studentdetails" WHERE "User_id"=_User_id or "RollNo"=_RollNo) THEN
+	result := 2;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'studentdetails','UserProfile');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "UserProfile_studentdetails"(
+             "User_id", "RollNo", "BranchMajor_id", "BranchMinor", "DegreePursuing_id", 
+            "Category_id", "ComputerProficiency", "State_id")
+    VALUES (_User_id, _RollNo, _BranchMajor_id, _BranchMinor, _DegreePursuing_id, 
+            _Category_id, _ComputerProficiency, varrec.varsci);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "UserProfile_studentdetails" WHERE "User_id"=_User_id;
+
+
+INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

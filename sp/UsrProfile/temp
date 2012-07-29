@@ -35,20 +35,4 @@ select * from MarksInsert(
 
 select * from MarksUpdate(1,'1-1-1','1-1-1',1,1,1,1,1,1,1,1,1,1,'SYS_PER_UPDATE',1,'1');
 
-select * from MarksUpdate(
-'1-1-1',
-'1-1-1',
-1,
-1,
-1,
-1,
-1,
-1,
-1,
-1,
-1,
-1,
-'SYS_PER_UPDATE',
-1,
-'1',
-)
+select * from StudentDetailsInsert(1,"a",1,1,1, 1,"a",'SYS_PER_INSERT',1,"11")

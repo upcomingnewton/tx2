@@ -31,5 +31,11 @@ urlpatterns = patterns('',
                        url(r'^UserProfile/Category/delete$','UserProfile.Views.UserProfile.CategoryDelete'),
                        url(r'^UserProfile/Category/update$','UserProfile.Views.UserProfile.CategoryUpdate'),
                        url(r'^UserProfile/Category/$','UserProfile.Views.UserProfile.CategoryIndex'),
+                      #StudentDetails
+                       url(r'^UserProfile/StudentDetails/new$','UserProfile.Views.UserProfile.StudentDetailsInsert'),
+                       url(r'^UserProfile/StudentDetails/View$','UserProfile.Views.UserProfile.StudentDetailsSelect'),
+                       url(r'^UserProfile/StudentDetails/delete$','UserProfile.Views.UserProfile.StudentDetailsDelete'),
+                       url(r'^UserProfile/StudentDetails/update$','UserProfile.Views.UserProfile.StudentDetailsUpdate'),
+                       url(r'^UserProfile/StudentDetails/$','UserProfile.Views.UserProfile.StudentDetailsIndex'),
                       
                       )

@@ -1,0 +1,15 @@
+<html>
+<body>
+<form name="StudentDetailsInput" action="/userprofile/UserProfile/StudentDetails/new" method="post">
+{% csrf_token %}
+UserId: <input type="text" name="UserId" /><br/>
+RollNo: <input type="text" name="RollNo" /><br/>
+BranchMajor<input type="text" name="BranchMajor" /><br/>
+BranchMinor<input type="text" name="BranchMinor" /><br/>
+Category<input type="text" name="Category" /><br/>
+Degree<input type="text" name="Degree" /><br/>
+ComputerProficiency<input type="text" name="ComputerProficiency" /><br/>
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>

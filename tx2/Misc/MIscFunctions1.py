@@ -10,3 +10,9 @@ def AppendMessageList(HttpRequest):
    	pass
     print '||msglist||' + str(msglist)
     return msglist
+def is_integer(s):
+    try:
+        int(s)
+        return True
+    except :
+        return False

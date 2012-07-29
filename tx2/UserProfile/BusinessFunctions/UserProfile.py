@@ -43,4 +43,22 @@ class UserProfile(object):
             error_msg = 'Error @ InsertCategory in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip):
+        try:
+            details={'UserId':UserId,
+                     'RollNo':RollNo,
+                     'BranchMajor':BranchMajor,
+                     'BranchMinor':BranchMinor,
+                     'Degree':Degree,
+                     'CategoryId':CategoryId,
+                     'ComputerProficiency':ComputerProficiency,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBStudentDetailsInsert(details);
+            return result
+        except Exception as inst:
+            error_msg = 'Error @ InsertStudentDetails in Business Functions %s'%(inst)
+            self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
+            return {'result':-5,'error_msg':error_msg}
     

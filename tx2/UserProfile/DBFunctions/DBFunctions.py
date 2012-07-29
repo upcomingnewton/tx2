@@ -50,6 +50,20 @@ def DBCategoryInsert(details):
         exception_log = "[%s] %s"%('DBInsertCategory',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
+
+def DBStudentDetailsInsert(details):
+    try:
+        query = "SELECT * FROM StudentDetailsInsert(%s,'%s',%s,%s,%s,%s,'%s','%s',%s,'%s');"%(details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details["RequestedOperation"],details["by_user"],details["ip"]);
+        UserProfileLogger.debug('[%s] %s'%('DBInsertStudentDetails',query))
+        QueryLogger.debug('[%s] %s'%('DBInsertStudentDetails',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBInsertStudentDetails',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBInsertStudentDetails',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+
 def DBBoardDelete(details):
     query = "SELECT * FROM BoardDelete(%d,'%s','%s','%s');"%(details["BoardId"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
