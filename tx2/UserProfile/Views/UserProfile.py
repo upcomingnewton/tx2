@@ -94,7 +94,7 @@ def StudentDetailsInsert(HttpRequest):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
         try:
-            UserProfileObj=UserProfile()
+            
             flag=1
             UserId=int(UserId)
             RollNo = -1
@@ -149,10 +149,12 @@ def StudentDetailsInsert(HttpRequest):
             if flag==-1:
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
-            result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip)
-            msglist.append("result is %s"%result)
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return HttpResponseRedirect('/message/')
+            else:
+                UserProfileObj=UserProfile()
+                result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip)
+                msglist.append("result is %s"%result)
+                HttpRequest.session[SESSION_MESSAGE] = msglist
+                return HttpResponseRedirect('/message/')
         except Exception as inst:
             pass
 

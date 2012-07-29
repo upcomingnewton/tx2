@@ -109,7 +109,7 @@
                            Currently pursuing 
                      </div>
                      <div class="w300 hinherit float_left">
-                             <select name="Degree"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                             <select name="Degree"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" >
                              		<option value="-1">Select an Option</option>
                              		{% for Degree in DegreeList %}
                              		    <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
@@ -121,7 +121,7 @@
           <!--  ComputerProficiency  -->
 			  <div class="w648 border_bottom h100 mb4">
 	                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-	                           Group Desc
+	                           Computer Proficiency
 	                     </div>
 	                     <div class="w300 h100 float_left">
 	                             <textarea name="ComputerProficiency"  class="tb1 h75" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" ></textarea>
