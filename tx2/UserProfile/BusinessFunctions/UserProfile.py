@@ -31,4 +31,16 @@ class UserProfile(object):
             error_msg = 'Error @ InsertBoard in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def InsertCategory(self,CategoryName,by_user,ip):
+        try:
+            details={'CategoryName':CategoryName,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBCategoryInsert(details);
+            return result
+        except:
+            error_msg = 'Error @ InsertCategory in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
     

@@ -25,5 +25,11 @@ urlpatterns = patterns('',
                        url(r'^UserProfile/Branch/delete$','UserProfile.Views.UserProfile.BranchDelete'),
                        url(r'^UserProfile/Branch/update$','UserProfile.Views.UserProfile.BranchUpdate'),
                        url(r'^UserProfile/Branch/$','UserProfile.Views.UserProfile.BranchIndex'),
-                       
+                       #Category
+                       url(r'^UserProfile/Category/new$','UserProfile.Views.UserProfile.CategoryInsert'),
+                       url(r'^UserProfile/Category/View$','UserProfile.Views.UserProfile.CategorySelect'),
+                       url(r'^UserProfile/Category/delete$','UserProfile.Views.UserProfile.CategoryDelete'),
+                       url(r'^UserProfile/Category/update$','UserProfile.Views.UserProfile.CategoryUpdate'),
+                       url(r'^UserProfile/Category/$','UserProfile.Views.UserProfile.CategoryIndex'),
+                      
                       )
