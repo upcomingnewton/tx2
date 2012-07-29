@@ -234,11 +234,11 @@ class UserFnx():
 		import time
 		refs = int(time.time())
 		msg = "hey " + fname + "\n"
-		msg += "please click on following link to authenticate your profile \n\n"
+		msg += "Please click on following link to activate your account \n\n"
 		msg += "http://uiet.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
 		
 		msg += "\n\nRegards \n Training and Placement Cell, UIET"
-		sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Training and Placement Cell, UIET",token)
+		sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Training and Placement Cell, UIET",msg)
 	except:
 		pass
 		
