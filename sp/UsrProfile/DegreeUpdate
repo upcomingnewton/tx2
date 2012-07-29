@@ -1,0 +1,67 @@
+CREATE OR REPLACE FUNCTION DegreeUpdate(
+DegreeId INTEGER,
+DegreeName VARCHAR,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+    prev VARCHAR;
+BEGIN 
+temp := 0;
+
+
+IF NOT EXISTS ( SELECT id FROM "UserProfile_degree" WHERE id=DegreeId) THEN
+	result := -4;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+IF EXISTS ( SELECT id FROM "UserProfile_degree" WHERE "Name"=DegreeName) THEN
+	result := -3;
+  	rescode := 200;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'degree','UserProfile');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+Select "Name" into prev from "UserProfile_degree"
+where id=DegreeId;
+
+Update "UserProfile_degree" set "Name"=DegreeName
+where id=DegreeId;
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "UserProfile_degree" WHERE "Name"=DegreeName;
+
+
+INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'UPDATE',prev);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

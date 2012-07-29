@@ -1,8 +1,17 @@
 select * from DegreeInsert('be','SYS_PER_INSERT',1,'temp')
 
 select * from BoardInsert('be','SYS_PER_INSERT',1,'temp')
+select * from BoardDelete(1,'SYS_PER_DELETE',1,'temp')
+select * from BoardUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
+select * from DegreeDelete(1,'SYS_PER_DELETE',1,'temp')
+select * from MarksDelete(2,'SYS_PER_DELETE',1,'temp')
+
+select * from DegreeTypeDelete(1,'SYS_PER_DELETE',1,'temp')
 
 select * from SessionTypeInsert('temp','SYS_PER_INSERT',1,'temp')
+
+select * from DegreeUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
+select * from DegreeTypeUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
 
 select * from MarksInsert(
 '1-1-1',
@@ -18,6 +27,26 @@ select * from MarksInsert(
 1,
 1,
 'SYS_PER_INSERT',
+1,
+'1',
+)
+
+select * from MarksUpdate(1,'1-1-1','1-1-1',1,1,1,1,1,1,1,1,1,1,'SYS_PER_UPDATE',1,'1');
+
+select * from MarksUpdate(
+'1-1-1',
+'1-1-1',
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+'SYS_PER_UPDATE',
 1,
 '1',
 )

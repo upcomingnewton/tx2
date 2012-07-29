@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^user/',include('Users.urls')),
     url(r'^security/',include('Security.urls')),
     url(r'^userreg/',include('UserReg.urls')),
+    url(r'^userprofile/',include('UserProfile.urls')),
     #url(r'^message/',)
 )

@@ -12,6 +12,9 @@ class Degree(models.Model): #bsc, be etc etc
 
 class Board(models.Model): #pu, cbse etc etc
 	Name=models.CharField(max_length=100)
+	def summary(self):
+		return self.Name
+	
 	
 class SessionType(models.Model):
 	Name=models.CharField(max_length=100) #yearly , sem-wise, quarterly etc etc
@@ -72,7 +75,7 @@ class StudentDetails(models.Model):
 	Category = models.ForeignKey(Category)
 	ComputerProficiency = models.CharField(max_length=500)
 	State=models.ForeignKey(SecurityStates)
- 	
+
 class StudentSkills(models.Model):
 	User = models.ForeignKey(User)
 	FunctionalArea = models.TextField() # this will contain the FunctionalAreaList's id  separated by some sep, (comma-sep values)
