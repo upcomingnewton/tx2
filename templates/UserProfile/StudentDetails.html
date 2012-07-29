@@ -1,15 +1,140 @@
-<html>
-<body>
-<form name="StudentDetailsInput" action="/userprofile/UserProfile/StudentDetails/new" method="post">
-{% csrf_token %}
-UserId: <input type="text" name="UserId" /><br/>
-RollNo: <input type="text" name="RollNo" /><br/>
-BranchMajor<input type="text" name="BranchMajor" /><br/>
-BranchMinor<input type="text" name="BranchMinor" /><br/>
-Category<input type="text" name="Category" /><br/>
-Degree<input type="text" name="Degree" /><br/>
-ComputerProficiency<input type="text" name="ComputerProficiency" /><br/>
-<input type="submit" value="Submit" />
-</form>
-</body>
-</html>
+{% extends "master1.html" %}
+{% block title %} STUDENT PROFILE {% endblock%}
+
+{% block add_start_script %}
+    <link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+{% endblock %}
+
+{% block master_content_center %}
+
+	<!-- empty line  -->
+		<div class="w648 h30 mb4"></div>
+   <!--  =============================== -->
+   <!-- ====== ###### TITLE ######## === -->
+    <!--  =============================== -->
+		<div class="w648 border_bottom h45 mb4 center">
+				<div style="font-size: 35px;">
+                       STUDENT PROFILE
+                </div>
+		</div>
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		
+	<!--  =============================== -->
+   <!-- ====== ###### MESSAGE LIST ######## === -->
+    <!--  =============================== -->
+		{% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+                </div>
+			{% endfor %}
+		{% endif %}
+		
+	<!--  =============================== -->
+   <!-- ====== ###### CONTENT ######## === -->
+    <!--  =============================== -->
+    <form name="StudentDetailsInput" action="/userprofile/UserProfile/StudentDetails/new" method="post">
+		{% csrf_token %}
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		<!--  UserId  
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Email Id
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input id="UserId" name="RegisterUser_email" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+                -->
+     	<!--  RollNo  -->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Roll Number
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="RollNo"  class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  BranchMajor ===dd ===-->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Branch Major
+                     </div>
+                     <div class="w300 hinherit float_left">
+                           <select name="BranchMajor"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                                    <option value="-1">Select an Option</option>
+                             		{% for branch in BranchList %}
+                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+                             		{% endfor %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  BranchMinor ===dd === -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Branch Minor
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="BranchMinor"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                                    <option value="-1">Select an Option</option>
+                             		{% for branch in BranchList %}
+                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+                             		{% endfor %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"> Only for MBA students </div>
+                </div>
+         <!--  Category  ===dd ===-->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">Category</div>
+                     <div class="w300 hinherit float_left">                           
+                             <select name="Category"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                             		<option value="-1">Select an Option</option>
+                             		{% for Category in CategoryList %}
+                             		    <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
+                             		{% endfor %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  Degree  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Currently pursuing degree
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <select name="Degree"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
+                             		<option value="-1">Select an Option</option>
+                             		{% for Degree in DegreeList %}
+                             		    <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
+                             		{% endfor %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+          <!--  ComputerProficiency  -->
+			  <div class="w648 border_bottom h100 mb4">
+	                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+	                           Group Desc
+	                     </div>
+	                     <div class="w300 h100 float_left">
+	                             <textarea name="ComputerProficiency"  class="tb1 h75" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" ></textarea>
+	                     </div>
+	                     <div class="w170 h30 float_left"></div>
+	                </div>
+
+            
+      	<!--  submit -->
+      		<div class="w648 border_bottom h30 mb4 center" >
+                     <input type="submit" value="SUBMIT PROFILE FOR ACTIVATION" class="center"/>
+                </div>
+		</form>
+{% endblock %}
+
+
