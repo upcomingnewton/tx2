@@ -24,6 +24,7 @@ class UserFnx():
             to_emailid = self.encrypt.decrypt(emailid)
             s = to_emailid.split('___')
             userid = int(s[0])
+            self.UserLogger.debug('userid = %d' % (userid))
             # get the user
             user_obj = User.objects.get(id=userid)
             self.UserLogger.debug('userid = %d, userid from token %d' % (user_obj.id, userid))
@@ -77,9 +78,9 @@ class UserFnx():
                     'by':by,
                     'ip':ip}
             result = DBInsertUser(user)
-            if ( result['result'] >= 1):
+            if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
-            if result['result'] >= 1 :
+            if result['result'] == 1 :
                 return (1,"Your profile has been sucessfully created.Please check your email for activation link.") 
             else:
                 return (-1,"Some Error has occured") 
@@ -264,7 +265,7 @@ class UserFnx():
 		import time
 		refs = int(time.time())
 		token= "password reset for " + email + " new password is " + str(password) 
-		sendMail([ "upcomingnewton@gmail.com"],"no-reply@thoughtxplore.com","authenticate",token)
+		sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","authenticate",token)
 	except:
 		pass
     
