@@ -149,7 +149,7 @@ def CreateUserFromSite(HttpRequest):
         if len(fname) < 2:
             errmsg.append('first name required')
         mname = HttpRequest.POST['RegisterUser_mname']
-        if len(mname) < 2:
+        if len(mname) < 2 or mname == "":
             mname = "--"
         lname = HttpRequest.POST['RegisterUser_lname']
         if len(lname) < 4:
@@ -378,3 +378,8 @@ def ResetPass(HttpRequest):
         msglist.append('Some Error has occoured')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/message/')
+        
+def ShowMessages(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    HttpRequest.session[SESSION_MESSAGE] = msglist
+    return render_to_response("message.html",{},context_instance=RequestContext(HttpRequest))
