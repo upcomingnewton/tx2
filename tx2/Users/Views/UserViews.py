@@ -172,9 +172,9 @@ def CreateUserFromSite(HttpRequest):
         else:
             insfnx = UserFnx()
             res = insfnx.InsertUser(email, pass2, fname, mname, lname, gender, bday,getSystemEntity(),getSystemGroup_NewUsers(),by,ip)
-            msglist.append(res)
+            msglist.append(res[1])
             HttpRequest.session[SESSION_MESSAGE] = msglist
-            return HttpResponseRedirect('/user/register')
+            return HttpResponseRedirect('/message/')
     except:
         LoggerUser.exception('[CreateUserFromSite][%s] Exception '%(ip))
         msglist.append('Some Error has occoured')
