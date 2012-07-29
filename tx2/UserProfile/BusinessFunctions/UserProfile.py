@@ -56,7 +56,10 @@ class UserProfile(object):
                      'by_user':by_user,
                      'ip':ip,};
             result=DBFunctions.DBStudentDetailsInsert(details);
-            return result
+            if( result['result'] == 1 ):
+                return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+            else:
+                return (-1,"Some error has occured. Please try again")
         except Exception as inst:
             error_msg = 'Error @ InsertStudentDetails in Business Functions %s'%(inst)
             self.UserProfileLogger.exception('[%s] == Exception =='%(inst))

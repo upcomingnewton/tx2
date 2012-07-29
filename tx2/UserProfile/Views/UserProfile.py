@@ -96,7 +96,7 @@ def StudentDetailsInsert(HttpRequest):
         try:
             
             flag=1
-            UserId=int(UserId)
+            UserId=int(logindetails["userid"])
             RollNo = -1
             BranchMajor = -1
             BranchMinor = -1
@@ -105,6 +105,9 @@ def StudentDetailsInsert(HttpRequest):
             ComputerProficiency = ""
             if "RollNo" in HttpRequest.POST:
                 RollNo=HttpRequest.POST["RollNo"]
+                if len(RollNo) == 0:
+                      msglist.append("RollNo is required");
+                      flag=-1;
             else:
                 msglist.append("Error fetching data from form for RollNo");
                 flag=-1;
@@ -152,7 +155,7 @@ def StudentDetailsInsert(HttpRequest):
             else:
                 UserProfileObj=UserProfile()
                 result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip)
-                msglist.append("result is %s"%result)
+                msglist.append(result[1])
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
         except Exception as inst:
