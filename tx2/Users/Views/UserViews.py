@@ -62,13 +62,13 @@ def log_in(HttpRequest):
             else:
                 res = usrfn.LoginUser(email, password,Login_From_Type, ip)
                 if ( res[0] != -1):
-                    result = res[0]
+                    result = res[1]
                     if( result['result'] == 1):
                         token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid']))}
                         #print token
                         HttpRequest.session["details"] = token
                         #print 'i have reached here'
-                        return HttpResponseRedirect('/user/dashboard/')
+                        return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
                     else:
                         # handle other cases here like user is not active and all that
                         LoggerUser.error(res)

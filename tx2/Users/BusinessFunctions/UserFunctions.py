@@ -211,9 +211,9 @@ class UserFnx():
             if( int(result['result']) >= 1):
                 #MakeGroupMenu(result['groupid'])
                 AddLoginIdToLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
-                return(result, decode(int(result['result']),result['rescode']))
+                return(1,result)
             else:
-                return(result, decode(int(result['result']),result['rescode']))
+                return(-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
         except:
             exception_log = ('[%s] %s,%s %s %s')%('LoginUser',ip,email,_type,self.encrypt.encrypt(password))
             self.UserLogger.exception(exception_log)
