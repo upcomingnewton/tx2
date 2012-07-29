@@ -24,6 +24,19 @@ def DBBoardInsert(details):
         exception_log = "[%s] %s"%('DBInsertBoard',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
+
+def DBBranchInsert(details):
+    query = "SELECT * FROM BranchInsert('%s','%s','%s','%s');"%(details["BranchName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBInsertBranch',query))
+        QueryLogger.debug('[%s] %s'%('DBInsertBranch',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBInsertBoard',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBInsertBranch',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
                                                                 
 def DBBoardDelete(details):
     query = "SELECT * FROM BoardDelete(%d,'%s','%s','%s');"%(details["BoardId"],details["RequestedOperation"],details["by_user"],details["ip"]);

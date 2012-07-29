@@ -19,4 +19,11 @@ urlpatterns = patterns('',
                        url(r'^Marks/DegreeType/delete$','UserProfile.Views.Marks.DegreeTypeDelete'),
                        url(r'^Marks/DegreeType/update$','UserProfile.Views.Marks.DegreeTypeUpdate'),
                        url(r'^Marks/DegreeType/$','UserProfile.Views.Marks.DegreeTypeIndex'),
+                       #Branch
+                       url(r'^UserProfile/Branch/new$','UserProfile.Views.UserProfile.BranchInsert'),
+                       url(r'^UserProfile/Branch/View$','UserProfile.Views.UserProfile.BranchSelect'),
+                       url(r'^UserProfile/Branch/delete$','UserProfile.Views.UserProfile.BranchDelete'),
+                       url(r'^UserProfile/Branch/update$','UserProfile.Views.UserProfile.BranchUpdate'),
+                       url(r'^UserProfile/Branch/$','UserProfile.Views.UserProfile.BranchIndex'),
+                       
                       )

@@ -1,0 +1,9 @@
+<html>
+<body>
+<form name="BranchInput" action="/userprofile/UserProfile/Branch/new" method="post">
+{% csrf_token %}
+BranchName: <input type="text" name="BranchName" />
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>
