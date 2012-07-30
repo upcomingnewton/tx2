@@ -89,13 +89,10 @@ def log_in(HttpRequest):
         
 def log_out(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
-    print '*** ip ', str(ip)
     msglist = AppendMessageList(HttpRequest)
     try:
         if "details" in HttpRequest.session.keys():
-            print '---+++--- yes it is there'
             token = HttpRequest.session['details']
-            print token
             logout_user = UserFnx()
             #res =  logout_user.LogoutUser(token['loginid'],LogOut_From_Type)
             res =  logout_user.LogoutUser(token['loginid'],2)
@@ -103,7 +100,6 @@ def log_out(HttpRequest):
                     result = res[1]
                     if( result['result'] == 1):
                     	for sesskey in HttpRequest.session.keys():
-                    		print '++-- SESSION KEY = ' + str(sesskey)
                         	del HttpRequest.session[sesskey]
                         return HttpResponseRedirect('/user/login/')
                     else:
@@ -117,10 +113,12 @@ def log_out(HttpRequest):
                     HttpRequest.session[SESSION_MESSAGE] = msglist
                     return HttpResponseRedirect('/message/')
         else:
-    		return HttpResponse('error')
+            msglist.append("Please login in first , for loggging out")
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+    		return HttpResponseRedirect('/user/login/')
     except:
             LoggerUser.exception('[log_out][%s] Exception '%(ip))
-            msglist.append('Some Error has occoured')
+            msglist.append('Some Error has occoured while processing your request')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
 
