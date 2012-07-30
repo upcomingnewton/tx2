@@ -8,6 +8,7 @@ from tx2.UserProfile.DBFunctions import DBFunctions
 from tx2.Users.BusinessFunctions.GroupTypeFunctions import GroupTypeFnx
 from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
 from tx2.conf.LocalProjectConfig import  SYSTEM_USERDEFINED_GROUPTYPE
+from tx2.Users.BusinessFunctions.UserFunctions import UserFnx
 import logging
 
 
@@ -56,7 +57,7 @@ class UserProfile(object):
             error_msg = 'Error @ InsertCategory in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
-    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip):
+    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
         try:
             details={'UserId':UserId,
                      'RollNo':RollNo,
@@ -70,6 +71,9 @@ class UserProfile(object):
                      'ip':ip,};
             result=DBFunctions.DBStudentDetailsInsert(details);
             if( result['result'] == 1 ):
+            	UserFnxObj = UserFnx()
+            	res = UserFnxObj.ChangeUserGroup(UserId,Group)
+            	self.UserProfileLogger.exception('[%s] == %s =='%(ChangeUserGroup,str(res)))
                 return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
             else:
                 return (-1,"Some error has occured. Please try again")

@@ -49,11 +49,7 @@ class GroupTypeFnx():
         	#SYSTEM_USERDEFINED_GROUPTYPE      
             try:
                 grouptype =  GroupType.objects.get(GroupTypeName=gtypename)
-                self.UserLogger.debug('[%s] %s'%('getGroupTypeByName',str(len(grouptype))))
-                if( len(grouptype) == 1 ):
-                	return (1,grouptype)
-               	else:
-               		return (-1,'')
+		return (1,grouptype)
             except:
                 exception_log = ('[%s]')%('getGroupTypeByName')
                 self.UserLogger.exception(exception_log)

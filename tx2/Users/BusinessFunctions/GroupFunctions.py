@@ -52,6 +52,15 @@ class GroupFnx(models.Model):
                 exception_log = ('[%s]')%('ListAllGroups')
                 self.UserLogger.exception(exception_log)
                 return (-1,[])
+        
+        def getGroupByName(self,name):
+            try:
+                return (1,Group.objects.get(GroupName=name))
+            except:
+                exception_log = ('[%s]')%('getGroupById')
+                self.UserLogger.exception(exception_log)
+                return (-1,[])
+           
                     
         
     

@@ -103,6 +103,7 @@ def StudentDetailsInsert(HttpRequest):
             Degree = -1
             Category = -1
             ComputerProficiency = ""
+            
             if "RollNo" in HttpRequest.POST:
                 RollNo=HttpRequest.POST["RollNo"]
                 if len(RollNo) == 0:
@@ -154,7 +155,9 @@ def StudentDetailsInsert(HttpRequest):
                 return HttpResponseRedirect('/message/')
             else:
                 UserProfileObj=UserProfile()
-                result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip)
+                BranchName = Branch.objects.get(id=BranchMajor)
+                Group = "GROUP_"  + BranchName  + "_UN-AUTHENTICATED"
+                result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
                 msglist.append(result[1])
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')

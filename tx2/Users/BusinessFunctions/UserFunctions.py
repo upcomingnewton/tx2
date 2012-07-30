@@ -3,6 +3,7 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser,DB
 from tx2.Users.DBFunctions.DBMessages import decode
 from tx2.Users.HelperFunctions.LoginDetails import AddLoginIdToLoggedInUsersDict, ClearLoginIdFromLoggedInUsersDict 
 from tx2.Users.HelperFunctions.DefaultValues import *
+from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
 from tx2.conf.LocalProjectConfig import *
 from tx2.Users.models import *
 from tx2.Misc.CacheManagement import setCache,getCache
@@ -234,6 +235,34 @@ class UserFnx():
             self.UserLogger.exception(exception_log)
             return (-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
             
+    def ChangeUserGroup(self,userid,GroupName):
+    	try:	
+    		user_obj = self.getUserObjectByUserId(userid)
+    		GroupFnxObj = GroupFnx()
+    		groupobj = GroupFnxObj.getGroupByName(GroupName)
+    		details = {
+                       'email':user_obj.UserEmail,
+                       'pass':user_obj.UserPassword,
+                       'bday':str(user_obj.UserBirthDate),
+                       'fname':user_obj.UserFirstName,
+                       'mname':user_obj.UserMiddleName,
+                       'lname':user_obj.UserLastName,
+                       'entity':user_obj.UserEntity.id,
+                       'gender':user_obj.UserGender,
+                       'LogsDesc':_LogsDesc,
+                       'PreviousState':_PreviousState,
+                       'group':groupobj.id,
+                       'op':op,
+                       'by':by,
+                       'ip':ip,
+                       }
+            result = DBUpdateUser(details)
+            self.UserLogger.debug('result = %s' % (result))
+            return (1,result)
+    	except:
+    	    exception_log = ('[%s] %s %s')%('ChangeUserGroup',userid,GroupName)
+            self.UserLogger.exception(exception_log)
+            return (-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
 
     def send_mail_test(self,email,userid,fname,ip):
     	try:
