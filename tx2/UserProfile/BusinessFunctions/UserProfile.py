@@ -34,12 +34,12 @@ class UserProfile(object):
             	GroupTypeObj = GroupTypeFnx()
             	GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
             	if( GroupType[0] != -1 ):
-            		self.UserProfileLogger.exception('[%s] == GroupTypeObj == %s,%d'%(GroupType[1].GroupTypeName,GroupType[1].id))
+            		self.UserProfileLogger.exception('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
             		GroupFnxObj = GroupFnx()
             		res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType[1].id,-1,by_user,ip)
-            		self.UserProfileLogger.exception('[%s] == GroupFnxObj == %s'%(str(res)))
+            		self.UserProfileLogger.exception('[%s] == %s'%("GroupFnxObj",str(res)))
             		res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
-            		self.UserProfileLogger.exception('[%s] == GroupFnxObj == %s'%(str(res)))
+            		self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
             return result
         except:
             error_msg = 'Error @ InsertBoard in Business Functions'
