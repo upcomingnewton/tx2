@@ -53,11 +53,11 @@ class GroupTypeFnx():
                 if( len(grouptype) == 1 ):
                 	return (1,grouptype)
                	else:
-               		return (-1)
+               		return (-1,'')
             except:
                 exception_log = ('[%s]')%('getGroupTypeByName')
                 self.UserLogger.exception(exception_log)
-                return (-1)      
+                return (-1,'')      
         
     
       
