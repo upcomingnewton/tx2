@@ -62,8 +62,13 @@ class AdminInitialize():
 			self.SecurityLogger.debug('[%s] %s'%('_DefaultUserSystem',msg))
 			msglist.append(msg)
 			
-			# GROUP TYPE
+			# GROUP TYPE 
 			GroupTypeObj,created = GroupType.objects.get_or_create(GroupTypeName=SYSTEM_GROUPTYPE,GroupTypeDescription=SYSTEM_GROUPTYPE)
+			msg = 'OBJECT = %s, RESULT = %s\t%s'%("GroupType",GroupTypeObj.GroupTypeName,created)
+			self.SecurityLogger.debug('[%s] %s'%('_DefaultUserSystem',msg))
+			msglist.append(msg)
+			
+			GroupTypeObj,created = GroupType.objects.get_or_create(GroupTypeName=SYSTEM_USERDEFINED_GROUPTYPE,GroupTypeDescription=SYSTEM_USERDEFINED_GROUPTYPE)
 			msg = 'OBJECT = %s, RESULT = %s\t%s'%("GroupType",GroupTypeObj.GroupTypeName,created)
 			self.SecurityLogger.debug('[%s] %s'%('_DefaultUserSystem',msg))
 			msglist.append(msg)

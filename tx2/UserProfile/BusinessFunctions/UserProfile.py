@@ -5,6 +5,9 @@ Created on 26-Jul-2012
 '''
 from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBFunctions
+from tx2.Users.BusinessFunctions.GroupTypeFunctions import GroupTypeFnx
+from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
+from tx2.conf.LocalProjectConfig import  SYSTEM_USERDEFINED_GROUPTYPE
 import logging
 
 
@@ -26,6 +29,13 @@ class UserProfile(object):
                      'by_user':by_user,
                      'ip':ip,};
             result=DBFunctions.DBBranchInsert(details);
+            if( result['result'] == 1 ):
+            	GroupTypeObj = GroupTypeFnx()
+            	GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
+            	if( GroupType[0] != -1 ):
+            		GroupFnxObj = GroupFnx()
+            		GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType.id,-1,by_user,ip)
+            		GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType.id,-1,by_user,ip)
             return result
         except:
             error_msg = 'Error @ InsertBoard in Business Functions'

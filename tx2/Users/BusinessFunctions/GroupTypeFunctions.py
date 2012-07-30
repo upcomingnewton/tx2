@@ -2,7 +2,7 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser, D
 from tx2.Users.DBFunctions.DBMessages import decode
 from tx2.Users.models import GroupType
 from tx2.CONFIG import LoggerUser
-from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT, SYSTEM_USERDEFINED_GROUPTYPE
 import logging
 
 class GroupTypeFnx():
@@ -43,7 +43,21 @@ class GroupTypeFnx():
                 exception_log = ('[%s]')%('ListAllGroupTypes')
                 self.UserLogger.exception(exception_log)
                 return (-1,[])
-                    
+                
+        
+        def getGroupTypeByName(self,gtypename):
+        	#SYSTEM_USERDEFINED_GROUPTYPE      
+            try:
+                grouptype =  GroupType.objects.get(GroupTypeName=gtypename)
+                self.UserLogger.debug('[%s] %s'%('getGroupTypeByName',str(len(grouptype))))
+                if( len(grouptype) == 1 ):
+                	return (1,grouptype)
+               	else:
+               		return (-1)
+            except:
+                exception_log = ('[%s]')%('getGroupTypeByName')
+                self.UserLogger.exception(exception_log)
+                return (-1)      
         
     
       
