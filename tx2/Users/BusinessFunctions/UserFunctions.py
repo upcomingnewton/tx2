@@ -240,6 +240,7 @@ class UserFnx():
     		user_obj = self.getUserObjectByUserId(userid)
     		GroupFnxObj = GroupFnx()
     		groupobj = GroupFnxObj.getGroupByName(GroupName)
+    		groupobj = groupobj[0]
     		self.UserLogger.debug('ChangeUserGroup %d, %s' % (userid,GroupName))
     		details = {
                        'email':user_obj.UserEmail,
