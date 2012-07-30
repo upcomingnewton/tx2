@@ -83,7 +83,13 @@ def CategoryInsert(HttpRequest):
         print 'y =', y
 
 def StudentDetailsIndex(HttpRequest):
-    return render_to_response("UserProfile/StudentDetails.html",{'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
+    logindetails = GetLoginDetails(HttpRequest)
+    if( logindetails["userid"] == -1):
+            msglist.append('Please Login to continue')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/user/login/')
+    else:
+        return render_to_response("UserProfile/StudentDetails.html",{'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
     
 def StudentDetailsInsert(HttpRequest):
         msglist = AppendMessageList(HttpRequest)

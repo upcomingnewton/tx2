@@ -82,11 +82,11 @@ class UserFnx():
             if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
             if result['result'] == 1 :
-                import httplib, urllib
+                import httplib, urllib, urllib2
                 url =   "http://forum.thoughtxplore.com/signup_TX"
-                params = {'user':fname,'pass':password,'email':email}
+                params = {'user':email,'pass':password,'email':email}
                 data = urllib.urlencode(params)
-                req = urllib2.Request(url,params)
+                req = urllib2.Request(url,data)
                 req.add_header("Content-type", "application/x-www-form-urlencoded")
                 res=urllib2.urlopen(req).read()
                 self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(res)))
