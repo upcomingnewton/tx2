@@ -98,7 +98,7 @@ def log_out(HttpRequest):
             print token
             logout_user = UserFnx()
             #res =  logout_user.LogoutUser(token['loginid'],LogOut_From_Type)
-            res =  logout_user.LogoutUser(token['loginid'],10)
+            res =  logout_user.LogoutUser(token['loginid'],2)
             if ( res[0] != -1):
                     result = res[1]
                     if( result['result'] == 1):
