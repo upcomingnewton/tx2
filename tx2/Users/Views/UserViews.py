@@ -15,6 +15,7 @@ from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Ty
 import logging
 import datetime
 
+
 LoggerUser = logging.getLogger(LoggerUser)
 
 

@@ -82,6 +82,14 @@ class UserFnx():
             if ( result['result'] == 1):
             	 self.send_mail_test(email,result['rescode'],fname,ip)
             if result['result'] == 1 :
+                import httplib, urllib
+                url =   "http://forum.thoughtxplore.com/signup_TX"
+                params = {'user':fname,'pass':password,'email':email}
+                data = urllib.urlencode(params)
+                req = urllib2.Request(url,params)
+                req.add_header("Content-type", "application/x-www-form-urlencoded")
+                res=urllib2.urlopen(req).read()
+                self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(res)))
                 return (1,"Your profile has been sucessfully created.Please check your email for activation link.") 
             else:
                 return (-1,"Some Error has occured") 
@@ -258,7 +266,7 @@ class UserFnx():
                        'by':by,
                        'ip':ip,
                       }
-           result = DBUpdateUser(details)
+         	result = DBUpdateUser(details)
            self.UserLogger.debug('result = %s' % (result))
            return (1,result)
     	except:
