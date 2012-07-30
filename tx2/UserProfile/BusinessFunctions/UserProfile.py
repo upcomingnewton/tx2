@@ -72,7 +72,7 @@ class UserProfile(object):
             result=DBFunctions.DBStudentDetailsInsert(details);
             if( result['result'] == 1 ):
             	UserFnxObj = UserFnx()
-            	res = UserFnxObj.ChangeUserGroup(UserId,Group)
+            	res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
             	self.UserProfileLogger.exception('[%s] == %s =='%("ChangeUserGroup",str(res)))
                 return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
             else:

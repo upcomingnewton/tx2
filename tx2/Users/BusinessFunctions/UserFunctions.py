@@ -235,12 +235,12 @@ class UserFnx():
             self.UserLogger.exception(exception_log)
             return (-1,'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon')
             
-    def ChangeUserGroup(self,userid,GroupName):
+    def ChangeUserGroup(self,userid,GroupName,by,ip,op=SYSTEM_PERMISSION_UPDATE):
     	try:	
     		user_obj = self.getUserObjectByUserId(userid)
     		GroupFnxObj = GroupFnx()
     		groupobj = GroupFnxObj.getGroupByName(GroupName)
-    		groupobj = groupobj[0]
+    		groupobj = groupobj[1]
     		self.UserLogger.debug('ChangeUserGroup %d, %s' % (userid,GroupName))
     		details = {
                        'email':user_obj.UserEmail,
