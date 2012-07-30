@@ -249,7 +249,7 @@ class UserFnx():
                        'lname':user_obj.UserLastName,
                        'entity':user_obj.UserEntity.id,
                        'gender':user_obj.UserGender,
-                       'LogsDesc':_LogsDesc,
+                       'LogsDesc':str(user_obj.Group.id),
                        'PreviousState':_PreviousState,
                        'group':groupobj.id,
                        'op':op,
