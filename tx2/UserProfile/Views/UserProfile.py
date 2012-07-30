@@ -155,8 +155,8 @@ def StudentDetailsInsert(HttpRequest):
                 return HttpResponseRedirect('/message/')
             else:
                 UserProfileObj=UserProfile()
-                BranchName = Branch.objects.get(id=BranchMajor)
-                Group = "GROUP_"  + BranchName  + "_UN-AUTHENTICATED"
+                BranchObj = Branch.objects.get(id=BranchMajor)
+                Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
                 result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
                 msglist.append(result[1])
                 HttpRequest.session[SESSION_MESSAGE] = msglist
@@ -166,14 +166,3 @@ def StudentDetailsInsert(HttpRequest):
             msglist.append('Some Error has occoured')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
-
-
-
-
-
-         
-        
-        
-        
-        
-        
