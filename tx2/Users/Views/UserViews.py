@@ -100,7 +100,7 @@ def log_out(HttpRequest):
             #res =  logout_user.LogoutUser(token['loginid'],LogOut_From_Type)
             res =  logout_user.LogoutUser(token['loginid'],10)
             if ( res[0] != -1):
-                    result = res[0]
+                    result = res[1]
                     if( result['result'] == 1):
                     	for sesskey in HttpRequest.session.keys():
                     		print '++-- SESSION KEY = ' + str(sesskey)
@@ -117,7 +117,6 @@ def log_out(HttpRequest):
                     HttpRequest.session[SESSION_MESSAGE] = msglist
                     return HttpResponseRedirect('/message/')
         else:
-                print '||==|| NO SESSION DATA'
     		return HttpResponse('error')
     except:
             LoggerUser.exception('[log_out][%s] Exception '%(ip))

@@ -237,7 +237,7 @@ class UserFnx():
             result = DBLogoutUser(details)
             if (result['result'] == 1 ):
                 ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
-            return result
+            return (1,result)
         except:
             exception_log = ('[%s] %s')%('LogoutUser',loginid)
             self.UserLogger.exception(exception_log)
