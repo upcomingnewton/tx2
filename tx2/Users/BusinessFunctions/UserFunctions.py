@@ -240,6 +240,7 @@ class UserFnx():
     		user_obj = self.getUserObjectByUserId(userid)
     		GroupFnxObj = GroupFnx()
     		groupobj = GroupFnxObj.getGroupByName(GroupName)
+    		self.UserLogger.debug('ChangeUserGroup %d, %s' % (userid,GroupName))
     		details = {
                        'email':user_obj.UserEmail,
                        'pass':user_obj.UserPassword,
@@ -249,8 +250,8 @@ class UserFnx():
                        'lname':user_obj.UserLastName,
                        'entity':user_obj.UserEntity.id,
                        'gender':user_obj.UserGender,
-                       'LogsDesc':str(user_obj.Group.id),
-                       'PreviousState':_PreviousState,
+                       'LogsDesc':'GROUP CHANGED',
+                       'PreviousState':str(user_obj.Group.id),
                        'group':groupobj.id,
                        'op':op,
                        'by':by,
