@@ -255,10 +255,10 @@ class UserFnx():
                        'op':op,
                        'by':by,
                        'ip':ip,
-                       }
-            result = DBUpdateUser(details)
-            self.UserLogger.debug('result = %s' % (result))
-            return (1,result)
+                      }
+           result = DBUpdateUser(details)
+           self.UserLogger.debug('result = %s' % (result))
+           return (1,result)
     	except:
     	    exception_log = ('[%s] %s %s')%('ChangeUserGroup',userid,GroupName)
             self.UserLogger.exception(exception_log)
