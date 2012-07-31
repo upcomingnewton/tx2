@@ -24,6 +24,18 @@ def DBBoardInsert(details):
         exception_log = "[%s] %s"%('DBInsertBoard',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
+def DBDegreeTypeInsert(details):
+    query = "SELECT * FROM DegreeTypeInsert('%s','%s','%s','%s');"%(details["DegreeTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBInsertDegreeType',query))
+        QueryLogger.debug('[%s] %s'%('DBInsertDegreeType',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBInsertDegreeType',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBInsertDegreeType',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
 
 def DBBranchInsert(details):
     query = "SELECT * FROM BranchInsert('%s','%s','%s','%s');"%(details["BranchName"],details["RequestedOperation"],details["by_user"],details["ip"]);

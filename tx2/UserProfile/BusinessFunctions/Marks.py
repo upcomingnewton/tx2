@@ -31,6 +31,18 @@ class Marks(object):
             error_msg = 'Error @ InsertBoard in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def InsertDegreeType(self,DegreeTypeName,by_user,ip):
+        try:
+            details={'DegreeTypeName':DegreeTypeName,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBDegreeTypeInsert(details);
+            return result
+        except Exception as inst:
+            error_msg = 'Error @ InsertDegreeTypeName in Business Functions %s'%(inst)
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
     def DeleteBoard(self,BoardId,by_user,ip):
         try:
             details={'BoardId':int(BoardId),
