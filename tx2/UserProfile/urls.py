@@ -31,6 +31,12 @@ urlpatterns = patterns('',
                        url(r'^Marks/SessionType/delete$','UserProfile.Views.Marks.SessionTypeDelete'),
                        url(r'^Marks/SessionType/update$','UserProfile.Views.Marks.SessionTypeUpdate'),
                        url(r'^Marks/SessionType/$','UserProfile.Views.Marks.SessionTypeIndex'),
+                       #Marks
+                       url(r'^Marks/Marks/new$','UserProfile.Views.Marks.MarksInsert'),
+                       url(r'^Marks/Marks/View$','UserProfile.Views.Marks.MarksSelect'),
+                       url(r'^Marks/Marks/delete$','UserProfile.Views.Marks.MarksDelete'),
+                       url(r'^Marks/Marks/update$','UserProfile.Views.Marks.MarksUpdate'),
+                       url(r'^Marks/Marks/$','UserProfile.Views.Marks.MarksIndex'),
                        
                        #Branch
                        url(r'^UserProfile/Branch/new$','UserProfile.Views.UserProfile.BranchInsert'),

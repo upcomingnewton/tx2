@@ -1,0 +1,21 @@
+<html>
+<body>
+<form name="MarksInput" action="/userprofile/Marks/Marks/new" method="post">
+{% csrf_token %}
+SessionStart: <input type="text" name="SessionStart" /><br/>
+SessionEnd: <input type="text" name="SessionEnd" /><br/>
+SessionNumber: <input type="text" name="SessionNumber" /><br/>
+SessionType: <input type="text" name="SessionType" /><br/>
+TotaMarks: <input type="text" name="TotaMarks" /><br/>
+SecuredMarks: <input type="text" name="SecuredMarks" /><br/>
+TotalReappears: <input type="text" name="TotalReappears" /><br/>
+ReappearsRemaining: <input type="text" name="ReappearsRemaining" /><br/>
+DegreeType: <input type="text" name="DegreeType" /><br/>
+Board: <input type="text" name="Board" /><br/>
+Degree: <input type="text" name="Degree" /><br/>
+UserId: <input type="text" name="UserId" /><br/>
+
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>

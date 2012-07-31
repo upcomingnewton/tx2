@@ -67,6 +67,29 @@ class Marks(object):
             error_msg = 'Error @ InsertSessionTypeName in Business Functions %s'%(inst)
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def InsertMarks(self,SessionStart,SessionEnd,SessionNumber,SessionType,TotalMarks,SecuredMarks,TotalReappears,ReappearsRemaining,DegreeType,Board,Degree,UserId,by_user,ip):
+        try:
+            details={'SessionStart':SessionStart,
+                     'SessionEnd':SessionEnd,
+                     'SessionNumber':SessionNumber,
+                     'SessionType':SessionType,
+                     'TotalMarks':TotalMarks,
+                     'SecuredMarks':SecuredMarks,
+                     'TotalReappears':TotalReappears,
+                     'ReappearsRemaining':ReappearsRemaining,
+                     'DegreeType':DegreeType,
+                     'Board':Board,
+                     'Degree':Degree,
+                     'UserId':UserId,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBMarksInsert(details);
+            return result
+        except Exception as inst:
+            error_msg = 'Error @ InsertMarks in Business Functions %s'%(inst)
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
     
     def DeleteBoard(self,BoardId,by_user,ip):
         try:

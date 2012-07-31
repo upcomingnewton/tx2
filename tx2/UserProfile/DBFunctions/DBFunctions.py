@@ -60,6 +60,19 @@ def DBSessionTypeInsert(details):
         exception_log = "[%s] %s"%('DBInsertSessionType',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
+def DBMarksInsert(details):
+    query = "SELECT * FROM MarksInsert('%s','%s',%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'%s',%s,'%s');"%(details["SessionStart"],details["SessionEnd"],details["SessionNumber"],details["SessionType"],details["TotalMarks"],details["SecuredMarks"],details["TotalReappears"],details["ReappearsRemaining"],details["DegreeType"],details["Board"],details["UserId"],details["UserId"],details["RequestedOperation"],details["by_user"],details["ip"]);
+        
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBInsertMarks',query))
+        QueryLogger.debug('[%s] %s'%('DBInsertMarks',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBInsertMarks',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBInsertMarks',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
 
 def DBBranchInsert(details):
     query = "SELECT * FROM BranchInsert('%s','%s','%s','%s');"%(details["BranchName"],details["RequestedOperation"],details["by_user"],details["ip"]);
