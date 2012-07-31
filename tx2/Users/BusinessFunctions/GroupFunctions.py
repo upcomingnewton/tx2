@@ -1,6 +1,7 @@
 from django.db import models
 from tx2.Users.models import Group
 from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert
+from tx2.Users.DBFunctions.DBMessages import decode
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
 from tx2.Misc.CacheManagement import setCache,getCache
@@ -34,7 +35,7 @@ class GroupFnx(models.Model):
                            }
                 result = DBGroupInsert(details)
                 self.UserLogger.debug('[%s] %s,%s'%('CreateGroup',str(details),str(result)))
-                return (result)
+                return (1,decode(result))
             except:
                 exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
                 self.UserLogger.exception(exception_log)

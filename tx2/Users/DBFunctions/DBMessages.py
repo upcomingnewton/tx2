@@ -1,58 +1,48 @@
 from tx2.Misc.DBMessages import  db_messages
 
 
-def decode(result,rescode):
+def decode(result):
     msg = ''
+    result = result['result']
+    rescode = result['rescode']
     if result == 1:
-        msg += 'SUCCESS'
+        msg += 'SUCCESS. '
     elif result == 2:
-        msg += 'Requested object already exists' 
-    msg += db_messages[str(rescode)]
+        msg += 'Requested object already exists. ' 
+    elif result == -1:
+        msg += 'Error. ' 
+    elif result == 999:
+        msg += 'Error in updating logs and book-keeping. '
+    try:
+        msg += db_messages[int(rescode)]
+    except:
+        pass
     return msg
     
-# insert function messages
-db_messages.update({'601':'User registration failed. Please try again later, if problem persists, contact system administrator.',
-               '602':'User registration failed. Error adding user to group. Please try again later, if problem persists, contact system administrator.',
-               '603':'User registration failed. Error adding entry to logs.Please try again later, if problem persists, contact system administrator.',
-               })
 
-#login user
-db_messages.update({
-                    '2101':'user does not exist',
-                    '2102':'user email or password is not correct',
-                    '2103':'SYSTEM-ERROR.login type does not exist.Please report this error to your coordinator',
-                    #2104 = insertion in login log table failed
-                    '2104':'SYSTEM-ERROR. Error Generating login id.Please report this error to your coordinator',
-                    })
+db_messages.update({ 
 
-#logout user
-db_messages.update({
-                    '2111':'SYSTEM ERROR. Login Id not found.Please report this error to your coordinator',
-                    '2112':'SYSTEM ERROR. Logout Type not exists.Please report this error to your coordinator',
-                    #2113 = updation of login log failed
-                    '2113':'SYSTEM ERROR. Could not log out. Please report this error to your coordinator',
-                    })
+                # user insert
+                91:'User already exists with this emailid.',
+                92: 'Error creating user in the system. Insertion failed.',
+                999:'Log insertion failed.',
 
+                # log in
+                113: 'login type does not exist.',
+                114: 'Login failed. Could not log down login.',
+                115: 'Login sucessful.',
+                
+                # log out
+                116: 'Logout failed. Login ID does not match.',
+                117: 'Log out Type does not exist.',
+                118: 'Error Logging out user. Error in Book Keeping.',
 
-# user insert
-db_messages.update({
-                    '2131':'User Exists',
-                    '2132':'System Error. Error in User Creation.Please report this error to your coordinator',
-                    '2133':'System Error. Error in User Creation.Please report this error to your coordinator',
-                    '999':'log entry failed',
-                    })
+                # user update
+                96:'User does not exist.',
+                97: 'Updation of records failed.',
 
-# user state change single
-db_messages.update({
-                    '2141':'System Error. Requested Group Does not exist.Please report this error to your coordinator',
-                    '2142':'System Error. Error in updation of state.Please report this error to your coordinator',
-                    '2143':'System Erorr. Could not drop user from previous group.',
-                    '2144':'System Error. Could not update user\'s group',
-                    });
-                    
-                    
-# create group
-db_messages.update({
-                    '2201':'Already Exists',
-                    '2202':'Error insertion at database level',
-                    });
+                # login type
+                141: 'login type exists.',
+                142: 'Error creation login type.',
+})
+

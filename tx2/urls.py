@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^userreg/',include('UserReg.urls')),
     url(r'^userprofile/',include('UserProfile.urls')),
     url(r'^message/','Users.Views.UserViews.ShowMessages')
+    url(r'^comm/',include('Misc.urls')),
 )
