@@ -20,6 +20,9 @@ def BoardIndex(HttpRequest):
     return render_to_response("UserProfile/Board.html",context_instance=RequestContext(HttpRequest))
 def DegreeTypeIndex(HttpRequest):
     return render_to_response("UserProfile/DegreeType.html",context_instance=RequestContext(HttpRequest))
+def DegreeIndex(HttpRequest):
+    return render_to_response("UserProfile/Degree.html",context_instance=RequestContext(HttpRequest))
+
 def BoardInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -71,6 +74,36 @@ def DegreeTypeInsert(HttpRequest):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         result=MarksObj.InsertDegreeType(DegreeTypeName, logindetails["userid"], ip)
+        msglist.append("result is %s"%result);
+        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
+def DegreeInsert(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+        MarksObj=Marks()
+        flag=1
+        if "DegreeName" in HttpRequest.POST:
+            DegreeName=HttpRequest.POST["DegreeName"]
+        else:
+            msglist.append("Error fetching data from form for DegreeName");
+            flag=-1;
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        result=MarksObj.InsertDegree(DegreeName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
