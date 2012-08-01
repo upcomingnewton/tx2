@@ -1,6 +1,7 @@
 select * from DegreeInsert('be','SYS_PER_INSERT',1,'temp')
 select * from BranchInsert('cse','SYS_PER_INSERT',1,'temp')
 select * from CategoryInsert('sc','SYS_PER_INSERT',1,'temp')
+select * from  FunctionalAreaTypeInsert('functional','SYS_PER_INSERT',1,'temp')
 
 select * from BoardInsert('be','SYS_PER_INSERT',1,'temp')
 select * from ExtraAcademicInfoTypeInsert('bah','SYS_PER_INSERT',1,'temp')
