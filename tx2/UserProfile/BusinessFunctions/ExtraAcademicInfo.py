@@ -1,0 +1,28 @@
+'''
+Created on 01-Aug-2012
+
+@author: jivjot
+'''
+from tx2.CONFIG import LOGGER_USER_PROFILE
+from tx2.UserProfile.DBFunctions import DBExtraAcademicInfo
+import logging
+
+class ExtraAcademicInfo:
+  def __init__(self):
+        '''
+        Constructor
+        '''
+        self.UserProfileLogger=logging.getLogger(LOGGER_USER_PROFILE)
+  def InsertExtraAcademicInfoType(self,ExtraAcademicInfoTypeName,by_user,ip):
+        try:
+            details={'ExtraAcademicInfoTypeName':ExtraAcademicInfoTypeName,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBExtraAcademicInfo.DBExtraAcademicInfoTypeInsert(details);
+            return result
+        except:
+            error_msg = 'Error @ InsertExtraAcademicInfoType in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
+    
