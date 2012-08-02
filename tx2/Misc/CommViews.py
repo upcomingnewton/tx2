@@ -5,7 +5,7 @@ LoggerUser = logging.getLogger(LoggerUser)
 
 
 def NoticeIndex(HttpRequest,noticeid):
-    s = 'http://www.tnpuiet.thoughtxplore.com/comm/notice/iframe/' + str(noticeid)
-    LoggerUser.debug('redirecting to : %s'%(s) )
-    return HttpResponse('thanks')
-    #return HttpResponseRedirect(s)
+    s = 'http://tnpuiet.thoughtxplore.com/comm/notice/iframe/' + str(noticeid)
+    #LoggerUser.debug('redirecting to : %s'%(s) )
+    #return HttpResponse('thanks')
+    return HttpResponseRedirect(s)
