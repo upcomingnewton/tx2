@@ -50,3 +50,15 @@ def DBExtraAcademicInfoDetailsInsert(details):
         exception_log = "[%s] %s"%('DBExtraAcademicInfoDetailsInsert',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
+def DBFunctionalAreaListInsert(details):
+    query = "SELECT * FROM FunctionalAreaListInsert(%s,'%s','%s',%s,'%s');"%(details["FunctionalAreaType_id"],details["FunctionalArea"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaListInsert',query))
+        QueryLogger.debug('[%s] %s'%('DBFunctionalAreaListInsert',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaListInsert',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBFunctionalAreaListInsert',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                

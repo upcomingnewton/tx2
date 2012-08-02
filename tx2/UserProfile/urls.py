@@ -75,4 +75,11 @@ urlpatterns = patterns('',
                        url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/update$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsUpdate'),
                        url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsIndex'),
                       
+                      #FunctionalAreaList
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/new$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListInsert'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/View$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListSelect'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/delete$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListDelete'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/update$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListUpdate'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListIndex'),
+                      
                       )

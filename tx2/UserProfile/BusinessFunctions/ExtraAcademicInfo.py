@@ -60,4 +60,17 @@ class ExtraAcademicInfo:
             error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+  def InsertFunctionalAreaListInsert(self,FunctionalAreaType_id,FunctionalArea,by_user,ip):
+        try:
+            details={'FunctionalAreaType_id':FunctionalAreaType_id,
+                     'FunctionalArea':FunctionalArea,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBExtraAcademicInfo.DBFunctionalAreaListInsert(details);
+            return result
+        except:
+            error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
   

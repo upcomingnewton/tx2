@@ -165,3 +165,41 @@ def ExtraAcademicInfoDetailsInsert(HttpRequest):
         x, y = inst.args
         print 'x =', x
         print 'y =', y
+
+def FunctionalAreaListIndex(HttpRequest):
+    return render_to_response("UserProfile/FunctionalAreaList.html",context_instance=RequestContext(HttpRequest))
+def FunctionalAreaListInsert(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+        ExtraAcademicInfoObj=ExtraAcademicInfo()
+        flag=1
+        if "FunctionalAreaType_id" in HttpRequest.POST:
+            FunctionalAreaType_id=HttpRequest.POST["FunctionalAreaType_id"]
+        else:
+            msglist.append("Error fetching data from form for FunctionalAreaType_id");
+            flag=-1;
+        if "FunctionalArea" in HttpRequest.POST:
+            FunctionalArea=HttpRequest.POST["FunctionalArea"]
+        else:
+            msglist.append("Error fetching data from form for FunctionalArea");
+            flag=-1;
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        result=ExtraAcademicInfoObj.InsertFunctionalAreaListInsert(FunctionalAreaType_id, FunctionalArea, logindetails["userid"], ip);
+        msglist.append("result is %s"%result);
+        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
