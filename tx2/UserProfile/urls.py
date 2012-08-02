@@ -68,5 +68,11 @@ urlpatterns = patterns('',
                        url(r'^ExtraAcademicInfo/FunctionalAreaType/delete$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeDelete'),
                        url(r'^ExtraAcademicInfo/FunctionalAreaType/update$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeUpdate'),
                        url(r'^ExtraAcademicInfo/FunctionalAreaType/$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeIndex'),
+                      #ExtraAcademicInfoDetails
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/new$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsInsert'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/View$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsSelect'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/delete$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsDelete'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/update$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsUpdate'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsIndex'),
                       
                       )
