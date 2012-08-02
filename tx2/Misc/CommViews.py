@@ -4,7 +4,7 @@ import logging
 LoggerUser = logging.getLogger(LoggerUser)
 
 
-def NoticeIndex(noticeid):
+def NoticeIndex(HttpRequest,noticeid):
     s = 'http://www.tnpuiet.thoughtxplore.com/comm/notice/iframe/' + str(noticeid)
     LoggerUser.debug('redirecting to : %s'%(s) )
     return HttpResponse('thanks')
