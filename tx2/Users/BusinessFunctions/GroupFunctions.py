@@ -9,22 +9,24 @@ from tx2.Security.models import Entity
 import logging
 
 class GroupFnx(models.Model):
-    
-        def __init__(self):
-            #self.encrypt = Encrypt()
-            self.UserLogger = logging.getLogger(LoggerUser)
-            
+  def __init__(self):
+    self.UserLogger = logging.getLogger(LoggerUser)
+    self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
+    self.CACHE_KEY_ALL_GROUPS = 'CACHE_KEY_ALL_GROUPS'
         #CRUD FUNCTIONS
         
-        def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
-            eid = entity
-            if entity == -1:
-            	e_obj = Entity.objects.get(EntityName=SYSTEM_ENTITY)
-            	setCache(CACHE_KEY_SYSTEM_ENTITY,e_obj.id)
-            	eid = e_obj.id
-            try:
-                self.UserLogger.debug('inside CreateGroup')
-                details = {
+  def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
+    eid = entity
+    if entity == -1:
+      e_obj = Entity.objects.get(EntityName=SYSTEM_ENTITY)
+      if  e_obj is None:
+        self.UserLogger.exception('[%s] Entity Object is null' % ('CreateGroup'))
+        return (-1,self.ExceptionMessage)
+      else:
+        setCache(CACHE_KEY_SYSTEM_ENTITY,e_obj.id)
+        eid = e_obj.id
+    try:
+      details = {
                            'ip':ip,
                            'by':by,
                            'RequestedOperation':req_op,
@@ -33,46 +35,80 @@ class GroupFnx(models.Model):
                            'GroupName':gname,
                            'GroupDescription':gdesc,
                            }
-                result = DBGroupInsert(details)
-                self.UserLogger.debug('[%s] %s,%s'%('CreateGroup',str(details),str(result)))
-                return (1,decode(result))
-            except:
-                exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
-                self.UserLogger.exception(exception_log)
-                return (-1,'Exception Occoured at Business Functions while creating group')
+      result = DBGroupInsert(details)
+      return (1,decode(result))
+    except:
+      exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
+      self.UserLogger.exception(exception_log)
+      return (-2,self.ExceptionMessage)
 
 
-        # SELECTION AND QUERY FUNCTIONS
+  # SELECTION AND QUERY FUNCTIONS
             
-        def ListAllGroups(self):
-            try:
-                grouplist =  Group.objects.all()
-                self.UserLogger.debug('[%s] %s'%('ListAllGroups',str(len(grouplist))))
-                return (1,grouplist)
-            except:
-                exception_log = ('[%s]')%('ListAllGroups')
-                self.UserLogger.exception(exception_log)
-                return (-1,[])
+  def getGroupFromCache(self,name=-1,groupid = -1):
+    GroupList = getCache(self.CACHE_KEY_ALL_GROUPS)
+    if GroupList is not -1:
+      if name == -1 and groupid == -1:
+        return GroupList
+      elif: name is not -1 and groupid == -1:
+        # find group with name
+        for x in GroupList:
+          if x.GroupName == name:
+            return x
+        return -1
+      elif: id is not -1 and name == -1:
+        # find group with id
+        for x in GroupList:
+          if x.id == id:
+            return x
+        return -1
+      elif: name is not -1 and groupid is not -1:
+        # find group with name and id
+        for x in GroupList:
+          if x.id == id and x.GroupName == name:
+            return x
+        return -1
+    else:
+      return -1
+            
+  def ListAllGroups(self):
+    try:
+      grouplist  = self.getGroupFromCache()
+      if grouplist is -1:
+        grouplist =  Group.objects.all()
+        setCache(self.CACHE_KEY_ALL_GROUPS,grouplist)
+      return (1,grouplist)
+    except:
+      exception_log = ('[%s]')%('ListAllGroups')
+      self.UserLogger.exception(exception_log)
+      return (-2,self.ExceptionMessage)
         
-        def getGroupByName(self,name):
-            try:
-                return (1,Group.objects.get(GroupName=name))
-            except:
-                exception_log = ('[%s]')%('getGroupById')
-                self.UserLogger.exception(exception_log)
-                return (-1,[])
+  def getGroupObjectByName(self,name):
+    try:
+      groupobj  = self.getGroupFromCache(name,-1)
+      if groupobj is -1:
+        groupobj = Group.objects.get(GroupName=name)
+      if groupobj is None:
+        return (-1,None)
+      else:
+        return (1,groupobj)
+    except:
+      exception_log = ('[%s] name passed = %s')%('getGroupByName',name)
+      self.UserLogger.exception(exception_log)
+      return (-2,[])
+
+  def getGroupObjectById(self,groupid):
+    try:
+      groupobj  = self.getGroupFromCache(-1,groupid)
+      if groupobj is -1:
+        groupobj = Group.objects.get(id=groupid)
+      if groupobj is None:
+        return (-1,None)
+      else:
+        return (1,groupobj)
+    except:
+      exception_log = ('[%s] id passed = %d')%('getGroupById',groupid)
+      self.UserLogger.exception(exception_log)
+      return (-2,[])
            
                     
-        
-    
-#        def CreateSecGroupForComm(self,groupid,params,logsdec,by,ip):
-#            details = {
-#                        'groupid':groupid,
-#                        'permission':'INSERT',
-#                        'params':params,
-#                        'logdesc':logsdec,
-#                        'by':by,
-#                        'ip':ip
-#                       }
-#            result = DBCreateSecGroupForCommunications(details)
-#            return (result[0],decode(int(result[0]), result[1],'CreateSecGroupForComm'))

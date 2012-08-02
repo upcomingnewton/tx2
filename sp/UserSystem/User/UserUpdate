@@ -66,6 +66,7 @@ IF temp <> 1 THEN
 	result := -1;
         RETURN;
 ELSE
+  rescode = 99;
 	result := 1;
 RETURN;
 END IF;

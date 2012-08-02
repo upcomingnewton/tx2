@@ -92,9 +92,9 @@ def EditUser(HttpRequest,userid):
     try:
     	UserFnxObj = UserFnx()
     	UserObj = UserFnxObj.getUserObjectByUserId(userid)
-    	if UserObj is None
+    	if UserObj is None:
     		# error here
-    	flag = 1
+    	   flag = 1
     	emailid = -1
     	password = -1
     	fname = -1
@@ -158,6 +158,7 @@ def EditUser(HttpRequest,userid):
     		HttpResponseRedirect('/message/')
     	else:
     		#update here
+            pass
     except:
     	LoggerUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'ListAllUsers'))
         msglist.append('Some Error has occoured')
