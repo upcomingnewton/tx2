@@ -56,5 +56,30 @@ urlpatterns = patterns('',
                        url(r'^UserProfile/StudentDetails/delete$','UserProfile.Views.UserProfile.StudentDetailsDelete'),
                        url(r'^UserProfile/StudentDetails/update$','UserProfile.Views.UserProfile.StudentDetailsUpdate'),
                        url(r'^UserProfile/StudentDetails/$','UserProfile.Views.UserProfile.StudentDetailsIndex'),
+                      #ExtraAcdemicInfo
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoType/new$','UserProfile.Views.ExtraAcademicInfo.ExtraAcdemicInfoTypeInsert'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoType/View$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoTypeSelect'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoType/delete$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoTypeDelete'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoType/update$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoTypeUpdate'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoType/$','UserProfile.Views.ExtraAcademicInfo.ExtraAcdemicInfoTypeIndex'),
+                      #ExtraAcdemicInf
+                       url(r'^ExtraAcademicInfo/FunctionalAreaType/new$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeInsert'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaType/View$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeSelect'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaType/delete$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeDelete'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaType/update$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeUpdate'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaType/$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaTypeIndex'),
+                      #ExtraAcademicInfoDetails
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/new$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsInsert'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/View$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsSelect'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/delete$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsDelete'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/update$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsUpdate'),
+                       url(r'^ExtraAcademicInfo/ExtraAcademicInfoDetails/$','UserProfile.Views.ExtraAcademicInfo.ExtraAcademicInfoDetailsIndex'),
+                      
+                      #FunctionalAreaList
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/new$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListInsert'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/View$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListSelect'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/delete$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListDelete'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/update$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListUpdate'),
+                       url(r'^ExtraAcademicInfo/FunctionalAreaList/$','UserProfile.Views.ExtraAcademicInfo.FunctionalAreaListIndex'),
                       
                       )

@@ -100,6 +100,7 @@ def DBCategoryInsert(details):
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
 
+
 def DBStudentDetailsInsert(details):
     try:
         query = "SELECT * FROM StudentDetailsInsert(%s,'%s',%s,%s,%s,%s,'%s','%s',%s,'%s');"%(details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details["RequestedOperation"],details["by_user"],details["ip"]);

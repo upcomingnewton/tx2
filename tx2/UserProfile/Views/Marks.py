@@ -13,7 +13,6 @@ from tx2.UserProfile.BusinessFunctions.Marks import Marks
 from tx2.UserProfile.models import Board
 from tx2.UserProfile.models import DegreeType
 import logging
-import time
 Logger_User = logging.getLogger(LoggerSecurity)
 
 
