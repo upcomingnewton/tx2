@@ -5,12 +5,16 @@ urlpatterns = patterns('',
                          
     # USER REGISTRATION , LOGIN AND RELATED STUFF
         #INDEX PAGES
-        url(r'^login/$','Users.Views.UserViews.Login_index'),
+        url(r'^login/$','Users.Views.UserViewIndex.LoginIndex'),
+        url(r'^register/$','Users.Views.UserViewIndex.CreateUserIndex'),
+        url(r'^password/change/$','Users.Views.UserViewIndex.ChangePassIndex'),
+        url(r'^password/reset/$','Users.Views.UserViewIndex.ResetPasswordIndex'),
+        
         url(r'^logout/$','Users.Views.UserViews.log_out'),
-        url(r'^register/$','Users.Views.UserViews.CreateUserIndex'),
-        url(r'^password/change/$','Users.Views.UserViews.ChangePassIndex'),
+        
+        
         url(r'^password/change/change/$','Users.Views.UserViews.ChangePass'),
-        url(r'^password/reset/$','Users.Views.UserViews.ResetPasswordIndex'),
+        
         url(r'^password/reset/reset/$','Users.Views.UserViews.ResetPass'),
         # post-back for logging in 
         url(r'^login/log_in/$','Users.Views.UserViews.log_in'),

@@ -50,19 +50,19 @@ class GroupFnx(models.Model):
     if GroupList is not -1:
       if name == -1 and groupid == -1:
         return GroupList
-      elif: name is not -1 and groupid == -1:
+      elif name is not -1 and groupid == -1:
         # find group with name
         for x in GroupList:
           if x.GroupName == name:
             return x
         return -1
-      elif: id is not -1 and name == -1:
+      elif id is not -1 and name == -1:
         # find group with id
         for x in GroupList:
           if x.id == id:
             return x
         return -1
-      elif: name is not -1 and groupid is not -1:
+      elif name is not -1 and groupid is not -1:
         # find group with name and id
         for x in GroupList:
           if x.id == id and x.GroupName == name:
