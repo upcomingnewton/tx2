@@ -42,6 +42,7 @@ def log_in(HttpRequest):
       if ( res[0] == 1):
         result = res[1]
         if( result['result'] == 1):
+          encdec = Encrypt()
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid']))}
           HttpRequest.session["details"] = token
           return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
@@ -241,13 +242,13 @@ def ChangePass(HttpRequest):
       msglist.append('new password required')
     if flag == 1:
       HttpRequest.session[SESSION_MESSAGE] = msglist
-      HttpResponseRedirect('/user/password/change/')
+      return HttpResponseRedirect('/user/password/change/')
     else:
       UserObj = UserFnx()
       res = UserObj.ChangePassword(oldpass,newpass,int(details['userid']),ip,int(details['userid']),-1)
       msglist.append(res[1])
       HttpRequest.session[SESSION_MESSAGE] = msglist
-      HttpResponseRedirect('/message/')
+      return HttpResponseRedirect('/message/')
   except:
       LoggerUser.exception('ChangePass')
       HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]

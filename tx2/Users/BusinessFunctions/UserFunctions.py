@@ -55,7 +55,7 @@ class UserFnx():
       if ( result['result'] == 1):
         msg = "Your profile has been sucessfully created.Please check your email for activation link."
         self.send_mail_test(email,result['rescode'],fname,ip)
-        res = self.RegisterUserForForums(self,email,password)
+        res = self.RegisterUserForForums(email,password)
         if( res == 1 ):
           msg += "You have also been registered for forums. User your placement site credentials for login."
         return (1,msg)
@@ -94,7 +94,7 @@ class UserFnx():
       self.UserLogger.exception(exception_log)
       return (-2,self.ExceptionMessage)
       
-  def AuthenticateUserFromSite(self,emailid,ip):
+  def AuthenticateUserFromSite(self,emailid,ip,op=SYSTEM_PERMISSION_UPDATE):
     try:
       to_emailid = self.encrypt.decrypt(emailid)
       s = to_emailid.split('___')
@@ -110,7 +110,7 @@ class UserFnx():
         self.UserLogger.exception('Error at HelperFunctions, getSystemGroup_EmailAU. It returned -1')
         return (-2,self.ExceptionMessage)
       user_obj.Group.id = groupid
-      result = self.UpdateUser(self,user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',by,ip,op)
+      result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
       if result[0] == 1 :
         return (1,"Your profile has been sucessfully activated.You can login now") 
       elif result[0] == -2:
@@ -124,6 +124,7 @@ class UserFnx():
 
   def LoginUser(self,email,password,_type,ip):
     try:
+      self.UserLogger.debug('%s:%s'%(email,password))
       details = { 'email':email,
                   'pass':self.encrypt.encrypt(password),
                   'login_type':_type,
@@ -193,8 +194,9 @@ class UserFnx():
         user_obj = self.getUserObjectByUserId(userid)
       else:
         user_obj = self.getUserObjectByEmailid(emailid)
-      if user_obj is None:
+      if user_obj[0] is not 1:
         return (-1,'ERROR: User Does not exists')
+      user_obj = user_obj[1]
       if user_obj.UserPassword != oldpass:
         return (-1,'ERROR: Old Pasword does not match')
       if user_obj.UserPassword == newpass:
@@ -203,7 +205,7 @@ class UserFnx():
       PreviousState = "{oldpass:"+ oldpass + "}"
       LogsDesc = 'Changed Password'
       user_obj.UserPassword = newpass
-      result = self.UpdateUser(self,user_obj,LogsDesc,PreviousState,by,ip,op)
+      result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         return (1,"SUCESS.Your password has been changed sucessfully.") 
       elif result[0] == -2:
@@ -218,16 +220,18 @@ class UserFnx():
     try:
       user_obj = User()
       user_obj = self.getUserObjectByEmailid(emailid)
-      if user_obj is None:
+      if user_obj[0] is not 1:
         return (-1,'ERROR: User Does not exists')
+      user_obj = user_obj[1]
       if by == -1:
         by = user_obj.id
       PreviousState = "{oldpass:"+ user_obj.UserPassword + "}"
       LogsDesc = 'Forget Password'
       import random
       password = str(random.randint(100000,999999))
-      user_obj.UserPassword = password
-      result = self.UpdateUser(self,user_obj,LogsDesc,PreviousState,by,ip,op)
+      user_obj.UserPassword = self.encrypt.encrypt(password)
+      #UpdateUser(self,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
+      result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         self.send_email_forget_pass(emailid,password)
         return (1,"SUCESS.Your password has been changed sucessfully.") 
