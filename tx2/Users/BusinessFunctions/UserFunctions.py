@@ -52,7 +52,7 @@ class UserFnx():
               'ip':ip
               }
       result = DBInsertUser(user)
-      if ( result['result'] == 1 || result['result'] == 2):
+      if ( result['result'] == 1 or result['result'] == 2):
         msg = "Your profile has been sucessfully created.Please check your email for activation link."
         self.send_mail_test(email,result['rescode'],fname,ip)
         res = self.RegisterUserForForums(email,password)
