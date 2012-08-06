@@ -161,7 +161,7 @@ class UserFnx():
     try:
       user_obj = self.getUserObjectByUserId(userid)
       GroupFnxObj = GroupFnx()
-      groupobj = GroupFnxObj.getGroupByName(GroupName)
+      groupobj = GroupFnxObj.getGroupObjectByName(GroupName)
       if groupobj is not 1:
         self.UserLogger.exception('[%s] Error, group is not valid',('ChangeUserGroup'))
         return (-1,self.ExceptionMessage)
@@ -261,7 +261,7 @@ class UserFnx():
       import time
       refs = int(time.time())
       token= "password reset for " + email + " new password is " + str(password) 
-      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","authenticate",token)
+      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Password Reset",token)
     except:
       pass
 
