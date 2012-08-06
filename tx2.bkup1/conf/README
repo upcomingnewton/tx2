@@ -1,9 +1,0 @@
-1. FIND YOU COMPUTER'S HOSTNAME 
- from python shell , execute this statement 
- import os
- print os.environ['HOSTNAME']
- 
-2. make your local file and place it in conf folder
-
-3. add an if else block for your host name in settings.py
-
