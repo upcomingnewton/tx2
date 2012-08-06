@@ -175,7 +175,7 @@ def  DefaultSecurityContentSystem(HttpRequest):
         	msglist.append(result[1])
         	HttpRequest.session[SESSION_MESSAGE] = msglist
         	del HttpRequest.session[SYSTEM_INITIALISE_SESSION_NAME]
-		return HttpResponseRedirect('/security/admin/')
+    return HttpResponseRedirect('/security/admin/')
     except:
     	msg = "== UNKNOWN SYSTEM EXCEPTION GENERATED =="
         InitAdminLogger.exception('[%s][%s] %s'%('DefaultSecurityContentSystem',ip,msg))
