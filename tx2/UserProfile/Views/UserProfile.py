@@ -3,18 +3,21 @@ Created on 26-Jul-2012
 
 @author: jivjot
 '''
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerUser
 from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
-from tx2.UserProfile.models import Degree,Branch,Category
+from tx2.UserProfile.models import Degree,Branch,Category, StudentDetails
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 LogUser = logging.getLogger(LoggerUser)
 
+
+#def UserHome(HttpRequest):
+    
 
 def BranchIndex(HttpRequest):
     return render_to_response("UserProfile/Branch.html",context_instance=RequestContext(HttpRequest))
@@ -83,18 +86,26 @@ def CategoryInsert(HttpRequest):
         print 'y =', y
 
 def StudentDetailsIndex(HttpRequest):
+    print "here"
+    msglist = AppendMessageList(HttpRequest)
     logindetails = GetLoginDetails(HttpRequest)
     if( logindetails["userid"] == -1):
             msglist.append('Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
+            
+    if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
+        StudDetailStatus= False
     else:
-        return render_to_response("UserProfile/StudentDetails.html",{'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
-    
+        StudDetailStatus= True
+    return render_to_response("UserProfile/StudentDetails.html",{'StudDetailStatus':StudDetailStatus,'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
+            
 def StudentDetailsInsert(HttpRequest):
         msglist = AppendMessageList(HttpRequest)
         ip = HttpRequest.META['REMOTE_ADDR']
         logindetails = GetLoginDetails(HttpRequest)
+        print "here in student details"
+        print msglist
         if( logindetails["userid"] == -1):
             msglist.append('Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
@@ -160,11 +171,13 @@ def StudentDetailsInsert(HttpRequest):
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
             else:
+                print msglist
                 UserProfileObj=UserProfile()
                 BranchObj = Branch.objects.get(id=BranchMajor)
                 Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
                 result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
                 msglist.append(result[1])
+                print msglist
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
         except Exception as inst:

@@ -1,14 +1,31 @@
-{% extends "master1.html" %}
-{% block title %}{{ title }}{% endblock%}
+
+
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Message{% endblock %}</title>
+{% block add_start_script %}
+
+<!-- CSS -->
+<link href="{{STATIC_URL}}css/structure.css" rel="stylesheet">
+<link href="{{STATIC_URL}}css/form.css" rel="stylesheet">
+
+<!-- JavaScript -->
+<script src="{{STATIC_URL}}js/wufoo.js"></script>
+
+<!--[if lt IE 10]>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+{% endblock %}
+
+<body id="public">
+
 {% block master_content_center %}
-		<!-- empty line  -->
-		<div style="width:550px;border-bottom:1px solid #cccccc;height:15px;margin-bottom:4px;"></div>
-		<!-- title -->
-		<div style="width:550px;border-bottom:1px solid #cccccc;height:45px;margin-bottom:4px;">
-				<div style="font-size: 35px;">
-                          {{ message }}
-                </div>
-		</div>
-		<!-- empty line  -->
-		<div style="width:550px;border-bottom:1px solid #cccccc;height:30px;margin-bottom:4px;"></div>
+    {% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+       </div>
+			{% endfor %}
+		{% endif %}
+
+
 {% endblock %}

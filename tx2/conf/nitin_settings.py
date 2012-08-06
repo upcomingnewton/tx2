@@ -81,7 +81,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/static",
-    "/home/nitin/projects/tx2/static",
+    "/home/nitin/workspace/tx2/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -119,7 +119,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/templates",
-    "/home/nitin/projects/tx2/templates",
+    "/home/nitin/workspace/tx2/templates",
 )
 
 INSTALLED_APPS = (

@@ -1,140 +1,139 @@
-{% extends "master1.html" %}
-{% block title %} STUDENT PROFILE {% endblock%}
+
+
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Student Details{% endblock %}</title>
 
 {% block add_start_script %}
-    <link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
-	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+
+
+<!-- CSS -->
+<link href="{{STATIC_URL}}css/structure.css" rel="stylesheet">
+<link href="{{STATIC_URL}}css/form.css" rel="stylesheet">
+
+<!-- JavaScript -->
+<script src="{{STATIC_URL}}js/wufoo.js"></script>
+
+<!--[if lt IE 10]>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 {% endblock %}
 
-{% block master_content_center %}
+<body id="public">
 
-	<!-- empty line  -->
-		<div class="w648 h30 mb4"></div>
-   <!--  =============================== -->
-   <!-- ====== ###### TITLE ######## === -->
-    <!--  =============================== -->
-		<div class="w648 border_bottom h45 mb4 center">
-				<div style="font-size: 35px;">
-                       STUDENT PROFILE
-                </div>
-		</div>
-		<!-- empty line  -->
-		<div class="w648 border_bottom h30 mb4"></div>
-		
-	<!--  =============================== -->
-   <!-- ====== ###### MESSAGE LIST ######## === -->
-    <!--  =============================== -->
-		{% if msglist|length > 0 %}
+{% block master_content_center %}
+{% if msglist|length > 0 %}
 			{% for msg in msglist %}
 				<div class="w648 border_bottom h30 mb4 font_color_red">
 						{{ msg }}
                 </div>
 			{% endfor %}
 		{% endif %}
-		
-	<!--  =============================== -->
-   <!-- ====== ###### CONTENT ######## === -->
-    <!--  =============================== -->
-    <form name="StudentDetailsInput" action="/userprofile/UserProfile/StudentDetails/new" method="post">
-		{% csrf_token %}
-		<!-- empty line  -->
-		<div class="w648 border_bottom h30 mb4"></div>
-		<!--  UserId  
-			  <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Email Id
-                     </div>
-                     <div class="w300 hinherit float_left">
-                             <input id="UserId" name="RegisterUser_email" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-                -->
-     	<!--  RollNo  -->
-               <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Roll Number
-                     </div>
-                     <div class="w300 hinherit float_left">
-                             <input name="RollNo"  class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-        <!--  BranchMajor ===dd ===-->
-               <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Branch Major
-                     </div>
-                     <div class="w300 hinherit float_left">
-                           <select name="BranchMajor"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
-                                    <option value="-1">Select an Option</option>
-                             		{% for branch in BranchList %}
+<div id="container_form" class="ltr" width="450 px">
+
+{% if StudDetailStatus %}
+<form id="form2" name="StudentDetailsInput" class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
+action="/userprofile/UserProfile/StudentDetails/new">
+{% csrf_token %}
+<!-- <header id="header" class="info"> -->
+<h2>Student Details</h2>
+<!-- </header> -->
+
+<ul>
+
+<li id="foli1" class="notranslate      ">
+<label class="desc" id="title1" for="Field1">
+Roll Number
+<span id="req_1" class="req">*</span>
+</label>
+<div>
+<input id="Field1" name="RollNo" type="text" class="field text medium" value="" maxlength="255" tabindex="1" onkeyup="" required />
+</div>
+</li><li id="foli2" class="notranslate       ">
+<label class="desc" id="title2" for="Field2">
+BranchMajor
+<span id="req_2" class="req">*</span>
+</label>
+<div>
+<select id="Field2" name="BranchMajor" class="field select medium" tabindex="2" > 
+{% for branch in BranchList %}
+                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+                             		{% endfor %}
+                             </select></div>
+</li>
+<li id="foli5" class="notranslate       ">
+<label class="desc" id="title5" for="Field5">
+Branch Minor
+</label>
+<div>
+<select id="Field5" name="BranchMinor" class="field select medium" tabindex="3" > 
+{% for branch in BranchList %}
                              		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
                              		{% endfor %}
                              </select>
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-        <!--  BranchMinor ===dd === -->
-			  <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Branch Minor
-                     </div>
-                     <div class="w300 hinherit float_left">
-                            <select name="BranchMinor"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
-                                    <option value="-1">Select an Option</option>
-                             		{% for branch in BranchList %}
-                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
-                             		{% endfor %}
-                             </select>
-                     </div>
-                     <div class="w170 hinherit float_left"> Only for MBA students </div>
-                </div>
-         <!--  Category  ===dd ===-->
-			  <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">Category</div>
-                     <div class="w300 hinherit float_left">                           
-                             <select name="Category"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)"" >
-                             		<option value="-1">Select an Option</option>
-                             		{% for Category in CategoryList %}
+</div>
+</li>
+<li id="foli7" class="notranslate       ">
+<label class="desc" id="title7" for="Field7">
+Category
+<span id="req_7" class="req">*</span>
+</label>
+<div>
+<select id="Field7" name="Category" class="field select medium" tabindex="4" > 
+{% for Category in CategoryList %}
                              		    <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
                              		{% endfor %}
                              </select>
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-        <!--  Degree  -->
-			  <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Currently pursuing 
-                     </div>
-                     <div class="w300 hinherit float_left">
-                             <select name="Degree"  class="tb2" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" >
-                             		<option value="-1">Select an Option</option>
-                             		{% for Degree in DegreeList %}
+</div>
+</li>
+<li id="foli8" class="notranslate       ">
+<label class="desc" id="title8" for="Field8">
+Degree
+<span id="req_8" class="req">*</span>
+</label>
+<div>
+<select id="Field8" name="Degree" class="field select medium" tabindex="5" > 
+{% for Degree in DegreeList %}
                              		    <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
                              		{% endfor %}
                              </select>
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-          <!--  ComputerProficiency  -->
-			  <div class="w648 border_bottom h100 mb4">
-	                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-	                           Computer Proficiency
-	                     </div>
-	                     <div class="w300 h100 float_left">
-	                             <textarea name="ComputerProficiency"  class="tb1 h75" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" ></textarea>
-	                     </div>
-	                     <div class="w170 h30 float_left">Only for MBA students</div>
-	                </div>
+</div>
+</li>
+<li id="foli10" 
+class="notranslate      "><label class="desc" id="title10" for="Field10">
+Computer Proficiency(For BE MBA)
+</label>
 
-            
-      	<!--  submit -->
-      		<div class="w648 border_bottom h30 mb4 center" >
-                     <input type="submit" value="SUBMIT PROFILE FOR ACTIVATION" class="center"/>
-                </div>
-		</form>
+<div>
+<textarea id="Field10" 
+name="ComputerProficiency" 
+class="field textarea medium" 
+spellcheck="true" 
+rows="10" cols="50" 
+tabindex="6" 
+onkeyup=""
+ ></textarea>
+
+</div>
+</li> <li class="buttons ">
+<div>
+
+                    <input id="saveForm" name="saveForm" class="btTxt submit" 
+    type="submit" value="Submit"
+ /></div>
+</li>
+
+<li class="hide">
+<label for="comment">Do Not Fill This Out</label>
+<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+<input type="hidden" id="idstamp" name="idstamp" value="3hgz07KZrn2igLBNNotmT+Y1lIlq4lsWQFdEXmCtfis=" />
+</li>
+</ul>
+</form> 
+
+{% else %}
+
+<p> Your Details have been recorded, <br>You'll be informed through email once the admin approves your profile.<br> Thanks </p>
+{% endif %}
+</div><!--container_form-->
+
 {% endblock %}
-
-

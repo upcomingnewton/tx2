@@ -1,0 +1,142 @@
+
+
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Register{% endblock %}</title>
+{% block add_start_script %}
+<link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+
+<!-- CSS -->
+<link href="{{STATIC_URL}}css/structure.css" rel="stylesheet">
+<link href="{{STATIC_URL}}css/form.css" rel="stylesheet">
+<script type="text/javascript">
+  $('#RegisterUser_dob').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate : new Date(1985,1,1,0,0,0,0),
+			maxDate : new Date(1995,21,31,23,59,59,0),
+	});
+</script>
+<!-- JavaScript -->
+<script src="{{STATIC_URL}}js/wufoo.js"></script>
+
+<!--[if lt IE 10]>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+{% endblock %}
+
+<body id="public">
+
+{% block master_content_center %}
+{% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+                </div>
+			{% endfor %}
+		{% endif %}
+<div id="container_form" class="ltr" width="450 px">
+  <form   class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate action="/user/register/new/">
+  {% csrf_token %}
+  <!-- <header id="header" class="info">  -->
+  <h2>Register</h2>
+  <!-- </header> -->
+  <ul>
+    <li id="foli1" class="notranslate">
+      <label class="desc" id="title1" for="Field1">
+        Email Id
+        <span id="req_1" class="req">*</span>
+      </label>
+      <div>
+        <input  name="RegisterUser_email" type="text" class="field text medium" value="" maxlength="255" tabindex="1" onkeyup="" required />
+      </div>
+    </li>
+
+    <li id="foli2" class="notranslate">
+      <label class="desc" id="title2" for="Field2">
+        Password
+        <span id="req_2" class="req">*</span>
+      </label>
+      <div>
+        <input name="RegisterUser_pass" type="password" class="field text medium"  maxlength="255" tabindex="2" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli3" class="notranslate">
+      <label class="desc" id="title3" for="Field3">
+        Confirm Password
+        <span id="req_3" class="req">*</span>
+      </label>
+      <div>
+        <input name="RegisterUser_pass2" type="password" class="field text medium" maxlength="255" tabindex="3" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli3" class="notranslate">
+      <label class="desc" id="title4" for="Field4">
+        First Name
+        <span id="req_4" class="req">*</span>
+      </label>
+      <div>
+        <input name="RegisterUser_fname" type="text" class="field text medium" maxlength="255" tabindex="4" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli3" class="notranslate">
+      <label class="desc" id="title5" for="Field5">
+        Middle Name
+        <span id="req_5" class="req">*</span>
+      </label>
+      <div>
+        <input name="RegisterUser_mname" type="text" class="field text medium" maxlength="255" tabindex="5" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli6" class="notranslate">
+     <label class="desc" id="title6" for="Field6">
+        Last Name
+        <span id="req_6" class="req">*</span>
+      </label>
+      <div>
+        <input name="RegisterUser_lname" type="text" class="field text medium" maxlength="255" tabindex="6" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli7" class="notranslate">
+      <label class="desc" id="title7" for="Field7">
+        dob (mm/dd/yyyy)
+        <span id="req_7" class="req">*</span>
+      </label>
+      <div>
+        <input id="RegisterUser_dob" name="RegisterUser_dob" type="text" class="field text medium" maxlength="255" tabindex="7" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li id="foli8" class="notranslate">
+      <label class="desc" id="title8" for="Field8">
+        gender
+        <span id="req_8" class="req">*</span>
+      </label>
+      <div>
+        <select  name="RegisterUser_gender" class="field select medium" tabindex="8" > 
+          <option value="-1">select</option>
+          <option value="M">male</option>
+          <option value="F">female</option>
+      </select>
+      </div>
+    </li>
+    <li class="buttons ">
+    <div>
+      <input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="Submit" />
+    </div>
+  </li>
+    <li class="hide">
+      <label for="comment">Do Not Fill This Out</label>
+      <textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+      <input type="hidden" id="idstamp" name="idstamp" value="3hgz07KZrn2igLBNNotmT+Y1lIlq4lsWQFdEXmCtfis=" />
+    </li>
+  </ul>
+  </form> 
+</div>
+
+{% endblock %}

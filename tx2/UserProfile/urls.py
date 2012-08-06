@@ -7,7 +7,12 @@ from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('',
                        
+                       #temporary home
+                       url(r'^UserProfile/UserHome/$','UserProfile.Views.UserProfile.StudentDetailsIndex'),
+
+                       
                        # Board
+                       
                        url(r'^Marks/Board/new$','UserProfile.Views.Marks.BoardInsert'),
                        url(r'^Marks/Board/View$','UserProfile.Views.Marks.BoardSelect'),
                        url(r'^Marks/Board/delete$','UserProfile.Views.Marks.BoardDelete'),

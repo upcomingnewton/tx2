@@ -1,61 +1,79 @@
-{% extends "master1.html" %}
-{% block title %}{{ title }}{% endblock%}
-{% block master_content_center %}
 
-	<!-- empty line  -->
-		<div class="w648 h30 mb4"></div>
-   <!--  =============================== -->
-   <!-- ====== ###### TITLE ######## === -->
-    <!--  =============================== -->
-		<div class="w648 border_bottom h45 mb4 center">
-				<div style="font-size: 35px;">
-                           login page
-                </div>
-		</div>
-		<!-- empty line  -->
-		<div class="w648 border_bottom h30 mb4"></div>
-		
-	<!--  =============================== -->
-   <!-- ====== ###### MESSAGE LIST ######## === -->
-    <!--  =============================== -->
-		{% if msglist|length > 0 %}
+
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Register{% endblock %}</title>
+{% block add_start_script %}
+<link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+
+<!-- CSS -->
+<link href="{{STATIC_URL}}css/structure.css" rel="stylesheet">
+<link href="{{STATIC_URL}}css/form.css" rel="stylesheet">
+<script type="text/javascript">
+  $('#RegisterUser_dob').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate : new Date(1985,1,1,0,0,0,0),
+			maxDate : new Date(1995,21,31,23,59,59,0),
+	});
+</script>
+<!-- JavaScript -->
+<script src="{{STATIC_URL}}js/wufoo.js"></script>
+
+<!--[if lt IE 10]>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+{% endblock %}
+
+<body id="public">
+
+{% block master_content_center %}
+{% if msglist|length > 0 %}
 			{% for msg in msglist %}
 				<div class="w648 border_bottom h30 mb4 font_color_red">
 						{{ msg }}
                 </div>
 			{% endfor %}
 		{% endif %}
-		
-	<!--  =============================== -->
-   <!-- ====== ###### CONTENT ######## === -->
-    <!--  =============================== -->
-    <form  action="/user/login/log_in/" method="post">
-		{% csrf_token %}
-		<!-- empty line  -->
-		<div class="w648 border_bottom h30 mb4"></div>
-			  <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Email Id
-                     </div>
-                     <div class="w300 hinherit float_left">
-                             <input id="LoginUser_email" name="LoginUser_email" type="text" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-     	<!--  password  -->
-               <div class="w648 border_bottom h30 mb4">
-                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
-                           Password
-                     </div>
-                     <div class="w300 hinherit float_left">
-                             <input id="LoginUser_pass" name="LoginUser_pass" type="password" class="tb1" onfocus="on_focus(this.id)" onblur="on_blur(this.id)" />
-                     </div>
-                     <div class="w170 hinherit float_left"></div>
-                </div>
-      	<!--  submit -->
-      			<div class="w648 border_bottom h30 mb4 center" >
-                     <input type="submit" value="LOGIN" class="center"/>
-                </div>
-		</form>
-{% endblock %}
+<div id="container_form" class="ltr" width="450 px">
+  <form   class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate action="/user/login/log_in/">
+  {% csrf_token %}
+  <!-- <header id="header" class="info">  -->
+  <h2>Register</h2>
+  <!-- </header> -->
+  <ul>
+    <li id="foli1" class="notranslate">
+      <label class="desc" id="title1" for="Field1">
+        Email Id
+        <span id="req_1" class="req">*</span>
+      </label>
+      <div>
+        <input  name="LoginUser_email" type="text" class="field text medium" value="" maxlength="255" tabindex="1" onkeyup="" required />
+      </div>
+    </li>
 
+    <li id="foli2" class="notranslate">
+      <label class="desc" id="title2" for="Field2">
+        Password
+        <span id="req_2" class="req">*</span>
+      </label>
+      <div>
+        <input name="LoginUser_pass" type="password" class="field text medium"  maxlength="255" tabindex="2" onkeyup="" required />
+      </div>
+    </li>
+    
+    <li class="buttons ">
+    <div>
+      <input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="Submit" />
+    </div>
+  </li>
+    <li class="hide">
+      <label for="comment">Do Not Fill This Out</label>
+      <textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+      <input type="hidden" id="idstamp" name="idstamp" value="3hgz07KZrn2igLBNNotmT+Y1lIlq4lsWQFdEXmCtfis=" />
+    </li>
+  </ul>
+  </form> 
+</div>
+
+{% endblock %}

@@ -30,7 +30,7 @@ def CreateUserIndex(HttpRequest):
   ip = HttpRequest.META['REMOTE_ADDR']
   try:
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response('UserSystem/User/CreateUser.html',{'title':'create user page'},context_instance=RequestContext(HttpRequest))
+    return render_to_response('UserSystem/User/Register.html',{},context_instance=RequestContext(HttpRequest))
   except:
     LoggerUser.exception('CreateUserIndex')
     HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
@@ -72,4 +72,4 @@ def ResetPasswordIndex(HttpRequest):
 def ShowMessages(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response("message.html",{},context_instance=RequestContext(HttpRequest))
+    return render_to_response("UserSystem/User/message.html",{},context_instance=RequestContext(HttpRequest))

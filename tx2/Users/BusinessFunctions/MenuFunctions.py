@@ -7,83 +7,117 @@ from tx2.Misc.CacheManagement import setCache,getCache
 import logging
 
 class MenuFnx():
-    
-        def __init__(self):
-            #self.encrypt = Encrypt()
-            self.UserLogger = logging.getLogger(LoggerUser)
-            
-        #CRUD FUNCTIONS
-        
-        def Insert(self,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
-            try:
-		details = {
-		 		#'MenuId':3,
-		 		'MenuName':MenuName,
-		 		'MenuDesc':MenuDesc,
-		 		'MenuUrl':MenuUrl,
-		 		'MenuPid':MenuPid,
-		 		'MenuIcon':MenuIcon,
-		 		'RequestedOperation':RequestedOperation,
-		 		#'LogDesc':'LogDesc',
-		 		#'LogPreviousState':'LogPreviousState',
-		 		'by':by,
-		 		'ip':ip,
-		 	}
-                result = DBMenuInsert(details)
-                return (result)
-            except:
-                exception_log = ('[%s] == EXCEPTION ==')%('Insert')
-                self.UserLogger.exception(exception_log)
-                return (-1,'Exception Occoured at Business Functions while creating menu')
+  
+  def __init__(self):
+    self.UserLogger = logging.getLogger(LoggerUser)
+    self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
+    self.CACHEKEY = 'CACHE_KEY_ALL_MENU'
+
+  def Insert(self,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
+    try:
+      details = {
+        'MenuName':MenuName,
+        'MenuDesc':MenuDesc,
+        'MenuUrl':MenuUrl,
+        'MenuPid':MenuPid,
+        'MenuIcon':MenuIcon,
+        'RequestedOperation':RequestedOperation,
+        'by':by,
+        'ip':ip,
+        }
+      result = DBMenuInsert(details)
+      return (1,result)
+    except:
+      self.UserLogger.exception('Insert')
+      return (-2,self.ExceptionMessage)
                 
-        def Update(self,MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,LogDesc,RequestedOperation=SYSTEM_PERMISSION_UPDATE):
-            MenuObj = self.getMenuObjByMenuId(MenuId)
-            if  MenuObj is None:
-            	error_msg = '[%s] Menu does not exist for menuid %d' % ('Update',MenuId)
-            	self.UserLogger.error(error_msg)
-            	return (-1,error_msg)
-            PreviousState = str(MenuObj)
-            try:
-		details = {
-		 		'MenuId':MenuId,
-		 		'MenuName':MenuName,
-		 		'MenuDesc':MenuDesc,
-		 		'MenuUrl':MenuUrl,
-		 		'MenuPid':MenuPid,
-		 		'MenuIcon':MenuIcon,
-		 		'RequestedOperation':RequestedOperation,
-		 		'LogDesc':LogDesc,
-		 		'LogPreviousState':PreviousState,
-		 		'by':by,
-		 		'ip':ip,
-		 	}
-                result = DBMenuUpdate(details)
-                return (result)
-            except:
-                exception_log = ('[%s] == EXCEPTION ==')%('Update')
-                self.UserLogger.exception(exception_log)
-                return (-1,'Exception Occoured at Business Functions while updating menu')
-
-
-        # SELECTION AND QUERY FUNCTIONS
-                    
+  def Update(self,MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,LogDesc,RequestedOperation=SYSTEM_PERMISSION_UPDATE):
+    MenuObj = self.getMenuObjByMenuId(MenuId)
+    if  MenuObj[0] is -1:
+      return (-1,self.ExceptionMessage)
+    PreviousState = str(MenuObj)
+    try:
+      details = {
+		   		'MenuId':MenuId,
+		   		'MenuName':MenuName,
+		   		'MenuDesc':MenuDesc,
+		   		'MenuUrl':MenuUrl,
+		   		'MenuPid':MenuPid,
+		   		'MenuIcon':MenuIcon,
+		   		'RequestedOperation':RequestedOperation,
+		   		'LogDesc':LogDesc,
+		   		'LogPreviousState':PreviousState,
+          'by':by,
+		   		'ip':ip,
+        }
+      result = DBMenuUpdate(details)
+      return (1,result)
+    except:
+      self.UserLogger.exception('Update')
+      return (-2,self.ExceptionMessage)
         
-    
-        def getMenuObjByMenuId(self,menuid):
-        	try:
-        		return Menu.objects.get(id=menuid)
-        	except:
-        		return None
-        		
-        		
-        def getMenuParentMenuObj(self):
-        	try:
-        		return Menu.objects.get(MenuPid=-1)
-        	except:
-        		return []
-        		
-        def getAllMenuObj(self):
-        	try:
-        		return Menu.objects.all()
-        	except:
-        		return []
+  def getMenuListFromCache(self):
+    MenuList = getCache(self.CACHEKEY)
+    if MenuList is not -1 and MenuList is not None:
+      return (1,MenuList)
+    else:
+      return (-1,'ERROR in getMenuListFromCache')
+
+  def getAllMenuObj(self):
+    try:
+      MenuList = self.getMenuListFromCache()
+      if MenuList[0] is -1:
+        MenuList = Menu.objects.all()
+        setCache(self.CACHEKEY,MenuList)
+      return (1,MenuList)
+    except:
+      self.UserLogger.exception('getAllMenuObj')
+      return (-2,self.ExceptionMessage)
+        
+
+  def getMenuObjByMenuId(self,menuid):
+    try:
+      MenuList = self.getAllMenuObj()
+      if MenuList[0] is 1:
+        for x in MenuList[1]:
+          if x.id == menuid:
+            return (1,x)
+        return (-1,'ERROR : Menu does not exist')
+      else:
+        return (-1,'ERROR : Error retrieving requested data from database')
+    except:
+      self.UserLogger.exception('getMenuObjByMenuId')
+      return (-2,self.ExceptionMessage)
+
+
+  def getParentMenu(self):
+    try:
+      MenuList = self.getAllMenuObj()
+      ParentMenuList = []
+      if MenuList[0] is 1:
+        for x in MenuList[1]:
+          if x.MenuPid == -1:
+            ParentMenuList.append(x)
+        return (1,ParentMenuList)
+      else:
+        return (-1,'ERROR : Error retrieving requested data from database')
+    except:
+      self.UserLogger.exception('getParentMenu')
+      return (-2,self.ExceptionMessage)
+
+
+  def getChildMenuByParentID(self,pid):
+    try:
+      MenuList = self.getAllMenuObj()
+      ChildMenuList = []
+      if MenuList[0] is 1:
+        for x in MenuList[1]:
+          if x.MenuPid == pid:
+            ChildMenuList.append(x)
+        return (1,ChildMenuList)
+      else:
+        return (-1,'ERROR : Error retrieving requested data from database')
+    except:
+      self.UserLogger.exception('getChildMenuByParentID')
+      return (-2,self.ExceptionMessage)
+

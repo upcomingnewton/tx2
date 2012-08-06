@@ -41,7 +41,6 @@ def MessageContextProcessor(request):
     try:
         if SESSION_MESSAGE in request.session.keys():
             msglist = request.session[SESSION_MESSAGE]
-            print msglist
             del request.session[SESSION_MESSAGE]
             return {'msglist':msglist,}
         else:

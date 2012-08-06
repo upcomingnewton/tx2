@@ -1,0 +1,194 @@
+2012-07-30 01:08:30,732 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','9','117.220.98.91');
+2012-07-30 01:08:30,738 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': -2, 'rescode': 504}]
+2012-07-30 01:49:50,622 DBFunctions       line:44   DEBUG    [DBInsertCategory] SELECT * FROM CategoryInsert('general','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:49:50,707 DBFunctions       line:47   DEBUG    [DBInsertCategory] [{'result': 1, 'rescode': 1}]
+2012-07-30 01:49:56,647 DBFunctions       line:44   DEBUG    [DBInsertCategory] SELECT * FROM CategoryInsert('obc','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:49:56,654 DBFunctions       line:47   DEBUG    [DBInsertCategory] [{'result': 1, 'rescode': 2}]
+2012-07-30 01:50:03,375 DBFunctions       line:44   DEBUG    [DBInsertCategory] SELECT * FROM CategoryInsert('sc/st','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:50:03,387 DBFunctions       line:47   DEBUG    [DBInsertCategory] [{'result': 1, 'rescode': 3}]
+2012-07-30 01:55:27,549 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:55:27,563 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 1}]
+2012-07-30 01:55:39,947 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('electronics','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:55:39,961 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 2}]
+2012-07-30 01:55:53,054 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('information technology','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:55:53,063 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 3}]
+2012-07-30 01:56:00,293 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('electrical','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:56:00,299 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 4}]
+2012-07-30 01:56:35,974 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('mechanical','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:56:35,980 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 5}]
+2012-07-30 01:56:44,314 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('biotechnology','SYS_PER_INSERT','1','117.220.98.91');
+2012-07-30 01:56:44,324 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 6}]
+2012-07-30 02:13:57,709 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(9,'test',1,-1,1,1,'','SYS_PER_INSERT',9,'117.220.98.91');
+2012-07-30 02:13:57,820 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 1}]
+2012-07-30 02:26:10,512 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(3,'test1',1,2,1,2,'nothing','SYS_PER_INSERT',3,'117.220.98.91');
+2012-07-30 02:26:10,520 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 2}]
+2012-07-30 02:33:33,488 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(11,'UE83082',1,-1,1,1,'','SYS_PER_INSERT',11,'115.240.100.84');
+2012-07-30 02:33:33,504 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 3}]
+2012-07-30 09:48:24,111 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:48:24,120 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 7}]
+2012-07-30 09:48:24,123 UserProfile       line:42   ERROR    [AddComment] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/BusinessFunctions/UserProfile.py", line 35, in InsertBranch
+    if( GroupType[0] != -1 ):
+TypeError: 'int' object is unsubscriptable
+2012-07-30 09:51:37,629 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:51:37,632 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 2, 'rescode': 161}]
+2012-07-30 09:51:53,809 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('mechanical','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:51:53,818 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 8}]
+2012-07-30 09:52:03,324 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('biotechnology','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:52:03,332 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 9}]
+2012-07-30 09:55:37,719 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('information technology','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:55:37,728 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 10}]
+2012-07-30 09:55:37,731 UserProfile       line:45   ERROR    [AddComment] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/BusinessFunctions/UserProfile.py", line 35, in InsertBranch
+    self.UserProfileLogger.exception('[%s] == GroupTypeObj == %s,%d'%(GroupType.GroupTypeName,GroupType.id))
+AttributeError: 'tuple' object has no attribute 'GroupTypeName'
+2012-07-30 09:57:29,872 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('information technology','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:57:29,876 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 2, 'rescode': 161}]
+2012-07-30 09:57:50,635 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('electrical','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 09:57:50,644 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 11}]
+2012-07-30 10:16:49,495 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:16:49,504 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 12}]
+2012-07-30 10:16:49,507 UserProfile       line:46   ERROR    [AddComment] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/BusinessFunctions/UserProfile.py", line 37, in InsertBranch
+    self.UserProfileLogger.exception('[%s] == GroupTypeObj == %s,%d'%(GroupType[1].GroupTypeName,GroupType[1].id))
+TypeError: not enough arguments for format string
+2012-07-30 10:19:27,835 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:19:27,839 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 2, 'rescode': 161}]
+2012-07-30 10:19:45,725 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('computer science','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:19:45,734 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 13}]
+2012-07-30 10:19:45,736 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:19:45,744 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 20}
+None
+2012-07-30 10:19:45,748 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 21}
+None
+2012-07-30 10:20:47,179 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('electronics','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:20:47,188 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 14}]
+2012-07-30 10:20:47,190 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:20:47,198 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 22}
+None
+2012-07-30 10:20:47,202 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 23}
+None
+2012-07-30 10:20:54,747 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('electrical','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:20:54,758 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 15}]
+2012-07-30 10:20:54,760 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:20:54,768 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 24}
+None
+2012-07-30 10:20:54,772 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 25}
+None
+2012-07-30 10:21:00,243 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('information technology','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:21:00,252 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 16}]
+2012-07-30 10:21:00,254 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:21:00,261 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 26}
+None
+2012-07-30 10:21:00,265 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 27}
+None
+2012-07-30 10:21:05,063 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('mechanical','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:21:05,069 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 17}]
+2012-07-30 10:21:05,071 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:21:05,076 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 28}
+None
+2012-07-30 10:21:05,078 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 29}
+None
+2012-07-30 10:21:13,192 DBFunctions       line:31   DEBUG    [DBInsertBranch] SELECT * FROM BranchInsert('biotechnology','SYS_PER_INSERT','1','117.197.116.29');
+2012-07-30 10:21:13,202 DBFunctions       line:34   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 18}]
+2012-07-30 10:21:13,205 UserProfile       line:37   ERROR    [GroupTypeObj]== UserGroups,3
+None
+2012-07-30 10:21:13,213 UserProfile       line:40   ERROR    [GroupFnxObj] == {'result': 1, 'rescode': 30}
+None
+2012-07-30 10:21:13,217 UserProfile       line:42   ERROR    [GroupFnxObj == {'result': 1, 'rescode': 31}
+None
+2012-07-30 10:30:45,284 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,13,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:30:45,295 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 4}]
+2012-07-30 10:30:45,302 UserProfile       line:83   ERROR    [global name 'ChangeUserGroup' is not defined] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/BusinessFunctions/UserProfile.py", line 76, in InsertStudentDetails
+    self.UserProfileLogger.exception('[%s] == %s =='%(ChangeUserGroup,str(res)))
+NameError: global name 'ChangeUserGroup' is not defined
+2012-07-30 10:34:00,750 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:34:00,753 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-07-30 10:34:00,753 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': 2, 'rescode': 161}, 13==
+None
+2012-07-30 10:34:58,151 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:34:58,166 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 5}]
+2012-07-30 10:34:58,178 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:37:22,380 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:37:22,390 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 6}]
+2012-07-30 10:37:22,399 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:39:30,000 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:39:30,012 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 7}]
+2012-07-30 10:39:30,024 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:41:47,288 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:41:47,296 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 8}]
+2012-07-30 10:41:47,302 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:42:46,909 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:42:46,923 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 9}]
+2012-07-30 10:42:46,933 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:44:18,111 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:44:18,125 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 10}]
+2012-07-30 10:44:18,135 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-07-30 10:50:53,419 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:50:53,422 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-07-30 10:50:53,423 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': 2, 'rescode': 161}, 13==
+None
+2012-07-30 10:51:30,310 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:51:30,321 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 11}]
+2012-07-30 10:51:30,333 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': -2, 'rescode': 504}) ==
+None
+2012-07-30 10:53:35,604 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:53:35,615 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 12}]
+2012-07-30 10:53:35,625 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': -2, 'rescode': 504}) ==
+None
+2012-07-30 10:57:41,072 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(13,'test9',13,-1,1,1,'','SYS_PER_INSERT',13,'117.197.116.29');
+2012-07-30 10:57:41,083 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 13}]
+2012-07-30 10:57:41,096 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': 1, 'rescode': 13}) ==
+None
+2012-07-30 11:43:26,437 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(18,'ue83066',13,-1,1,1,'','SYS_PER_INSERT',18,'117.197.116.29');
+2012-07-30 11:43:26,443 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 14}]
+2012-07-30 11:43:26,451 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': 1, 'rescode': 18}) ==
+None
+2012-07-30 13:22:37,654 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(19,'UE98032',16,-1,1,1,'','SYS_PER_INSERT',19,'180.149.53.4');
+2012-07-30 13:22:37,664 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 15}]
+2012-07-30 13:22:37,678 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': 1, 'rescode': 19}) ==
+None
+2012-07-31 03:07:05,972 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(11,'UE83082',1,1,1,1,'','SYS_PER_INSERT',11,'122.177.169.237');
+2012-07-31 03:07:05,976 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-07-31 03:07:05,976 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': 2, 'rescode': 161}, 11==
+None
+2012-07-31 03:08:33,363 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(11,'UE83082',13,-1,1,1,'','SYS_PER_INSERT',11,'122.177.169.237');
+2012-07-31 03:08:33,366 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-07-31 03:08:33,366 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': 2, 'rescode': 161}, 11==
+None
+2012-07-31 03:08:53,007 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(11,'UE83082',13,-1,1,1,'','SYS_PER_INSERT',11,'122.177.169.237');
+2012-07-31 03:08:53,017 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 16}]
+2012-07-31 03:08:53,029 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': 1, 'rescode': 11}) ==
+None
+2012-07-31 05:45:33,910 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(21,'UE83082',1,1,1,1,'','SYS_PER_INSERT',21,'122.177.169.237');
+2012-07-31 05:45:33,913 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-07-31 05:45:33,913 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': 2, 'rescode': 161}, 21==
+None
+2012-07-31 05:47:13,506 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(21,'UE83086',13,13,1,1,'','SYS_PER_INSERT',21,'122.177.169.237');
+2012-07-31 05:47:13,517 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 17}]
+2012-07-31 05:47:13,530 UserProfile       line:76   ERROR    [ChangeUserGroup] == (1, {'result': 1, 'rescode': 21}) ==
+None
+2012-07-31 06:51:43,550 DBFunctions       line:57   DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(24,'UE87087',1,1,1,1,'','SYS_PER_INSERT',24,'122.177.169.237');
+2012-07-31 06:51:43,561 DBFunctions       line:60   DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 18}]
+2012-07-31 06:51:43,570 UserProfile       line:76   ERROR    [ChangeUserGroup] == (-1, 'Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon') ==
+None
+2012-08-05 04:02:57,409 DBFunctions       line:107  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(11,'UE83082',1,1,1,1,'','SYS_PER_INSERT',11,'115.240.13.220');
+2012-08-05 04:02:57,413 DBFunctions       line:110  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-08-05 04:02:57,414 UserProfile       line:79   ERROR    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 11==
+None
