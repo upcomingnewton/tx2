@@ -29,11 +29,11 @@ class UserFnx():
       data = urllib.urlencode(params)
       req = urllib2.Request(url,data)
       req.add_header("Content-type", "application/x-www-form-urlencoded")
-      res=urllib2.urlopen(req).read()
+      res = urllib2.urlopen(req).read()
       self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(res)))
       return 1
     except:
-      self.UserLogger.exception("FORUMS REG - %s , %s"%(email,str(res)))
+      self.UserLogger.exception("FORUMS REG")
       return -2
     
   def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):

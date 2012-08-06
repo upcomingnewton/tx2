@@ -1,7 +1,7 @@
 
 
 {% extends "UserProfileMaster.html" %}
-    <title>{% block title %}Register{% endblock %}</title>
+    <title>{% block title %}Login{% endblock %}</title>
 {% block add_start_script %}
 <link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
 <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
@@ -39,7 +39,7 @@
   <form   class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate action="/user/login/log_in/">
   {% csrf_token %}
   <!-- <header id="header" class="info">  -->
-  <h2>Register</h2>
+  <h2>Login</h2>
   <!-- </header> -->
   <ul>
     <li id="foli1" class="notranslate">
