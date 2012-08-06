@@ -60,7 +60,7 @@ class UserFnx():
           msg += "You have also been registered for forums. User your placement site credentials for login."
         return (1,msg)
       else:
-        return (-1,decode(result)) 
+        return (-1,decode(result[1])) 
     except:
       exception_log = ('[%s] %s,%s')%('InsertUserFromSite',ip,email)
       self.UserLogger.exception(exception_log)
@@ -151,7 +151,7 @@ class UserFnx():
         ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
         return (1,result)
       else:
-        return (-1,decode(result))
+        return (-1,decode(result[1]))
     except:
       exception_log = ('[%s] %s')%('LogoutUser',loginid)
       self.UserLogger.exception(exception_log)
