@@ -81,10 +81,9 @@ def DBGroupTypeInsert(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBGroupTypeInsert',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBGroupTypeInsert',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception('DBGroupTypeInsert')
+        return {'result':-5,'rescode':str(ex)}
         
     
 def DBGroupInsert(details):
@@ -96,10 +95,9 @@ def DBGroupInsert(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBGroupInsert',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBGroupInsert',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception('DBGroupInsert')
+        return {'result':-5,'rescode':str(ex)}
       
 # MENU SYSTEM
 ### ========================================================================================================  ### 
@@ -114,7 +112,7 @@ def DBMenuInsert(details):
         UserLogger.debug('[%s] %s'%('DBMenuInsert',result))
         return result[0]
     except Exception, ex:
-        UserLogger.exception("[%s] %s"%('DBMenuInsert'))
+        UserLogger.exception('DBMenuInsert')
         return {'result':-5,'rescode':str(ex)}
         
 def DBMenuUpdate(details):
@@ -127,7 +125,7 @@ def DBMenuUpdate(details):
         UserLogger.debug('[%s] %s'%('DBMenuUpdate',result))
         return result[0]
     except Exception, ex:
-        UserLogger.exception("[%s] %s"%('DBMenuUpdate'))
+        UserLogger.exception('DBMenuUpdate')
         return {'result':-5,'rescode':str(ex)}
         
         
@@ -141,7 +139,7 @@ def DBGroupMenuInsert(details):
         UserLogger.debug('[%s] %s'%('DBGroupMenuInsert',result))
         return result[0]
     except Exception, ex:
-        UserLogger.exception("[%s] %s"%('DBGroupMenuInsert'))
+        UserLogger.exception('DBGroupMenuInsert')
         return {'result':-5,'rescode':str(ex)}
         
         
@@ -155,6 +153,6 @@ def DBGroupMenuDelete(details):
         UserLogger.debug('[%s] %s'%('DBGroupMenuDelete',result))
         return result[0]
     except Exception, ex:
-        UserLogger.exception("[%s] %s"%('DBGroupMenuDelete'))
+        UserLogger.exception('DBGroupMenuDelete')
         return {'result':-5,'rescode':str(ex)}
 

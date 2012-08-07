@@ -1,7 +1,7 @@
 from django.db import models
 from tx2.Users.models import Group
 from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert
-from tx2.Users.DBFunctions.DBMessages import decode
+from tx2.Users.DBFunctions.Messages import decode
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
 from tx2.Misc.CacheManagement import setCache,getCache
@@ -13,6 +13,10 @@ class GroupFnx(models.Model):
     self.UserLogger = logging.getLogger(LoggerUser)
     self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
     self.CACHE_KEY_ALL_GROUPS = 'CACHE_KEY_ALL_GROUPS'
+    
+  def MakeExceptionMessage(self,msg):
+    return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
+
         #CRUD FUNCTIONS
         
   def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
@@ -37,10 +41,9 @@ class GroupFnx(models.Model):
                            }
       result = DBGroupInsert(details)
       return (1,decode(result))
-    except:
-      exception_log = ('[%s] %s,%s,%s,%s,%s,%s')%('CreateGroup',gname,gdesc,gtype,entity,by,ip)
-      self.UserLogger.exception(exception_log)
-      return (-2,self.ExceptionMessage)
+    except Exception, ex:
+      self.UserLogger.exception('CreateGroup')
+      return (-2,self.MakeExceptionMessage(str(ex)))
 
 
   # SELECTION AND QUERY FUNCTIONS

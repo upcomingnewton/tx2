@@ -16,16 +16,18 @@ def decode(res):
 
 
 db_messages = {
+                # Check User For Permission
                 501:'Requesting User does not exist in the system',
                 502:'Requested Permission does not exist in the system',
                 503:'Object on which Permission is requested is not valid. Either Object does not exist or Requested permission is not defined for this object.',
                 504:'Requesting user does not have permission to perform this operation on requested object.',
                 
-                
+                # menu update
                 106:'Requested Menu Object to be updated does not exist',
                 107:'Update failed on requested menu object.',
                 999:'Logs insertion failed. Requested Operation terminated',
                 110:'Menu Object updated sucessfully.',
                 
+                # menu insert
                 102:'Menu insertion failed in database.',
 }
