@@ -15,8 +15,8 @@ def decode(result):
         msg += 'Error in updating logs and book-keeping. '
     try:
         msg += db_messages[int(rescode)]
-    except:
-        pass
+    except Exception , e:
+        msg = 'EXCEPTION : ' + str(e)
     return msg
     
 

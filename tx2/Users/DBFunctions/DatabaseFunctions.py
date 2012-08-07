@@ -113,10 +113,9 @@ def DBMenuInsert(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBMenuInsert',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBMenuInsert',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception("[%s] %s"%('DBMenuInsert'))
+        return {'result':-5,'rescode':str(ex)}
         
 def DBMenuUpdate(details):
     try:
@@ -127,10 +126,9 @@ def DBMenuUpdate(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBMenuUpdate',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBMenuUpdate',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception("[%s] %s"%('DBMenuUpdate'))
+        return {'result':-5,'rescode':str(ex)}
         
         
 def DBGroupMenuInsert(details):
@@ -142,10 +140,9 @@ def DBGroupMenuInsert(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBGroupMenuInsert',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBGroupMenuInsert',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception("[%s] %s"%('DBGroupMenuInsert'))
+        return {'result':-5,'rescode':str(ex)}
         
         
 def DBGroupMenuDelete(details):
@@ -157,8 +154,7 @@ def DBGroupMenuDelete(details):
         result =  DBhelper.CallFunction(query)
         UserLogger.debug('[%s] %s'%('DBGroupMenuDelete',result))
         return result[0]
-    except:
-        exception_log = "[%s] %s"%('DBGroupMenuDelete',query)
-        UserLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1}
+    except Exception, ex:
+        UserLogger.exception("[%s] %s"%('DBGroupMenuDelete'))
+        return {'result':-5,'rescode':str(ex)}
 
