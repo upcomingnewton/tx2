@@ -1,0 +1,63 @@
+CREATE OR REPLACE FUNCTION MedicalInfoInsert(
+_User_id integer,
+_Height varchar,
+_Weight varchar,
+_LeftEye varchar,
+_RightEye varchar,
+_DisabilityInfo varchar,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "UserProfile_medicalinfo" WHERE "User_id"=_User_id) THEN
+	result := 2;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'medicalinfo','UserProfile');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "UserProfile_medicalinfo"(
+             "User_id", "Height", "Weight", "LeftEye", "RightEye", "DisabilityInfo")
+    VALUES (_User_id, _Height, _Weight, _LeftEye, _RightEye, _DisabilityInfo);
+
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "UserProfile_medicalinfo" WHERE "User_id"=_User_id;
+
+
+INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
