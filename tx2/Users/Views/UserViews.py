@@ -56,7 +56,7 @@ def log_in(HttpRequest):
         return HttpResponseRedirect('/message/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
             
         
@@ -88,7 +88,7 @@ def log_out(HttpRequest):
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
     
@@ -148,7 +148,7 @@ def CreateUserFromSite(HttpRequest):
       return HttpResponseRedirect('/message/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
 def AuthenticateUserFromEmail(HttpRequest,token,refs):
@@ -165,7 +165,7 @@ def AuthenticateUserFromEmail(HttpRequest,token,refs):
       return HttpResponseRedirect('/message/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
 def CheckAndlogout(HttpRequest):
@@ -192,7 +192,7 @@ def CheckAndlogout(HttpRequest):
     return msglist
   except:
     LoggerUser.exception('CheckAndlogout')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
+    HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
     return []
 
 
@@ -211,7 +211,7 @@ def view_dashboard(HttpRequest):
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
         
         
@@ -251,7 +251,7 @@ def ChangePass(HttpRequest):
       return HttpResponseRedirect('/message/')
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 	
 def ResetPass(HttpRequest):
@@ -283,7 +283,7 @@ def ResetPass(HttpRequest):
       return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
   except Exception, ex:
       self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
         
 
