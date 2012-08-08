@@ -2,6 +2,7 @@ from django.db import models
 from tx2.Users.models import Group
 from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert
 from tx2.Users.DBFunctions.Messages import decode
+from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
 from tx2.Misc.CacheManagement import setCache,getCache
@@ -22,13 +23,7 @@ class GroupFnx(models.Model):
   def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
     eid = entity
     if entity == -1:
-      e_obj = Entity.objects.get(EntityName=SYSTEM_ENTITY)
-      if  e_obj is None:
-        self.UserLogger.exception('[%s] Entity Object is null' % ('CreateGroup'))
-        return (-1,self.ExceptionMessage)
-      else:
-        setCache(CACHE_KEY_SYSTEM_ENTITY,e_obj.id)
-        eid = e_obj.id
+      e_obj = getSystemEntity()
     try:
       details = {
                            'ip':ip,
@@ -40,7 +35,10 @@ class GroupFnx(models.Model):
                            'GroupDescription':gdesc,
                            }
       result = DBGroupInsert(details)
-      return (1,decode(result))
+      if (result['result'] == 1):
+        return (1,'SUCESS. Group has been sucessfully added to database.') 
+      else:
+        return (-1,decode(result))
     except Exception, ex:
       self.UserLogger.exception('CreateGroup')
       return (-2,self.MakeExceptionMessage(str(ex)))
@@ -50,68 +48,52 @@ class GroupFnx(models.Model):
             
   def getGroupFromCache(self,name=-1,groupid = -1):
     GroupList = getCache(self.CACHE_KEY_ALL_GROUPS)
-    if GroupList is not -1:
-      if name == -1 and groupid == -1:
-        return GroupList
-      elif name is not -1 and groupid == -1:
-        # find group with name
-        for x in GroupList:
-          if x.GroupName == name:
-            return x
-        return -1
-      elif id is not -1 and name == -1:
-        # find group with id
-        for x in GroupList:
-          if x.id == id:
-            return x
-        return -1
-      elif name is not -1 and groupid is not -1:
-        # find group with name and id
-        for x in GroupList:
-          if x.id == id and x.GroupName == name:
-            return x
-        return -1
-    else:
-      return -1
+    try:
+      if GroupList is not -1 and GroupList is not None:
+        return (1,GroupList)
+      else:
+        return (-1,'ERROR in Retrieveing groups from cache')
+    except Exception, ex:
+      self.UserLogger.exception('getGroupFromCache')
+      return (-2,self.MakeExceptionMessage(str(ex)))
             
   def ListAllGroups(self):
     try:
       grouplist  = self.getGroupFromCache()
-      if grouplist is -1:
+      if grouplist is not 1:
         grouplist =  Group.objects.all()
         setCache(self.CACHE_KEY_ALL_GROUPS,grouplist)
       return (1,grouplist)
-    except:
-      exception_log = ('[%s]')%('ListAllGroups')
-      self.UserLogger.exception(exception_log)
-      return (-2,self.ExceptionMessage)
+    except Exception, ex:
+      self.UserLogger.exception('ListAllGroups')
+      return (-2,self.MakeExceptionMessage(str(ex)))
         
   def getGroupObjectByName(self,name):
     try:
-      groupobj  = self.getGroupFromCache(name,-1)
-      if groupobj is -1:
-        groupobj = Group.objects.get(GroupName=name)
-      if groupobj is None:
-        return (-1,None)
+      grouplist  = self.ListAllGroups()
+      if grouplist[0] is 1:
+        for x in grouplist[1]:
+          if x.GroupName == name:
+            return (1,x)
+        return (-1,'Group Does not exist.')
       else:
-        return (1,groupobj)
-    except:
-      exception_log = ('[%s] name passed = %s')%('getGroupByName',name)
-      self.UserLogger.exception(exception_log)
-      return (-2,[])
+        return (-1,'Error retrieveing group list from database.')
+    except Exception, ex:
+      self.UserLogger.exception('getGroupObjectByName')
+      return (-2,self.MakeExceptionMessage(str(ex)))
 
   def getGroupObjectById(self,groupid):
     try:
-      groupobj  = self.getGroupFromCache(-1,groupid)
-      if groupobj is -1:
-        groupobj = Group.objects.get(id=groupid)
-      if groupobj is None:
-        return (-1,None)
+      grouplist  = self.ListAllGroups()
+      if grouplist[0] is 1:
+        for x in grouplist[1]:
+          if x.id == groupid:
+            return (1,x)
+        return (-1,'Group Does not exist.')
       else:
-        return (1,groupobj)
-    except:
-      exception_log = ('[%s] id passed = %d')%('getGroupById',groupid)
-      self.UserLogger.exception(exception_log)
-      return (-2,[])
+        return (-1,'Error retrieveing group list from database.')
+    except Exception, ex:
+      self.UserLogger.exception('getGroupObjectById')
+      return (-2,self.MakeExceptionMessage(str(ex)))
            
                     

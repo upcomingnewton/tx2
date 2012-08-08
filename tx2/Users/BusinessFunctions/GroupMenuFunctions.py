@@ -3,6 +3,7 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupMenuInsert , DBGroupM
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_DELETE
 from tx2.Misc.CacheManagement import setCache,getCache
+from tx2.Users.DBFunctions.Messages import decode
 import logging
 
 class GroupMenuFnx():
@@ -10,8 +11,12 @@ class GroupMenuFnx():
   def __init__(self):
     self.UserLogger = logging.getLogger(LoggerUser)
     self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
+    
     self.CACHEKEY = 'CACHE_KEY_ALL_MENU'
-            
+  
+  def MakeExceptionMessage(self,msg):
+    return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
+          
   def getStringFromList(self,_List):
     _str = ''
     try:
@@ -32,12 +37,14 @@ class GroupMenuFnx():
         'by':by,
         'ip':ip,
         }
-      res = DBGroupMenuInsert(details)
-      return res
-    except:
-      error_msg = 'EXCEPTION at Business Functions in Insert'
-      self.UserLogger.exception(error_msg)
-      return (-5,error_msg)
+      result = DBGroupMenuInsert(details)
+      if (result['result'] == 1):
+        return (1,'SUCESS. Group Menus has been sucessfully added to database.') 
+      else:
+        return (-1,decode(result))
+    except Exception, ex:
+      self.UserLogger.exception('Insert')
+      return (-2,self.MakeExceptionMessage(str(ex)))
 
   def Delete(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
     try:
@@ -47,9 +54,11 @@ class GroupMenuFnx():
         'by':by,
         'ip':ip,
         }
-      res = DBGroupMenuDelete(details)
-      return res
-    except:
-      error_msg = 'EXCEPTION at Business Functions in Delete'
-      self.UserLogger.exception(error_msg)
-      return (-5,error_msg)
+      result = DBGroupMenuDelete(details)
+      if (result['result'] == 1):
+        return (1,'SUCESS. Group Menus has been sucessfully deleted from database.') 
+      else:
+        return (-1,decode(result))
+    except Exception, ex:
+      self.UserLogger.exception('Delete')
+      return (-2,self.MakeExceptionMessage(str(ex)))

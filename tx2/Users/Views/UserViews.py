@@ -54,10 +54,10 @@ def log_in(HttpRequest):
         msglist.append(res[1])
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('log_in')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
             
         
 def log_out(HttpRequest):
@@ -86,10 +86,10 @@ def log_out(HttpRequest):
       msglist.append("Please login in first , for loggging out")
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/user/login/')
-  except:
-    LoggerUser.exception('log_out')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
 
     
 #@never_cache
@@ -146,10 +146,10 @@ def CreateUserFromSite(HttpRequest):
       msglist.append(res[1])
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('CreateUserFromSite')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
 
 def AuthenticateUserFromEmail(HttpRequest,token,refs):
   au_user = UserFnx()
@@ -163,10 +163,10 @@ def AuthenticateUserFromEmail(HttpRequest,token,refs):
       return HttpResponseRedirect('/user/login/')
     else:
       return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('AuthenticateUserFromEmail')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
 
 def CheckAndlogout(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
@@ -209,10 +209,10 @@ def view_dashboard(HttpRequest):
       return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
     else:
       return HttpResponseRedirect('/user/login/')
-  except:
-    LoggerUser.exception('view_dashboard')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
         
         
 
@@ -249,9 +249,9 @@ def ChangePass(HttpRequest):
       msglist.append(res[1])
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/message/')
-  except:
-      LoggerUser.exception('ChangePass')
-      HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
       return HttpResponseRedirect('/message/')
 	
 def ResetPass(HttpRequest):
@@ -281,9 +281,9 @@ def ResetPass(HttpRequest):
       msglist.append('email required')
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
-  except:
-    LoggerUser.exception('ResetPasswordIndex')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      self.LoggerUser.exception('log_in')
+      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex))]
+      return HttpResponseRedirect('/message/')
         
 
