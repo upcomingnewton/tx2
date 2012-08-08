@@ -167,7 +167,7 @@ class UserFnx():
         return (1,'Group has been updated sucessfully.')
       PreviousGroup = user_obj.Group.id
       user_obj.Group = groupobj
-      result = self.UpdateUser(self,user_obj,'ChangeUserGroup',str(PreviousGroup),by,ip,op)
+      result = self.UpdateUser(user_obj,'ChangeUserGroup',str(PreviousGroup),by,ip,op)
       if result[0] == 1 :
         return (1,"Group Change Sucessful") 
       elif result[0] == -2:
