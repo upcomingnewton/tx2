@@ -28,7 +28,7 @@ class UserFnx():
       f = urllib.urlopen(url+"?"+params)
       return (f.read(), f.code)
     
-  def RegisterUserForForums(self,email,password, secret):
+  def RegisterUserForForums(self,email,password):
     
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/signup_TX"
