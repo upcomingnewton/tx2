@@ -10,6 +10,7 @@ from tx2.Misc.CacheManagement import setCache,getCache
 from tx2.CONFIG import LoggerUser
 import logging
 from tx2.Misc.Email import sendMail
+import urllib
 
 
 
@@ -21,20 +22,25 @@ class UserFnx():
   def MakeExceptionMessage(self,msg):
     return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
     
-  def RegisterUserForForums(self,email,password):
-    try:
-      import httplib, urllib, urllib2
-      url =   "http://forum.thoughtxplore.com/signup_TX"
-      params = {'user':email,'pass':password,'email':email}
-      data = urllib.urlencode(params)
-      req = urllib2.Request(url,data)
-      req.add_header("Content-type", "application/x-www-form-urlencoded")
-      res = urllib2.urlopen(req).read()
-      self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(res)))
-      return (1, "User has been sucessfully registered for forums")
-    except Exception, ex:
+    
+  def fetch_url(self,url,params):
+      params=urllib.urlencode(params)
+      f = urllib.urlopen(url+"?"+params)
+      return (f.read(), f.code)
+    
+  def RegisterUserForForums(self,email,password, secret):
+    
+    import httplib, urllib, urllib2
+    url =   "http://forum.thoughtxplore.com/signup_TX"
+    secret== 'A2lx135sVzm$803A88'
+    params = {'user':email,'pass':password,'email':email, 'secret':secret}
+    [content, response_code] = self.fetch_url(url, params)
+    self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(response_code)))
+    if(response_code==200):
+      return (1, "User has been successfully registered for forums")
+    else:
       self.UserLogger.exception('RegisterUserForForums')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      return (-2,self.MakeExceptionMessage(str(response_code)))
     
   def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
     try:

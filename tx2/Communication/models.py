@@ -29,13 +29,12 @@ class Comment(models.Model):
 	Comment = models.TextField()
 	
 class CommunicationLogs(models.Model):
-    # user making changes
-    LogsUser = models.ForeignKey(User)
-    
-    ContentType = models.ForeignKey(ContentType)
-    # row id being changed
-    LogsObject = models.IntegerField()
-    LogsPermission = models.ForeignKey(SecurityPermissions)
-    LogsIP = models.CharField(max_length=20)
-    LogsTimeStamp = models.DateTimeField()
-    LogsDescription = models.TextField()
+	# user making changes
+	LogsUser = models.ForeignKey(User)
+	ContentType = models.ForeignKey(ContentType)
+	# row id being changed
+	LogsObject = models.IntegerField()
+	LogsPermission = models.ForeignKey(SecurityPermissions)
+	LogsIP = models.CharField(max_length=20)
+	LogsTimeStamp = models.DateTimeField()
+	LogsDescription = models.TextField()
