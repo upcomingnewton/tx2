@@ -165,6 +165,18 @@ def DBDegreeUpdate(details):
         exception_log = "[%s] %s"%('DBDegreeUpdate',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}
+def DBSessionTypeUpdate(details):
+    query = "SELECT * FROM SessionTypeUpdate(%s,'%s','%s',%s,'%s');"%(details["SessionTypeId"],details["SessionTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBSessionTypeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBSessionTypeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBSessionTypeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBSessionTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
 
 
 if __name__=='__main__':

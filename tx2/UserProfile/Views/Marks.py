@@ -451,6 +451,41 @@ def DegreeUpdate(HttpRequest):
         print 'x =', x
         print 'y =', y
         
+def SessionTypeUpdate(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+        MarksObj=Marks()
+        flag=1
+        if "SessionTypeId" in HttpRequest.POST:
+            SessionTypeId=HttpRequest.POST["SessionTypeId"]
+        else:
+            msglist.append("Error fetching data from form for SessionTypeId");
+            flag=-1;
+        if "SessionTypeName" in HttpRequest.POST:
+            SessionTypeName=HttpRequest.POST["SessionTypeName"]
+        else:
+            msglist.append("Error fetching data from form for SessionTypeName");
+            flag=-1;
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        result=MarksObj.UpdateSessionType(SessionTypeId, SessionTypeName,logindetails["userid"], ip)
+        msglist.append("result is %s"%result);
+        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
         
         
         
