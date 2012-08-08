@@ -32,7 +32,7 @@ class UserFnx():
     
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/signup_TX"
-    secret== 'A2lx135sVzm$803A88'
+    secret= 'A2lx135sVzm$803A88'
     params = {'user':email,'pass':password,'email':email, 'secret':secret}
     [content, response_code] = self.fetch_url(url, params)
     self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(response_code)))
