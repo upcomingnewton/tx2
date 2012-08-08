@@ -2,7 +2,7 @@
 
 -- DROP FUNCTION messgaeinsert(character varying, text, integer, integer, timestamp without time zone, integer, integer, integer, character varying, integer, character varying);
 
-CREATE OR REPLACE FUNCTION messgaeinsert(IN title character varying, IN _content text, IN usersreg integer, IN _comment integer, IN _timestamp timestamp without time zone, IN communicationtype integer, IN refcontenttype integer, IN _record integer, IN requestedoperation character varying, IN by_user integer, IN _ip character varying, OUT result integer, OUT rescode integer)
+CREATE OR REPLACE FUNCTION messgaeinsert(IN title character varying, IN _content text, IN usersreg integer, IN _comment integer, IN _timestamp timestamp without time zone, IN communicationtype integer,IN communicationtemplate integer, IN refcontenttype integer, IN _record integer, IN requestedoperation character varying, IN by_user integer, IN _ip character varying, OUT result integer, OUT rescode integer)
   RETURNS record AS
 $BODY$
 DECLARE 
@@ -27,7 +27,7 @@ IF varrec.result <> 1 THEN
 END IF;
 
 INSERT INTO "Communication_messages"("Title", "Content", "UsersReg_id", "Comment", "User", "Timestamp", "CommunicationType_id", "State_id", "RefContentType", "Record")
-    		VALUES (Title,_Content,UsersReg,_Comment,by_user,_Timestamp,CommunicationType,varrec.varsci,RefContentType,_Record);
+    		VALUES (Title,_Content,UsersReg,_Comment,by_user,_Timestamp,CommunicationType,CommunicationTemplate, varrec.varsci,RefContentType,_Record);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
