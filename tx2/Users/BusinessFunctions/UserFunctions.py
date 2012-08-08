@@ -106,7 +106,7 @@ class UserFnx():
       if( groupid == -1):
         self.UserLogger.exception('Error at HelperFunctions, getSystemGroup_EmailAU. It returned -1')
         return (-2,self.ExceptionMessage)
-      if user_obj.Group.id == groupobj.id:
+      if user_obj.Group.id == groupid:
         return (1,'Your profile has been sucessfully activated.You can login now.')
       user_obj.Group.id = groupid
       result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
