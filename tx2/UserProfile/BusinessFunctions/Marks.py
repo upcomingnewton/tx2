@@ -116,3 +116,44 @@ class Marks(object):
             error_msg = 'Error @ InsertBoard in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def UpdateDegreeType(self,DegreeTypeId,DegreeTypeName,by_user,ip):
+        try:
+            details={'DegreeTypeId':DegreeTypeId,
+                     'DegreeTypeName':DegreeTypeName,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBDegreeTypeUpdate(details);
+            return result
+        except:
+            error_msg = 'Error @ UpdateDegreeType in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
+    
+    def UpdateDegree(self,DegreeId,DegreeName,by_user,ip):
+        try:
+            details={'DegreeId':DegreeId,
+                     'DegreeName':DegreeName,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBDegreeUpdate(details);
+            return result
+        except:
+            error_msg = 'Error @ UpdateDegree in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
+    
+    def UpdateSessionType(self,SessionTypeId,SessionTypeName,by_user,ip):
+        try:
+            details={'SessionTypeId':SessionTypeId,
+                     'SessionTypeName':SessionTypeName,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBFunctions.DBSessionTypeUpdate(details);
+            return result
+        except:
+            error_msg = 'Error @ UpdateSessionType in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}

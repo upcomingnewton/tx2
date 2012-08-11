@@ -390,20 +390,20 @@ def DegreeTypeUpdate(HttpRequest):
     try:
         MarksObj=Marks()
         flag=1
-        if "BoardName" in HttpRequest.POST:
-            BoardName=HttpRequest.POST["BoardName"]
+        if "DegreeTypeId" in HttpRequest.POST:
+            DegreeTypeId=HttpRequest.POST["DegreeTypeId"]
         else:
-            msglist.append("Error fetching data from form for BoardName");
+            msglist.append("Error fetching data from form for DegreeTypeId");
             flag=-1;
-        if "BoardId" in HttpRequest.POST:
-            BoardId=HttpRequest.POST["BoardId"]
+        if "DegreeTypeName" in HttpRequest.POST:
+            DegreeTypeName=HttpRequest.POST["DegreeTypeName"]
         else:
-            msglist.append("Error fetching data from form for BoardId");
+            msglist.append("Error fetching data from form for DegreeTypeName");
             flag=-1;
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-        result=MarksObj.UpdateBoard(BoardId,BoardName, logindetails["userid"], ip)
+        result=MarksObj.UpdateDegreeType(DegreeTypeId, DegreeTypeName,logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
@@ -415,7 +415,77 @@ def DegreeTypeUpdate(HttpRequest):
         print 'y =', y
          
         
+def DegreeUpdate(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+        MarksObj=Marks()
+        flag=1
+        if "DegreeId" in HttpRequest.POST:
+            DegreeId=HttpRequest.POST["DegreeId"]
+        else:
+            msglist.append("Error fetching data from form for DegreeId");
+            flag=-1;
+        if "DegreeName" in HttpRequest.POST:
+            DegreeName=HttpRequest.POST["DegreeName"]
+        else:
+            msglist.append("Error fetching data from form for DegreeName");
+            flag=-1;
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        result=MarksObj.UpdateDegree(DegreeId, DegreeName,logindetails["userid"], ip)
+        msglist.append("result is %s"%result);
+        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
         
+def SessionTypeUpdate(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        msglist.append('Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
+        MarksObj=Marks()
+        flag=1
+        if "SessionTypeId" in HttpRequest.POST:
+            SessionTypeId=HttpRequest.POST["SessionTypeId"]
+        else:
+            msglist.append("Error fetching data from form for SessionTypeId");
+            flag=-1;
+        if "SessionTypeName" in HttpRequest.POST:
+            SessionTypeName=HttpRequest.POST["SessionTypeName"]
+        else:
+            msglist.append("Error fetching data from form for SessionTypeName");
+            flag=-1;
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        result=MarksObj.UpdateSessionType(SessionTypeId, SessionTypeName,logindetails["userid"], ip)
+        msglist.append("result is %s"%result);
+        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
         
         
         

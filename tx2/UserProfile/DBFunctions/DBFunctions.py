@@ -140,6 +140,44 @@ def DBBoardUpdate(details):
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}
 
+def DBDegreeTypeUpdate(details):
+    query = "SELECT * FROM DegreeTypeUpdate(%s,'%s','%s',%s,'%s');"%(details["DegreeTypeId"],details["DegreeTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBDegreeTypeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBDegreeTypeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBDegreeTypeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBDegreeTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
+
+def DBDegreeUpdate(details):
+    query = "SELECT * FROM DegreeUpdate(%s,'%s','%s',%s,'%s');"%(details["DegreeId"],details["DegreeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBDegreeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBDegreeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBDegreeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBDegreeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
+def DBSessionTypeUpdate(details):
+    query = "SELECT * FROM SessionTypeUpdate(%s,'%s','%s',%s,'%s');"%(details["SessionTypeId"],details["SessionTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBSessionTypeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBSessionTypeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBSessionTypeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBSessionTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
+
 
 if __name__=='__main__':
     details = {

@@ -17,6 +17,7 @@ select * from SessionTypeInsert('temp','SYS_PER_INSERT',1,'temp')
 
 select * from DegreeUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
 select * from DegreeTypeUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
+select * from SessionTypeUpdate(1,'assssaba','SYS_PER_UPDATE',1,'temp')
 
 select * from MarksInsert(
 '1-1-1',
