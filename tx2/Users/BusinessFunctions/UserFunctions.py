@@ -11,6 +11,7 @@ from tx2.CONFIG import LoggerUser
 import logging
 from tx2.Misc.Email import sendMail
 import urllib
+from django.core.exceptions import ObjectDoesNotExist
 
 
 

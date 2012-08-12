@@ -18,20 +18,20 @@ BEGIN
 temp := 0;
 
 
-IF EXISTS ( SELECT id FROM "Communication_communicationtemplate" WHERE "TemplateName"=CommTempName) THEN
+IF EXISTS ( SELECT id FROM "Communication_communicationtemplates" WHERE "TemplateName"=CommTempName) THEN
 	result := 2;
   	rescode := 201;
 	RETURN;
 END IF;
 
-SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'communicationtemplate','Communication');
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'communicationtemplates','Communication');
 IF varrec.result <> 1 THEN
 	rescode :=  varrec.rescode;
 	result := -2;
 	RETURN;
 END IF;
 
-INSERT INTO "Communication_communicationtemplate"( "CommunicationType_id", "TemplateName","TemplateDisc", "TemplateFormat", "paramList")
+INSERT INTO "Communication_communicationtemplates"( "CommunicationType_id", "TemplateName","TemplateDisc", "TemplateFormat", "paramList")
     						VALUES (CommTypeID,CommTempName,CommTempDesc,CommTempFormat,ParamList);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
@@ -41,7 +41,7 @@ IF temp <> 1 THEN
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "Communication_communicationtemplate" WHERE "TemplateName"=CommTempName;
+SELECT id INTO rescode FROM "Communication_communicationtemplates" WHERE "TemplateName"=CommTempName;
 
 
 INSERT INTO "Communication_communicationlogs"( "LogsUser_id","ContentType_id", "LogsObject", "LogsPermission_id","LogsIP", "LogsTimeStamp","LogsDescription")

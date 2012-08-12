@@ -42,4 +42,35 @@ def DBRegUserUpdate(details):
         RegLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
 
+def DBInsertPriority(details):
+    try:
+        
+        if(details['Group'] is None):
+            details['Group']=0        
+        query= "SELECT * FROM UserGroupAppPriorityInsert('"+details['ContentType']+"','"+details['Record']+"','"+details['Group']+"','"+details['Priority']+"','"+details['Desc']+"','"+details['RequestedOperation']+"','"+details['ByUser']+"','"+details['ip']+"');"
+        RegLogger.debug('[%s] %s'%('DBInsertPriority',query))
+        QueryLogger.debug('[%s] %s'%('DBInsertPriority',query))
+        result =  DBhelper.CallFunction(query)
+        RegLogger.debug('[%s] %s'%('DBInsertPriority',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBInsertPriority',query)
+        RegLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}
 
+
+def DBUpdatePriority(details):
+    try:
+        
+        if(details['Group'] is None):
+            details['Group']=0        
+        query= "SELECT * FROM UserGroupAppPriorityUpdate('"+details['ContentType']+"','"+details['Record']+"','"+details['Group']+"','"+details['Priority']+"','"+details['Desc']+"','"+details['RequestedOperation']+"','"+details['LogsDesc']+"','"+details['ByUser']+"','"+details['ip']+"');"
+        RegLogger.debug('[%s] %s'%('DBUpdatePriority',query))
+        QueryLogger.debug('[%s] %s'%('DBUpdatePriority',query))
+        result =  DBhelper.CallFunction(query)
+        RegLogger.debug('[%s] %s'%('DBUpdatePriority',result))
+        return result[0]
+    except:
+        exception_log = "[%s] %s"%('DBUpdatePriority',query)
+        RegLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1}

@@ -1,14 +1,21 @@
--- Function: messgaeinsert(character varying, text, integer, integer, timestamp without time zone, integer, integer, integer, character varying, integer, character varying)
 
--- DROP FUNCTION messgaeinsert(character varying, text, integer, integer, timestamp without time zone, integer, integer, integer, character varying, integer, character varying);
-
-CREATE OR REPLACE FUNCTION messgaeinsert(IN title character varying, IN _content text, IN usersreg integer, IN _comment integer, IN _timestamp timestamp without time zone, IN communicationtype integer,IN communicationtemplate integer, IN refcontenttype integer, IN _record integer, IN requestedoperation character varying, IN by_user integer, IN _ip character varying, OUT result integer, OUT rescode integer)
-  RETURNS record AS
-$BODY$
+CREATE OR REPLACE FUNCTION messgaeinsert(
+IN title character varying,
+IN _content text,
+IN communicationtype integer,
+IN communicationtemplate integer, 
+IN refcontenttype integer, 
+IN _record integer, 
+IN requestedoperation character varying, 
+IN by_user integer, 
+IN _ip character varying, 
+OUT result integer, 
+OUT rescode integer
+)RETURNS RECORD AS $$
 DECLARE 
-    temp INTEGER;
-    varrec RECORD;
-    tstamp timestamp with time zone;
+  temp INTEGER;
+  varrec RECORD;
+  tstamp timestamp with time zone;
 BEGIN 
 temp := 0;
 tstamp = now();
@@ -26,8 +33,8 @@ IF varrec.result <> 1 THEN
 	RETURN;
 END IF;
 
-INSERT INTO "Communication_messages"("Title", "Content", "UsersReg_id", "Comment", "User", "Timestamp", "CommunicationType_id", "State_id", "RefContentType", "Record")
-    		VALUES (Title,_Content,UsersReg,_Comment,by_user,_Timestamp,CommunicationType,CommunicationTemplate, varrec.varsci,RefContentType,_Record);
+INSERT INTO "Communication_messages"("Title", "Content","User", "Timestamp", "CommunicationType_id","CommunicationTemplate_id", "State_id", "RefContentType", "Record")
+    		VALUES (Title,_Content,by_user,now(),CommunicationType,CommunicationTemplate, varrec.varsci,RefContentType,_Record);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
@@ -51,9 +58,8 @@ ELSE
 RETURN;
 END IF;
 END;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION messgaeinsert(character varying, text, integer, integer, timestamp without time zone, integer, integer, integer, character varying, integer, character varying)
-  OWNER TO test123;
+
+$$ LANGUAGE plpgsql;
+
+
 

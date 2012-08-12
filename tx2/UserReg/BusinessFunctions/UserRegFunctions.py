@@ -88,7 +88,36 @@ class UserRegFnx():
 		except:
 			self.UserRegLogger.exception('[%s] == Exception =='%('Update'))
 			return (-1,'Error at business level Update function in UserReg')
+		
+   	def AdduserData1(self,ctid,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE):
+		try:
+			# get the object, if present
 			
+			try:
+				print "here" 
+				print "lol"
+				print ctid
+				print str(rid)+ " "+str(Desc)
+				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+				objlist = self.ConvertStringToUsersList(UserRegObj.Users)
+				user_list = self.ConvertStrListToInt(Users)
+				UsersList = objlist + user_list
+				UsersList = self.getUniqueIntList(UsersList)
+				UsersList = self.ConvertUsersListToString(UsersList)
+				print "till here"
+				return self.Update(str(datetime.datetime.now()),Desc,UsersList,rid,ctid,op_update,by,ip,'added ' + str(user_list))
+			except  ObjectDoesNotExist , DoesNotExist:
+				print "till"
+				UsersList = self.ConvertUsersListToString(Users)
+				if UsersList is None:
+					error_msg = 'Error formatting users list'
+					self.UserRegLogger.error('[%s] == Error == \n %s'%('AdduserData',error_msg))
+					return (-1,error_msg)
+				return self.Create(str(datetime.datetime.now()),Desc,UsersList,rid,ctid,op_insert,by,ip)
+		except:
+			self.UserRegLogger.exception('[%s] == Exception =='%('AdduserData'))
+			return (-1,'Error at business level AdduserData function in UserReg')
+
 	def AdduserData(self,AppLabel,Model,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE):
 		try:
 			# get the object, if present

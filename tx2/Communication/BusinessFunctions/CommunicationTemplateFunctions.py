@@ -21,10 +21,10 @@ class CommunicationTemplateFnx():
         try:
             CommunicationTypeObj = CommunicationTypeFnx()
             CommunicationTypeID = CommunicationTypeObj.getCommunicationTypeIDbyName(CommTypeName)
-
+            print "here"
             CommTempFormat= dumps(CommTempFormat).encode("zip").encode("base64").strip()
             paramList= dumps(paramList).encode("zip").encode("base64").strip()
-            
+            print "her1"
             details = {
                     'CommunicationType':CommunicationTypeID,    
                     'TemplateName': CommTempName,
@@ -35,6 +35,7 @@ class CommunicationTemplateFnx():
                     'by':by,
                     'ip':ip,
                 }
+            print "till here"
             res = DBInsertCommunicationTemplate(details)
             deleteCacheKey(CACHE_COMMUNICATION_TYPES)
             return res
@@ -56,8 +57,8 @@ class CommunicationTemplateFnx():
         if  CommTemplateList is None:
             return  CommunicationTemplateID
         for CommTemplateObj in CommTemplateList:
-            print CommTemplateObj.CommName
-            if CommTemplateObj.CommName == _CommunicationTemplateName:
+            print CommTemplateObj.TemplateName
+            if CommTemplateObj.TemplateName == _CommunicationTemplateName:
                 CommunicationTemplateID = CommTemplateObj.id
         print CommunicationTemplateID
         return CommunicationTemplateID

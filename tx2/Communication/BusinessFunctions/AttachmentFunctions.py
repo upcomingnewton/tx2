@@ -8,10 +8,10 @@ class AttachmentFnx():
         self.CommunicationLogger = logging.getLogger(LOGGER_COMMUNICATION)
         
         
-    def InsertAttachment(self,Content,Record, AttachmentType, AttachmentDesc, AttachmentName, AttachmentRef,by,ip,RequestedOperation):
+    def InsertAttachment(self,ContentType,Record, AttachmentType, AttachmentDesc, AttachmentName, AttachmentRef,by,ip,RequestedOperation):
         try:
             details= {
-                        'Content': Content,
+                        'ContentType': ContentType,
                         'Record': Record,
                         'AttachmentType':AttachmentType,
                         'AttachmentName':AttachmentName,

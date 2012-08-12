@@ -15,23 +15,24 @@ class CommunicationTemplates(models.Model):
 	TemplateFormat=models.TextField()
 	paramList=models.TextField()
 	
-class Messages(models.Model):
+class Messages(models.Model):     #Message for General Communications 
 	Title = models.CharField(max_length=100)
 	Content = models.TextField()
-	UsersReg = models.ForeignKey(RegisterUser)
-	Comment = models.IntegerField()
+	#UsersReg = models.ForeignKey(RegisterUser)
+	#Comment = models.IntegerField()
 	User = models.IntegerField()
 	Timestamp = models.DateTimeField()
 	CommunicationType=models.ForeignKey(CommunicationType)
 	CommunicationTemplate= models.ForeignKey(CommunicationTemplates)
 	State = models.ForeignKey(SecurityStates)
-	RefContentType = models.IntegerField()
-	Record = models.IntegerField()
+	RefContentType = models.IntegerField(null=True)
+	Record = models.IntegerField(null=True)
+	
 	
 class Attachments(models.Model):
-	Content = models.TextField()
+	ContentType = models.ForeignKey(ContentType)
 	Record= models.IntegerField()
-	AttachmentType= models.TextField()   #can be of any kind... ll refer to file-system
+	AttachmentType= models.TextField()   #can be of any kind... 
 	AttachmentDesc=models.TextField()
 	AttachmentName=models.TextField()
 	AttachmentRef=models.IntegerField()	
