@@ -73,7 +73,7 @@ class UserProfile(object):
             if( result['result'] == 1 ):
             	UserFnxObj = UserFnx()
             	res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
-            	self.UserProfileLogger.exception('[%s] == %s =='%("ChangeUserGroup",str(res)))
+            	self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
                 return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
             else:
                 self.UserProfileLogger.exception('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))

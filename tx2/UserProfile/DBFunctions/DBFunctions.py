@@ -61,7 +61,7 @@ def DBSessionTypeInsert(details):
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1}
 def DBMarksInsert(details):
-    query = "SELECT * FROM MarksInsert('%s','%s',%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'%s',%s,'%s');"%(details["SessionStart"],details["SessionEnd"],details["SessionNumber"],details["SessionType"],details["TotalMarks"],details["SecuredMarks"],details["TotalReappears"],details["ReappearsRemaining"],details["DegreeType"],details["Board"],details["UserId"],details["UserId"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM MarksInsert('%s','%s',%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'%s',%s,'%s');"%(details["SessionStart"],details["SessionEnd"],details["SessionNumber"],details["SessionType"],details["TotalMarks"],details["SecuredMarks"],details["TotalReappears"],details["ReappearsRemaining"],details["DegreeType"],details["Board"],details["Degree"],details["UserId"],details["RequestedOperation"],details["by_user"],details["ip"]);
         
     try:
         UserProfileLogger.debug('[%s] %s'%('DBInsertMarks',query))
@@ -175,6 +175,20 @@ def DBSessionTypeUpdate(details):
         return result[0]
     except Exception as inst:
         exception_log = "[%s] %s"%('DBSessionTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
+
+def DBMarksUpdate(details):
+    query = "SELECT * FROM MarksUpdate(%s,'%s','%s',%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'%s','%s',%s,'%s');"%(details["Id"],details["SessionStart"],details["SessionEnd"],details["SessionNumber"],details["SessionType"],details["TotalMarks"],details["SecuredMarks"],details["TotalReappears"],details["ReappearsRemaining"],details["DegreeType"],details["Board"],details["Degree"],details["UserId"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+        
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBMarksUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBMarksUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBMarksUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBMarksUpdate',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}
 
