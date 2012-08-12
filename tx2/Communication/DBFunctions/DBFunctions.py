@@ -65,7 +65,7 @@ def DBInsertAttachment(details):
 
 def DBInsertCommunication(details):
     print details
-    query = "SELECT * FROM MessgaeInsert('" + details['Title'] + "','" + details['Content'] + "',"+str(details['CommunicationType'])+","+str(details['CommunicationTemplate'])+","+str(details['RefContentType'])+","+str(details['Record'])+",'" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
+    query = "SELECT * FROM MessgaeInsert('" + details['Title'] + "','" + details['Content'] + "',"+str(details['CommunicationType'])+","+str(details['CommunicationTemplate'])+",'"+str(details['Timestamp'])+"',"+str(details['RefContentType'])+","+str(details['Record'])+",'" + details['op'] + "'," + str(details['by']) + ",'" + details['ip'] +"'); "
     print query
     
     try:

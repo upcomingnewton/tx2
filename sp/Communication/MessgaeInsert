@@ -4,6 +4,7 @@ IN title character varying,
 IN _content text,
 IN communicationtype integer,
 IN communicationtemplate integer, 
+IN _timestamp timestamp without time zone,
 IN refcontenttype integer, 
 IN _record integer, 
 IN requestedoperation character varying, 
@@ -15,10 +16,8 @@ OUT rescode integer
 DECLARE 
   temp INTEGER;
   varrec RECORD;
-  tstamp timestamp with time zone;
 BEGIN 
 temp := 0;
-tstamp = now();
 
 IF EXISTS ( SELECT id FROM "Communication_messages" WHERE "Title"= Title AND "CommunicationType_id"=CommunicationType ) THEN 
 	rescode := 212;
@@ -34,7 +33,7 @@ IF varrec.result <> 1 THEN
 END IF;
 
 INSERT INTO "Communication_messages"("Title", "Content","User", "Timestamp", "CommunicationType_id","CommunicationTemplate_id", "State_id", "RefContentType", "Record")
-    		VALUES (Title,_Content,by_user,now(),CommunicationType,CommunicationTemplate, varrec.varsci,RefContentType,_Record);
+    		VALUES (Title,_Content,by_user,_timestamp,CommunicationType,CommunicationTemplate, varrec.varsci,RefContentType,_Record);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

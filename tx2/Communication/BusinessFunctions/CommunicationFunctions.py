@@ -19,7 +19,7 @@ class MessageFnx():
 		
 		
 		
-	def InsertCommunication(self,Title,Content,CommunicationTypeName, CommunicationTemplateName,CTID,Record,by,ip,RequestedOperation='SYS_PER_INSERT'):
+	def InsertCommunication(self,Title,Content,CommunicationTypeName, CommunicationTemplateName, Timestamp,CTID,Record,by,ip,RequestedOperation='SYS_PER_INSERT'):
 		try:
 			CommunicationTypeObj = CommunicationTypeFnx()
 			CommunicationTypeID = CommunicationTypeObj.getCommunicationTypeIDbyName(CommunicationTypeName)
@@ -45,6 +45,7 @@ class MessageFnx():
 					
 					'CommunicationType':CommunicationTypeID,
 					'CommunicationTemplate':CommunicationTemplateID,
+					'Timestamp':Timestamp,
 					'RefContentType':CTID,
 					'Record':Record,
 					'op':RequestedOperation,
@@ -115,14 +116,12 @@ class MessageFnx():
 	
 	
 	
-	def PostMessage(self,Title,Content,Users,Desc,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel=-1,_Model=-1,Record=-1,UsersReg=1):
+	def PostMessage(self,Title,Content,Users,Desc,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel='communication',_Model='messages',Record=-1,UsersReg=1):
 		try:
 			res=self.InsertCommunication(Title, Content, KEY_MESSAGES_COMMUNICATION_TYPE, 'Default', -1, -1, by, ip)
-			ctid_ = getContentTypesByAppNameAndModel(_AppLabel,_Model)
-			ctid= ctid_
-			print ctid_
 			
-			UserRegFunctions.UserRegFnx().AdduserData1(ctid,res['rescode'],Desc, Users, by, ip)
+			
+			return UserRegFunctions.UserRegFnx().AdduserData(_AppLabel,_Model,res['rescode'],Desc, Users, by, ip)
 			
 		except:
 			error_msg = 'Error @ PostMessage in Business Functions'
@@ -131,7 +130,7 @@ class MessageFnx():
 	
 	#####
 			
-	def UpdateMessage(self,MID,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,_AppLabel=-1,_Model=-1,Record=-1,UsersReg=1):
+	def UpdateMessage(self,MID,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,_AppLabel='communication',_Model='messages',Record=-1,UsersReg=1):
 		try:
 			tstamp = datetime.datetime.now()
 			ctid = getContentTypesByAppNameAndModel(_AppLabel,_Model)
@@ -141,11 +140,12 @@ class MessageFnx():
 			self.CommunicationLogger.exception('[%s] == Exception =='%('UpdateMessage'))
 			return (-5,error_msg)
 	#####		
-	def PostNotice(self,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel=-1,_Model=-1,Record=-1,UsersReg=0):
+	def PostNotice(self,Title,Content,Timestamp,Users,Desc,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel='Communication',_Model='messages',Record=-1,UsersReg=0):
 		try:
-			tstamp = datetime.datetime.now()
 			ctid = getContentTypesByAppNameAndModel(_AppLabel,_Model)
-			return self.InsertMessage(Title,Content,UsersReg,Comment,tstamp,KEY_NOTICES_COMMUNICATION_TYPE,ctid,Record,by,ip,RequestedOperation)
+
+			res=self.InsertCommunication(Title, Content, KEY_NOTICES_COMMUNICATION_TYPE, 'Default',Timestamp, -1, -1, by, ip)
+			return UserRegFunctions.UserRegFnx().Create(str(datetime.datetime.now()),Desc,Users,res["rescode"],ctid,SYSTEM_PERMISSION_INSERT,by,ip)
 		except:
 			error_msg = 'Error @ PostNotice in Business Functions'
 			self.CommunicationLogger.exception('[%s] == Exception =='%('PostNotice'))
