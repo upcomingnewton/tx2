@@ -66,6 +66,20 @@ def ResetPasswordIndex(HttpRequest):
     msglist.append(ExceptionMessage)
     HttpRequest.session[SESSION_MESSAGE] = msglist
     return HttpResponseRedirect('/message/')
+    
+def ResendAuthenticationEmailIndex(HttpRequest)
+  ip = HttpRequest.META['REMOTE_ADDR']
+  details = GetLoginDetails(HttpRequest)
+  if( details['userid'] != -1):
+    CheckAndlogout(HttpRequest)
+  try:
+    HttpRequest.session[SESSION_MESSAGE] = []
+    return render_to_response("UserSystem/User/ResendAuthenticationEmail.html",{},context_instance=RequestContext(HttpRequest))
+  except:
+    LoggerUser.exception('ResendAuthenticationEmailIndex')
+    msglist.append(ExceptionMessage)
+    HttpRequest.session[SESSION_MESSAGE] = msglist
+    return HttpResponseRedirect('/message/')
 
 ################################ SHOW MESSAGE FUNCTION ##############################
 

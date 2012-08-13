@@ -43,8 +43,10 @@ def log_in(HttpRequest):
         result = res[1]
         if( result['result'] == 1):
           encdec = Encrypt()
-          token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid']))}
+          token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
+"fname":result['username']}
           HttpRequest.session["details"] = token
+          HttpRequest.session.set_expiry(0)
           return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
         else:
           msglist.append(res[1])

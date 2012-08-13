@@ -10,6 +10,7 @@ CREATE OR REPLACE FUNCTION UserLogin
 	OUT loginid INTEGER,
 	OUT groupid INTEGER,
 	OUT result INTEGER,
+	OUT username VARCHAR,
 	OUT rescode INTEGER
 ) 
 RETURNS RECORD AS $$
@@ -20,10 +21,10 @@ DECLARE
 	login_type_int INTEGER;
 	temp INTEGER;
 BEGIN 
-
+username := 'NULL';
 IF NOT EXISTS ( SELECT id FROM "Users_user" WHERE "UserEmail"=emailid ) THEN
 	result := -1;
-	rescode = 111;
+	rescode := 111;
 	groupid := -1;
 	loginid := -1;
 	userstate := -1;
@@ -44,7 +45,7 @@ END IF;
 SELECT id INTO userid FROM "Users_user" WHERE "UserEmail"=emailid;
 SELECT "Group_id" INTO groupid FROM "Users_user" WHERE id=userid;
 SELECT "State_id" INTO userstate FROM "Users_user" WHERE id=userid;
-
+SELECT "UserFirstName" INTO username FROM "Users_user" WHERE id=userid; 
 
 SELECT id INTO login_type_int FROM "Users_logintype" WHERE id=login_type;
 IF login_type_int IS NULL THEN 

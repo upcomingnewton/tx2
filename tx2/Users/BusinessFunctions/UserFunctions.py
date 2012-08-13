@@ -1,4 +1,5 @@
 from tx2.Misc.Encryption import Encrypt
+from django.core.exceptions import ObjectDoesNotExist
 from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser,DBInsertUser,DBUpdateUser
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.Users.HelperFunctions.LoginDetails import AddLoginIdToLoggedInUsersDict, ClearLoginIdFromLoggedInUsersDict 
@@ -11,6 +12,7 @@ from tx2.CONFIG import LoggerUser
 import logging
 from tx2.Misc.Email import sendMail
 import urllib
+import inspect
 
 
 
@@ -23,13 +25,16 @@ class UserFnx():
     return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
     
     
+##################### HELPER FUNCTIONS ###################################
+    
   def fetch_url(self,url,params):
       params=urllib.urlencode(params)
       f = urllib.urlopen(url+"?"+params)
       return (f.read(), f.code)
     
-  def RegisterUserForForums(self,email,password):
+##################### HELPER FUNCTIONS ###################################
     
+  def RegisterUserForForums(self,email,password):
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/signup_TX"
     secret= 'A2lx135sVzm$803A88'
@@ -39,7 +44,7 @@ class UserFnx():
     if(response_code==200):
       return (1, "User has been successfully registered for forums")
     else:
-      self.UserLogger.exception('RegisterUserForForums')
+      self.UserLogger.exception('Error in RegisterUserForForums , Response Code is - %d'%(response_code))
       return (-2,self.MakeExceptionMessage(str(response_code)))
     
   def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
@@ -58,9 +63,9 @@ class UserFnx():
               'ip':ip
               }
       result = DBInsertUser(user)
-      if ( result['result'] == 1 or result['result'] == 2):
+      if ( result['result'] == 1):
         msg = "Your profile has been sucessfully created.Please check your email for activation link."
-        self.send_mail_test(email,result['rescode'],fname,ip)
+        self.SendAuthenticationEmail(email,result['rescode'],fname,ip)
         res = self.RegisterUserForForums(email,password)
         if( res[0] == 1 ):
           msg += "You have also been registered for forums. User your placement site credentials for login."
@@ -68,8 +73,13 @@ class UserFnx():
       else:
         return (-1,decode(result)) 
     except Exception, ex:
-      self.UserLogger.exception('InsertUser')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('InsertUser : %s' % (msg))
+      return (-2,self.MakeExceptionMessage(str(ex)))  
       
   def UpdateUser(self,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
     try:
@@ -95,7 +105,12 @@ class UserFnx():
       else:
         return (-1,result)
     except Exception, ex:
-      self.UserLogger.exception('UpdateUser')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('UpdateUser : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
   def AuthenticateUserFromSite(self,emailid,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -113,7 +128,7 @@ class UserFnx():
         self.UserLogger.exception('Error at HelperFunctions, getSystemGroup_EmailAU. It returned -1')
         return (-2,self.ExceptionMessage)
       if user_obj.Group.id == groupid:
-        return (1,'Your profile has been sucessfully activated.You can login now.')
+        return (1,'Your profile is already verified.You can login.')
       user_obj.Group.id = groupid
       result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
       if result[0] == 1 :
@@ -121,9 +136,14 @@ class UserFnx():
       elif result[0] == -2:
         return (-2,result[1])
       elif result[0] == -1:
-        return (-1,decode(result))
+        return (-1,decode(result[1]))
     except Exception, ex:
-      self.UserLogger.exception('AuthenticateUserFromSite')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('UserAuthenticationByEmail : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def LoginUser(self,email,password,_type,ip):
@@ -138,9 +158,14 @@ class UserFnx():
         AddLoginIdToLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
         return(1,result)
       else:
-        return(-1,self.ExceptionMessage )
+        return(-1,decode(result))
     except Exception, ex:
-      self.UserLogger.exception('LoginUser')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('LoginUser : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def LogoutUser(self,loginid,out_from):
@@ -155,7 +180,12 @@ class UserFnx():
       else:
         return (-1,decode(result))
     except Exception, ex:
-      self.UserLogger.exception('LogoutUser')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('LogoutUser : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
     
   def ChangeUserGroup(self,userid,GroupName,by,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -181,9 +211,15 @@ class UserFnx():
       elif result[0] == -1:
         return (-1,decode(result[1]))
     except Exception, ex:
-      self.UserLogger.exception('UpdateUser')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('ChangeUserGroup : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
-
+      
+      
     # do not send encrypted passes
   def ChangePassword(self,oldpass,newpass,by,ip,userid,emailid,op=SYSTEM_PERMISSION_UPDATE):
     try:
@@ -215,9 +251,14 @@ class UserFnx():
       elif result[0] == -2:
         return (-2,result[1])
       elif result[0] == -1:
-        return (-1,decode(result))
+        return (-1,decode(result[1]))
     except Exception, ex:
-      self.UserLogger.exception('ChangePassword')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('UpdateUser : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
             
   def ForgetPassword(self,emailid,by,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -237,46 +278,96 @@ class UserFnx():
       #UpdateUser(self,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
-        self.send_email_forget_pass(emailid,password)
+        self.ForgetPasswordEmail(emailid,password)
         return (1,"SUCESS.Your password has been changed sucessfully.") 
       elif result[0] == -2:
         return (-2,'Error in Changing Password')
       elif result[0] == -1:
-        return (-1,decode(result))
+        return (-1,decode(result[1]))
     except Exception, ex:
-      self.UserLogger.exception('ForgetPassword')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('ForgetPassword : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
-  def send_mail_test(self,email,userid,fname,ip):
+  def ReSendAuthenticationEmail(self,emailid,ip):
+    try:
+      user = self.getUserObjectByEmailid(emailid)
+      if user[0] is not 1:
+        return (-1,'ERROR : ' + user[1])
+      user = user[1]
+      groupid = getSystemGroup_EmailAU()
+      if( groupid == -1):
+        self.UserLogger.exception('Error at HelperFunctions, getSystemGroup_EmailAU. It returned -1')
+        return (-2,self.ExceptionMessage)
+      if user.Group.id == groupid:
+        return (1,'Your profile is already verified.You can login.')
+      else:
+        SendAuthenticationEmail(user.UserEmail,user.id,user.UserFirstName,ip)
+    except Exception, ex:
+        frame = inspect.currentframe()
+        args, _, _, values = inspect.getargvalues(frame)
+        msg = ''
+        for i in args:
+          msg += "[%s : %s]" % (i,values[i])
+        self.UserLogger.exception('ReSendAuthenticationEmail : %s' % (msg))
+        return (-2,self.MakeExceptionMessage(str(ex)))
+
+########################### E-MAIL FUNCTIONS #####################
+
+  def SendAuthenticationEmail(self,email,userid,fname,ip):
     try:
       token= self.encrypt.encrypt(str(userid) + '___' + email)
       import time
       refs = int(time.time())
-      msg = "hey " + fname + "\n"
+      msg = "Dear " + fname + "\n"
       msg += "Please click on following link to activate your account \n\n"
       msg += "http://uiet.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
       msg += "\n\nRegards \n Training and Placement Cell, UIET"
-      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Training and Placement Cell, UIET",msg)
+      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Email Verification - Training and Placement Cell, UIET",msg)
     except Exception, ex:
-      self.UserLogger.exception('send_mail_test')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('SendAuthenticationEmail : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
-  def send_email_forget_pass(self,email,password):
+  def ForgetPasswordEmail(self,email,password):
     try:
       import time
       refs = int(time.time())
       token= "password reset for " + email + " new password is " + str(password) 
-      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Password Reset",token)
+      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Password Reset - Training and Placement Cell, UIET",token)
     except Exception, ex:
-      self.UserLogger.exception('send_email_forget_pass')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('ForgetPasswordEmail : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
+      
+########################### E-MAIL FUNCTIONS #####################
+      
+
+########################### SELECTION FUNCTIONS #####################
 
   def getAllUsers(self):
     try:
       UsersList =  User.objects.all()
       return (1,UsersList)
     except Exception, ex:
-      self.UserLogger.exception('getAllUsers')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('getAllUsers : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def getUserObjectByEmailid(self,emailid):
@@ -289,7 +380,12 @@ class UserFnx():
     except ObjectDoesNotExist:
       return (-1,'ERROR : User Does not exist')
     except Exception, ex:
-      self.UserLogger.exception('getUserObjectByEmailid')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('getUserObjectByEmailid : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
 
@@ -303,7 +399,12 @@ class UserFnx():
     except ObjectDoesNotExist:
       return (-1,'ERROR : User Does not exist')
     except Exception, ex:
-      self.UserLogger.exception('getUserObjectByUserId')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('getUserObjectByUserId : %s' % (msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
     

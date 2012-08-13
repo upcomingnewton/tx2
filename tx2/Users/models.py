@@ -43,6 +43,7 @@ class GroupMenu(models.Model):
     Menu = models.ForeignKey(Menu)
     Group = models.ForeignKey(Group)
     Active = models.IntegerField()
+    ExtraInfo = models.CharField(max_length=200)
     Permission = models.IntegerField()
     
 class UserLogs(models.Model):
