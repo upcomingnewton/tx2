@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'Communication',
     'UserAdress',
     'UserProfile',
+    'Feeds',
     
 )
 
@@ -136,6 +137,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'ThoughtXplore.txContextProcessors.UserContextProcessor',
     #'ThoughtXplore.txContextProcessors.TEMPLATE_PARAM_USER_NOT_LOGGED_IN',
     'tx2.ContextProcessors.MessageContextProcessor',
+    'tx2.ContextProcessors.UserContextProcessor',
     
 )
 
