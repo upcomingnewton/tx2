@@ -3,6 +3,8 @@ MetaInfo varchar,
 _Desc varchar,
 Users text,
 Record integer,
+Groups text,
+ReferenceToRegisterUser text,
 ContentType integer,
 RequestedOperation VARCHAR,
 by_user INTEGER,
@@ -29,8 +31,8 @@ IF varrec.result <> 1 THEN
 	RETURN;
 END IF;
 
-INSERT INTO "UserReg_registeruser"("ContentType_id", "Record", "Users", "Desc", "MetaInfo", "State_id")
-	VALUES(ContentType,Record,Users,_Desc,MetaInfo,varrec.varsci);
+INSERT INTO "UserReg_registeruser"("ContentType_id", "Record", "Users", "Groups","ReferenceToRegisterUser","Desc", "MetaInfo", "State_id")
+	VALUES(ContentType,Record,Users,Groups,ReferenceToRegisterUser,_Desc,MetaInfo,varrec.varsci);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

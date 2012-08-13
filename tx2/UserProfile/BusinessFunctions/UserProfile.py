@@ -76,7 +76,7 @@ class UserProfile(object):
             	self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
                 return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
             else:
-                self.UserProfileLogger.exception('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
+                self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception as inst:
             error_msg = 'Error @ InsertStudentDetails in Business Functions %s'%(inst)

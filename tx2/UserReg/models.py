@@ -9,6 +9,8 @@ class RegisterUser(models.Model):
 	ContentType = models.ForeignKey(ContentType)
 	Record = models.IntegerField()
 	Users = models.TextField()
+	Groups = models.TextField()
+	ReferenceToRegisterUser = models.TextField()
 	Desc = models.CharField(max_length=1000)
 	MetaInfo = models.CharField(max_length=2000)
 	State = models.ForeignKey(SecurityStates)

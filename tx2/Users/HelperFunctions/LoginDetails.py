@@ -12,7 +12,7 @@ def GetLoginDetails(request):
         if "details" in request.session.keys():
             token = request.session["details"]
             UpdateLoggedInUsersDict(token['loginid'])
-            return {"userid":token['userid'],"groupid":token['groupid'],"loginid": encdec.decrypt(token['loginid']),}
+            return {"userid":token['userid'],"groupid":token['groupid'],"loginid": encdec.decrypt(token['loginid']),"fname":token['fname'],}
         else:
             return {"userid":-1}
     except:
