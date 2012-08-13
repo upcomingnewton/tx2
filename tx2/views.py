@@ -19,7 +19,7 @@ def home(HttpRequest):
         Logged_in=False
     else:
         Logged_in=True
-        LoggedUser=User.objects.get(id= logindetails["userid"])
+        LoggedUser=logindetails["fname"]
         #LoggedUserName=LoggedUser.UserFirstName
         
         

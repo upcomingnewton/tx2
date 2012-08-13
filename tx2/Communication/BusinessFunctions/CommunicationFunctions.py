@@ -33,10 +33,10 @@ class MessageFnx():
 				error_msg = 'Invalid CommunicationTemplateName %s ' % (CommunicationTemplateName)
 				self.CommunicationLogger.error('[%s] == Error == \n %s'%('InsertCommunication',error_msg))
 				return (-1,error_msg)
-			
+			print "here111"
 			Title= dumps(Title).encode("zip").encode("base64").strip()
 			Content= dumps(Content).encode("zip").encode("base64").strip()
-			
+			print "up here"
 			details = {
 					'Title':Title,
 					'Content':Content,
@@ -173,11 +173,11 @@ class MessageFnx():
 			return (-5,error_msg)
 	
 	
-	def PostNews(self,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel=-1,_Model=-1,Record=-1,UsersReg=0):
+	def PostNews(self,Title,Content,tstamp,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel='Communication',_Model='messages',Record=-1,UsersReg=0):
 		try:
-			tstamp = datetime.datetime.now()
+			#tstamp = datetime.datetime.now()
 			ctid = getContentTypesByAppNameAndModel(_AppLabel,_Model)
-			return self.InsertMessage(Title,Content,UsersReg,Comment,tstamp,KEY_NEWS_COMMUNICATION_TYPE,ctid,Record,by,ip,RequestedOperation)
+			return self.InsertCommunication(Title, Content, KEY_NEWS_COMMUNICATION_TYPE, 'Default',tstamp, -1, -1, by, ip)
 		except:
 			error_msg = 'Error @ PostNews in Business Functions'
 			self.CommunicationLogger.exception('[%s] == Exception =='%('PostNews'))
