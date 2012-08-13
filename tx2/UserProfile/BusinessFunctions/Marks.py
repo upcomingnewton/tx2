@@ -119,7 +119,7 @@ class Marks(object):
                      'Degree':Degree,
                      'prev':prev,
                      'UserId':UserId,
-                     'RequestedOperation':'SYS_PER_INSERT',
+                     'RequestedOperation':'SYS_PER_UPDATE',
                      'by_user':by_user,
                      'ip':ip,};
             result=DBFunctions.DBMarksUpdate(details);

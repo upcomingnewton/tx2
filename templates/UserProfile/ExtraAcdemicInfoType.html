@@ -5,5 +5,11 @@
 ExtraAcademicInfoName: <input type="text" name="ExtraAcdemicInfoTypeName" />
 <input type="submit" value="Submit" />
 </form>
+<form name="ExtraAcademicInfoUpdate" action="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoType/update" method="post">
+{% csrf_token %}
+Id: <input type="text" name="Id" />
+ExtraAcademicInfoName: <input type="text" name="ExtraAcdemicInfoTypeName" />
+<input type="submit" value="Submit" />
+</form>
 </body>
 </html>

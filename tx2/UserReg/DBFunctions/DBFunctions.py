@@ -16,8 +16,8 @@ QueryLogger = logging.getLogger(LoggerQuery)
 
 def DBRegUserInsert(details):
     try:
-	#SELECT * FROM  UserRegInsert('MetaInfo','_Desc','Users',1,1,'SYS_PER_INSERT',1,'ip');
-        query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+	#SELECT * FROM  UserRegInsert('MetaInfo','_Desc','Users','Groups','ReferenceToRegisterUser',1,1,'SYS_PER_INSERT',1,'ip');
+        query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"','" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         RegLogger.debug('[%s] %s'%('DBRegUserInsert',query))
         QueryLogger.debug('[%s] %s'%('DBRegUserInsert',query))
         result =  DBhelper.CallFunction(query)
@@ -31,7 +31,7 @@ def DBRegUserInsert(details):
 def DBRegUserUpdate(details):
     try:
 	#SELECT * FROM  UserRegUpdate('MetaInfo-updated','_Desc-updated','Users-updated',1,1,'SYS_PER_UPDATE','update test from db',1,'testfromdb');
-        query = "SELECT * FROM UserRegUpdate('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "','" + details['LogsDesc'] +"'," + str(details['by']) + ",'" + details['ip'] + "');"
+        query = "SELECT * FROM UserRegUpdate('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +",'" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "','" + details['LogsDesc'] +"'," + str(details['by']) + ",'" + details['ip'] + "');"
         RegLogger.debug('[%s] %s'%('DBRegUserUpdate',query))
         QueryLogger.debug('[%s] %s'%('DBRegUserUpdate',query))
         result =  DBhelper.CallFunction(query)

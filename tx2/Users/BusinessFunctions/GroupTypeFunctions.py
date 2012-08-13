@@ -1,6 +1,7 @@
 from tx2.Users.DBFunctions.DatabaseFunctions import DBLoginUser ,DBLogoutUser, DBGroupTypeInsert
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.Users.models import GroupType
+from tx2.Misc.CacheManagement import setCache,getCache
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT, SYSTEM_USERDEFINED_GROUPTYPE
 import logging
