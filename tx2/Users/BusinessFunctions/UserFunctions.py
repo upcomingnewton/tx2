@@ -131,7 +131,7 @@ class UserFnx():
       result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
       if result[0] == 1 :
         msg = 'Your profile has been sucessfully activated. '
-        res = self.RegisterUserForForums(email,password)
+        res = self.RegisterUserForForums(user_obj.UserEmail,self.encrypt.decrypt(user_obj.UserPassword))
         if( res[0] == 1 ):
           msg += "You have also been registered for forums. User your placement site credentials for login."
         return (1,msg) 
