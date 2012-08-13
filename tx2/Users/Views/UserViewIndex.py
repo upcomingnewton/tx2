@@ -54,6 +54,7 @@ def ChangePassIndex(HttpRequest):
     return HttpResponseRedirect('/message/')
 	
 def ResetPasswordIndex(HttpRequest):
+  msglist = AppendMessageList(HttpRequest)
   ip = HttpRequest.META['REMOTE_ADDR']
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] != -1):
@@ -67,7 +68,8 @@ def ResetPasswordIndex(HttpRequest):
     HttpRequest.session[SESSION_MESSAGE] = msglist
     return HttpResponseRedirect('/message/')
     
-def ResendAuthenticationEmailIndex(HttpRequest)
+def ResendAuthenticationEmailIndex(HttpRequest):
+  msglist = AppendMessageList(HttpRequest)
   ip = HttpRequest.META['REMOTE_ADDR']
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] != -1):
