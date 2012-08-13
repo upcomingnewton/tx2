@@ -121,8 +121,8 @@
         {% else %}
         <li><a id="example4" href="/user/register">Register</a></li>
         {% endif %}
-        {%  if Logged_in  %}
-        <li><a href="/userprofile/UserProfile/UserHome/">{{LoggedUser}}</a>
+        {%  if loggedin  %}
+        <li><a href="/userprofile/UserProfile/UserHome/">{{fname}}</a>
         <a href="/user/logout">(Logout)</a>
         </li>
         {% else %}

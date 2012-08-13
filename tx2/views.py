@@ -10,17 +10,4 @@ LogUser = logging.getLogger(LoggerUser)
 
 
 def home(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    ip = HttpRequest.META['REMOTE_ADDR']
-    logindetails = GetLoginDetails(HttpRequest)
-    LoggedUser=""
-    
-    if( logindetails["userid"] == -1):
-        Logged_in=False
-    else:
-        Logged_in=True
-        LoggedUser=logindetails["fname"]
-        #LoggedUserName=LoggedUser.UserFirstName
-        
-        
-    return render_to_response('index.html',{'title':'Home', 'Logged_in':Logged_in, 'LoggedUser':LoggedUser},context_instance=RequestContext(HttpRequest))
+    return render_to_response('index.html',{'title':'Home', },context_instance=RequestContext(HttpRequest))
