@@ -3,8 +3,26 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+    ('nitin','upcomingnewton@gmail.com'),
+    ('sarvpriye','sarvpriye98@gmail.com'),
+    ('jivjot','jivjot@gmail.com'),
+    ('nitin','nitin@thoughtxplore.com'),
+)
+
 MANAGERS = ADMINS
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'tnpuiet2013',                      # Or path to database file if using sqlite3.
+        'USER': 'ThoughtXplore',                      # Not used with sqlite3.
+        'PASSWORD': 'Nath@3728',                  # Not used with sqlite3.
+        'HOST': '119.18.58.211',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -46,7 +64,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/sarvpriye/git/new/tx2/static1'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -138,6 +156,142 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'tx2.ContextProcessors.MessageContextProcessor',
     
 )
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = LOG_SETTINGS = {
+    'version': 1,
+    'loggers':{
+               'LOGGER_Security':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Security'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Query':{
+                                    #'handlers':['File_Query','smtp'],
+                                    'handlers':['File_Query'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_User':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_User'],
+                                    'level':'DEBUG',
+                                },
+               'SYSTEM_INITIALISE_LOGGER':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Initialise'],
+                                    'level':'DEBUG',
+                                },
+               
+               'LOGGER_UserReg':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserReg'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Communication':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Communcation'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_UserProfile':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_UserProfile'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Adress':{
+                                    #'handlers':['File_User','smtp'],
+                                    'handlers':['File_Adress'],
+                                    'level':'DEBUG',
+                                },
+               },
+    'handlers': {
+        'File_UserReg': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/UserRegLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Security': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/SecurityLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Query': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/QueryLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_User': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/UserLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Initialise': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/InitLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Communcation': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/CommunicationLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_UserProfile': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/UserProfileLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Adress': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': '/home/sarvpriye/logs/Adress',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'smtp': {
+            'class': 'logging.handlers.SMTPHandler',
+            'level': 'ERROR',
+            'formatter': 'email',
+            'mailhost': 'localhost',
+            'fromaddr': 'no-reply@thoughtxplore.com',
+            'toaddrs': ['upcomingnewton@gmail.com', 'sarvpriye98@gmail.com'],
+            'subject': '[ThoughtXplore] Error encountered.',
+        },
+    },
+    'formatters': {
+        'detailed': {
+            'format': '%(asctime)s %(module)-17s line:%(lineno)-4d ' \
+            '%(levelname)-8s %(message)s',
+        },
+        'email': {
+            'format': 'Timestamp: %(asctime)s\nModule: %(module)s\n' \
+            'Line: %(lineno)d\nMessage: %(message)s',
+        },
+    },
+}
 
 CACHES = {
     'default': {

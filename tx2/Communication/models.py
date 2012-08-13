@@ -7,19 +7,37 @@ from tx2.UserReg.models import RegisterUser
 class CommunicationType(models.Model):
 	CommName = models.CharField(max_length=100)
 	CommDesc = models.TextField()
+
+class CommunicationTemplates(models.Model):
+	CommunicationType=models.ForeignKey(CommunicationType)
+	TemplateName=models.CharField(max_length=100)
+	TemplateDisc= models.TextField()
+	TemplateFormat=models.TextField()
+	paramList=models.TextField()
 	
-class Messages(models.Model):
+class Messages(models.Model):     #Message for General Communications 
 	Title = models.CharField(max_length=100)
 	Content = models.TextField()
-	UsersReg = models.ForeignKey(RegisterUser)
-	Comment = models.IntegerField()
+	#UsersReg = models.ForeignKey(RegisterUser)
+	#Comment = models.IntegerField()
 	User = models.IntegerField()
 	Timestamp = models.DateTimeField()
-	CommunicationType = models.ForeignKey(CommunicationType)
+	CommunicationType=models.ForeignKey(CommunicationType)
+	CommunicationTemplate= models.ForeignKey(CommunicationTemplates)
 	State = models.ForeignKey(SecurityStates)
-	RefContentType = models.IntegerField()
-	Record = models.IntegerField()
+	RefContentType = models.IntegerField(null=True)
+	Record = models.IntegerField(null=True)
 	
+	
+class Attachments(models.Model):
+	ContentType = models.ForeignKey(ContentType)
+	Record= models.IntegerField()
+	AttachmentType= models.TextField()   #can be of any kind... 
+	AttachmentDesc=models.TextField()
+	AttachmentName=models.TextField()
+	AttachmentRef=models.IntegerField()	
+	
+
 class Comment(models.Model):
 	ContentType = models.ForeignKey(ContentType)
 	Record = models.IntegerField()
@@ -28,11 +46,11 @@ class Comment(models.Model):
 	State = models.ForeignKey(SecurityStates)
 	Comment = models.TextField()
 	
+	
 class CommunicationLogs(models.Model):
 	# user making changes
 	LogsUser = models.ForeignKey(User)
-	ContentType = models.ForeignKey(ContentType)
-	# row id being changed
+	ContentType = models.ForeignKey(ContentType)	# row id being changed
 	LogsObject = models.IntegerField()
 	LogsPermission = models.ForeignKey(SecurityPermissions)
 	LogsIP = models.CharField(max_length=20)

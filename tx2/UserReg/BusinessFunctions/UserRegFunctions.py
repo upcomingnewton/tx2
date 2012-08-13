@@ -88,7 +88,8 @@ class UserRegFnx():
 		except:
 			self.UserRegLogger.exception('[%s] == Exception =='%('Update'))
 			return (-1,'Error at business level Update function in UserReg')
-			
+		
+
 	def AdduserData(self,AppLabel,Model,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE):
 		try:
 			# get the object, if present
@@ -102,7 +103,11 @@ class UserRegFnx():
 				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
 				self.UserRegLogger.error('[%s] == Error == \n %s'%('AdduserData',error_msg))
 				return (-1,error_msg)
+			print ctid
+			
 			try:
+				#change code 4 this for Notice i'll b calling this funx with Users=-1 or Users=
+			
 				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
 				objlist = self.ConvertStringToUsersList(UserRegObj.Users)
 				user_list = self.ConvertStrListToInt(Users)
@@ -116,6 +121,7 @@ class UserRegFnx():
 					error_msg = 'Error formatting users list'
 					self.UserRegLogger.error('[%s] == Error == \n %s'%('AdduserData',error_msg))
 					return (-1,error_msg)
+				print UsersList
 				return self.Create(str(datetime.datetime.now()),Desc,UsersList,rid,ctid,op_insert,by,ip)
 		except:
 			self.UserRegLogger.exception('[%s] == Exception =='%('AdduserData'))

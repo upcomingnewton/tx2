@@ -12,7 +12,11 @@ from tx2.CONFIG import LoggerUser
 import logging
 from tx2.Misc.Email import sendMail
 import urllib
+<<<<<<< HEAD
 import inspect
+=======
+from django.core.exceptions import ObjectDoesNotExist
+>>>>>>> 7438af978bf00f079f123b84d139ca99edade9d3
 
 
 
@@ -35,7 +39,6 @@ class UserFnx():
 ##################### HELPER FUNCTIONS ###################################
     
   def RegisterUserForForums(self,email,password):
-    
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/signup_TX"
     secret= 'A2lx135sVzm$803A88'
