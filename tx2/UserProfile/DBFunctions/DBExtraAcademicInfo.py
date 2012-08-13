@@ -26,6 +26,19 @@ def DBExtraAcademicInfoTypeInsert(details):
         exception_log = "[%s] %s"%('DBInsertExtraAcademicInfoType',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
+def DBExtraAcademicInfoTypeUpdate(details):
+    query = "SELECT * FROM ExtraAcademicInfoTypeUpdate(%s,'%s','%s','%s','%s','%s');"%(details["Id"],details["ExtraAcademicInfoTypeName"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoTypeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBExtraAcademicInfoTypeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoTypeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBExtraAcademicInfoTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+
 def DBFunctionalAreaTypeInsert(details):
     query = "SELECT * FROM FunctionalAreaTypeInsert('%s','%s','%s','%s');"%(details["FunctionalAreaTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:

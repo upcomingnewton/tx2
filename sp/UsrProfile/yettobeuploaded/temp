@@ -1,0 +1,23 @@
+CREATE OR REPLACE FUNCTION temp(
+OUT result integer,
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+    prev varchar;
+    prevrecord record;
+    prevarray varchar[];
+BEGIN 
+temp := 0;
+for varrec in select * from "UserProfile_marks"
+loop
+	for prev in select * from varrec
+	loop
+		temp:=temp+1;
+	end loop;
+end loop;
+result:=temp;
+END;
+$$ LANGUAGE plpgsql;
+
+

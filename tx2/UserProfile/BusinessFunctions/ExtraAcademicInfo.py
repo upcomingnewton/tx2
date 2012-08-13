@@ -5,6 +5,8 @@ Created on 01-Aug-2012
 '''
 from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBExtraAcademicInfo
+from tx2.UserProfile.models import ExtraAcademicInfoType
+import pickle
 import logging
 
 class ExtraAcademicInfo:
@@ -25,6 +27,30 @@ class ExtraAcademicInfo:
             error_msg = 'Error @ InsertExtraAcademicInfoType in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+  def UpdateExtraAcademicInfoType(self,_Id,ExtraAcademicInfoTypeName,by_user,ip):
+        try:
+            _Id=int(_Id)
+            obj=ExtraAcademicInfoType.objects.get(id=_Id);
+            
+            
+            prev=pickle.dumps(obj)
+            prev=prev.replace("'", ">");
+            prev=prev.replace("\n", "<");
+            prev=prev.replace("\\", "+");
+            
+            details={'Id':_Id,
+                     'ExtraAcademicInfoTypeName':ExtraAcademicInfoTypeName,
+                     'prev':prev,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBExtraAcademicInfo.DBExtraAcademicInfoTypeUpdate(details);
+            return result
+        except:
+            error_msg = 'Error @ InsertExtraAcademicInfoType in Business Functions'
+            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
+            return {'result':-5,'error_msg':error_msg}
+  
   def InsertFunctionalAreaType(self,FunctionalAreaTypeName,by_user,ip):
         try:
             details={'FunctionalAreaTypeName':FunctionalAreaTypeName,
