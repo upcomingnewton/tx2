@@ -14,7 +14,7 @@ class NewsIntemFeeds(Feed):
         return Messages.objects.filter(CommunicationType=commtypeID).order_by('Timestamp')
     def item_title(self, item):
         return loads(item.Title.decode("base64").decode("zip"))
-    def item_content(self,item):
+    def item_description(self,item):
         return loads(item.Content.decode("base64").decode("zip"))
    
     

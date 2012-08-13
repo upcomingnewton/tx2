@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'Communication',
     'UserAdress',
     'UserProfile',
+    'Feeds',
     
 )
 

@@ -1,0 +1,18 @@
+  <ul>
+      	
+        <li><a href="/">Home</a></li>
+        {%  if Logged_in  %}
+        {% else %}
+        <li><a id="example4" href="/user/register">Register</a></li>
+        {% endif %}
+        {%  if loggedin  %}
+        <li><a href="/userprofile/UserProfile/UserHome/">{{fname}}</a>
+        <a href="/user/logout">(Logout)</a>
+        </li>
+        {% else %}
+
+        <li><a id="example4" href="/user/login">Student Login</a></li>
+
+        {% endif %}
+        <li class="last"><a href="#">Company Login</a></li>
+      </ul>
