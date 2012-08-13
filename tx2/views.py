@@ -11,3 +11,6 @@ LogUser = logging.getLogger(LoggerUser)
 
 def home(HttpRequest):
     return render_to_response('index.html',{'title':'Home', },context_instance=RequestContext(HttpRequest))
+
+def recruitersIndex(HttpRequest):
+    return render_to_response('Public/recruiters.html',{'title':'Past Recruiters', },context_instance=RequestContext(HttpRequest))
