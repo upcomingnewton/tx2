@@ -67,9 +67,6 @@ class UserFnx():
       if ( result['result'] == 1):
         msg = "Your profile has been sucessfully created.Please check your email for activation link."
         self.SendAuthenticationEmail(email,result['rescode'],fname,ip)
-        res = self.RegisterUserForForums(email,password)
-        if( res[0] == 1 ):
-          msg += "You have also been registered for forums. User your placement site credentials for login."
         return (1,msg)
       else:
         return (-1,decode(result)) 
@@ -133,7 +130,11 @@ class UserFnx():
       user_obj.Group.id = groupid
       result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
       if result[0] == 1 :
-        return (1,"Your profile has been sucessfully activated.You can login now") 
+        msg = 'Your profile has been sucessfully activated. '
+        res = self.RegisterUserForForums(email,password)
+        if( res[0] == 1 ):
+          msg += "You have also been registered for forums. User your placement site credentials for login."
+        return (1,msg) 
       elif result[0] == -2:
         return (-2,result[1])
       elif result[0] == -1:

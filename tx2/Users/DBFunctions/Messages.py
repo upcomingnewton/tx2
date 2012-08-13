@@ -30,4 +30,26 @@ db_messages = {
                 
                 # menu insert
                 102:'Menu insertion failed in database.',
+                
+                #user login 
+                111:'User does not exist.',
+                112:'emailid or password does not match.',
+                113:'login type does not exist or has been disabled',
+                114:'login error. Error generating loginid',
+                115:'login sucessfull',
+                
+                #user insert
+                91:'user exists in database',
+                92:'user registration failed in database',
+                
+                # user update
+                96:'user does not exist',
+                97:'updation of user failed in database',
+                99:'update sucessfull',
+                
+                # user logout
+                116:'login id does not exist',
+                117:'logout type does not exist or has been diabled',
+                118:'logging our failed in database',
+                120:'sucessfully logged out.'
 }
