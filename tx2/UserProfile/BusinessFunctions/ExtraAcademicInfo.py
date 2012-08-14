@@ -6,9 +6,11 @@ Created on 01-Aug-2012
 from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBExtraAcademicInfo
 from tx2.UserProfile.models import ExtraAcademicInfoType
+from tx2.UserProfile.models import FunctionalAreaType
+
 import pickle
 import logging
-
+import inspect
 class ExtraAcademicInfo:
   def __init__(self):
         '''
@@ -63,6 +65,30 @@ class ExtraAcademicInfo:
             error_msg = 'Error @ InsertFunctionalAreaType in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+  def UpdateFunctionalAreaType(self,_Id,FunctionalAreaTypeName,by_user,ip):
+        try:
+          _Id=int(_Id)
+          obj=FunctionalAreaType.objects.get(id=_Id);
+          prev=pickle.dumps(obj)
+          prev=prev.replace("'", ">");
+          prev=prev.replace("\n", "<");
+          prev=prev.replace("\\", "+");
+          details={'Id':_Id,
+                     'FunctionalAreaTypeName':FunctionalAreaTypeName,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'prev':prev,
+                     'by_user':by_user,
+                     'ip':ip,};
+          result=DBExtraAcademicInfo.DBFunctionalAreaTypeUpdate(details);
+          return result
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('InsertUser : %s' % (msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))  
   def InsertExtraAcademicInfoDetails(self,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
             details={'User_id':User_id,

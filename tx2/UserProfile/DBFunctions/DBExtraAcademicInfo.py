@@ -40,7 +40,7 @@ def DBExtraAcademicInfoTypeUpdate(details):
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
 
 def DBFunctionalAreaTypeInsert(details):
-    query = "SELECT * FROM FunctionalAreaTypeInsert('%s','%s','%s','%s');"%(details["FunctionalAreaTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM FunctionalAreaTypeInsert('%s','%s',%s,'%s');"%(details["FunctionalAreaTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
         UserProfileLogger.debug('[%s] %s'%('DBInsertFunctionalAreaType',query))
         QueryLogger.debug('[%s] %s'%('DBInsertFunctionalAreaType',query))
@@ -51,6 +51,19 @@ def DBFunctionalAreaTypeInsert(details):
         exception_log = "[%s] %s"%('DBInsertFunctionalAreaType',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
+def DBFunctionalAreaTypeUpdate(details):
+    query = "SELECT * FROM FunctionalAreaTypeUpdate(%s,'%s','%s','%s',%s,'%s');"%(details["Id"],details["FunctionalAreaTypeName"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaTypeUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBFunctionalAreaTypeUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaTypeUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBFunctionalAreaTypeUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+
 def DBExtraAcademicInfoDetailsInsert(details):
     query = "SELECT * FROM ExtraAcademicInfoDetailsInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s',%s,'%s');"%(details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:

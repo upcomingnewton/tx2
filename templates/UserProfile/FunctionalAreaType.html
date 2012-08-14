@@ -5,5 +5,14 @@
 FunctionalAreaTypeName: <input type="text" name="FunctionalAreaTypeName" />
 <input type="submit" value="Submit" />
 </form>
+
+<form name="FunctionalAreaTypeUpdate" action="/userprofile/ExtraAcademicInfo/FunctionalAreaType/update" method="post">
+{% csrf_token %}
+
+Id: <input type="text" name="Id" />
+FunctionalAreaTypeName: <input type="text" name="FunctionalAreaTypeName" />
+<input type="submit" value="Submit" />
+</form>
+
 </body>
 </html>
