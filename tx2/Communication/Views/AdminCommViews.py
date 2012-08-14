@@ -49,20 +49,20 @@ def adminNewsPost(HttpRequest):
             title= HttpRequest.POST['Title']
             _content=HttpRequest.POST['Content']
             visibility=HttpRequest.POST['Visibility']
-            print "fine"
+            #print "fine"
             tstamp=datetime.datetime.strptime(HttpRequest.POST["date_"], "%m/%d/%Y")
-            print "fine2"
+            #print "fine2"
+            #print str(tstamp)
             
             
-            result= comm_call.PostNews(title, _content, tstamp, "Notice Post by Admin", logindetails["userid"], ip)
-            #msglist.append(result[1])
-            if(result[1]["result"]==-2):
+            result= comm_call.PostNews(title, _content, tstamp,logindetails["userid"],ip)
+       
+            if(result["result"]==-2):
                 return HttpResponseRedirect('/user/login')
-            elif(result[1]["result"]==1):
+            elif(result["result"]==1):
                 msglist.append("Notice Posted Successfully")
             else:
                 msglist.append(result[1])
-            print msglist
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
             
@@ -88,7 +88,6 @@ def adminNoticePost(HttpRequest):
             title= HttpRequest.POST['Title']
             _content=HttpRequest.POST['Content']
             visibility=HttpRequest.POST['Visibility']
-            print _content+" "+visibility
             if(visibility=='0'):
                 Users='-1'
             else:
@@ -102,7 +101,7 @@ def adminNoticePost(HttpRequest):
                 msglist.append("Notice Posted Successfully")
             else:
                 msglist.append(result[1])
-            print msglist
+            #print msglist
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
             

@@ -10,7 +10,9 @@ from tx2.conf.LocalProjectConfig import *
 import logging
 import datetime
 from cPickle import dumps, loads
-
+from tx2.Misc.CacheManagement import *
+from tx2.Users.models import User as _User
+from django.core.paginator import Paginator
 
 
 class MessageFnx():
@@ -33,10 +35,10 @@ class MessageFnx():
 				error_msg = 'Invalid CommunicationTemplateName %s ' % (CommunicationTemplateName)
 				self.CommunicationLogger.error('[%s] == Error == \n %s'%('InsertCommunication',error_msg))
 				return (-1,error_msg)
-			print "here111"
+			##print "here111"
 			Title= dumps(Title).encode("zip").encode("base64").strip()
 			Content= dumps(Content).encode("zip").encode("base64").strip()
-			print "up here"
+			#print "up here"
 			details = {
 					'Title':Title,
 					'Content':Content,
@@ -113,6 +115,8 @@ class MessageFnx():
 		except:
 			return -1
 		
+		
+	
 	
 	
 	
@@ -129,6 +133,80 @@ class MessageFnx():
 			return (-5,error_msg)
 	
 	#####
+		
+	
+		
+	def updateHappeningsCache(self):
+		
+		#print "herre"
+		commtypeID=CommunicationTypeFnx().getCommunicationTypeIDbyName("NEWS")
+		M=Messages.objects.filter(CommunicationType=commtypeID).order_by("Timestamp")
+		P=Paginator(M,10)
+		deleteCacheKey("HappeningsCache")
+		setCache("HappeningsCache", P)
+		#print "done cache"
+		return 1
+	def getNHappenings(self,n=3):
+			try:	
+				Pages=getCache("HappeningsCache")
+				if(Pages is None):
+					commtypeID=CommunicationTypeFnx().getCommunicationTypeIDbyName("NEWS")
+					M=Messages.objects.filter(CommunicationType=commtypeID).order_by("Timestamp")
+					M=M.reverse()
+					P=Paginator(M,10)
+					deleteCacheKey("HappeningsCache")
+					setCache("HappeningsCache", P)
+					Pages=getCache("HappeningsCache")
+				M=Pages.page(1)
+				M=M.object_list
+				M=M[:n]
+				return M
+			except:
+				error_msg = 'Error @ getNHappenings in Business Functions'
+				self.CommunicationLogger.exception('[%s] == Exception =='%('getNHappenings'))
+				return (-5,error_msg)
+	
+	def getHappenings(self, index):
+		try:
+			Pages=getCache("HappeningsCache")
+			if(Pages is None):
+				print "cache not found"
+				commtypeID=CommunicationTypeFnx().getCommunicationTypeIDbyName("NEWS")
+				M=Messages.objects.filter(CommunicationType=commtypeID).order_by("Timestamp")
+				M=M.reverse()
+				for i in M:
+					i.User=_User.objects.get(id=i.User)
+				P=Paginator(M,10)
+				deleteCacheKey("HappeningsCache")
+				setCache("HappeningsCache", P)
+				Pages=getCache("HappeningsCache")
+				
+				
+				
+			#print "here"
+			#print Pages.page_range
+			
+			
+			if(index in Pages.page_range):
+				#print "here"
+				page=Pages.page(index)
+				Page=page.object_list
+				
+				
+				return [Page,page.has_next(),page.has_previous(), Pages.page_range]
+			
+			else:
+				return -1
+		
+		except:
+			error_msg = 'Error @ getHappenings in Business Functions'
+			self.CommunicationLogger.exception('[%s] == Exception =='%('getHappenings'))
+			return (-5,error_msg)
+		
+		
+	
+	
+			
 			
 	def UpdateMessage(self,MID,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,_AppLabel='communication',_Model='messages',Record=-1,UsersReg=1):
 		try:
@@ -176,6 +254,8 @@ class MessageFnx():
 	def PostNews(self,Title,Content,tstamp,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT,_AppLabel='Communication',_Model='messages',Record=-1,UsersReg=0):
 		try:
 			#tstamp = datetime.datetime.now()
+			deleteCacheKey("HappeningsCache")
+			#print "Sarv"
 			ctid = getContentTypesByAppNameAndModel(_AppLabel,_Model)
 			return self.InsertCommunication(Title, Content, KEY_NEWS_COMMUNICATION_TYPE, 'Default',tstamp, -1, -1, by, ip)
 		except:

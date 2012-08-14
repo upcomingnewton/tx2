@@ -27,7 +27,7 @@
     {%  else %}
     
 	     {% include "common/top-right-links.html" %}
-	    
+	  	{% endif %}  
 	          {% if msglist|length > 0 %}
 				{% for msg in msglist %}
 					<div class="w648 border_bottom h30 mb4 font_color_red">
@@ -36,7 +36,7 @@
 				{% endfor %}
 		  	  {% endif %}
 		 {% include "common/forgot-pswd-form.html" %}
-	{% endif %}
+
       
     </div>
   </div>
@@ -122,30 +122,19 @@
         <div id="latestnews">
           <h2>Latest News &amp; Events</h2>
           <ul>
+
+ {% for i in Happenings %}
+	 {% for j in i %}
             <li class="clear">
-              <div class="imgl"><img src="{{STATIC_URL}}images/demo/imgl.gif" alt="" /></div>
-              <div class="latestnews">
-                <p><a href="#">NEWS  HEADING.</a></p>
-                <p>NEWS 1 TEXT</p>
+              <div >
+                <p><a id="example4" href="/communication/News/1/{{j.5}}">{{j.0}}</a></p>
+                <p>{{j.3}}</p>
               </div>
             </li>
-            <li class="clear">
-              <div class="imgl"><img src="{{STATIC_URL}}images/demo/imgl.gif" alt="" /></div>
-              <div class="latestnews">
-                <p><a href="#">NEWS 2 HEADING.</a></p>
-                <p>NEWS 2 TEXT</p>
-              </div>
-            </li>
-            <li class="clear">
-              <div class="imgl"><img src="{{STATIC_URL}}images/demo/imgl.gif" alt="" /></div>
-              <div class="latestnews">
-                <p><a href="#">NEWS 3 HEADING.</a></p>
-                <p>NEWS 3 TEXT</p>
-              </div>
-            </li>
-            
+            	 {% endfor %}  
+ {% endfor %}	
           </ul>
-          <p class="readmore"><a href="#">Click here to view all of the latest news and events &raquo;</a></p>
+          <p class="readmore"><a href="/communication/News/1">Click here to view all of the latest news and events &raquo;</a></p>
         </div>
         <!-- ###### -->
         <div id="right_column">

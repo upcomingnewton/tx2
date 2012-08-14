@@ -16,7 +16,7 @@ class CommunicationTemplates(models.Model):
 	paramList=models.TextField()
 	
 class Messages(models.Model):     #Message for General Communications 
-	Title = models.CharField(max_length=100)
+	Title = models.TextField()
 	Content = models.TextField()
 	#UsersReg = models.ForeignKey(RegisterUser)
 	#Comment = models.IntegerField()
