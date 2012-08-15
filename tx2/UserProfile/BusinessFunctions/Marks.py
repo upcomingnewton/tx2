@@ -6,7 +6,6 @@ Created on 26-Jul-2012
 from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBFunctions
 from tx2.UserProfile.models import Marks as mymarks
-from StringIO import StringIO
 import pickle
 import logging
 

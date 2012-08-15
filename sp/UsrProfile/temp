@@ -8,6 +8,7 @@ select * from ExtraAcademicInfoDetailsInsert(1,'tirle','1-1-1','1-1-1','uiet','a
 select * from BoardInsert('be','SYS_PER_INSERT',1,'temp')
 select * from ExtraAcademicInfoTypeInsert('bah','SYS_PER_INSERT',1,'temp')
 selct * from FunctionalAreaListInsert(1,'two','SYS_PER_INSERT',1,'temp');
+selct * from FunctionalAreaListUpdate(1,1,'two','zz','SYS_PER_UPDATE',1,'temp');
 select * from BoardDelete(1,'SYS_PER_DELETE',1,'temp')
 select * from BoardUpdate(1,'aaa','SYS_PER_UPDATE',1,'temp')
 select * from DegreeDelete(1,'SYS_PER_DELETE',1,'temp')

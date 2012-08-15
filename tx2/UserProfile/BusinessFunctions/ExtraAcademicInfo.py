@@ -7,7 +7,7 @@ from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBExtraAcademicInfo
 from tx2.UserProfile.models import ExtraAcademicInfoType
 from tx2.UserProfile.models import FunctionalAreaType
-
+from tx2.UserProfile.models import FunctionalAreaList
 import pickle
 import logging
 import inspect
@@ -87,7 +87,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('InsertUser : %s' % (msg))
+          self.UserProfileLogger.exception('UpdateFunctionalAreaType : %s' % (msg))
           return (-2,self.MakeExceptionMessage(str(ex)))  
   def InsertExtraAcademicInfoDetails(self,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
@@ -112,7 +112,7 @@ class ExtraAcademicInfo:
             error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
-  def InsertFunctionalAreaListInsert(self,FunctionalAreaType_id,FunctionalArea,by_user,ip):
+  def InsertFunctionalAreaList(self,FunctionalAreaType_id,FunctionalArea,by_user,ip):
         try:
             details={'FunctionalAreaType_id':FunctionalAreaType_id,
                      'FunctionalArea':FunctionalArea,
@@ -125,4 +125,28 @@ class ExtraAcademicInfo:
             error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
-  
+  def UpdateFunctionalAreaList(self,_Id,FunctionalAreaType_id,FunctionalArea,by_user,ip):
+        try:
+          _Id=int(_Id)
+          obj=FunctionalAreaList.objects.get(id=_Id);
+          prev=pickle.dumps(obj)
+          prev=prev.replace("'", ">");
+          prev=prev.replace("\n", "<");
+          prev=prev.replace("\\", "+");
+          details={'Id':_Id,
+           'FunctionalAreaType_id':FunctionalAreaType_id,
+           'FunctionalArea':FunctionalArea,
+           'RequestedOperation':'SYS_PER_UPDATE',
+           'by_user':by_user,
+           'prev':prev,
+           'ip':ip,};
+          result=DBExtraAcademicInfo.DBFunctionalAreaListUpdate(details);
+          return result
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('UpdateFunctionalAreaList : %s' % (msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
