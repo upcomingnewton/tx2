@@ -7,7 +7,7 @@ from tx2.CONFIG import LOGGER_UserReg
 import logging
 import datetime
 from tx2.conf.LocalProjectConfig import *
-from django.core.exceptions import ObjectDoesNotExist, DoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 class UserRegFnx():
 	def __init__(self):
@@ -95,7 +95,7 @@ class UserRegFnx():
 			return (-1,'Error at business level Update function in UserReg')
 		
 
-	def AdduserData(self,AppLabel,Model,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE,Groups=-1,ReferenceToRegisterUser=1-,):
+	def AdduserData(self,AppLabel,Model,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE,Groups=-1,ReferenceToRegisterUser=-1):
 		try:
 			# get the object, if present
 			ctid = -1

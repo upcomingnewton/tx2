@@ -1,10 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
 <head profile="http://gmpg.org/xfn/11">
-<title>{{title}}</title>
+    <title>{% block title %}{% endblock %}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="{{STATIC_URL}}css/layout.css" type="text/css" />
+
+{% include "common/fancy-box-scripts.html" %}
+
 </head>
 <body id="top">
 <div class="wrapper row1">
@@ -43,10 +46,64 @@
   <div class="rnd">
     <div id="container" class="clear">
       <!-- ####################################################################################################### -->
-		{% include "common/publicdisplaycontent.html" %}
+		      <div id="portfolio">
+        
+        
+        
+        
+        
+        {% block publicdisplay-master_content_center %}{% endblock %}  
+        
+        
+        
+        
+        
+        
+        <!--
+        <ul>
+          <li><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+          <li class="last"><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+          <li><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+          <li class="last"><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+          <li><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+          <li class="last"><img src="{{STATIC_URL}}images/demo/420x190.gif" alt="" />
+            <h2>Metridiculis conseque quis</h2>
+            <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+            <p class="readmore"><a href="#">Read More Here &raquo;</a></p>
+          </li>
+        </ul>
+        --!>
+          
+        
+        
+        
+      </div>
       <!-- ####################################################################################################### -->
       <div class="pagination">
-       {% include "common/pagination.html" %}
+       
+        {% block publicdisplay-master_pagination %}{% endblock %}  
+       
+       
       </div>
       <!-- ####################################################################################################### -->
     </div>
