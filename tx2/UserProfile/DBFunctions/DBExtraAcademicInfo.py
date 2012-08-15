@@ -76,6 +76,19 @@ def DBExtraAcademicInfoDetailsInsert(details):
         exception_log = "[%s] %s"%('DBExtraAcademicInfoDetailsInsert',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
+def DBExtraAcademicInfoDetailsUpdate(details):
+    query = "SELECT * FROM ExtraAcademicInfoDetailsUpdate(%s,%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s','%s',%s,'%s');"%(details["Id"],details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBExtraAcademicInfoDetailsUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+
 
 def DBFunctionalAreaListInsert(details):
     query = "SELECT * FROM FunctionalAreaListInsert(%s,'%s','%s',%s,'%s');"%(details["FunctionalAreaType_id"],details["FunctionalArea"],details["RequestedOperation"],details["by_user"],details["ip"]);
