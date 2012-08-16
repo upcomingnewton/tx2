@@ -36,7 +36,6 @@ class CommunicationTypeFnx():
 			CommTypeList = CommunicationType.objects.all()
 			setCache(CACHE_COMMUNICATION_TYPES,CommTypeList)
 		return CommTypeList
-	
 	def getCommunicationTypeIDbyName(self,_CommunicationTypeName):
 		CommunicationTypeID = -1
 		CommTypeList = self.getCommunicationTypes()

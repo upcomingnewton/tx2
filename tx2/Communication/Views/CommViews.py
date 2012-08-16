@@ -8,7 +8,7 @@ from tx2.Misc.CacheManagement import *
 from tx2.Communication.BusinessFunctions.CommunicationFunctions import *
 from tx2.Users.models import User as _User
 def newsIndex(HttpRequest,token):
-    
+    deleteCacheKey("HappeningnsCache")
     res=MessageFnx().getHappenings(int(token))
     if(res==-1):
         return HttpResponse("OOPS PAGE REQUESTED DOESNOT EXIST")
