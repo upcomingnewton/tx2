@@ -18,7 +18,6 @@ ExceptionMessage = 'ERROR : System has suffered some error while processing your
 
 
     
-    
 def log_in(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
   usrfn = UserFnx()
@@ -42,8 +41,8 @@ def log_in(HttpRequest):
       if ( res[0] == 1):
         result = res[1]
         if( result['result'] == 1):
-          usrfn.RegisterUserForForums(email, password)
-            
+          res_forums=usrfn.RegisterUserForForums(email, password)
+              
           encdec = Encrypt()
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
 "fname":result['username']}
@@ -51,7 +50,11 @@ def log_in(HttpRequest):
           HttpRequest.session.set_expiry(0)
           return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
         else:
-          msglist.append(res[1])
+          if(res_forums[0]==1):
+              msg=str(res[1])+str(res_forums[1])
+          else:
+              msg=res[1]
+          msglist.append(msg)
           HttpRequest.session[SESSION_MESSAGE] = msglist
           return HttpResponseRedirect('/message/')
       else:
