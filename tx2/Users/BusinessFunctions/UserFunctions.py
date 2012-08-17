@@ -57,7 +57,7 @@ class UserFnx():
     [content, response_code] = self.fetch_url(url, params)
     self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(response_code)))
     if(response_code==200 ):
-      print content
+      #print content
       return (1, "Password has been has been successfully changed for forums")
     else:
       self.UserLogger.exception('Error in RegisterUserForForums , Response Code is - %d'%(response_code))
@@ -258,15 +258,14 @@ class UserFnx():
       if user_obj.UserPassword == newpass:
         # NO NEED TO CHANGE, IT IS ALREADY SAME
         res1= self.ResetPswdforForums(emailid, self.encrypt.decrypt(newpass))
-        print res1
+        
         return (1,"SUCESS.Your password has been changed sucessfully.")
       PreviousState = "{oldpass:"+ oldpass + "}"
       LogsDesc = 'Changed Password'
       user_obj.UserPassword = newpass
       
       res1= self.ResetPswdforForums(user_obj.UserEmail, self.encrypt.decrypt(newpass))
-      print self.encrypt.decrypt(newpass)
-      print res1
+      
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         return (1,"SUCESS.Your password has been changed sucessfully.") 
