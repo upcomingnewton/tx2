@@ -75,7 +75,7 @@ def DBMarksInsert(details):
         return {'result':-1,'rescode':-1,'exception':inst}
 
 def DBBranchInsert(details):
-    query = "SELECT * FROM BranchInsert('%s','%s','%s','%s');"%(details["BranchName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM BranchInsert('%s','%s',%s,'%s');"%(details["BranchName"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
         UserProfileLogger.debug('[%s] %s'%('DBInsertBranch',query))
         QueryLogger.debug('[%s] %s'%('DBInsertBranch',query))
@@ -84,6 +84,19 @@ def DBBranchInsert(details):
         return result[0]
     except Exception as inst:
         exception_log = "[%s] %s"%('DBInsertBranch',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}
+
+def DBBranchUpdate(details):
+    query = "SELECT * FROM BranchUpdate(%s,'%s','%s','%s',%s,'%s');"%(details['Id'],details["BranchName"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBBranchUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBBranchUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBBranchUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBBranchUpdate',query)
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}
 
