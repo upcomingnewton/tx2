@@ -10,6 +10,7 @@ from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
 from tx2.conf.LocalProjectConfig import  SYSTEM_USERDEFINED_GROUPTYPE
 from tx2.Users.BusinessFunctions.UserFunctions import UserFnx
 from tx2.UserProfile.models import Branch
+from tx2.UserProfile.models import Category
 import logging
 import pickle
 import inspect
@@ -33,15 +34,15 @@ class UserProfile(object):
                      'ip':ip,};
             result=DBFunctions.DBBranchInsert(details);
             if( result['result'] == 1 ):
-            	GroupTypeObj = GroupTypeFnx()
-            	GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
-            	if( GroupType[0] != -1 ):
-            		self.UserProfileLogger.exception('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
-            		GroupFnxObj = GroupFnx()
-            		res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType[1].id,-1,by_user,ip)
-            		self.UserProfileLogger.exception('[%s] == %s'%("GroupFnxObj",str(res)))
-            		res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
-            		self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
+              GroupTypeObj = GroupTypeFnx()
+              GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
+              if( GroupType[0] != -1 ):
+                self.UserProfileLogger.exception('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
+                GroupFnxObj = GroupFnx()
+                res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType[1].id,-1,by_user,ip)
+                self.UserProfileLogger.exception('[%s] == %s'%("GroupFnxObj",str(res)))
+                res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
+                self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
             return result
         except:
             error_msg = 'Error @ InsertBoard in Business Functions'
@@ -79,7 +80,7 @@ class UserProfile(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateFunctionalAreaType : %s' % (msg))
+          self.UserProfileLogger.exception('UpdateBranch : %s' % (msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
     
     def InsertCategory(self,CategoryName,by_user,ip):
@@ -94,6 +95,31 @@ class UserProfile(object):
             error_msg = 'Error @ InsertCategory in Business Functions'
             self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
             return {'result':-5,'error_msg':error_msg}
+    def UpdateCategory(self,_Id,CategoryName,by_user,ip):
+        try:
+          _Id=int(_Id)
+          obj=Category.objects.get(id=_Id);
+          prev=pickle.dumps(obj)
+          prev=prev.replace("'", ">");
+          prev=prev.replace("\n", "<");
+          prev=prev.replace("\\", "+");
+          details={'Id':_Id,
+                     'CategoryName':CategoryName,
+                     'RequestedOperation':'SYS_PER_UPDATE',
+                     'prev':prev,
+                     'by_user':by_user,
+                     'ip':ip,};
+          result=DBFunctions.DBCategoryUpdate(details);
+          return result
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+    
     def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
         try:
             details={'UserId':UserId,

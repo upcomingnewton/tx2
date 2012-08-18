@@ -3,6 +3,7 @@ select * from BranchInsert('cse','SYS_PER_INSERT',1,'temp')
 select * from BranchUpdate(1,'cse','prev','SYS_PER_UPDATE',1,'temp')
 
 select * from CategoryInsert('sc','SYS_PER_INSERT',1,'temp')
+select * from CategoryUpdate(1,'sc','PREV','SYS_PER_UPDATE',1,'temp')
 select * from  FunctionalAreaTypeInsert('functional','SYS_PER_INSERT',1,'temp')
 select * from  FunctionalAreaTypeUpdate(1,'functional','prev','SYS_PER_UPDATE',1,'temp')
 

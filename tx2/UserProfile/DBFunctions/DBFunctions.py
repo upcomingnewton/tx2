@@ -101,7 +101,7 @@ def DBBranchUpdate(details):
         return {'result':-1,'rescode':-1,'exception':inst}
 
 def DBCategoryInsert(details):
-    query = "SELECT * FROM CategoryInsert('%s','%s','%s','%s');"%(details["CategoryName"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM CategoryInsert('%s','%s',%s,'%s');"%(details["CategoryName"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
         UserProfileLogger.debug('[%s] %s'%('DBInsertCategory',query))
         QueryLogger.debug('[%s] %s'%('DBInsertCategory',query))
@@ -113,6 +113,18 @@ def DBCategoryInsert(details):
         UserProfileLogger.exception(exception_log)
         return {'result':-1,'rescode':-1,'exception':inst}                                                                
 
+def DBCategoryUpdate(details):
+    query = "SELECT * FROM CategoryUpdate(%s,'%s','%s','%s',%s,'%s');"%(details['Id'],details["CategoryName"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBCategoryUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBCategoryUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBCategoryUpdate',result))
+        return result[0]
+    except Exception as inst:
+        exception_log = "[%s] %s"%('DBCategoryUpdate',query)
+        UserProfileLogger.exception(exception_log)
+        return {'result':-1,'rescode':-1,'exception':inst}                                                                
 
 def DBStudentDetailsInsert(details):
     try:
