@@ -65,7 +65,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .row1{color:#5F8EC2; background-color:#03274B;}
 .row1 a{color:#F8F9F3; background-color:#03274B;}
 .row2{color:#F8F9F3; background-color:#072C53; border-top:1px solid #2B4D71; border-bottom:1px solid #2B4D71;}
-.row3{color:#777777; background:url("../images/featured_slide_bg.gif") top left repeat-x #F8F9F3;}
+.row3{color:#777777; background:url("{{STATIC_URL}}images/featured_slide_bg.gif") top left repeat-x #F8F9F3;}
 .row4{color:#777777; background-color:#F8F9F3; border-bottom:2px solid #03274B;}
 .row5{padding:50px 0 30px 0; border-top:1px solid #F8F9F3;}
 
