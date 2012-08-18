@@ -1,0 +1,21 @@
+<html>
+<body>
+<form name="BoardInput" action="/userprofile/Marks/Board/new" method="post">
+{% csrf_token %}
+BoardName: <input type="text" name="BoardName" />
+<input type="submit" value="Submit" />
+</form>
+<form name="BoardInput" action="/userprofile/Marks/Board/delete" method="post">
+{% csrf_token %}
+BoardId: <input type="text" name="BoardId" />
+<input type="submit" value="Delete" />
+</form>
+<form name="BoardUpdate" action="/userprofile/Marks/Board/update" method="post">
+{% csrf_token %}
+BoardId: <input type="text" name="BoardId" />
+BoardName:<input type="text" name="BoardName" />
+<input type="submit" value="Update" />
+</form>
+<a href="/userprofile/Marks/Board/View">Select All Board</a>
+</body>
+</html>

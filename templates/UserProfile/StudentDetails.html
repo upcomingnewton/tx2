@@ -1,24 +1,6 @@
 
-
 {% extends "UserProfileMaster.html" %}
     <title>{% block title %}Student Details{% endblock %}</title>
-
-{% block add_start_script %}
-
-
-<!-- CSS -->
-<link href="{{STATIC_URL}}css/structure.css" rel="stylesheet">
-<link href="{{STATIC_URL}}css/form.css" rel="stylesheet">
-
-<!-- JavaScript -->
-<script src="{{STATIC_URL}}js/wufoo.js"></script>
-
-<!--[if lt IE 10]>
-<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-{% endblock %}
-
-<body id="public">
 
 {% block master_content_center %}
 {% if msglist|length > 0 %}
@@ -28,107 +10,72 @@
                 </div>
 			{% endfor %}
 		{% endif %}
-<div id="container_form" class="ltr" width="450 px">
-
+		
 {% if StudDetailStatus %}
-<form id="form2" name="StudentDetailsInput" class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
-action="/userprofile/UserProfile/StudentDetails/new">
-{% csrf_token %}
-<!-- <header id="header" class="info"> -->
-<h2>Student Details</h2>
-<!-- </header> -->
+		
 
-<ul>
-
-<li id="foli1" class="notranslate      ">
-<label class="desc" id="title1" for="Field1">
-Roll Number
-<span id="req_1" class="req">*</span>
-</label>
-<div>
-<input id="Field1" name="RollNo" type="text" class="field text medium" value="" maxlength="255" tabindex="1" onkeyup="" required />
-</div>
-</li><li id="foli2" class="notranslate       ">
-<label class="desc" id="title2" for="Field2">
-BranchMajor
-<span id="req_2" class="req">*</span>
-</label>
-<div>
-<select id="Field2" name="BranchMajor" class="field select medium" tabindex="2" > 
-{% for branch in BranchList %}
+<div id="respond">
+      {% if errorlist|length > 0 %}
+			{% for err in errorlist %}
+                    	<h6>	{{ err }}</h6>
+            {% endfor %}
+		{% endif %}
+        <form action="/userprofile/UserProfile/StudentDetails/new" method="post">
+        {% csrf_token %}                            
+        
+        
+          <p>
+			<input type="text"  name="RollNo" id="text" placeholder="Your Roll No please" onblur="checkmail({'type':'email','min_':'6','max_':'50'})" size="22"/>
+            <label for="RollNo"><small>Roll No (required)</small></label>
+          </p>
+          <p>
+			<select name="BranchMajor" >
+                           {% for branch in BranchList %}
                              		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
                              		{% endfor %}
-                             </select></div>
-</li>
-<li id="foli5" class="notranslate       ">
-<label class="desc" id="title5" for="Field5">
-Branch Minor
-</label>
-<div>
-<select id="Field5" name="BranchMinor" class="field select medium" tabindex="3" > 
-{% for branch in BranchList %}
+
+                            		 </select>   
+           <label for="BranchMajor"><small>BranchMajor(required)</small></label>
+          </p>
+          <p>
+			<select name="BranchMinor" >
+                           {% for branch in BranchList %}
                              		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
                              		{% endfor %}
-                             </select>
-</div>
-</li>
-<li id="foli7" class="notranslate       ">
-<label class="desc" id="title7" for="Field7">
-Category
-<span id="req_7" class="req">*</span>
-</label>
-<div>
-<select id="Field7" name="Category" class="field select medium" tabindex="4" > 
-{% for Category in CategoryList %}
+
+                            		 </select>   
+           <label for="BranchMinor"><small>BranchMinor(required)</small></label>
+          </p>
+          <p>
+			<select name="Category" >
+                          {% for Category in CategoryList %}
                              		    <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
                              		{% endfor %}
-                             </select>
-</div>
-</li>
-<li id="foli8" class="notranslate       ">
-<label class="desc" id="title8" for="Field8">
-Degree
-<span id="req_8" class="req">*</span>
-</label>
-<div>
-<select id="Field8" name="Degree" class="field select medium" tabindex="5" > 
-{% for Degree in DegreeList %}
+                            		 </select>   
+           <label for="Category"><small>Category(required)</small></label>
+          </p>
+            <p>
+			<select name="Degree" >
+                          {% for Degree in DegreeList %}
                              		    <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
                              		{% endfor %}
-                             </select>
-</div>
-</li>
-<li id="foli10" 
-class="notranslate      "><label class="desc" id="title10" for="Field10">
-Computer Proficiency(For BE MBA)
-</label>
-
-<div>
-<textarea id="Field10" 
-name="ComputerProficiency" 
-class="field textarea medium" 
-spellcheck="true" 
-rows="10" cols="50" 
-tabindex="6" 
-onkeyup=""
- ></textarea>
-
-</div>
-</li> <li class="buttons ">
-<div>
-
-                    <input id="saveForm" name="saveForm" class="btTxt submit" 
-    type="submit" value="Submit"
- /></div>
-</li>
-
-<li class="hide">
-<label for="comment">Do Not Fill This Out</label>
-<textarea name="comment" id="comment" rows="1" cols="1"></textarea>
-<input type="hidden" id="idstamp" name="idstamp" value="3hgz07KZrn2igLBNNotmT+Y1lIlq4lsWQFdEXmCtfis=" />
-</li>
-</ul>
-</form> 
+                            		 </select>   
+           <label for="Degree"><small>Degree(required)</small></label>
+          </p>
+          
+           <p>
+            <textarea name="ComputerProficiency" id="comment" cols="100%" rows="10"></textarea>
+            <label for="ComputerProficiency" style="display:none;"><small>Computer Proficiency(For BE MBA)
+</small></label>
+          </p>
+           <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form" />
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
+          </p>
+          
+        </form>
+      </div>
 
 {% else %}
 

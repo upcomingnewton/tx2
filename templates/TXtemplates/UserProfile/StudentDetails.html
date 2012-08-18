@@ -1,0 +1,87 @@
+
+{% extends "TXtemplates/UserProfileMaster.html" %}
+    <title>{% block title %}Student Details{% endblock %}</title>
+
+{% block master_content_center %}
+{% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+                </div>
+			{% endfor %}
+		{% endif %}
+		
+{% if StudDetailStatus %}
+		
+
+<div id="respond">
+       <H2>Basic Details</H2>
+      {% if errorlist|length > 0 %}
+			{% for err in errorlist %}
+                    	<h6>	{{ err }}</h6>
+            {% endfor %}
+		{% endif %}
+        <form action="/userprofile/UserProfile/StudentDetails/new" method="post">
+        {% csrf_token %}                            
+        
+        
+          <p>
+			<input type="text"  name="RollNo" id="text" placeholder="Your Roll No please" onblur="checkmail({'type':'email','min_':'6','max_':'50'})" size="22"/>
+            <label for="RollNo"><small>Roll No (required)</small></label>
+          </p>
+          <p>
+			<select name="BranchMajor" >
+                           {% for branch in BranchList %}
+                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+                             		{% endfor %}
+
+                            		 </select>   
+           <label for="BranchMajor"><small>BranchMajor(required)</small></label>
+          </p>
+          <p>
+			<select name="BranchMinor" >
+                           {% for branch in BranchList %}
+                             		    <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+                             		{% endfor %}
+
+                            		 </select>   
+           <label for="BranchMinor"><small>BranchMinor(required)</small></label>
+          </p>
+          <p>
+			<select name="Category" >
+                          {% for Category in CategoryList %}
+                             		    <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
+                             		{% endfor %}
+                            		 </select>   
+           <label for="Category"><small>Category(required)</small></label>
+          </p>
+            <p>
+			<select name="Degree" >
+                          {% for Degree in DegreeList %}
+                             		    <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
+                             		{% endfor %}
+                            		 </select>   
+           <label for="Degree"><small>Degree(required)</small></label>
+          </p>
+          
+           <p>Computer Proficiency<br>
+            <textarea name="ComputerProficiency" id="comment" cols="100%" rows="15"></textarea>
+            <label for="ComputerProficiency" style="display:none;"><small>Computer Proficiency(For BE MBA)
+</small></label>
+          </p>
+           <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form" />
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
+          </p>
+          
+        </form>
+      </div>
+
+{% else %}
+
+<p> Your Details have been recorded, <br>You'll be informed through email once the admin approves your profile.<br> Thanks </p>
+{% endif %}
+</div><!--container_form-->
+
+{% endblock %}

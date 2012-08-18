@@ -10,10 +10,13 @@
  {% for i in list %}
 	 {% for j in i %}
 	 
-	  <li>
-	            <h2>{{j.0}}:{{forloop.counter}} </h2>
+	  <li>      
+	            <h2>{{j.0}} </h2>
 	            <h2>{{j.1}}</h2>
+	            {% autoescape off %}
 	            <p>{{j.3}}</p>
+	            {% endautoescape %}
+
 	            <p class="readmore"><a id="example4" href="{{j.5}}">Read More Here &raquo;</a></p>
 	          </li>
 	 {% endfor %}  
@@ -21,6 +24,8 @@
  
  
  </ul>
+ 
+ 
  
  {% endblock %}  
  

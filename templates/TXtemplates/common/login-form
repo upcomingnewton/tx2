@@ -1,0 +1,11 @@
+ <form action="/user/login/log_in/" method="post" id="login">
+       {% csrf_token %}
+ 
+      <fieldset>
+        <legend>Student Login</legend>
+        <input placeholder="password" type="password" name="LoginUser_pass" />
+        <input placeholder="Login Email" type="email" name="LoginUser_email" />
+        <div id="forgot">Register <a id="example4" href="/user/register">Here</a> or <a id="example4" href="/user/password/reset/">Forgot Your Details ?</a></div>
+        <input type="image" src="{{STATIC_URL}}images/sign_in.gif" id="signin" alt="Sign In" />
+      </fieldset>
+    </form>

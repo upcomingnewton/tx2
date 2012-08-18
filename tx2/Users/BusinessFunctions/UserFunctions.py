@@ -39,7 +39,7 @@ class UserFnx():
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/signup_TX"
     secret= 'A2lx135sVzm$803A88'
-    params = {'user':email,'pass':password,'email':email, 'secret':secret}
+    params = {'user':email,'pass':str(password),'email':email, 'secret':secret}
     [content, response_code] = self.fetch_url(url, params)
     self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(response_code)))
     if(response_code==200):
@@ -47,6 +47,23 @@ class UserFnx():
     else:
       self.UserLogger.exception('Error in RegisterUserForForums , Response Code is - %d'%(response_code))
       return (-2,self.MakeExceptionMessage(str(response_code)))
+
+  def ResetPswdforForums(self,email,password):
+    
+    import httplib, urllib, urllib2
+    url =   "http://forum.thoughtxplore.com/pswdchange_TX"
+    secret= 'A2lx135sVzm$803A88'
+    params = {'user':email,'pass':password,'secret':secret}
+    [content, response_code] = self.fetch_url(url, params)
+    self.UserLogger.debug("FORUMS REG - %s , %s"%(email,str(response_code)))
+    if(response_code==200 ):
+      #print content
+      return (1, "Password has been has been successfully changed for forums")
+    else:
+      self.UserLogger.exception('Error in RegisterUserForForums , Response Code is - %d'%(response_code))
+      return (-2,self.MakeExceptionMessage(str(response_code)))
+
+
     
   def InsertUser(self,email,password,fname,mname,lname,gender,bday,entity,group,by,ip,op=SYSTEM_PERMISSION_INSERT):
     try:
@@ -131,9 +148,6 @@ class UserFnx():
       result = self.UpdateUser(user_obj,'UserAuthenticationByEmail','UserAuthenticationByEmail',user_obj.id,ip,op)
       if result[0] == 1 :
         msg = 'Your profile has been sucessfully activated. '
-        res = self.RegisterUserForForums(user_obj.UserEmail,self.encrypt.decrypt(user_obj.UserPassword))
-        if( res[0] == 1 ):
-          msg += "You have also been registered for forums. User your placement site credentials for login."
         return (1,msg) 
       elif result[0] == -2:
         return (-2,result[1])
@@ -243,10 +257,15 @@ class UserFnx():
         return (-1,'ERROR: Old Pasword does not match')
       if user_obj.UserPassword == newpass:
         # NO NEED TO CHANGE, IT IS ALREADY SAME
+        res1= self.ResetPswdforForums(emailid, self.encrypt.decrypt(newpass))
+        
         return (1,"SUCESS.Your password has been changed sucessfully.")
       PreviousState = "{oldpass:"+ oldpass + "}"
       LogsDesc = 'Changed Password'
       user_obj.UserPassword = newpass
+      
+      res1= self.ResetPswdforForums(user_obj.UserEmail, self.encrypt.decrypt(newpass))
+      
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         return (1,"SUCESS.Your password has been changed sucessfully.") 
@@ -281,6 +300,7 @@ class UserFnx():
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         self.ForgetPasswordEmail(emailid,password)
+        self.ResetPswdforForums(emailid, password)
         return (1,"SUCESS.Your password has been changed sucessfully.") 
       elif result[0] == -2:
         return (-2,'Error in Changing Password')
@@ -308,7 +328,7 @@ class UserFnx():
       if user.Group.id == groupid:
         return (1,'Your profile is already verified.You can login.')
       else:
-        SendAuthenticationEmail(user.UserEmail,user.id,user.UserFirstName,ip)
+        self.SendAuthenticationEmail(user.UserEmail,user.id,user.UserFirstName,ip)
     except Exception, ex:
         frame = inspect.currentframe()
         args, _, _, values = inspect.getargvalues(frame)

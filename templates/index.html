@@ -35,6 +35,7 @@
 	                </div>
 				{% endfor %}
 		  	  {% endif %}
+		  	  {% include "common/login-form.html" %}
 		 {% include "common/forgot-pswd-form.html" %}
 
       
@@ -128,7 +129,9 @@
             <li class="clear">
               <div >
                 <p><a id="example4" href="/communication/News/1/{{j.5}}">{{j.0}}</a></p>
-                <p>{{j.3}}</p>
+                {% autoescape off %}
+	            <p>{{j.3}}</p>
+	            {% endautoescape %}
               </div>
             </li>
             	 {% endfor %}  

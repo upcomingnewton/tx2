@@ -1,0 +1,84 @@
+/*
+Template Name: Education Time
+File: Featured Slider CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+#featured_slide{
+	height:360px;
+	padding-top:30px;
+	}
+
+#featured_slide dl.slidedeck{
+	position:relative;
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	}
+
+#featured_slide dl.slidedeck > dd{
+	position:relative;
+	height:360px;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	}
+
+#featured_slide dl.slidedeck > dt{
+	position:relative;
+	height:43px;
+	margin:0;
+	padding:0;
+	line-height:38px;
+	font-size:13px;
+	font-weight:bold;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	text-transform:uppercase;
+	color:#F8F9F3;
+	background-color:#8199A9;
+	cursor:pointer;
+	border-top:2px solid #F8F9F3; /* Needs top-border as the JavaScript rotates the element */
+	}
+
+#featured_slide dl.slidedeck > dt.active{
+	color:#F8F9F3;
+	background-color:#002E5D;
+	cursor:default;
+	}
+
+/* Spines */
+
+#featured_slide dl.slidedeck dt.spine:hover{
+	color:#F8F9F3;
+	background-color:#002E5D;
+	}
+
+#featured_slide dl.slidedeck dt.spine.active, #featured_slide dl.slidedeck dt.spine.active:hover{
+	cursor:default;
+	color:#F8F9F3;
+	background-color:#002E5D;
+	}
+
+#featured_slide dl.slidedeck dt.spine .index{
+	margin-bottom:2px;
+	font-size:24px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#F8F9F3;
+	}
+
+#featured_slide dl.slidedeck dt.spine.active .index{
+	margin-bottom:0;
+	}
+
+#featured_slide dl.slidedeck dt.spine:hover .index, #featured_slide dl.slidedeck dt.spine.active .index{
+	color:#F8F9F3;
+	}
+
+/* The SlideDeck "active corner". */
+
+#featured_slide dl.slidedeck .activeCorner{}
+#featured_slide dl.slidedeck .active{}

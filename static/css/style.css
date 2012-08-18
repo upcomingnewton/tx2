@@ -7,6 +7,7 @@ html {width:100%;}
 
 body {font-family:Arial, Helvetica, sans-serif;font-size:100%;color:#4d4d4d;min-width:960px;background:#f7f7f7}
 .ic {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
+
 .bg {width:100%; background:url(../images/bg-top.jpg) center 0 no-repeat;}
 
 .main {
@@ -32,6 +33,7 @@ a:hover {text-decoration:none;}
 	width:270px; 
 	padding-right:65px; 
 	margin-right:10px;
+
 	background:url(../images/arrow.png) right center no-repeat;
 }
 .col-3 {
@@ -72,6 +74,7 @@ p {margin-bottom:18px;}
 .indent-top2 {padding-top:50px;}
 .indent-top3 {padding-top:13px;}
 .indent-left {padding-left:10px;}
+
 .indent-left2 {padding-left:60px;}
 .indent-right {padding-right:10px;}
 
@@ -119,6 +122,7 @@ h1 {
 		height:70px;
 		text-indent:-9999em;
 		background:url(../images/logo.png) 0 0 no-repeat;
+
 	}
 	
 /***** menu *****/
@@ -165,6 +169,7 @@ h1 {
 #page3 .slider {background:url(../images/director.jpg) 0 -80px no-repeat;}
 #page4 .slider {background:url(../images/campus1.jpg) 0 -154px no-repeat;}
 #page5 .slider {background:url(../images/tpo.jpg) 0 -154px no-repeat;}
+
 .items {
 	display:none;
 	
@@ -225,6 +230,7 @@ h1 {
 #content {
 	width:100%; 
 	padding:25px 0 44px;
+
 	background:#fff;
 	position:relative;
 	z-index:1;
@@ -415,6 +421,7 @@ h6 {color:#ed1e24; margin-bottom:7px;}
 .text-2 {line-height:20px;}  
 
 dl.contact {color:#808080;}
+
 dl.contact span {float:left; width:51px; color:#4d4d4d; font-weight:normal;}
 dl span {float:left; width:96px; font-weight:bold;}
 

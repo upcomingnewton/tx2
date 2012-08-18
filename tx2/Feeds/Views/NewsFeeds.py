@@ -17,4 +17,12 @@ class NewsIntemFeeds(Feed):
     def item_description(self,item):
         return loads(item.Content.decode("base64").decode("zip"))
    
+def main():
+    """main function for use as a script
+    """
+    pass
+
+if __name__ == '__main__':
+    main()
+   
     

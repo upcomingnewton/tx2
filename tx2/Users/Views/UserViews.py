@@ -18,7 +18,6 @@ ExceptionMessage = 'ERROR : System has suffered some error while processing your
 
 
     
-    
 def log_in(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
   usrfn = UserFnx()
@@ -42,6 +41,8 @@ def log_in(HttpRequest):
       if ( res[0] == 1):
         result = res[1]
         if( result['result'] == 1):
+          res_forums=usrfn.RegisterUserForForums(email, password)
+              
           encdec = Encrypt()
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
 "fname":result['username']}
@@ -49,7 +50,11 @@ def log_in(HttpRequest):
           HttpRequest.session.set_expiry(0)
           return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
         else:
-          msglist.append(res[1])
+          if(res_forums[0]==1):
+              msg=str(res[1])+str(res_forums[1])
+          else:
+              msg=res[1]
+          msglist.append(msg)
           HttpRequest.session[SESSION_MESSAGE] = msglist
           return HttpResponseRedirect('/message/')
       else:
@@ -57,10 +62,10 @@ def log_in(HttpRequest):
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/message/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
-      return HttpResponseRedirect('/message/')
-            
+        LoggerUser.exception('log_in')
+        HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+        return HttpResponseRedirect('/message/')
+                
         
 def log_out(HttpRequest):
   ip = HttpRequest.META['REMOTE_ADDR']
@@ -89,7 +94,7 @@ def log_out(HttpRequest):
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
@@ -149,7 +154,7 @@ def CreateUserFromSite(HttpRequest):
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/message/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
@@ -166,7 +171,7 @@ def AuthenticateUserFromEmail(HttpRequest,token,refs):
     else:
       return HttpResponseRedirect('/message/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 
@@ -212,7 +217,7 @@ def view_dashboard(HttpRequest):
     else:
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
         
@@ -252,7 +257,7 @@ def ChangePass(HttpRequest):
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/message/')
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
 	
@@ -284,8 +289,13 @@ def ResetPass(HttpRequest):
       HttpRequest.session[SESSION_MESSAGE] = msglist
       return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
   except Exception, ex:
-      self.LoggerUser.exception('log_in')
+      LoggerUser.exception('log_in')
       HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
       return HttpResponseRedirect('/message/')
         
+
+
+from django.contrib.auth.models import User
+
+
 

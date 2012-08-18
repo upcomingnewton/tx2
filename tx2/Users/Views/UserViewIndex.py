@@ -18,7 +18,7 @@ def LoginIndex(HttpRequest):
     mlist = CheckAndlogout(HttpRequest)
     msglist += mlist
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response("UserSystem/User/Login.html",{},context_instance=RequestContext(HttpRequest))
+    return HttpResponseRedirect('/')
   except:
     LoggerUser.exception('LoginIndex')
     msglist.append(ExceptionMessage)
@@ -29,8 +29,8 @@ def CreateUserIndex(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
   ip = HttpRequest.META['REMOTE_ADDR']
   try:
-    HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response('UserSystem/User/Register.html',{},context_instance=RequestContext(HttpRequest))
+    HttpRequest.session[SESSION_MESSAGE] = msglist 
+    return render_to_response('TXtemplates/UserSystem/User/Register.html',{},context_instance=RequestContext(HttpRequest))
   except:
     LoggerUser.exception('CreateUserIndex')
     HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
@@ -46,7 +46,7 @@ def ChangePassIndex(HttpRequest):
     return HttpResponseRedirect('/user/login/')
   try:
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response("UserSystem/User/ChangePass.html",{},context_instance=RequestContext(HttpRequest))
+    return render_to_response("TXtemplates/UserSystem/User/ChangePass.html",{},context_instance=RequestContext(HttpRequest))
   except:
     LoggerUser.exception('ChangePassIndex')
     msglist.append(ExceptionMessage)
@@ -61,7 +61,7 @@ def ResetPasswordIndex(HttpRequest):
     CheckAndlogout(HttpRequest)
   try:
     HttpRequest.session[SESSION_MESSAGE] = []
-    return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
+    return render_to_response("TXtemplates/UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
   except:
     LoggerUser.exception('ResetPasswordIndex')
     msglist.append(ExceptionMessage)
@@ -88,4 +88,4 @@ def ResendAuthenticationEmailIndex(HttpRequest):
 def ShowMessages(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response("UserSystem/User/message.html",{},context_instance=RequestContext(HttpRequest))
+    return render_to_response('TXtemplates/index.html',{},context_instance=RequestContext(HttpRequest))
