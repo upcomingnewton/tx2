@@ -22,6 +22,5 @@ urlpatterns = patterns('',
     url(r'^message/','Users.Views.UserViewIndex.ShowMessages'),
     url(r'^comm/',include('Misc.urls')),
     url(r'^communication/',include('Communication.urls')),
-    url(r'^rss/',include('Feeds.urls'))
     
 )

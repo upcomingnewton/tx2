@@ -7,6 +7,11 @@ from django.template import RequestContext
 from tx2.Misc.CacheManagement import *
 from tx2.Communication.BusinessFunctions.CommunicationFunctions import *
 from tx2.Users.models import User as _User
+import re
+
+
+    
+
 def newsIndex(HttpRequest,token):
     deleteCacheKey("HappeningnsCache")
     res=MessageFnx().getHappenings(int(token))
@@ -22,6 +27,12 @@ def newsIndex(HttpRequest,token):
             list1.append(i.Timestamp)
             list1.append(i.User)
             content=loads(i.Content.decode("base64").decode("zip"))
+            
+            content=MessageFnx().replaceUrls(content)
+            
+            
+            
+            
             preview=content.split(" ")
             preview=preview[:40]
             preview.append(".....")
@@ -36,7 +47,7 @@ def newsIndex(HttpRequest,token):
         
         
         
-    return render_to_response("Communication/User/ViewNews.html",{'pagerange':res[3],'next':res[1],'next_p':int(token)+1,'prev_p':int(token)-1,'prev':res[2],'list':list1,'title':"Happenings@UIET"},context_instance=RequestContext(HttpRequest))
+    return render_to_response("TXtemplates/Communication/User/ViewNews.html",{'pagerange':res[3],'next':res[1],'next_p':int(token)+1,'prev_p':int(token)-1,'prev':res[2],'list':list1,'title':"Happenings@UIET"},context_instance=RequestContext(HttpRequest))
     
 
 def newsitemIndex(HttpRequest,page,item):
@@ -52,13 +63,12 @@ def newsitemIndex(HttpRequest,page,item):
                 M=i
         ##print loads(M.Title.decode("base64").decode("zip"))
         #print list
-        Output="<html><head><title>Happenings@UIET</title><body>"
-        
-        Output+="<H2>"+str(loads(M.Title.decode("base64").decode("zip")))+"</H2><hr>"
-        Output+="<H3>"+str(M.Timestamp)+"</H3><hr>"
-        
-        Output+="<p>"+str(loads(M.Content.decode("base64").decode("zip")))+"<p></body></html>"
-        return HttpResponse(Output)
+        list1=[]
+        list1.append(str(loads(M.Title.decode("base64").decode("zip"))))
+        list1.append(str(M.Timestamp))
+        list1.append(str(loads(M.Content.decode("base64").decode("zip"))))
+        list1=zip(list1)
+        return render_to_response("TXtemplates/Communication/User/ViewNewsitem.html",{'message':list1},context_instance=RequestContext(HttpRequest))
         
  
 

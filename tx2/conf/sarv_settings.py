@@ -64,11 +64,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/sarvpriye/new/tx2/static1'
+STATIC_ROOT = '/home/sarvpriye/new/tx2/static1/TXstatic1'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = '/static/TXstatic'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -81,7 +81,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/static",
-    "/home/sarvpriye/git/new/tx2/static",
+    "/home/sarvpriye/git/new/tx2/static/TXstatic",
 )
 
 # List of finder classes that know how to find static files in
@@ -140,7 +140,7 @@ INSTALLED_APPS = (
     'Communication',
     'UserAdress',
     'UserProfile',
-    'Feeds',
+    
     
 )
 
@@ -303,5 +303,5 @@ CACHES = {
     }
 }
 SESSION_ENGINE="django.contrib.sessions.backends.cached_db"
-SESSION_COOKIE_AGE = 1*60
+SESSION_COOKIE_AGE = 24*60*60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

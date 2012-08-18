@@ -1,0 +1,21 @@
+<html>
+<body>
+<form name="DegreeTypeInput" action="/userprofile/Marks/DegreeType/new" method="post">
+{% csrf_token %}
+DegreeTypeName: <input type="text" name="DegreeTypeName" />
+<input type="submit" value="Submit" />
+</form>
+<form name="DegreeTypeDelete" action="/userprofile/Marks/DegreeType/delete" method="post">
+{% csrf_token %}
+DegreeTypeId: <input type="text" name="DegreeTypeId" />
+<input type="submit" value="Delete" />
+</form>
+<form name="DegreeTypeUpdate" action="/userprofile/Marks/DegreeType/update" method="post">
+{% csrf_token %}
+DegreeTypeId: <input type="text" name="DegreeTypeId" />
+DegreeTypeName:<input type="text" name="DegreeTypeName" />
+<input type="submit" value="Update" />
+</form>
+<a href="/userprofile/Marks/DegreeType/View">Select All Board</a>
+</body>
+</html>

@@ -13,7 +13,7 @@ from cPickle import dumps, loads
 from tx2.Misc.CacheManagement import *
 from tx2.Users.models import User as _User
 from django.core.paginator import Paginator
-
+import re
 
 class MessageFnx():
 	def __init__(self):
@@ -206,7 +206,14 @@ class MessageFnx():
 		
 	
 	
-			
+	def replaceUrls(self,content):
+
+	    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', content)
+	    
+	    for i in urls:
+	         k= "<a href='"+i+"' target='new' >"+i+"</a>"
+	         content=content.replace(i,k)
+	    return content		
 			
 	def UpdateMessage(self,MID,Title,Content,Comment,by,ip,RequestedOperation=SYSTEM_PERMISSION_UPDATE,_AppLabel='communication',_Model='messages',Record=-1,UsersReg=1):
 		try:

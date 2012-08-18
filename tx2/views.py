@@ -6,6 +6,7 @@ from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerUser
 import logging
 from tx2.Users.models import User as _User
+from tx2.Communication.BusinessFunctions import CommunicationFunctions
 LogUser = logging.getLogger(LoggerUser)
 from tx2.Communication.BusinessFunctions.CommunicationFunctions import *
 
@@ -22,6 +23,7 @@ def home(HttpRequest):
         list1.append(i.Timestamp)
         list1.append(i.User)
         content=loads(i.Content.decode("base64").decode("zip"))
+        content=MessageFnx().replaceUrls(content)
         preview=content.split(" ")
         preview=preview[:40]
         preview.append(".....")
@@ -32,7 +34,7 @@ def home(HttpRequest):
         list2.append(list1)
     print list2
     list1=zip(list2)
-    return render_to_response('index.html',{'Happenings':list1,'title':'Home', },context_instance=RequestContext(HttpRequest))
+    return render_to_response('TXtemplates/index.html',{'Happenings':list1,'title':'Home', },context_instance=RequestContext(HttpRequest))
 
 def recruitersIndex(HttpRequest):
     return render_to_response('Public/recruiters.html',{'title':'Past Recruiters', },context_instance=RequestContext(HttpRequest))

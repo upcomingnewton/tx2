@@ -98,7 +98,7 @@ def StudentDetailsIndex(HttpRequest):
         StudDetailStatus= False
     else:
         StudDetailStatus= True
-    return render_to_response("UserProfile/StudentDetails.html",{'StudDetailStatus':StudDetailStatus,'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
+    return render_to_response("TXtemplates/UserProfile/StudentDetails.html",{'StudDetailStatus':StudDetailStatus,'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
             
 def StudentDetailsInsert(HttpRequest):
         msglist = AppendMessageList(HttpRequest)
