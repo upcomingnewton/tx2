@@ -256,3 +256,111 @@ def StudentDetailsInsert(HttpRequest):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
 
+def StudentDetailsUpdateIndex(HttpRequest):
+    print "here"
+    msglist = AppendMessageList(HttpRequest)
+    logindetails = GetLoginDetails(HttpRequest)
+    if( logindetails["userid"] == -1):
+            msglist.append('Please Login to continue')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/user/login/')
+            
+   # if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
+    #    StudDetailStatus= False
+   # else:
+    StudDetailStatus= True
+    return render_to_response("TXtemplates/UserProfile/StudentDetailsUpdate.html",{'StudDetailStatus':StudDetailStatus,'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
+            
+def StudentDetailsUpdate(HttpRequest):
+        msglist = AppendMessageList(HttpRequest)
+        ip = HttpRequest.META['REMOTE_ADDR']
+        logindetails = GetLoginDetails(HttpRequest)
+        print "here in student details"
+        print msglist
+        if( logindetails["userid"] == -1):
+            msglist.append('Please Login to continue')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/user/login/')
+        try:
+            
+            flag=1
+            UserId=int(logindetails["userid"])
+            RollNo = -1
+            BranchMajor = -1
+            BranchMinor = -1
+            Degree = -1
+            Category = -1
+            ComputerProficiency = ""
+            if "Id" in HttpRequest.POST:
+                Id=HttpRequest.POST["Id"]
+                if len(Id) == 0:
+                      msglist.append("Id is required");
+                      flag=-1;
+            else:
+                msglist.append("Error fetching data from form for Id");
+                flag=-1;
+            if "RollNo" in HttpRequest.POST:
+                RollNo=HttpRequest.POST["RollNo"]
+                if len(RollNo) == 0:
+                      msglist.append("RollNo is required");
+                      flag=-1;
+            else:
+                msglist.append("Error fetching data from form for RollNo");
+                flag=-1;
+            
+            if "BranchMajor" in HttpRequest.POST:
+                BranchMajor= int(HttpRequest.POST["BranchMajor"])
+                if BranchMajor == -1:
+                    msglist.append("Please select value for BranchMajor");
+                    flag=-1;
+            else:
+                msglist.append("Error fetching data from form for BranchMajor");
+                flag=-1;
+            
+            if "BranchMinor" in HttpRequest.POST:
+                BranchMinor= int(HttpRequest.POST["BranchMinor"])
+            else:
+                msglist.append("Error fetching data from form for BranchMinor");
+                flag=-1;                    
+            
+            if "Degree" in HttpRequest.POST:
+                Degree=int(HttpRequest.POST["Degree"])
+                if Degree == -1:
+                    msglist.append("Please select value for Degree");
+                    flag=-1;
+            else:
+                msglist.append("Error fetching data from form for Degree");
+                flag=-1;
+            
+            if "Category" in HttpRequest.POST:
+                Category=int(HttpRequest.POST["Category"])
+                if Category == -1:
+                    msglist.append("Please select value for Category");
+                    flag=-1;
+            else:
+                msglist.append("Error fetching data from form for Category");
+                flag=-1;
+            
+            if "ComputerProficiency" in HttpRequest.POST:
+                ComputerProficiency=HttpRequest.POST["ComputerProficiency"]
+            else:
+                ComputerProficiency = "Not applicable"  
+            if flag==-1:
+                HttpRequest.session[SESSION_MESSAGE] = msglist
+                return HttpResponseRedirect('/message/')
+            else:
+                print msglist
+                UserProfileObj=UserProfile()
+                BranchObj = Branch.objects.get(id=BranchMajor)
+                Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
+                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
+                msglist.append(result[1])
+                print msglist
+                HttpRequest.session[SESSION_MESSAGE] = msglist
+                return HttpResponseRedirect('/message/')
+        except Exception as inst:
+            LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'StudentDetailsInsert'))
+            msglist.append('Some Error has occoured')
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return HttpResponseRedirect('/message/')
+

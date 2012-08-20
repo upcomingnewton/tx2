@@ -163,6 +163,7 @@ class UserProfile(object):
                      'Degree':Degree,
                      'CategoryId':CategoryId,
                      'ComputerProficiency':ComputerProficiency,
+                     'prev':prev,
                      'RequestedOperation':'SYS_PER_INSERT',
                      'by_user':by_user,
                      'ip':ip,};
