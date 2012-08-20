@@ -255,3 +255,4 @@ def StudentDetailsInsert(HttpRequest):
             msglist.append('Some Error has occoured')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
+

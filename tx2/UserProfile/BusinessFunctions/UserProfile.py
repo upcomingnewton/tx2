@@ -11,6 +11,7 @@ from tx2.conf.LocalProjectConfig import  SYSTEM_USERDEFINED_GROUPTYPE
 from tx2.Users.BusinessFunctions.UserFunctions import UserFnx
 from tx2.UserProfile.models import Branch
 from tx2.UserProfile.models import Category
+from tx2.UserProfile.models import StudentDetails
 import logging
 import pickle
 import inspect
@@ -122,7 +123,7 @@ class UserProfile(object):
     
     def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
         try:
-            details={'UserId':UserId,
+          details={'UserId':UserId,
                      'RollNo':RollNo,
                      'BranchMajor':BranchMajor,
                      'BranchMinor':BranchMinor,
@@ -132,17 +133,53 @@ class UserProfile(object):
                      'RequestedOperation':'SYS_PER_INSERT',
                      'by_user':by_user,
                      'ip':ip,};
-            result=DBFunctions.DBStudentDetailsInsert(details);
-            if( result['result'] == 1 ):
-            	UserFnxObj = UserFnx()
-            	res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
-            	self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
-                return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
-            else:
+          result=DBFunctions.DBStudentDetailsInsert(details);
+          if( result['result'] == 1 ):
+              UserFnxObj = UserFnx()
+              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
+              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
+              return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+          else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception as inst:
             error_msg = 'Error @ InsertStudentDetails in Business Functions %s'%(inst)
             self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
             return {'result':-5,'error_msg':error_msg}
-    
+        
+    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
+        try:
+          _Id=int(_Id)
+          obj=StudentDetails.objects.get(id=_Id);
+          prev=pickle.dumps(obj)
+          prev=prev.replace("'", ">");
+          prev=prev.replace("\n", "<");
+          prev=prev.replace("\\", "+");
+          details={'Id':_Id,
+                     'UserId':UserId,
+                     'RollNo':RollNo,
+                     'BranchMajor':BranchMajor,
+                     'BranchMinor':BranchMinor,
+                     'Degree':Degree,
+                     'CategoryId':CategoryId,
+                     'ComputerProficiency':ComputerProficiency,
+                     'RequestedOperation':'SYS_PER_INSERT',
+                     'by_user':by_user,
+                     'ip':ip,};
+          result=DBFunctions.DBStudentDetailsUpdate(details);
+          if( result['result'] == 1 ):
+              UserFnxObj = UserFnx()
+              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
+              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
+              return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+          else:
+                self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
+                return (-1,"Some error has occured. Please try again")
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
