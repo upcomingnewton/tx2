@@ -23,6 +23,6 @@ urlpatterns = patterns('',
     url(r'^message/','Users.Views.UserViewIndex.ShowMessages'),
     url(r'^comm/',include('Misc.urls')),
     url(r'^communication/',include('Communication.urls')),
-    #url(r'^$', 'tx2.views.home', name='home'),
-    #url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
+    url(r'^$', 'tx2.views.home', name='home'),
+    url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
 )
