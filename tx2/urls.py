@@ -5,8 +5,8 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'tx2.views.home', name='home'),
-    url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
+    
+    
     
     # url(r'^tx2/', include('tx2.foo.urls')),
 
@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    url(r'^test/',include('Misc.urls')),
     url(r'^user/',include('Users.urls')),
     url(r'^security/',include('Security.urls')),
     url(r'^userreg/',include('UserReg.urls')),
@@ -22,5 +23,6 @@ urlpatterns = patterns('',
     url(r'^message/','Users.Views.UserViewIndex.ShowMessages'),
     url(r'^comm/',include('Misc.urls')),
     url(r'^communication/',include('Communication.urls')),
-    
+    #url(r'^$', 'tx2.views.home', name='home'),
+    #url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
 )

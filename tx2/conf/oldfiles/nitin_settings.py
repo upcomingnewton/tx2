@@ -150,4 +150,5 @@ CACHES = {
     }
 }
 SESSION_ENGINE="django.contrib.sessions.backends.cached_db"
+SESSION_COOKIE_AGE = 1*60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

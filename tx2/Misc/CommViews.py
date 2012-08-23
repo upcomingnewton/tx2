@@ -9,3 +9,6 @@ def NoticeIndex(HttpRequest,noticeid):
     #LoggerUser.debug('redirecting to : %s'%(s) )
     #return HttpResponse('thanks')
     return HttpResponseRedirect(s)
+    
+def TestIndex(HttpRequest):
+  print 'yes, it is working'

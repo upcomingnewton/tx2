@@ -1,9 +1,26 @@
-#LogHandlers.py
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-      ('thoughtxplore','thoughtxplore@gmail.com'),
+from settings import GLOBAL_STATICFILES_DIRS, GLOBAL_TEMPLATE_DIRS
+UserPath = "/home/nitin/projects/"
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    #"/home/nitin/tx2/static",
+    #"/home/nitin/workspace/tx2/static",
+    UserPath + GLOBAL_STATICFILES_DIRS
 )
-MANAGERS = ADMINS
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    #"/home/nitin/tx2/templates",
+    #"/home/nitin/workspace/tx2/templates",
+    UserPath + GLOBAL_TEMPLATE_DIRS
+)
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -14,44 +31,44 @@ LOGGING = LOG_SETTINGS = {
     'loggers':{
                'LOGGER_Security':{
                                     #'handlers':['File_Security','smtp'],
-                                    'handlers':['File_Security','smtp_Security'],
+                                    'handlers':['File_Security'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_Query':{
                                     #'handlers':['File_Query','smtp'],
-                                    'handlers':['File_Query','smtp_Query'],
+                                    'handlers':['File_Query'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_User':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_User','smtp_User'],
+                                    'handlers':['File_User'],
                                     'level':'DEBUG',
                                 },
                'SYSTEM_INITIALISE_LOGGER':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Initialise','smtp_Initialise'],
+                                    'handlers':['File_Initialise'],
                                     'level':'DEBUG',
                                 },
                
                'LOGGER_UserReg':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_UserReg','smtp_UserReg'],
+                                    'handlers':['File_UserReg'],
                                     'level':'DEBUG',
                                 },
                
                'LOGGER_Communication':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Communcation','smtp_Communcation'],
+                                    'handlers':['File_Communcation'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_UserProfile':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_UserProfile','smtp_UserProfile'],
+                                    'handlers':['File_UserProfile'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_Adress':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Adress','smtp_Adress'],
+                                    'handlers':['File_Adress'],
                                     'level':'DEBUG',
                                 },
                },
@@ -60,7 +77,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserRegLogs',
+            'filename': UserPath + 'tx2/logs/UserRegLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -68,7 +85,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/SecurityLogs',
+            'filename': UserPath + 'tx2/logs/SecurityLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -76,7 +93,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/QueryLogs',
+            'filename': UserPath + 'tx2/logs/QueryLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -84,7 +101,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserLogs',
+            'filename': UserPath + 'tx2/logs/UserLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -92,7 +109,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/InitLogs',
+            'filename': UserPath + 'tx2/logs/InitLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -100,7 +117,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/CommunicationLogs',
+            'filename': UserPath + 'tx2/logs/CommunicationLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -108,7 +125,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/UserProfileLogs',
+            'filename': UserPath + 'tx2/logs/UserProfileLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -116,7 +133,7 @@ LOGGING = LOG_SETTINGS = {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
             'formatter': 'detailed',
-            'filename': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/logs/Adress',
+            'filename': UserPath + 'tx2/logs/Adress',
             'maxBytes': 10485760,
             'backupCount': 5,
         },

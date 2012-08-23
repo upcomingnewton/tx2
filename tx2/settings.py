@@ -1,12 +1,9 @@
-
 import os
-#hostname = os.environ['HOSTNAME']
-#print hostname
 
-#if( hostname == 'linux-4bv4.site' ):
-from conf.LogHandlers import *
-from conf.db_settings import *
-from conf.sarv_settings import *
+GLOBAL_STATICFILES_DIRS = "tx2/static"
+GLOBAL_TEMPLATE_DIRS = "tx2/templates/TXtemplates"
 
-#elif (hostname == 'nathron.thoughtexplore.com'):
-#from conf.labs_nitin_settings import *
+from conf.GlobalSettings.DatabaseSettings import *
+from conf.GlobalSettings.GlobalSettings import *
+from conf.nitin.DirSettings import *
+

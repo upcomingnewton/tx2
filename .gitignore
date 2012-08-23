@@ -5,7 +5,6 @@
 *.pyc
 local_settings.py
 tx2/build/*
-tx2/conf/jivjot_settings.py
 tx2/settings.py
 tx2/settings.py
 tx2/settings.py

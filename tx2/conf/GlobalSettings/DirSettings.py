@@ -1,0 +1,2 @@
+GLOBAL_STATICFILES_DIRS = "tx2/static"
+GLOBAL_TEMPLATE_DIRS = "tx2/templates"
