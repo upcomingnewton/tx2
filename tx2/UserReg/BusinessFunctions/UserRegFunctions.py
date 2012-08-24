@@ -373,35 +373,93 @@ class UserRegFnx():
                         
                         
                         
-        # SELECT FUNCTIONS
-        
-#  def getUserIDListForARecord(self,AppLabel,Model,rid):
-#    try:
-#                        ctid = -1
-#                        ctlist = getContentTypes()
-#                        for ctobj in ctlist:
-#        if ctobj.app_label == AppLabel and ctobj.model == Model:
-#                ctid = ctobj.id
-#                        if ctid == -1:
-#        #error here
-#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
-#        return (-1,error_msg)
-#                        try:
-#        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-#        UserList = self.ConvertStringToUsersList(UserRegObj.Users,self.UserSep)
-#        GroupList = self.ConvertStringToUsersList(UserRegObj.Groups,self.GroupSep)
-#        #TODO get the users in this group , and then return the complete list
-#        CompleteUserList = UserList
-#        return (1,CompleteUserList)
-#                        except  ObjectDoesNotExist , DoesNotExist:
-#        error_msg = 'Error Record Does not exist'
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
-#        return (-1,error_msg)
-#    except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('getUserIDListForARecord'))
-#                        return (-1,'Error at business level getUserIDListForARecord function in UserReg')
-                        
+  # SELECT FUNCTIONS
+
+  def getUserIDListForARecord(self,AppLabel,Model,rid):
+    DBUsersNullValue = self.UserSep * 3
+    DBGroupsNullValue = self.GroupSep * 3
+    try:
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      try:
+        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+        DBStringList = []
+        if UserRegObj.Users != DBUsersNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Users,self.UserSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no users present
+            return (-1,'No user is registered for this content type id.')
+        return (1,DBStringList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+
+  def getGroupIDListForARecord(self,AppLabel,Model,rid):
+    DBUsersNullValue = self.UserSep * 3
+    DBGroupsNullValue = self.GroupSep * 3
+    try:
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      try:
+        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+        DBStringList = []
+        if UserRegObj.Groups != DBGroupsNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Groups,self.GroupSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no users present
+            return (-1,'No group is registered for this content type id.')
+        return (1,DBStringList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+
+  def getCompleteListOfUsersForAUser(self,AppLabel,Model,rid):
+  # get users list
+  # get groups list
+  # get users of a group
+  # megre both lists
+  # get unique userids and return 
+    try:
+      UsersList = self.getUserIDListForARecord(AppLabel,Model,rid)
+      if( UsersList[0] != 1):
+        return (-1,UsersList[1])
+      UsersList = UsersList[1]
+      GroupsList = self.getGroupIDListForARecord(AppLabel,Model,rid)
+      if( GroupsList[0] != 1):
+        return (-1,GroupsList[1])
+      GroupsList = GroupsList[1]
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+
 #  def getUserObjectListForARecord(self,AppLabel,Model,rid):
 #    try:
 #                        ctid = -1

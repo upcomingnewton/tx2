@@ -22,6 +22,17 @@ def CallFunction(sql):
     row = dictfetchall(cursor)
     #print row
     return row
+
+def CallSelectFunction(sql):
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    data=cursor.fetchall()
+    return data
+    #transaction.commit_unless_managed()
+    #row = dictfetchall(cursor)
+    #print row
+    #return row
+    
     
 if __name__=="__main__":
     CallFunction('SELECT * FROM "txUser_user";')
