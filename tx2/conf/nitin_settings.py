@@ -3,13 +3,10 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-#LogHandlers.py
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-      ('thoughtxplore','thoughtxplore@gmail.com'),
-)
 
 MANAGERS = ADMINS
+
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -24,7 +21,12 @@ TIME_ZONE = 'Asia/Calcutta'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-
+SITE_ID = 1
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'thoughtxplore@gmail.com'
+EMAIL_HOST_PASSWORD = 'NewalaTX:)'
+EMAIL_PORT = 587
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -57,7 +59,14 @@ STATIC_URL = '/static/'
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
-
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    #"/home/nitin/tx2/static",
+    "/home/nitin/workspace/tx2/static",
+)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -81,19 +90,28 @@ MIDDLEWARE_CLASSES = (
     #'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.cache.FetchFromCacheMiddleware',
 )
+
 ROOT_URLCONF = 'tx2.urls'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    #"/home/nitin/tx2/templates",
+    "/home/nitin/workspace/tx2/templates",
+)
+
 INSTALLED_APPS = (
     #'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     #'django.contrib.sites',
-    'django.contrib.messages',
+    #'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -115,11 +133,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'django.core.context_processors.media',
     'django.core.context_processors.static',
     #'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
+    #'django.contrib.messages.context_processors.messages',
     #'ThoughtXplore.txContextProcessors.MenuContextProcessor',
     #'ThoughtXplore.txContextProcessors.UserContextProcessor',
     #'ThoughtXplore.txContextProcessors.TEMPLATE_PARAM_USER_NOT_LOGGED_IN',
-    #'tx2.ContextProcessors.MessageContextProcessor',
+    'tx2.ContextProcessors.MessageContextProcessor',
     
 )
 
@@ -132,5 +150,5 @@ CACHES = {
     }
 }
 SESSION_ENGINE="django.contrib.sessions.backends.cached_db"
-SESSION_COOKIE_AGE = 15*60
+SESSION_COOKIE_AGE = 1*60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

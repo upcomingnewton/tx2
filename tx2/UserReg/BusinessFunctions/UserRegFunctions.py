@@ -2,303 +2,495 @@ from tx2.UserReg.models import RegisterUser
 from tx2.UserReg.DBFunctions.DBFunctions import DBRegUserUpdate,DBRegUserInsert
 from tx2.UserReg.models import RegisterUser
 from tx2.Users.models import User
-from tx2.Misc.CacheManagement import setCache,getCache,getContentTypes
+from tx2.Misc.CacheManagement import setCache,getCache,getContentTypeIdFromModelandAppLabel
 from tx2.CONFIG import LOGGER_UserReg
 import logging
 import datetime
 from tx2.conf.LocalProjectConfig import *
 from django.core.exceptions import ObjectDoesNotExist
+import inspect
 
 class UserRegFnx():
-	def __init__(self):
-		self.UserRegLogger = logging.getLogger(LOGGER_UserReg)
-		self.UserSep = "$"
-		self.GroupSep = "!"
-		
-	#Internal function
-	def ConvertStrListToInt(self,UsersList):
-		try:
-			res = [ int(i) for i in UsersList]
-			return res
-		except:
-			return []
-	
-	def getUniqueIntList(self,UsersList):
-		try:
-			res = []
-			num = len(UsersList)
-			for x in range(0,num):
-				if UsersList[x] not in UsersList[x+1:]:
-					res.append(UsersList[x])
-			return res
-		except:
-			return []
-	
-	def ConvertUsersListToString(self,UsersList,userstr):
-		try:
-			for user in UsersList:
-				userstr = userstr + str(user) + userstr
-			self.UserRegLogger.debug('[%s] == %s =='%('ConvertUsersListToString',userstr))
-			return userstr
-		except:
-			return None
-	
-	#Internal function
-	def ConvertStringToUsersList(self,UsersList,sep):
-		try:
-			_str = UsersList.split(sep)
-			_str = _str[1:-1]
-			res = [int(i) for i in _str]
-			return res
-		except:
-			return None
-		
-	def Create(self,MetaInfo,Desc,Users,Groups,ReferenceToRegisterUser,Record,ContentType,Operation,by,ip):
-		try:
-			details = {
-					'MetaInfo':MetaInfo,
-					'Desc':Desc,
-					'Users':Users,
-					'Groups':Groups,
-					'ReferenceToRegisterUser':ReferenceToRegisterUser,
-					'Record':Record,#int
-					'ContentType':ContentType,#int
-					'Operation':Operation,
-					'by':by,#int
-					'ip':ip,
-				}
-			result = DBRegUserInsert(details)
-			return (1,result)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('Create'))
-			return (-1,'Error at business level Create function in UserReg')
-			
-	def Update(self,MetaInfo,Desc,Users,Groups,ReferenceToRegisterUser,Record,ContentType,Operation,by,ip,LogsDesc):
-		try:
-			details = {
-					'MetaInfo':MetaInfo,
-					'Desc':Desc,
-					'Users':Users,
-					'Groups':Groups,
-					'ReferenceToRegisterUser':ReferenceToRegisterUser,
-					'Record':Record,#int
-					'ContentType':ContentType,#int
-					'Operation':Operation,
-					'LogsDesc':LogsDesc,
-					'by':by,#int
-					'ip':ip,
-				}
-			result = DBRegUserUpdate(details)
-			return (1,result)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('Update'))
-			return (-1,'Error at business level Update function in UserReg')
-		
+  def __init__(self):
+                self.UserRegLogger = logging.getLogger(LOGGER_UserReg)
+                self.UserSep = "$"
+                self.GroupSep = "!"
+                
+        #Internal function
+        # it takes input like ['1','2','3','4'] ... this is
+        # what you usually get, when you put choice buttons on a 
+        # web page ....
+  def ConvertStringListtoIntegerList(self,StringList):
+    try:
+      res = [ int(i) for i in StringList]
+      frame = inspect.currentframe()
+      self.UserRegLogger.debug("[%s] IN = %s \n OUT = %s"%(inspect.getframeinfo(frame)[2],str(StringList),str(res)))
+      return (1,res)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
 
-	def AdduserData(self,AppLabel,Model,rid,Desc,Users,by,ip,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE,Groups=-1,ReferenceToRegisterUser=-1):
-		try:
-			# get the object, if present
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == AppLabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('AdduserData',error_msg))
-				return (-1,error_msg)
-			print ctid
-			
-			try:
-				#change code 4 this for Notice i'll b calling this funx with Users=-1 or Users=
-			
-				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-				objlist = self.ConvertStringToUsersList(UserRegObj.Users,self.UserSep)
-				user_list = self.ConvertStrListToInt(Users)
-				UsersList = objlist + user_list
-				UsersList = self.getUniqueIntList(UsersList)
-				UsersList = self.ConvertUsersListToString(UsersList,self.UserSep)
-				
-				grplist = self.ConvertStringToUsersList(UserRegObj.Groups,self.GroupSep)
-				grp_list = self.ConvertStrListToInt(Groups)
-				GroupsList = grplist + grp_list
-				GroupsList = self.getUniqueIntList(GroupsList)
-				GroupsList = self.ConvertUsersListToString(GroupsList,self.GroupSep)
-				
-				return self.Update(str(datetime.datetime.now()),Desc,UsersList,GroupsList,"-1",rid,ctid,op_update,by,ip,'added ' + str(user_list))
-			except  ObjectDoesNotExist , DoesNotExist:
-				UsersList = self.ConvertUsersListToString(Users,self.UserSep)
-				GroupsList = self.ConvertUsersListToString(Groups,self.GroupSep)
-				if UsersList is None or GroupsList is None:
-					error_msg = 'Error formatting users/groups list'
-					self.UserRegLogger.error('[%s] == Error == \n %s'%('AdduserData',error_msg))
-					return (-1,error_msg)
-				print UsersList
-				return self.Create(str(datetime.datetime.now()),Desc,UsersList,GroupsList,"-1",rid,ctid,op_insert,by,ip)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('AdduserData'))
-			return (-1,'Error at business level AdduserData function in UserReg')
-			
-	def DeleteUsers(self,AppLabel,Model,rid,Users,Groups,by,ip,op_delete=SYSTEM_PERMISSION_DELETE):
-		try:
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == AppLabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('DeleteUsers',error_msg))
-				return (-1,error_msg)
-			try:
-				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-				objlist = self.ConvertStringToUsersList(UserRegObj.Users,self.UserSep)
-				user_list = self.ConvertStrListToInt(Users)
-				new_list = []
-				for x in objlist:
-					if x not in user_list:
-						new_list.append(x)
-				UsersList = self.ConvertUsersListToString(new_list,self.UserSep)
-				
-				grplist = self.ConvertStringToUsersList(UserRegObj.Groups,self.GroupSep)
-				group_list = self.ConvertStrListToInt(Groups)
-				newgrp_list = []
-				for x in grplist:
-					if x not in group_list:
-						newgrp_list.append(x)
-				GroupsList = self.ConvertUsersListToString(newgrp_list,self.GroupSep)
-				
-				return self.Update(str(datetime.datetime.now()),UserRegObj.Desc,UsersList,GroupsList,"-1",rid,ctid,op_delete,by,ip,'deleted ' + str(user_list))
-			except  ObjectDoesNotExist , DoesNotExist:
-				error_msg = 'Error Record Does not exist'
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('DeleteUsers',error_msg))
-				return (-1,error_msg)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('DeleteUsers'))
-			return (-1,'Error at business level DeleteUsers function in UserReg')
-			
-			
-			
-	# SELECT FUNCTIONS
-	
-	def getUserIDListForARecord(self,AppLabel,Model,rid):
-		try:
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == AppLabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
-				return (-1,error_msg)
-			try:
-				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-				UserList = self.ConvertStringToUsersList(UserRegObj.Users,self.UserSep)
-				GroupList = self.ConvertStringToUsersList(UserRegObj.Groups,self.GroupSep)
-				#TODO get the users in this group , and then return the complete list
-				CompleteUserList = UserList
-				return (1,CompleteUserList)
-			except  ObjectDoesNotExist , DoesNotExist:
-				error_msg = 'Error Record Does not exist'
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
-				return (-1,error_msg)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('getUserIDListForARecord'))
-			return (-1,'Error at business level getUserIDListForARecord function in UserReg')
-			
-	def getUserObjectListForARecord(self,AppLabel,Model,rid):
-		try:
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == AppLabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
-				return (-1,error_msg)
-			try:
-				UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-				user_id_list_str = str(self.getUserIDListForARecord(AppLabel,Model,rid)) # TODO check if it works
-				query = "id IN (" +  user_id_list_str[1:-1] + ")" 
-				UserObjList = User.objects.extra(where=[query])
-				return (1,UserObjList)
-			except  ObjectDoesNotExist , DoesNotExist:
-				error_msg = 'Error Record Does not exist'
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
-				return (-1,error_msg)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('getUserObjectListForARecord'))
-			return (-1,'Error at business level getUserObjectListForARecord function in UserReg')
-			
-	def getContentTypeAndRecordByUserID(self,userid):
-		try:
-			query = self.UserSep + str(userid) + self.UserSep
-			UserRegObjList = RegisterUser.objects.filter(Users__contains=query)
-			return (1,UserRegObjList)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByUserID'))
-			return (-1,'Error at business level getContentTypeAndRecordByUserID function in UserReg')
-			
-	def getContentTypeAndRecordByGroupID(self,gid):
-		try:
-			query = self.GroupSep + str(gid) + self.GroupSep
-			GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query)
-			return (1,GroupRegObjList)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByGroupID'))
-			return (-1,'Error at business level getContentTypeAndRecordByGroupID function in UserReg')
-			
-	def geRecordIDListByUserIDAndContentType(self,Applabel,Model,userid):
-		try:
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == Applabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-				return (-1,error_msg)
-			try:
-				query = "$" + str(userid) + "$"
-				UserRegObjList = RegisterUser.objects.filter(Users__contains=query,ContentType__id=ctid)
-				return (1,UserRegObjList)
-			except  ObjectDoesNotExist , DoesNotExist:
-				error_msg = 'Error Record Does not exist'
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-				return (-1,error_msg)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
-			return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')
-			
-			
-	def geRecordIDListByGroupIDAndContentType(self,Applabel,Model,groupid):
-		try:
-			ctid = -1
-			ctlist = getContentTypes()
-			for ctobj in ctlist:
-				if ctobj.app_label == Applabel and ctobj.model == Model:
-					ctid = ctobj.id
-			if ctid == -1:
-				#error here
-				error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-				return (-1,error_msg)
-			try:
-				query2 = self.GroupSep + str(groupid) + self.GroupSep
-				GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query2,ContentType__id=ctid)
-				return (1,GroupRegObjList)
-			except  ObjectDoesNotExist , DoesNotExist:
-				error_msg = 'Error Record Does not exist'
-				self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-				return (-1,error_msg)
-		except:
-			self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
-			return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')
+
+
+# this method will only return unique integers from a list of integers
+  def getUniqueIntegerList(self,IntegerList):
+    try:
+      res = []
+      num = len(IntegerList)
+      for x in range(0,num):
+        if IntegerList[x] not in IntegerList[x+1:]:
+          res.append(IntegerList[x])
+      frame = inspect.currentframe()
+      self.UserRegLogger.debug("[%s] IN = %s \n OUT = %s"%(inspect.getframeinfo(frame)[2],str(IntegerList),str(res)))
+      return (1,res)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+
+
+
+#ConvertUsersListToString
+#this method converts an integer list to a string 
+# sepaarated by some separator
+  def  ConvertIntegerListToDBString(self,IntegerList,sep):
+    try:
+      userstr = ''
+      for _int in IntegerList:
+        userstr += str(_int) + sep
+      #userstr = userstr[:-1]
+      frame = inspect.currentframe()
+      self.UserRegLogger.debug("[%s] IN = %s, %s \n OUT = %s"%(inspect.getframeinfo(frame)[2],str(IntegerList),str(sep),userstr))
+      return (1,userstr)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+        
+        #Internal function
+# it expects some string like (val1 sep val2 sep)
+  def ConvertDBStringtoIntegerList(self,DBString,sep):
+    try:
+      _str = DBString.split(sep)
+      _str = _str[:-1]
+      res = [int(i) for i in _str]
+      frame = inspect.currentframe()
+      self.UserRegLogger.debug("[%s] IN = %s, %s \n OUT = %s"%(inspect.getframeinfo(frame)[2],str(DBString),str(sep),res))
+      return (1,res)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+
+  def Create(self,MetaInfo,Desc,Users,Groups,ReferenceToRegisterUser,Record,ContentType,Operation,by,ip):
+    try:
+        details = {
+                'MetaInfo':MetaInfo,
+                'Desc':Desc,
+                'Users':Users,
+                'Groups':Groups,
+                'ReferenceToRegisterUser':ReferenceToRegisterUser,
+                'Record':Record,#int
+                'ContentType':ContentType,#int
+                'Operation':Operation,
+                'by':by,#int
+                'ip':ip,
+        }
+        result = DBRegUserInsert(details)
+        return (1,result)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+                        
+  def Update(self,MetaInfo,Desc,Users,Groups,ReferenceToRegisterUser,Record,ContentType,Operation,by,ip,LogsDesc):
+    try:
+      details = {
+                'MetaInfo':MetaInfo,
+                'Desc':Desc,
+                'Users':Users,
+                'Groups':Groups,
+                'ReferenceToRegisterUser':ReferenceToRegisterUser,
+                'Record':Record,#int
+                'ContentType':ContentType,#int
+                'Operation':Operation,
+                'LogsDesc':LogsDesc,
+                'by':by,#int
+                'ip':ip,
+      }
+      result = DBRegUserUpdate(details)
+      return (1,result)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+  def AdduserData(self,AppLabel,Model,rid,_Desc,by,ip,Users=-1,Groups=-1,op_insert=SYSTEM_PERMISSION_INSERT,op_update=SYSTEM_PERMISSION_UPDATE,ReferenceToRegisterUser=-1):
+    try:
+      # get the object, if present
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      Desc = ''
+      try:
+        # get the object, if it is already there in database, also it creates DoesNotExist exception
+        # in case no value is thgere in database
+        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+        UsersList = []
+        GroupList = []
+        DBUsersNullValue = self.UserSep * 3
+        DBGroupsNullValue = self.GroupSep * 3
+        # if there is some users list in input
+                ###############  WE CHECK FOR Users ##############
+        Desc += 'UPDATE.'
+        if Users is not -1:
+          #check if , earlier there was some entry for users in this record
+          if UserRegObj.Users != DBUsersNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Users,self.UserSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no there was not 
+            DBStringList = []
+        
+          # this is a list of users , whom the user has requested to add to exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Users)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+
+          if len(DBStringList) > 0:
+            UsersList = UsersList + DBStringList 
+          if len(UserReqList) > 0:
+            UsersList = UsersList + UserReqList
+          UsersList = self.getUniqueIntegerList(UsersList)
+          if( UsersList[0] is not 1):
+            return (-1,UsersList[1])
+          UsersList = self.ConvertIntegerListToDBString(UsersList[1],self.UserSep)
+          if( UsersList[0] is not 1):
+            return (-1,UsersList[1])
+          UsersList = UsersList[1]
+        else:
+          UsersList = DBUsersNullValue
+        Desc += 'Users : ' + UsersList + '.'
+                ############### NOW WE CHECK FOR GROUPS ##############
+        
+        if Groups is not -1:
+          #check if , earlier there was some entry for groups in this record
+          if UserRegObj.Groups != DBGroupsNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Groups,self.GroupSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no there was not 
+            DBStringList = []
+        
+          # this is a list of groups , whom the user has requested to add to exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Groups)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+
+          if len(DBStringList) > 0:
+            GroupList = GroupList + DBStringList 
+          if len(UserReqList) > 0:
+            GroupList = GroupList + UserReqList
+          GroupList = self.getUniqueIntegerList(GroupList)
+          if( GroupList[0] is not 1):
+            return (-1,GroupList[1])
+          GroupList = self.ConvertIntegerListToDBString(GroupList[1],self.GroupSep)
+          if( GroupList[0] is not 1):
+            return (-1,GroupList[1])
+          GroupList = GroupList[1]
+        else:
+          GroupList = DBGroupsNullValue
+        Desc += 'Groups : ' + GroupList + '.'
+        return self.Update("-1",_Desc,UsersList,GroupList,"-1",rid,ctid,op_update,by,ip,Desc)
+        #Update(self,MetaInfo,Desc,Users,Groups,ReferenceToRegisterUser,Record,ContentType,Operation,by,ip,LogsDesc):
+      except  ObjectDoesNotExist , DoesNotExist:
+        UsersList = []
+        GroupList = []
+        Desc += 'iNSERT.'
+        DBUsersNullValue = self.UserSep * 3
+        DBGroupsNullValue = self.GroupSep * 3
+        if Users is not -1:
+          # this is a list of users , whom the user has requested to add to exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Users)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+          UsersList = UserReqList
+          UsersList = self.getUniqueIntegerList(UsersList)
+          if( UsersList[0] is not 1):
+            return (-1,UsersList[1])
+          UsersList = self.ConvertIntegerListToDBString(UsersList[1],self.UserSep)
+          if( UsersList[0] is not 1):
+            return (-1,UsersList[1])
+          UsersList = UsersList[1]
+        else:
+          UsersList = DBUsersNullValue
+        Desc += 'Users : ' + UsersList + '.'
+
+        if Groups is not -1:
+          # this is a list of groups , whom the user has requested to add to exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Groups)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+          GroupsList = UserReqList
+          GroupList = self.getUniqueIntegerList(GroupList)
+          if( GroupList[0] is not 1):
+            return (-1,GroupList[1])
+          GroupList = self.ConvertIntegerListToDBString(GroupList[1],self.GroupSep)
+          if( GroupList[0] is not 1):
+            return (-1,GroupList[1])
+          GroupList = GroupList[1]
+        else:
+          GroupList = DBGroupsNullValue
+        Desc += 'Groups : ' + GroupList + '.'
+        return self.Create(Desc,_Desc,UsersList,GroupList,"-1",rid,ctid,op_insert,by,ip)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+
+  def DeleteUsersAndGroups(self,AppLabel,Model,rid,by,ip,Users = -1,Groups = -1,op_delete=SYSTEM_PERMISSION_DELETE):
+    try:
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      DBUsersNullValue = self.UserSep * 3
+      DBGroupsNullValue = self.GroupSep * 3
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      Desc = 'DELETE.'
+      try:
+        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+        if Users is not -1:
+          Desc += ' Users - '
+          DBStringList = []
+          if UserRegObj.Users != DBUsersNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Users,self.UserSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no users present
+            return (-1,'No user is registered for this content type id.')
+          # this is a list of users , whom the user has requested to delete from exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Users)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+          UpdatedUsersList = []
+          for x in DBStringList:
+            if x not in UserReqList:
+              UpdatedUsersList.append(x)
+            else:
+              Desc += str(x) + ','
+          UpdatedUsersList = self.ConvertIntegerListToDBString(UpdatedUsersList,self.UserSep)
+          if( UpdatedUsersList[0] is not 1):
+            return (-1,UpdatedUsersList[1])
+          UpdatedUsersList = UpdatedUsersList[1]
+        else:
+          UpdatedUsersList = UserRegObj.Users
+          
+        if Groups is not -1:
+          Desc += 'Groups - '
+          DBStringList = []
+          if UserRegObj.Groups != DBGroupsNullValue:
+            # yes , there was some, get that value, and convert it to integer list
+            DBStringList = self.ConvertDBStringtoIntegerList(UserRegObj.Groups,self.GroupSep)
+            if DBStringList[0] is not 1:
+              return (-1,DBStringList[1])
+            DBStringList = DBStringList[1]
+          else:
+            # no groups present
+            return (-1,'No group is registered for this content type id.')
+          # this is a list of groups , whom the user has requested to delete from exisiting list
+          UserReqList = self.ConvertStringListtoIntegerList(Groups)
+          if UserReqList[0] is not 1:
+            return (-1,UserReqList[1])
+          UserReqList = UserReqList[1]
+          UpdatedGroupsList = []
+          for x in DBStringList:
+            if x not in UserReqList:
+              UpdatedGroupsList.append(x)
+            else:
+              Desc += str(x) + ','
+          UpdatedGroupsList = self.ConvertIntegerListToDBString(UpdatedGroupsList,self.GroupSep)
+          if( UpdatedGroupsList[0] is not 1):
+            return (-1,UpdatedGroupsList[1])
+          UpdatedGroupsList = UpdatedGroupsList[1]
+        else:
+          UpdatedGroupsList = UserRegObj.Groups
+        return self.Update("-2",UserRegObj.Desc,UpdatedUsersList,UpdatedGroupsList,"-1",rid,ctid,op_delete,by,ip,Desc)
+      except  ObjectDoesNotExist , DoesNotExist:
+        error_msg = 'No data for this content type'
+        return (-1,error_msg)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+                        
+                        
+                        
+        # SELECT FUNCTIONS
+        
+#  def getUserIDListForARecord(self,AppLabel,Model,rid):
+#    try:
+#                        ctid = -1
+#                        ctlist = getContentTypes()
+#                        for ctobj in ctlist:
+#        if ctobj.app_label == AppLabel and ctobj.model == Model:
+#                ctid = ctobj.id
+#                        if ctid == -1:
+#        #error here
+#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
+#        return (-1,error_msg)
+#                        try:
+#        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+#        UserList = self.ConvertStringToUsersList(UserRegObj.Users,self.UserSep)
+#        GroupList = self.ConvertStringToUsersList(UserRegObj.Groups,self.GroupSep)
+#        #TODO get the users in this group , and then return the complete list
+#        CompleteUserList = UserList
+#        return (1,CompleteUserList)
+#                        except  ObjectDoesNotExist , DoesNotExist:
+#        error_msg = 'Error Record Does not exist'
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserIDListForARecord',error_msg))
+#        return (-1,error_msg)
+#    except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('getUserIDListForARecord'))
+#                        return (-1,'Error at business level getUserIDListForARecord function in UserReg')
+                        
+#  def getUserObjectListForARecord(self,AppLabel,Model,rid):
+#    try:
+#                        ctid = -1
+#                        ctlist = getContentTypes()
+#                        for ctobj in ctlist:
+#        if ctobj.app_label == AppLabel and ctobj.model == Model:
+#                ctid = ctobj.id
+#                        if ctid == -1:
+#        #error here
+#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
+#        return (-1,error_msg)
+#                        try:
+#        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+#        user_id_list_str = str(self.getUserIDListForARecord(AppLabel,Model,rid)) # TODO check if it works
+#        query = "id IN (" +  user_id_list_str[1:-1] + ")" 
+#        UserObjList = User.objects.extra(where=[query])
+#        return (1,UserObjList)
+#                        except  ObjectDoesNotExist , DoesNotExist:
+#        error_msg = 'Error Record Does not exist'
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
+#        return (-1,error_msg)
+#    except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('getUserObjectListForARecord'))
+#                        return (-1,'Error at business level getUserObjectListForARecord function in UserReg')
+
+#  def getContentTypeAndRecordByUserID(self,userid):
+#                try:
+#                        query = self.UserSep + str(userid) + self.UserSep
+#                        UserRegObjList = RegisterUser.objects.filter(Users__contains=query)
+#                        return (1,UserRegObjList)
+#                except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByUserID'))
+#                        return (-1,'Error at business level getContentTypeAndRecordByUserID function in UserReg')
+                        
+#  def getContentTypeAndRecordByGroupID(self,gid):
+#                try:
+#                        query = self.GroupSep + str(gid) + self.GroupSep
+#                        GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query)
+#                        return (1,GroupRegObjList)
+#                except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByGroupID'))
+#                        return (-1,'Error at business level getContentTypeAndRecordByGroupID function in UserReg')
+                        
+#  def geRecordIDListByUserIDAndContentType(self,Applabel,Model,userid):
+#                try:
+#                        ctid = -1
+#                        ctlist = getContentTypes()
+#                        for ctobj in ctlist:
+#        if ctobj.app_label == Applabel and ctobj.model == Model:
+#                ctid = ctobj.id
+#                        if ctid == -1:
+#        #error here
+#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
+#        return (-1,error_msg)
+#                        try:
+#        query = "$" + str(userid) + "$"
+#        UserRegObjList = RegisterUser.objects.filter(Users__contains=query,ContentType__id=ctid)
+#        return (1,UserRegObjList)
+#                        except  ObjectDoesNotExist , DoesNotExist:
+#        error_msg = 'Error Record Does not exist'
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
+#        return (-1,error_msg)
+#                except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
+#                        return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')
+                        
+                        
+#  def geRecordIDListByGroupIDAndContentType(self,Applabel,Model,groupid):
+#    try:
+#      ctid = -1
+#      ctlist = getContentTypes()
+#                        for ctobj in ctlist:
+#        if ctobj.app_label == Applabel and ctobj.model == Model:
+#                ctid = ctobj.id
+#                        if ctid == -1:
+#        #error here
+#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
+#        return (-1,error_msg)
+#                        try:
+#        query2 = self.GroupSep + str(groupid) + self.GroupSep
+#        GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query2,ContentType__id=ctid)
+#        return (1,GroupRegObjList)
+#                        except  ObjectDoesNotExist , DoesNotExist:
+#        error_msg = 'Error Record Does not exist'
+#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
+#        return (-1,error_msg)
+#                except:
+#                        self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
+#                        return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')

@@ -17,7 +17,7 @@ urlpatterns = patterns('',
         
         url(r'^password/reset/reset/$','Users.Views.UserViews.ResetPass'),
         # post-back for logging in 
-        url(r'^login/log_in/$','Users.Views.UserViews.log_in'),
+        url(r'^login/post/$','Users.Views.UserViews.Login'),
         url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
         url(r'^register/new/$','Users.Views.UserViews.CreateUserFromSite'),
         url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViews.AuthenticateUserFromEmail'),

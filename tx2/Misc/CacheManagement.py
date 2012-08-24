@@ -34,6 +34,22 @@ def getContentTypes():
 	else:
 		return ctlist
 		
+def getContentTypeIdFromModelandAppLabel(AppLabel,Model):
+  ctid = -1
+  try:
+    ctlist = getContentTypes()
+    if( len(ctlist) == 0):
+      return (-1,'There are no items in Content Type List.')
+    for ctobj in ctlist:
+      if ctobj.app_label == AppLabel and ctobj.model == Model:
+        ctid = ctobj.id
+        break
+    if ctid == -1:
+      return (-1,'Content Type Object does not exist for this App Label and Model.')
+    return (1,ctid)
+  except Exception, ex:
+    return (-2,str(ex))
+
 def getStates():
 	state_list = getCache(CACHE_STATES_LIST)
 	if state_list is None:

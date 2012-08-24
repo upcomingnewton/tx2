@@ -5,25 +5,32 @@ from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Users.Views.UserViews import CheckAndlogout
 from tx2.CONFIG import LoggerUser, SESSION_MESSAGE
+from django.contrib.messages import constants as messages
 import logging
+import inspect
 
 
 LoggerUser = logging.getLogger(LoggerUser)
 ExceptionMessage = 'ERROR : System has suffered some error while processing your request. Please try after some-time. If the problem persists, contact system administrators.'
 
 def LoginIndex(HttpRequest):
-  msglist = AppendMessageList(HttpRequest)
-  ip = HttpRequest.META['REMOTE_ADDR']
   try:
-    mlist = CheckAndlogout(HttpRequest)
-    msglist += mlist
-    HttpRequest.session[SESSION_MESSAGE] = msglist
-    return HttpResponseRedirect('/')
-  except:
-    LoggerUser.exception('LoginIndex')
-    msglist.append(ExceptionMessage)
-    HttpRequest.session[SESSION_MESSAGE] = msglist
-    return HttpResponseRedirect('/message/')
+    # check if user is already logged in or not
+    # if user is already logged in, then redirect it to home page 
+    # and generate an error that user needs to log out to log in again
+    if "details" in HttpRequest.session.keys():
+      return HttpResponseRedirect('/user/dashboard/')
+      messages.warning(HttpRequest, 'You are already logged in.')
+    return render_to_response('UserSystem/login.html',{},context_instance=RequestContext(HttpRequest))
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not load login page. ' + str(msg))
+      return HttpResponseRedirect('/message/')
     
 def CreateUserIndex(HttpRequest):
   msglist = AppendMessageList(HttpRequest)

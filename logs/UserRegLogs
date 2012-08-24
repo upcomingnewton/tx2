@@ -1,0 +1,415 @@
+2012-08-24 00:17:54,679 UserRegFunctions  line:30   ERROR    ConvertStrListToInt : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f78b4c4a4d0>][UsersList : 1,2,3,4,5]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 22, in ConvertStrListToInt
+    res = [ int(i) for i in UsersList]
+ValueError: invalid literal for int() with base 10: ','
+2012-08-24 00:39:18,436 UserRegFunctions  line:181  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f78b4c4a4d0>][AppLabel : users][Model : User][rid : 1][Desc : testing from business functions][Users : ['1', '2', '3', '4', '5', '6', '7']][by : 1][ip : testing_from_business][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 138, in AdduserData
+    for ctobj in ctlist:
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 107, in _result_iter
+    self._fill_cache()
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 772, in _fill_cache
+    self._result_cache.append(self._iter.next())
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 734, in execute_sql
+    cursor = self.connection.cursor()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/__init__.py", line 250, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 140, in _cursor
+    self.connection = Database.connect(**conn_params)
+OperationalError: could not connect to server: Connection timed out
+	Is the server running on host "119.18.58.214" and accepting
+	TCP/IP connections on port 5432?
+
+2012-08-24 00:59:09,343 UserRegFunctions  line:144  ERROR    [AdduserData] == Error == 
+ Invalid Applabel users or Model User
+2012-08-24 01:00:33,243 UserRegFunctions  line:181  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7ffe176a06c8>][AppLabel : Users][Model : user][rid : 1][Desc : testing from business functions][Users : ['1', '2', '3', '4', '5', '6', '7']][by : 1][ip : testing_from_business][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 149, in AdduserData
+    UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 735, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: column UserReg_registeruser.Groups does not exist
+LINE 1: ...eruser"."Record", "UserReg_registeruser"."Users", "UserReg_r...
+                                                             ^
+
+2012-08-24 01:01:25,667 UserRegFunctions  line:54   DEBUG    [ConvertUsersListToString] == $1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$ ==
+2012-08-24 01:01:25,701 UserRegFunctions  line:62   ERROR    ConvertUsersListToString : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f33770366c8>][UsersList : -1][userstr : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 52, in ConvertUsersListToString
+    for user in UsersList:
+TypeError: 'int' object is not iterable
+2012-08-24 01:01:25,702 UserRegFunctions  line:172  ERROR    [AdduserData] == Error == 
+ Error formatting users/groups list
+2012-08-24 01:09:15,629 UserRegFunctions  line:54   DEBUG    [ConvertUsersListToString] == $1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$ ==
+2012-08-24 01:09:15,659 UserRegFunctions  line:62   ERROR    ConvertUsersListToString : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f372093c518>][UsersList : -1][userstr : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 52, in ConvertUsersListToString
+    for user in UsersList:
+TypeError: 'int' object is not iterable
+2012-08-24 01:09:15,660 UserRegFunctions  line:173  ERROR    [AdduserData] == Error == 
+ Error formatting users/groups list
+2012-08-24 01:15:25,888 UserRegFunctions  line:54   DEBUG    [ConvertUsersListToString] == $1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$ ==
+2012-08-24 01:15:25,923 DBFunctions       line:30   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': '$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$', 'Groups': [], 'Record': 1, 'ip': 'testing_from_business', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business functions', 'by': 1, 'MetaInfo': '2012-08-24 01:15:25.888413'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 21, in DBRegUserInsert
+    query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"','" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+TypeError: cannot concatenate 'str' and 'list' objects
+2012-08-24 01:16:15,392 UserRegFunctions  line:54   DEBUG    [ConvertUsersListToString] == $1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$ ==
+2012-08-24 01:16:15,424 DBFunctions       line:31   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': '$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$7$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$6$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$5$1$2$1$3$1$2$1$4$1$2$1$3$1$2$1$', 'Groups': [], 'Record': 1, 'ip': 'testing_from_business', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business functions', 'by': 1, 'MetaInfo': '2012-08-24 01:16:15.392613'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 21, in DBRegUserInsert
+    query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"','" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+TypeError: cannot concatenate 'str' and 'list' objects
+2012-08-24 13:31:10,033 UserRegFunctions  line:34   ERROR    ConvertStringListtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f3e1fc36d88>][StringList : testing_from_business]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 25, in ConvertStringListtoIntegerList
+    res = [ int(i) for i in StringList]
+ValueError: invalid literal for int() with base 10: 't'
+2012-08-24 13:33:31,626 UserRegFunctions  line:34   ERROR    ConvertStringListtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f3e1fc36d88>][StringList : ['1', '2', '3', '4', '5', '6']]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 26, in ConvertStringListtoIntegerList
+    self.UserRegLogger.debug("[%s] IN = %s \n OUT = %s"%(inspect.getframeinfo(frame)[2],str(StringList),str(res)))
+UnboundLocalError: local variable 'frame' referenced before assignment
+2012-08-24 13:35:20,325 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:35:20,335 DBFunctions       line:31   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': [1, 2, 3, 4, 5, 6], 'Groups': '!!!', 'Record': 1, 'ip': 'testing', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business classes - only users', 'by': 1, 'MetaInfo': '2012-08-24 13:35:20.325420'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 21, in DBRegUserInsert
+    query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"','" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+TypeError: cannot concatenate 'str' and 'list' objects
+2012-08-24 13:37:21,409 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:37:21,410 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:37:21,410 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = (1, [1, 2, 3, 4, 5, 6]), $ 
+ OUT = 1$[1, 2, 3, 4, 5, 6]
+2012-08-24 13:37:21,410 DBFunctions       line:31   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': (1, '1$[1, 2, 3, 4, 5, 6]'), 'Groups': '!!!', 'Record': 1, 'ip': 'testing', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business classes - only users', 'by': 1, 'MetaInfo': '2012-08-24 13:37:21.410606'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 21, in DBRegUserInsert
+    query = "SELECT * FROM UserRegInsert('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +"','" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+TypeError: cannot concatenate 'str' and 'tuple' objects
+2012-08-24 13:42:17,434 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:42:17,435 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:45:01,575 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:45:01,575 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:45:01,575 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6
+2012-08-24 13:45:01,890 DBFunctions       line:31   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': '1$2$3$4$5$6', 'Groups': '!!!', 'Record': 1, 'ip': 'testing', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business classes - only users', 'by': 1, 'MetaInfo': '2012-08-24 13:45:01.575782'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 23, in DBRegUserInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: function userreginsert(unknown, unknown, unknown, unknown, unknown, integer, integer, unknown, integer, unknown) does not exist
+LINE 1: SELECT * FROM UserRegInsert('2012-08-24 13:45:01.575782','te...
+                      ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+2012-08-24 13:46:25,022 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:46:25,023 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:46:25,023 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 13:46:25,360 DBFunctions       line:31   ERROR    DBRegUserInsert : [details : {'ReferenceToRegisterUser': '-1', 'ContentType': 12, 'Users': '1$2$3$4$5$6$', 'Groups': '!!!', 'Record': 1, 'ip': 'testing', 'Operation': 'SYS_PER_INSERT', 'Desc': 'testing from business classes - only users', 'by': 1, 'MetaInfo': '2012-08-24 13:46:25.023436'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 23, in DBRegUserInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: function userreginsert(unknown, unknown, unknown, unknown, unknown, integer, integer, unknown, integer, unknown) does not exist
+LINE 1: SELECT * FROM UserRegInsert('2012-08-24 13:46:25.023436','te...
+                      ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+2012-08-24 13:50:32,331 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:50:32,331 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:50:32,332 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 13:50:45,218 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 13:50:45,218 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:50:45,218 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:50:45,218 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 13:50:45,219 UserRegFunctions  line:280  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7fdfadbfe1b8>][AppLabel : Users][Model : user][rid : 1][Desc : testing from business classes - only users][by : 1][ip : testing][Users : ['1', '2', '3', '4', '5', '6']][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 234, in AdduserData
+    return self.Update(str(datetime.datetime.now()),Desc,UsersList,GroupsList,"-1",rid,ctid,op_update,by,ip,'added ' + str(user_list))
+NameError: global name 'user_list' is not defined
+2012-08-24 13:52:30,342 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 13:52:30,342 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:52:30,342 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:52:30,343 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 13:52:30,343 DBFunctions       line:47   ERROR    DBRegUserUpdate : [details : {'ip': 'testing', 'Record': 1, 'by': 1, 'ReferenceToRegisterUser': '-1', 'LogsDesc': "added  - ['1', '2', '3', '4', '5', '6']--1", 'ContentType': 12, 'Users': '1$2$3$4$5$6$', 'MetaInfo': '2012-08-24 13:52:30.343321', 'Groups': [], 'Operation': 'SYS_PER_UPDATE', 'Desc': 'testing from business classes - only users'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 37, in DBRegUserUpdate
+    query = "SELECT * FROM UserRegUpdate('" + details['MetaInfo'] + "','" + details['Desc'] + "','" + details['Users'] +",'" + details['Groups'] + "','" + details['ReferenceToRegisterUser'] + "',"+ str(details['Record']) + ","+ str(details['ContentType']) +",'" + details['Operation'] + "','" + details['LogsDesc'] +"'," + str(details['by']) + ",'" + details['ip'] + "');"
+TypeError: cannot concatenate 'str' and 'list' objects
+2012-08-24 13:57:27,151 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 13:57:27,152 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:57:27,152 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 13:57:27,152 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 13:57:27,484 DBFunctions       line:47   ERROR    DBRegUserUpdate : [details : {'ip': 'testing', 'Record': 1, 'by': 1, 'ReferenceToRegisterUser': '-1', 'LogsDesc': "added  - ['1', '2', '3', '4', '5', '6']--1", 'ContentType': 12, 'Users': '1$2$3$4$5$6$', 'MetaInfo': '2012-08-24 13:57:27.152944', 'Groups': '!!!', 'Operation': 'SYS_PER_UPDATE', 'Desc': 'testing from business classes - only users'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 39, in DBRegUserUpdate
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: syntax error at or near "',1,12,'"
+LINE 1: ...ness classes - only users','1$2$3$4$5$6$,'!!!','-1',1,12,'SY...
+                                                             ^
+
+2012-08-24 14:02:34,150 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 14:02:34,151 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:02:34,151 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:02:34,152 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:02:34,152 UserRegFunctions  line:287  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f8ebb5e5cb0>][AppLabel : Users][Model : user][rid : 1][_Desc : testing from business classes - only users][by : 1][ip : testing][Users : ['1', '2', '3', '4', '5', '6']][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 238, in AdduserData
+    return self.Update(Desc,_Desc,UsersList,GroupList,"-1",rid,ctid,op_update,by,ip)
+TypeError: Update() takes exactly 12 arguments (11 given)
+2012-08-24 14:04:12,252 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 14:04:12,253 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:04:12,253 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:04:12,253 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:04:12,597 DBFunctions       line:47   ERROR    DBRegUserUpdate : [details : {'ip': 'testing', 'Record': 1, 'by': 1, 'ReferenceToRegisterUser': '-1', 'LogsDesc': 'UPDATE.Users : 1$2$3$4$5$6$.Groups : !!!.', 'ContentType': 12, 'Users': '1$2$3$4$5$6$', 'MetaInfo': '-1', 'Groups': '!!!', 'Operation': 'SYS_PER_UPDATE', 'Desc': 'testing from business classes - only users'}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/DBFunctions/DBFunctions.py", line 39, in DBRegUserUpdate
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: syntax error at or near "',1,12,'"
+LINE 1: ...ness classes - only users','1$2$3$4$5$6$,'!!!','-1',1,12,'SY...
+                                                             ^
+
+2012-08-24 14:05:44,578 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 14:05:44,579 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:05:44,579 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:05:44,579 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:05:50,299 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 14:05:50,299 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:05:50,300 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:05:50,300 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:06:29,073 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:06:29,073 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:06:29,073 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:06:29,074 UserRegFunctions  line:288  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7ffd76ab31b8>][AppLabel : Users][Model : user][rid : 2][_Desc : testing from business classes - only users][by : 1][ip : testing][Users : ['1', '2', '3', '4', '5', '6']][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 280, in AdduserData
+    Desc += 'Groups : ' + GroupList + '.'
+TypeError: cannot concatenate 'str' and 'list' objects
+2012-08-24 14:23:11,357 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:23:11,358 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:23:11,358 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:23:11,358 UserRegFunctions  line:288  ERROR    AdduserData : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f8423c51cb0>][AppLabel : Users][Model : user][rid : 2][_Desc : testing from business classes - only users][by : 1][ip : testing][Users : ['1', '2', '3', '4', '5', '6']][Groups : -1][op_insert : SYS_PER_INSERT][op_update : SYS_PER_UPDATE][ReferenceToRegisterUser : -1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 281, in AdduserData
+    return self.Create(Desc,_Desc,UsersList,GroupsList,"-1",rid,ctid,op_insert,by,ip)
+UnboundLocalError: local variable 'GroupsList' referenced before assignment
+2012-08-24 14:24:29,335 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:24:29,336 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:24:29,336 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:24:35,791 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [2, 3, 4, 5, 6]
+2012-08-24 14:24:35,792 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:24:35,792 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:24:35,793 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:26:12,866 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:26:12,866 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:26:12,866 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:26:26,675 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:26:26,675 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:26:26,676 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:26:26,676 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:43:08,977 UserRegFunctions  line:369  ERROR    DeleteUsersAndGroups : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f07c050eef0>][AppLabel : Users][Model : user][rid : 1][by : 1][ip : testing][Users : ['1', '2', '3', '4']][Groups : 1][op_delete : SYS_PER_DELETE]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 303, in DeleteUsersAndGroups
+    if UserRegObj.Users is not DBUsersNullValue:
+NameError: global name 'DBUsersNullValue' is not defined
+2012-08-24 14:43:50,854 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:43:50,854 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4'] 
+ OUT = [1, 2, 3, 4]
+2012-08-24 14:43:50,854 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:43:50,855 UserRegFunctions  line:99   ERROR    ConvertDBStringtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f212179df38>][DBString : !!!][sep : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 89, in ConvertDBStringtoIntegerList
+    res = [int(i) for i in _str]
+ValueError: invalid literal for int() with base 10: ''
+2012-08-24 14:46:47,172 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:46:47,173 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4'] 
+ OUT = [1, 2, 3, 4]
+2012-08-24 14:46:47,173 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:46:47,173 UserRegFunctions  line:99   ERROR    ConvertDBStringtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f997d4caf38>][DBString : !!!][sep : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 89, in ConvertDBStringtoIntegerList
+    res = [int(i) for i in _str]
+ValueError: invalid literal for int() with base 10: ''
+2012-08-24 14:50:40,509 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:50:40,510 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4'] 
+ OUT = [1, 2, 3, 4]
+2012-08-24 14:50:40,510 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:50:40,510 UserRegFunctions  line:99   ERROR    ConvertDBStringtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f74ebb0bf38>][DBString : !!!][sep : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 89, in ConvertDBStringtoIntegerList
+    res = [int(i) for i in _str]
+ValueError: invalid literal for int() with base 10: ''
+2012-08-24 14:51:15,965 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:51:15,966 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4'] 
+ OUT = [1, 2, 3, 4]
+2012-08-24 14:51:15,966 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:53:09,987 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:53:09,988 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4'] 
+ OUT = [1, 2, 3, 4]
+2012-08-24 14:53:09,988 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:53:26,057 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 5$6$, $ 
+ OUT = [5, 6]
+2012-08-24 14:53:26,058 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2'] 
+ OUT = [1, 2]
+2012-08-24 14:53:26,058 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [5, 6], $ 
+ OUT = 5$6$
+2012-08-24 14:54:06,455 UserRegFunctions  line:99   ERROR    ConvertDBStringtoIntegerList : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7fd86c3eeef0>][DBString : !!!][sep : !]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 89, in ConvertDBStringtoIntegerList
+    res = [int(i) for i in _str]
+ValueError: invalid literal for int() with base 10: ''
+2012-08-24 14:58:45,140 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 5$6$, $ 
+ OUT = [5, 6]
+2012-08-24 14:58:45,140 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:58:45,140 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:58:45,141 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:58:45,141 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '19'] 
+ OUT = [1, 19]
+2012-08-24 14:58:45,141 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 19] 
+ OUT = [1, 19]
+2012-08-24 14:58:45,141 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 19], ! 
+ OUT = 1!19!
+2012-08-24 14:59:06,064 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:06,065 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:06,065 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:06,065 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:59:06,066 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 14:59:06,066 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '19'] 
+ OUT = [1, 19]
+2012-08-24 14:59:06,067 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 19, 1, 19] 
+ OUT = [1, 19]
+2012-08-24 14:59:06,067 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 19], ! 
+ OUT = 1!19!
+2012-08-24 14:59:17,445 UserRegFunctions  line:91   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:17,446 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '2', '3', '4', '5', '6'] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:17,446 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6] 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 14:59:17,447 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 2, 3, 4, 5, 6], $ 
+ OUT = 1$2$3$4$5$6$
+2012-08-24 14:59:17,447 UserRegFunctions  line:27   DEBUG    [ConvertStringListtoIntegerList] IN = ['1', '19'] 
+ OUT = [1, 19]
+2012-08-24 14:59:17,447 UserRegFunctions  line:49   DEBUG    [getUniqueIntegerList] IN = [1, 19] 
+ OUT = [1, 19]
+2012-08-24 14:59:17,448 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 19], ! 
+ OUT = 1!19!

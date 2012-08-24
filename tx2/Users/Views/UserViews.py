@@ -8,8 +8,10 @@ from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity,getSystemGroup_NewUsers, getSystemUser_DaemonCreateUser
 from tx2.Misc.Encryption import Encrypt
 from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type
+from django.contrib.messages import constants as messages
 import logging
 import datetime
+import inspect
 
 
 LoggerUser = logging.getLogger(LoggerUser)
@@ -18,31 +20,33 @@ ExceptionMessage = 'ERROR : System has suffered some error while processing your
 
 
     
-def log_in(HttpRequest):
-  msglist = AppendMessageList(HttpRequest)
+def Login(HttpRequest):
   usrfn = UserFnx()
-  ip = HttpRequest.META['REMOTE_ADDR']
   try:
     email = ''
     password = ''
+    flag = False
     if 'LoginUser_email' in HttpRequest.POST.keys():
       email = HttpRequest.POST['LoginUser_email']
     else:
-      msglist.append('email required')
+      messages.error(HttpRequest,'ERROR : Email required for logging in.')
+      flag = True
+    #TODO check if this is a valid email id or not
     if 'LoginUser_pass' in HttpRequest.POST.keys():
       password = HttpRequest.POST['LoginUser_pass']
+    else:
+      messages.error(HttpRequest,'ERROR : Password required for logging in.')
+      flag = True
     if( len(password) < 4):
-      msglist.append('proper password required')
-    if len(msglist) > 0:
-      HttpRequest.session[SESSION_MESSAGE] = msglist
+      messages.error(HttpRequest,'ERROR : Minimum password length should be 4.')
+      flag = True
+    if flag is True:
       return HttpResponseRedirect('/user/login/')
     else:
       res = usrfn.LoginUser(email, password,Login_From_Type, ip)
       if ( res[0] == 1):
         result = res[1]
         if( result['result'] == 1):
-          res_forums=usrfn.RegisterUserForForums(email, password)
-              
           encdec = Encrypt()
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
 "fname":result['username']}
@@ -62,9 +66,14 @@ def log_in(HttpRequest):
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/message/')
   except Exception, ex:
-        LoggerUser.exception('log_in')
-        HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
-        return HttpResponseRedirect('/message/')
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')
                 
         
 def log_out(HttpRequest):
