@@ -134,3 +134,24 @@ def DBGroupMenuDelete(details):
         UserLogger.exception('DBGroupMenuDelete')
         return {'result':-5,'rescode':str(ex)}
 
+
+
+### ========================================================================================================  ### 
+### ===========================    SELECT FUNCTIONS      ===================================================  ### 
+### ========================================================================================================  ### 
+def DBgetUserIDListByGroupID(groupid):
+  try:
+    query = 'SELECT id FROM "Users_user" WHERE "Group_id"=' + str(groupid)
+    Result = DBhelper.CallSelectFunction(query)
+    UserIDList = []
+    for data in Result:
+      UserIDList.append(data[0])
+    return (1,UserIDList)
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      RegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}

@@ -2,6 +2,7 @@ from tx2.UserReg.models import RegisterUser
 from tx2.UserReg.DBFunctions.DBFunctions import DBRegUserUpdate,DBRegUserInsert
 from tx2.UserReg.models import RegisterUser
 from tx2.Users.models import User
+from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
 from tx2.Misc.CacheManagement import setCache,getCache,getContentTypeIdFromModelandAppLabel
 from tx2.CONFIG import LOGGER_UserReg
 import logging
@@ -392,10 +393,12 @@ class UserRegFnx():
             if DBStringList[0] is not 1:
               return (-1,DBStringList[1])
             DBStringList = DBStringList[1]
-          else:
+        else:
             # no users present
-            return (-1,'No user is registered for this content type id.')
+            return (-3,'No user is registered for this content type id.')
         return (1,DBStringList)
+      except  ObjectDoesNotExist , DoesNotExist:
+        return (-3,'No data for this content type')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -422,10 +425,12 @@ class UserRegFnx():
             if DBStringList[0] is not 1:
               return (-1,DBStringList[1])
             DBStringList = DBStringList[1]
-          else:
+        else:
             # no users present
-            return (-1,'No group is registered for this content type id.')
+            return (-3,'No group is registered for this content type id.')
         return (1,DBStringList)
+      except  ObjectDoesNotExist , DoesNotExist:
+        return (-3,'No data for this content type')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -444,13 +449,39 @@ class UserRegFnx():
   # get unique userids and return 
     try:
       UsersList = self.getUserIDListForARecord(AppLabel,Model,rid)
-      if( UsersList[0] != 1):
-        return (-1,UsersList[1])
-      UsersList = UsersList[1]
+      #print UsersList
+      _Flag = False
+      if( UsersList[0] == 1):
+        UsersList = UsersList[1]
+      elif ( UsersList[0] == -3):
+        UsersList = []
+        _Flag = True
+      else:
+          return (-1,UsersList[1])
+      GroupUserList = []
       GroupsList = self.getGroupIDListForARecord(AppLabel,Model,rid)
-      if( GroupsList[0] != 1):
-        return (-1,GroupsList[1])
-      GroupsList = GroupsList[1]
+      #print GroupsList, _Flag
+      if( GroupsList[0] == 1):
+        GroupsList = GroupsList[1]
+      elif( GroupsList[0] == -3) and _Flag == True:
+        return (-1,'No data present for present request')
+      elif( GroupsList[0] == -3) and _Flag == False:
+        GroupsList = []
+      else:
+          return (-1,GroupsList[1])
+      GroupFnxObj = GroupFnx()
+      tmpGroupUserList = []
+      for x in GroupsList:
+        tmpGroupUserList += GroupFnxObj.getUserIDListByGroupID(x)
+        if (tmpGroupUserList[0] == 1):
+          GroupUserList += tmpGroupUserList[1]
+        else:
+          return (-1,tmpGroupUserList[1])
+      _l = self.getUniqueIntegerList( UsersList + GroupUserList)
+      if _l[0] != -1:
+        return (-1,_l[1])
+      else:
+        return (1,_l[1])
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -460,95 +491,73 @@ class UserRegFnx():
       self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
 
-#  def getUserObjectListForARecord(self,AppLabel,Model,rid):
-#    try:
-#                        ctid = -1
-#                        ctlist = getContentTypes()
-#                        for ctobj in ctlist:
-#        if ctobj.app_label == AppLabel and ctobj.model == Model:
-#                ctid = ctobj.id
-#                        if ctid == -1:
-#        #error here
-#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
-#        return (-1,error_msg)
-#                        try:
-#        UserRegObj = RegisterUser.objects.get(ContentType__id=ctid , Record = rid)
-#        user_id_list_str = str(self.getUserIDListForARecord(AppLabel,Model,rid)) # TODO check if it works
-#        query = "id IN (" +  user_id_list_str[1:-1] + ")" 
-#        UserObjList = User.objects.extra(where=[query])
-#        return (1,UserObjList)
-#                        except  ObjectDoesNotExist , DoesNotExist:
-#        error_msg = 'Error Record Does not exist'
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('getUserObjectListForARecord',error_msg))
-#        return (-1,error_msg)
-#    except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('getUserObjectListForARecord'))
-#                        return (-1,'Error at business level getUserObjectListForARecord function in UserReg')
+  def getContentTypeAndRecordByUserID(self,userid):
+    try:
+      query = self.UserSep + str(userid) + self.UserSep
+      UserRegObjList = RegisterUser.objects.filter(Users__contains=query)
+      return (1,UserRegObjList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+                        
+  def getContentTypeAndRecordByGroupID(self,groupid):
+    try:
+      query = self.GroupSep + str(groupid) + self.GroupSep
+      UserRegObjList = RegisterUser.objects.filter(Groups__contains=query)
+      return (1,UserRegObjList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+                        
+  def getRecordIDListByUserIDAndContentType(self,Applabel,Model,userid):
+    try:
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      try:
+        query = self.UserSep + str(userid) + self.UserSep
+        UserRegObjList = RegisterUser.objects.filter(Users__contains=query,ContentType__id=ctid)
+        return (1,UserRegObjList)
+      except  ObjectDoesNotExist , DoesNotExist:
+        return (-1,'No data present for present request')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+                        
+  def getRecordIDListByGroupIDAndContentType(self,Applabel,Model,groupid):
+    try:
+      ctid = getContentTypeIdFromModelandAppLabel(AppLabel,Model)
+      if( ctid[0] is not 1):
+        return (-1,ctid[1])
+      ctid = ctid[1]
+      try:
+        query = self.GroupSep + str(groupid) + self.GroupSep
+        UserRegObjList = RegisterUser.objects.filter(Groups__contains=query,ContentType__id=ctid)
+        return (1,UserRegObjList)
+      except  ObjectDoesNotExist , DoesNotExist:
+        return (-1,'No data present for present request')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserRegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
 
-#  def getContentTypeAndRecordByUserID(self,userid):
-#                try:
-#                        query = self.UserSep + str(userid) + self.UserSep
-#                        UserRegObjList = RegisterUser.objects.filter(Users__contains=query)
-#                        return (1,UserRegObjList)
-#                except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByUserID'))
-#                        return (-1,'Error at business level getContentTypeAndRecordByUserID function in UserReg')
-                        
-#  def getContentTypeAndRecordByGroupID(self,gid):
-#                try:
-#                        query = self.GroupSep + str(gid) + self.GroupSep
-#                        GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query)
-#                        return (1,GroupRegObjList)
-#                except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('getContentTypeAndRecordByGroupID'))
-#                        return (-1,'Error at business level getContentTypeAndRecordByGroupID function in UserReg')
-                        
-#  def geRecordIDListByUserIDAndContentType(self,Applabel,Model,userid):
-#                try:
-#                        ctid = -1
-#                        ctlist = getContentTypes()
-#                        for ctobj in ctlist:
-#        if ctobj.app_label == Applabel and ctobj.model == Model:
-#                ctid = ctobj.id
-#                        if ctid == -1:
-#        #error here
-#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-#        return (-1,error_msg)
-#                        try:
-#        query = "$" + str(userid) + "$"
-#        UserRegObjList = RegisterUser.objects.filter(Users__contains=query,ContentType__id=ctid)
-#        return (1,UserRegObjList)
-#                        except  ObjectDoesNotExist , DoesNotExist:
-#        error_msg = 'Error Record Does not exist'
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-#        return (-1,error_msg)
-#                except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
-#                        return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')
-                        
-                        
-#  def geRecordIDListByGroupIDAndContentType(self,Applabel,Model,groupid):
-#    try:
-#      ctid = -1
-#      ctlist = getContentTypes()
-#                        for ctobj in ctlist:
-#        if ctobj.app_label == Applabel and ctobj.model == Model:
-#                ctid = ctobj.id
-#                        if ctid == -1:
-#        #error here
-#        error_msg = 'Invalid Applabel %s or Model %s' % (AppLabel, Model)
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-#        return (-1,error_msg)
-#                        try:
-#        query2 = self.GroupSep + str(groupid) + self.GroupSep
-#        GroupRegObjList = RegisterUser.objects.filter(Groups__contains=query2,ContentType__id=ctid)
-#        return (1,GroupRegObjList)
-#                        except  ObjectDoesNotExist , DoesNotExist:
-#        error_msg = 'Error Record Does not exist'
-#        self.UserRegLogger.error('[%s] == Error == \n %s'%('geRecordIDListByUserIDAndContentType',error_msg))
-#        return (-1,error_msg)
-#                except:
-#                        self.UserRegLogger.exception('[%s] == Exception =='%('geRecordIDListByUserIDAndContentType'))
-#                        return (-1,'Error at business level geRecordIDListByUserIDAndContentType function in UserReg')

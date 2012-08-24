@@ -413,3 +413,83 @@ ValueError: invalid literal for int() with base 10: ''
  OUT = [1, 19]
 2012-08-24 14:59:17,448 UserRegFunctions  line:72   DEBUG    [ConvertIntegerListToDBString] IN = [1, 19], ! 
  OUT = 1!19!
+2012-08-24 20:12:06,234 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:12:06,948 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:12:06,949 UserRegFunctions  line:474  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f525846a290>][AppLabel : Users][Model : user][rid : 3]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 462, in getCompleteListOfUsersForAUser
+    tmpGroupUserList += GroupFnxObj.getUserIDListByGroupID(x)
+UnboundLocalError: local variable 'tmpGroupUserList' referenced before assignment
+2012-08-24 20:13:08,806 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:13:11,142 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:13:20,462 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:18:31,945 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:18:32,117 UserRegFunctions  line:481  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f123ac4d290>][AppLabel : Users][Model : user][rid : 2]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 465, in getCompleteListOfUsersForAUser
+    GroupsList = GroupsList[1]
+IndexError: list index out of range
+2012-08-24 20:18:38,111 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:18:38,284 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:18:41,332 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:18:41,579 UserRegFunctions  line:481  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f123ac4d290>][AppLabel : Users][Model : user][rid : 2]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 465, in getCompleteListOfUsersForAUser
+    GroupsList = GroupsList[1]
+IndexError: list index out of range
+2012-08-24 20:18:43,612 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:18:44,140 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:18:46,689 UserRegFunctions  line:481  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f123ac4d290>][AppLabel : Users][Model : user][rid : 4]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 457, in getCompleteListOfUsersForAUser
+    UsersList = UsersList[1]
+IndexError: list index out of range
+2012-08-24 20:18:49,445 UserRegFunctions  line:481  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7f123ac4d290>][AppLabel : Users][Model : user][rid : 5]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 457, in getCompleteListOfUsersForAUser
+    UsersList = UsersList[1]
+IndexError: list index out of range
+2012-08-24 20:20:05,354 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:20:05,605 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:20:07,638 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:20:10,277 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:20:10,447 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:22:47,127 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:22:47,307 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:22:49,265 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:22:54,481 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:22:55,011 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:29:03,882 UserRegFunctions  line:489  ERROR    getCompleteListOfUsersForAUser : [self : <tx2.UserReg.BusinessFunctions.UserRegFunctions.UserRegFnx instance at 0x7fe1e1e712d8>][AppLabel : Users][Model : user][rid : 6]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserReg/BusinessFunctions/UserRegFunctions.py", line 478, in getCompleteListOfUsersForAUser
+    _l = getUniqueIntegerList( UsersList + GroupUserList)
+NameError: global name 'getUniqueIntegerList' is not defined
+2012-08-24 20:30:35,907 UserRegFunctions  line:50   DEBUG    [getUniqueIntegerList] IN = [] 
+ OUT = []
+2012-08-24 20:31:11,288 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1$2$3$4$5$6$, $ 
+ OUT = [1, 2, 3, 4, 5, 6]
+2012-08-24 20:31:11,539 UserRegFunctions  line:92   DEBUG    [ConvertDBStringtoIntegerList] IN = 1!19!, ! 
+ OUT = [1, 19]
+2012-08-24 20:31:11,685 UserRegFunctions  line:50   DEBUG    [getUniqueIntegerList] IN = [1, 2, 3, 4, 5, 6, 1, 1] 
+ OUT = [2, 3, 4, 5, 6, 1]

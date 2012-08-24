@@ -1,6 +1,6 @@
 from django.db import models
 from tx2.Users.models import Group
-from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert
+from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert, DBgetUserIDListByGroupID
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity
 from tx2.CONFIG import LoggerUser
@@ -93,7 +93,28 @@ class GroupFnx(models.Model):
       else:
         return (-1,'Error retrieveing group list from database.')
     except Exception, ex:
-      self.UserLogger.exception('getGroupObjectById')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      RegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+  def getUserIDListByGroupID(self,groupid):
+    try:
+      UserList = DBgetUserIDListByGroupID(groupid)
+      if UserList[0] == 1:
+        return (1,UserList[1])
+      else:
+        return (-1,UserList[1])
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      RegLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
            
                     
