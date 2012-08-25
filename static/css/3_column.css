@@ -9,7 +9,7 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 #container #content{
 	display:block;
 	float:left;
-	width:400px;
+	width:450px;
 	margin-left:20px;
 	}
 
@@ -59,3 +59,119 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 #container #right_column .imgholder{
 	width:240px;
 	}
+	
+/* ----------------------------------------------Forms-------------------------------------*/
+
+#container #respond{
+	display:block;
+	width:100%;
+	font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+}
+	
+#container #respond .row{
+  width:450px;
+  margin-bottom:5px;
+  border-bottom:1px solid #ccc;
+  height:30px;
+}
+
+#container #respond .rowbig{
+  width:450px;
+  margin-bottom:5px;
+  border-bottom:1px solid #ccc;
+  height:100px;
+}
+
+#container #respond .labelclass
+{
+  width:140px;
+  height:inherit;
+  float:left;
+  padding-right:10px;
+  text-align:right;
+  margin-top:5px;
+}
+
+#container #respond .widgetclass
+{
+  width:285px;
+  height:inherit;
+  float:left;
+}
+
+#container #respond .widget
+{
+  width:285px;
+  height:22px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+#container #respond textarea
+{
+  width:285px;
+  height:88px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+
+#container #respond .submitclass
+{
+  width:285px;
+  height:88px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+#container #respond #submit, #container #respond #reset{
+	height:25px;
+	background-color:#66ccff;
+	color:#000066;
+	font-family:sans-serif;
+	font-size:16px;
+	border:1px solid #000000;
+}
+
+.messageclass
+{
+  width:400px;
+  font-size:16px;
+	color:#cc0000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+/*#container #respond input{*/
+/*	width:170px;*/
+/*	padding:2px;*/
+/*	border:1px solid #CCCCCC;*/
+/*	margin:5px 5px 0 0;*/
+/*	}*/
+
+/*#container #respond textarea{*/
+/*	width:98%;*/
+/*	border:1px solid #CCCCCC;*/
+/*	padding:2px;*/
+/*	overflow:auto;*/
+/*	}*/
+

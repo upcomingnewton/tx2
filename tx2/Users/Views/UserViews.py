@@ -8,7 +8,7 @@ from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity,getSystemGroup_NewUsers, getSystemUser_DaemonCreateUser
 from tx2.Misc.Encryption import Encrypt
 from tx2.CONFIG import LoggerUser,SESSION_MESSAGE,Login_From_Type,LogOut_From_Type
-from django.contrib.messages import constants as messages
+from django.contrib import messages
 import logging
 import datetime
 import inspect
@@ -52,7 +52,7 @@ def Login(HttpRequest):
 "fname":result['username']}
           HttpRequest.session["details"] = token
           HttpRequest.session.set_expiry(0)
-          return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
+          return HttpResponseRedirect('/UserProfile/StudentDetails/')
         else:
           if(res_forums[0]==1):
               msg=str(res[1])+str(res_forums[1])
@@ -71,7 +71,7 @@ def Login(HttpRequest):
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
       return HttpResponseRedirect('/message/')
                 

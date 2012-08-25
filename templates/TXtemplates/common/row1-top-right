@@ -1,8 +1,0 @@
-
-{% if loggedin %}
-    <div class="fl_right">
-    {% include "TXtemplates/common/loggedin_top_right" %}
-    </div>
-    {% else %}
-   {% include "TXtemplates/common/login-form" %}
-    {% endif %} 

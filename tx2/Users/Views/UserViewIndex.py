@@ -95,4 +95,4 @@ def ResendAuthenticationEmailIndex(HttpRequest):
 def ShowMessages(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     HttpRequest.session[SESSION_MESSAGE] = msglist
-    return render_to_response('index.html',{},context_instance=RequestContext(HttpRequest))
+    return render_to_response('Message.html',{},context_instance=RequestContext(HttpRequest))

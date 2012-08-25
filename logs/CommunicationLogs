@@ -1,0 +1,5 @@
+2012-08-25 15:42:27,454 CommunicationFunctions line:166  ERROR    [getNHappenings] == Exception ==
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 160, in getNHappenings
+    M=Pages.page(1)
+AttributeError: 'NoneType' object has no attribute 'page'
