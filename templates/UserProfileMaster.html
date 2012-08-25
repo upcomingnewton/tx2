@@ -24,6 +24,7 @@
     <div id="content">
     <!-- ########################### USER CONTENT ############################# -->
       {% if messages %}
+        <div class="row"><span class="messageclass">message</span></div>
         {% for msg in messages %}
           <div class="row">
             <div class="messageclass" >{{ msg }}</div>

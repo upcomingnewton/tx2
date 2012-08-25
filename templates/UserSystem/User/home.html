@@ -1,14 +1,15 @@
 {% extends "UserProfileMaster.html" %}
-    <title>{% block title %}Message{% endblock %}</title>
+    <title>{% block title %}Home{% endblock %}</title>
     
 
 {% block UserProfileMaster_content_center %}
-<!--
+
 <div id="respond">
   <div class="row">
-    <div class="labelclass" >Username</div>
-    <div class="widgetclass" ><input name="UserName" class="widget" /></div>
+    <div class="messageclass" >This is UserHome page <br /> Welcome, {{ fname }}</div>
   </div>
+</div>
+<!--
   <div class="rowbig">
     <div class="labelclass" >Username</div>
     <div class="widgetclass" ><textarea name="UserName" cols="100%" rows="15" ></textarea> </div>

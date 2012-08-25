@@ -22,6 +22,7 @@ ExceptionMessage = 'ERROR : System has suffered some error while processing your
     
 def Login(HttpRequest):
   usrfn = UserFnx()
+  ip = HttpRequest.META['REMOTE_ADDR']
   try:
     email = ''
     password = ''
@@ -52,7 +53,7 @@ def Login(HttpRequest):
 "fname":result['username']}
           HttpRequest.session["details"] = token
           HttpRequest.session.set_expiry(0)
-          return HttpResponseRedirect('/UserProfile/StudentDetails/')
+          return HttpResponseRedirect('/user/dashboard/')
         else:
           if(res_forums[0]==1):
               msg=str(res[1])+str(res_forums[1])

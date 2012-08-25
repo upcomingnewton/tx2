@@ -10,7 +10,6 @@ urlpatterns = patterns('',
         url(r'^password/change/$','Users.Views.UserViewIndex.ChangePassIndex'),
         url(r'^password/reset/$','Users.Views.UserViewIndex.ResetPasswordIndex'),
         url(r'^password/reset/$','Users.Views.UserViewIndex.ResendAuthenticationEmailIndex'),
-        url(r'^logout/$','Users.Views.UserViews.log_out'),
         url(r'^authenticate/resendemail/$','Users.Views.UserViews.ResendAuthenticationEmail'), #ResendAuthenticationEmail
         
         url(r'^password/change/change/$','Users.Views.UserViews.ChangePass'),
@@ -18,6 +17,7 @@ urlpatterns = patterns('',
         url(r'^password/reset/reset/$','Users.Views.UserViews.ResetPass'),
         # post-back for logging in 
         url(r'^login/post/$','Users.Views.UserViews.Login'),
+        url(r'^logout/$','Users.Views.UserViews.log_out'),
         url(r'^dashboard/$','Users.Views.UserViews.view_dashboard'),
         url(r'^register/new/$','Users.Views.UserViews.CreateUserFromSite'),
         url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViews.AuthenticateUserFromEmail'),

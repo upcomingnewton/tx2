@@ -401,3 +401,206 @@ Traceback (most recent call last):
   File "/home/nitin/projects/tx2/tx2/Users/Views/UserViews.py", line 46, in Login
     res = usrfn.LoginUser(email, password,Login_From_Type, ip)
 NameError: global name 'ip' is not defined
+2012-08-25 21:59:02,824 UserViews         line:74   ERROR    Login : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'LoginUser_email': [u'SystemInit1@init.com'], u'LoginUser_pass': [u'nitin@123'], u'csrfmiddlewaretoken': [u'1ca931eec61f615a2ff7ee4d325a91ec']}>,
+COOKIES:{'csrftoken': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'messages': 'd255e61b86ff050b41177ec1786f4f6d89dd8e7e$["__messagesnotfinished__"]',
+ 'sessionid': 'c774b97f8c907746cf7865d5b2f3bf8a'},
+META:{'ALSA_CONFIG_PATH': '/etc/alsa-pulse.conf',
+ 'COLORTERM': 'gnome-terminal',
+ 'CONFIG_SITE': '/usr/share/site/x86_64-unknown-linux-gnu',
+ 'CONTENT_LENGTH': '118',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CPU': 'x86_64',
+ 'CSHEDIT': 'emacs',
+ 'CSRF_COOKIE': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'CVS_RSH': 'ssh',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-zq7mgPlpWm,guid=f9f3755e4cf9dff64d0337110000001a',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'DM_CONTROL': '/var/run/xdmctl',
+ 'FROM_HEADER': '',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GJS_DEBUG_OUTPUT': 'stderr',
+ 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-IVa9As',
+ 'GPG_AGENT_INFO': '/tmp/keyring-IVa9As/gpg:0:1',
+ 'GPG_TTY': '/dev/pts/1',
+ 'GTK_IM_MODULE': 'cedilla',
+ 'G_BROKEN_FILENAMES': '1',
+ 'G_FILENAME_ENCODING': '@locale,UTF-8,ISO-8859-15,CP1252',
+ 'HISTSIZE': '1000',
+ 'HOME': '/home/nitin',
+ 'HOST': 'linux-dshb.site',
+ 'HOSTNAME': 'linux-dshb.site',
+ 'HOSTTYPE': 'x86_64',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=1ca931eec61f615a2ff7ee4d325a91ec; sessionid=c774b97f8c907746cf7865d5b2f3bf8a; messages="d255e61b86ff050b41177ec1786f4f6d89dd8e7e$[\\"__messagesnotfinished__\\"]"',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/user/login/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
+ 'ICEAUTHORITY': '/home/nitin/.ICEauthority',
+ 'INPUTRC': '/etc/inputrc',
+ 'JAVA_BINDIR': '/usr/lib64/jvm/java/bin',
+ 'JAVA_HOME': '/usr/lib64/jvm/java',
+ 'JAVA_ROOT': '/usr/lib64/jvm/java',
+ 'JDK_HOME': '/usr/lib64/jvm/java',
+ 'JRE_HOME': '/usr/lib64/jvm/jre',
+ 'LANG': 'en_US.UTF-8',
+ 'LD_LIBRARY_PATH': '/usr/lib64/mpi/gcc/openmpi/lib64',
+ 'LESS': '-M -I -R',
+ 'LESSCLOSE': 'lessclose.sh %s %s',
+ 'LESSKEY': '/etc/lesskey.bin',
+ 'LESSOPEN': 'lessopen.sh %s',
+ 'LESS_ADVANCED_PREPROCESSOR': 'no',
+ 'LOGNAME': 'nitin',
+ 'LS_COLORS': 'no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:',
+ 'LS_OPTIONS': '-N --color=tty -T 0',
+ 'MACHTYPE': 'x86_64-suse-linux',
+ 'MAIL': '/var/spool/mail/nitin',
+ 'MALLOC_CHECK_': '3',
+ 'MALLOC_PERTURB_': '69',
+ 'MANPATH': '/usr/lib64/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man',
+ 'MINICOM': '-c on',
+ 'MORE': '-sl',
+ 'NNTPSERVER': 'news',
+ 'OLDPWD': '/home/nitin',
+ 'OSTYPE': 'linux',
+ 'PAGER': 'less',
+ 'PATH': '/usr/lib64/mpi/gcc/openmpi/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/.local/bin:/home/nitin/bin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools',
+ 'PATH_INFO': u'/user/login/post/',
+ 'PILOTPORT': 'usb:',
+ 'PROFILEREAD': 'true',
+ 'PWD': '/home/nitin/projects/tx2',
+ 'PYTHONSTARTUP': '/etc/pythonstart',
+ 'QT_IM_MODULE': 'xim',
+ 'QT_IM_SWITCHER': 'imsw-multi',
+ 'QT_SYSTEM_DIR': '/usr/share/desktop-data',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'RUN_MAIN': 'true',
+ 'SCRIPT_NAME': u'',
+ 'SDK_HOME': '/usr/lib64/jvm/java',
+ 'SDL_AUDIODRIVER': 'pulse',
+ 'SERVER_NAME': 'localhost',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.2',
+ 'SESSION_MANAGER': 'local/linux-dshb.site:@/tmp/.ICE-unix/1617,unix/linux-dshb.site:/tmp/.ICE-unix/1617',
+ 'SHELL': '/bin/bash',
+ 'SHLVL': '1',
+ 'SSH_AGENT_PID': '1670',
+ 'SSH_ASKPASS': '/usr/lib/ssh/ssh-askpass',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-IVa9As/ssh',
+ 'TERM': 'xterm',
+ 'TMPDIR': '/tmp',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'nitin',
+ 'WINDOWID': '62914565',
+ 'WINDOWMANAGER': '/usr/bin/gnome-session',
+ 'WINDOWPATH': '7',
+ 'XAUTHLOCALHOSTNAME': 'linux-dshb.site',
+ 'XCURSOR_THEME': 'DMZ',
+ 'XDG_CONFIG_DIRS': '/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share',
+ 'XDG_RUNTIME_DIR': '/run/user/nitin',
+ 'XDG_SEAT': 'seat0',
+ 'XDG_SESSION_COOKIE': '382f82cb9e7ddd7012e5467100000822-1345352043.261379-1380210617',
+ 'XDG_SESSION_ID': 'c1',
+ 'XDG_VTNR': '7',
+ 'XDM_MANAGED': 'method=classic,auto',
+ 'XKEYSYMDB': '/usr/X11R6/lib/X11/XKeysymDB',
+ 'XMODIFIERS': '@im=local',
+ 'XNLSPATH': '/usr/share/X11/nls',
+ 'XSESSION_IS_UP': 'yes',
+ '_': '/usr/bin/python',
+ 'mc': '() {  . /usr/share/mc/mc-wrapper.sh\n}',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fb349f08270>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x7fb342a132d0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/UserViews.py", line 46, in Login
+    res = usrfn.LoginUser(email, password,Login_From_Type, ip)
+NameError: global name 'ip' is not defined
+2012-08-25 22:00:51,164 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:00:47.822568'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1179}]
+2012-08-25 22:00:51,165 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. atb9LVWTXWc5we0fdGH2KOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345912251.17
+2012-08-25 22:01:42,133 DatabaseFunctions line:51   DEBUG    [Query] SELECT * FROM userlogout(1179,2,'2012-08-25 22:01:41.420231'); [RESULT] [{'result': 1, 'rescode': 120}]
+2012-08-25 22:04:29,381 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:04:26.061435'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1180}]
+2012-08-25 22:04:29,381 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. GPwKWwK3iSNRCUGkMRMGT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345912469.38
+2012-08-25 22:04:44,457 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... GPwKWwK3iSNRCUGkMRMGT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345912484.46
+2012-08-25 22:04:44,458 UserViews         line:230  ERROR    log_in
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/UserViews.py", line 226, in view_dashboard
+    return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 20, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 181, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 157, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: UserSystem/User/home.html
+2012-08-25 22:07:29,478 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... GPwKWwK3iSNRCUGkMRMGT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345912649.48
+2012-08-25 22:07:29,479 UserViews         line:230  ERROR    log_in
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/UserViews.py", line 226, in view_dashboard
+    return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 20, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 181, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 157, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: UserSystem/User/home.html
+2012-08-25 22:07:47,913 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... GPwKWwK3iSNRCUGkMRMGT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345912667.91
+2012-08-25 22:07:47,914 GroupTypeFunctions line:56   ERROR    ListAllGroupTypes
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/GroupTypeFunctions.py", line 50, in ListAllGroupTypes
+    grouptypelist = self.getGroupTypeFromCache()
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/GroupTypeFunctions.py", line 43, in getGroupTypeFromCache
+    if GroupList is not -1 and GroupList is not None:
+NameError: global name 'GroupList' is not defined
+2012-08-25 22:19:34,574 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... GPwKWwK3iSNRCUGkMRMGT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913374.57
+2012-08-25 22:19:34,577 UserViews         line:230  ERROR    log_in
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/UserViews.py", line 226, in view_dashboard
+    return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 20, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 181, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 157, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: UserSystem/User/home.html
+2012-08-25 22:20:54,617 DatabaseFunctions line:51   DEBUG    [Query] SELECT * FROM userlogout(1180,2,'2012-08-25 22:20:53.918833'); [RESULT] [{'result': 1, 'rescode': 120}]
+2012-08-25 22:22:03,285 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:21:59.897242'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1181}]
+2012-08-25 22:22:03,286 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. M2NUzo13UKr4Y1yDrPTUH_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913523.29
+2012-08-25 22:23:13,098 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:23:09.294182'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1182}]
+2012-08-25 22:23:13,100 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. bVPpa3APvR4NcZXFwdjyvOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913593.1
+2012-08-25 22:24:08,838 DatabaseFunctions line:51   DEBUG    [Query] SELECT * FROM userlogout(1182,2,'2012-08-25 22:24:08.173716'); [RESULT] [{'result': 1, 'rescode': 120}]
+2012-08-25 22:24:19,580 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:24:16.298331'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1183}]
+2012-08-25 22:24:19,581 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. KqhdmysOznWEikqF8hxcgemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913659.58
+2012-08-25 22:24:24,647 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... KqhdmysOznWEikqF8hxcgemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913664.65
+2012-08-25 22:26:02,905 DatabaseFunctions line:51   DEBUG    [Query] SELECT * FROM userlogout(1183,2,'2012-08-25 22:26:02.179255'); [RESULT] [{'result': 1, 'rescode': 120}]
+2012-08-25 22:26:14,284 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:26:10.801151'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1184}]
+2012-08-25 22:26:14,285 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. bPMQAsoTRfzNi5_P4L5U6S983dnwhhemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913774.29
+2012-08-25 22:26:19,426 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... bPMQAsoTRfzNi5_P4L5U6S983dnwhhemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913779.43
