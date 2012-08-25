@@ -5,20 +5,17 @@ from tx2.Users.DBFunctions.Messages import decode
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
-from tx2.Misc.CacheManagement import setCache,getCache
+from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey
 from tx2.Security.models import Entity
 import logging
+import inspect
 
 class GroupFnx(models.Model):
   def __init__(self):
     self.UserLogger = logging.getLogger(LoggerUser)
-    self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
     self.CACHE_KEY_ALL_GROUPS = 'CACHE_KEY_ALL_GROUPS'
-    
-  def MakeExceptionMessage(self,msg):
-    return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
 
-        #CRUD FUNCTIONS
+      #CRUD FUNCTIONS
         
   def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
     eid = entity
@@ -36,12 +33,18 @@ class GroupFnx(models.Model):
                            }
       result = DBGroupInsert(details)
       if (result['result'] == 1):
+        deleteCacheKey(self.CACHE_KEY_ALL_GROUPS)
         return (1,'SUCESS. Group has been sucessfully added to database.') 
       else:
         return (-1,decode(result))
     except Exception, ex:
-      self.UserLogger.exception('CreateGroup')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
 
 
   # SELECTION AND QUERY FUNCTIONS
@@ -60,9 +63,11 @@ class GroupFnx(models.Model):
   def ListAllGroups(self):
     try:
       grouplist  = self.getGroupFromCache()
-      if grouplist is not 1:
+      if grouplist[0] != 1:
         grouplist =  Group.objects.all()
         setCache(self.CACHE_KEY_ALL_GROUPS,grouplist)
+      else:
+        grouplist = grouplist[1]
       return (1,grouplist)
     except Exception, ex:
       self.UserLogger.exception('ListAllGroups')

@@ -4,19 +4,16 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBMenuInsert , DBMenuUpdate
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE
-from tx2.Misc.CacheManagement import setCache,getCache
+from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey
 import logging
+import inspect
 
 class MenuFnx():
   
   def __init__(self):
     self.UserLogger = logging.getLogger(LoggerUser)
-    self.ExceptionMessage = "Something un-usual has happened while processing your request. Administrators have been alerted to rectify the error. We will send you a notification in this regard soon"
     self.CACHEKEY = 'CACHE_KEY_ALL_MENU'
-  
-  def MakeExceptionMessage(self,msg):
-    return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
-        
+
   def Insert(self,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
     try:
       details = {
@@ -31,17 +28,24 @@ class MenuFnx():
         }
       result = DBMenuInsert(details)
       if (result['result'] == 1):
+        deleteCacheKey(self.CACHEKEY)
         return (1,'SUCESS. Menu has been sucessfully added to database.') 
       else:
         return (-1,decode(result))
     except Exception, ex:
-      self.UserLogger.exception('Insert')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
                 
   def Update(self,MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,LogDesc,RequestedOperation=SYSTEM_PERMISSION_UPDATE):
     MenuObj = self.getMenuObjByMenuId(MenuId)
+    #TODO comparisons, change only those values which are required and let others remain same
     if  MenuObj[0] is -1:
-      return (-1,self.ExceptionMessage)
+      return (-1,'Menu does not exist.')
     PreviousState = str(MenuObj)
     try:
       details = {
@@ -59,12 +63,18 @@ class MenuFnx():
         }
       result = DBMenuUpdate(details)
       if (result['result'] == 1):
+        deleteCacheKey(self.CACHEKEY)
         return (1,'SUCESS. Menu has been sucessfully updated in database.') 
       else:
         return (-1,decode(result))
     except Exception, ex:
-      self.UserLogger.exception('Update')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
         
   def getMenuListFromCache(self):
     try:
@@ -72,10 +82,15 @@ class MenuFnx():
       if MenuList is not -1 and MenuList is not None:
         return (1,MenuList)
       else:
-        return (-1,'ERROR in Retrieveing Menu from cache')
+        return (-1,'Error in Retrieveing Menu from cache.')
     except Exception, ex:
-      self.UserLogger.exception('getMenuListFromCache')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
 
   def getAllMenuObj(self):
     try:
@@ -83,10 +98,17 @@ class MenuFnx():
       if MenuList[0] is not 1:
         MenuList = Menu.objects.all()
         setCache(self.CACHEKEY,MenuList)
+      else:
+        MenuList = MenuList[1]
       return (1,MenuList)
     except Exception, ex:
-      self.UserLogger.exception('getAllMenuObj')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
         
 
   def getMenuObjByMenuId(self,menuid):
@@ -100,8 +122,13 @@ class MenuFnx():
       else:
         return (-1,'ERROR : Error retrieving requested data from database')
     except Exception, ex:
-      self.UserLogger.exception('getMenuObjByMenuId')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
 
 
   def getParentMenu(self):
@@ -116,8 +143,13 @@ class MenuFnx():
       else:
         return (-1,'ERROR : Error retrieving requested data from database')
     except Exception, ex:
-      self.UserLogger.exception('getParentMenu')
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
 
 
   def getChildMenuByParentID(self,pid):
@@ -132,6 +164,48 @@ class MenuFnx():
       else:
         return (-1,'ERROR : Error retrieving requested data from database')
     except Exception, ex:
-      self.UserLogger.exception('getChildMenuByParentID')   
-      return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
 
+
+def TestMenuFunctions():
+  MenuFnxObj = MenuFnx()
+  print 'inserting 5 parent menu'
+  for x in range(0,5):
+    pname = 'ParentMenu' + str(x)
+    result = MenuFnxObj.Insert(pname,pname,pname,-1,pname,1,'test from main')
+    print pname , result
+  print 'getting parent menu list'
+  ParentMenuList = MenuFnxObj.getParentMenu()
+  if ParentMenuList[0] != 1:
+    print ParentMenuList[1]
+  else:
+    for par in ParentMenuList[1]:
+      parobj = MenuFnxObj.getMenuObjByMenuId(par.id)
+      if parobj[0] != 1:
+        print parobj[1]
+      else:
+        print 'printing children for %s' % (parobj[1].MenuName)
+        ChildList = MenuFnxObj.getChildMenuByParentID(parobj[1].id)
+        if ChildList[0] == 1:
+          for p in ChildList[1]:
+            print p.MenuName
+        print '=== adding 1 more child ==='
+        pname = parobj[1].MenuName + "- Child_"
+        result = MenuFnxObj.Insert(pname,pname,pname,parobj[1].id,pname,1,'test from main')
+        print pname , result
+        print '=== Updating this parent ==='
+        result = MenuFnxObj.Update(parobj[1].id,parobj[1].MenuName + "_updated",parobj[1].MenuName + "_updated",parobj[1].MenuName + "_updated",-1,parobj[1].MenuName + "_updated",1,'updated ip','updating test')
+        print result
+  print 'Finally printing all menu'
+  MenuList = MenuFnxObj.getAllMenuObj()
+  if MenuList[0] != 1:
+    print MenuList[1]
+  else:
+    for menu in MenuList:
+      print "%s\t%s\t%d" % (menu.MenuName, menu.MenuUrl, menu.MenuPid)

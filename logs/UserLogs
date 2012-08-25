@@ -604,3 +604,264 @@ TemplateDoesNotExist: UserSystem/User/home.html
 2012-08-25 22:26:14,284 DatabaseFunctions line:41   DEBUG    [Query] SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-25 22:26:10.801151'); [RESULT] [{'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1184}]
 2012-08-25 22:26:14,285 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. bPMQAsoTRfzNi5_P4L5U6S983dnwhhemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913774.29
 2012-08-25 22:26:19,426 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... bPMQAsoTRfzNi5_P4L5U6S983dnwhhemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1345913779.43
+2012-08-26 01:19:04,603 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0','ParentMenu0','ParentMenu0',-1,'ParentMenu0','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:19:08,402 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 97}]
+2012-08-26 01:19:08,404 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1','ParentMenu1','ParentMenu1',-1,'ParentMenu1','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:19:09,377 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 98}]
+2012-08-26 01:19:09,378 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2','ParentMenu2','ParentMenu2',-1,'ParentMenu2','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:19:10,344 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 99}]
+2012-08-26 01:19:10,344 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3','ParentMenu3','ParentMenu3',-1,'ParentMenu3','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:19:11,310 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 100}]
+2012-08-26 01:19:11,311 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4','ParentMenu4','ParentMenu4',-1,'ParentMenu4','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:19:12,279 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 101}]
+2012-08-26 01:23:38,015 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0','ParentMenu0','ParentMenu0',-1,'ParentMenu0','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:41,524 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 2, 'rescode': 101}]
+2012-08-26 01:23:41,524 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1','ParentMenu1','ParentMenu1',-1,'ParentMenu1','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:42,479 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 2, 'rescode': 101}]
+2012-08-26 01:23:42,479 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2','ParentMenu2','ParentMenu2',-1,'ParentMenu2','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:43,459 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 2, 'rescode': 101}]
+2012-08-26 01:23:43,459 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3','ParentMenu3','ParentMenu3',-1,'ParentMenu3','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:44,415 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 2, 'rescode': 101}]
+2012-08-26 01:23:44,415 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4','ParentMenu4','ParentMenu4',-1,'ParentMenu4','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:45,369 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 2, 'rescode': 101}]
+2012-08-26 01:23:47,398 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('test1_t- Child_','test1_t- Child_','test1_t- Child_',1,'test1_t- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:48,049 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 102}]
+2012-08-26 01:23:48,724 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(1,'test1_t_updated','test1_t_updated','test1_t_updated',-1,'test1_t_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:23:49,364 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:23:50,395 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('testfrombus1_t- Child_','testfrombus1_t- Child_','testfrombus1_t- Child_',3,'testfrombus1_t- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:51,036 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 103}]
+2012-08-26 01:23:51,711 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(3,'testfrombus1_t_updated','testfrombus1_t_updated','testfrombus1_t_updated',-1,'testfrombus1_t_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:23:52,351 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:23:53,390 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('testfrombus1_t- Child_','testfrombus1_t- Child_','testfrombus1_t- Child_',4,'testfrombus1_t- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:54,030 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 104}]
+2012-08-26 01:23:54,705 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(4,'testfrombus1_t_updated','testfrombus1_t_updated','testfrombus1_t_updated',-1,'testfrombus1_t_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:23:55,344 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:23:56,417 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-5- Child_','par-5- Child_','par-5- Child_',9,'par-5- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:23:57,056 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 105}]
+2012-08-26 01:23:57,732 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(9,'par-5_updated','par-5_updated','par-5_updated',-1,'par-5_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:23:58,375 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:23:59,412 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-6- Child_','par-6- Child_','par-6- Child_',10,'par-6- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:00,050 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 106}]
+2012-08-26 01:24:00,780 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(10,'par-6_updated','par-6_updated','par-6_updated',-1,'par-6_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:01,418 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:02,458 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-7- Child_','par-7- Child_','par-7- Child_',11,'par-7- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:03,114 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 107}]
+2012-08-26 01:24:03,793 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(11,'par-7_updated','par-7_updated','par-7_updated',-1,'par-7_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:04,449 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:05,489 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-8- Child_','par-8- Child_','par-8- Child_',12,'par-8- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:06,127 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 108}]
+2012-08-26 01:24:06,807 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(12,'par-8_updated','par-8_updated','par-8_updated',-1,'par-8_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:07,446 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:08,488 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-9- Child_','par-9- Child_','par-9- Child_',13,'par-9- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:09,126 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 109}]
+2012-08-26 01:24:09,803 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(13,'par-9_updated','par-9_updated','par-9_updated',-1,'par-9_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:10,441 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:11,484 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-10- Child_','par-10- Child_','par-10- Child_',14,'par-10- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:12,124 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:12,803 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(14,'par-10_updated','par-10_updated','par-10_updated',-1,'par-10_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:13,442 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:14,486 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-11- Child_','par-11- Child_','par-11- Child_',15,'par-11- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:15,124 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 111}]
+2012-08-26 01:24:15,804 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(15,'par-11_updated','par-11_updated','par-11_updated',-1,'par-11_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:16,444 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:17,488 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-12- Child_','par-12- Child_','par-12- Child_',16,'par-12- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:18,127 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 112}]
+2012-08-26 01:24:18,809 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(16,'par-12_updated','par-12_updated','par-12_updated',-1,'par-12_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:19,448 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:20,496 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-13- Child_','par-13- Child_','par-13- Child_',17,'par-13- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:21,135 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 113}]
+2012-08-26 01:24:21,816 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(17,'par-13_updated','par-13_updated','par-13_updated',-1,'par-13_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:22,455 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:23,502 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-14- Child_','par-14- Child_','par-14- Child_',18,'par-14- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:24,141 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 114}]
+2012-08-26 01:24:24,823 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(18,'par-14_updated','par-14_updated','par-14_updated',-1,'par-14_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:25,463 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:26,510 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0- Child_','ParentMenu0- Child_','ParentMenu0- Child_',97,'ParentMenu0- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:27,174 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 115}]
+2012-08-26 01:24:27,858 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(97,'ParentMenu0_updated','ParentMenu0_updated','ParentMenu0_updated',-1,'ParentMenu0_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:28,497 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:29,552 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1- Child_','ParentMenu1- Child_','ParentMenu1- Child_',98,'ParentMenu1- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:30,191 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 116}]
+2012-08-26 01:24:30,875 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(98,'ParentMenu1_updated','ParentMenu1_updated','ParentMenu1_updated',-1,'ParentMenu1_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:31,515 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:32,573 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2- Child_','ParentMenu2- Child_','ParentMenu2- Child_',99,'ParentMenu2- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:33,212 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 117}]
+2012-08-26 01:24:33,897 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(99,'ParentMenu2_updated','ParentMenu2_updated','ParentMenu2_updated',-1,'ParentMenu2_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:34,541 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:35,594 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3- Child_','ParentMenu3- Child_','ParentMenu3- Child_',100,'ParentMenu3- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:36,233 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 118}]
+2012-08-26 01:24:36,918 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(100,'ParentMenu3_updated','ParentMenu3_updated','ParentMenu3_updated',-1,'ParentMenu3_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:37,558 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:24:38,613 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4- Child_','ParentMenu4- Child_','ParentMenu4- Child_',101,'ParentMenu4- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:24:39,253 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 119}]
+2012-08-26 01:24:39,939 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(101,'ParentMenu4_updated','ParentMenu4_updated','ParentMenu4_updated',-1,'ParentMenu4_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:24:40,578 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:27,960 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0','ParentMenu0','ParentMenu0',-1,'ParentMenu0','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:31,473 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 120}]
+2012-08-26 01:27:31,476 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1','ParentMenu1','ParentMenu1',-1,'ParentMenu1','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:32,430 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 121}]
+2012-08-26 01:27:32,431 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2','ParentMenu2','ParentMenu2',-1,'ParentMenu2','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:33,386 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 122}]
+2012-08-26 01:27:33,387 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3','ParentMenu3','ParentMenu3',-1,'ParentMenu3','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:34,343 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 123}]
+2012-08-26 01:27:34,343 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4','ParentMenu4','ParentMenu4',-1,'ParentMenu4','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:35,298 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 124}]
+2012-08-26 01:27:37,953 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('test1_t_updated- Child_','test1_t_updated- Child_','test1_t_updated- Child_',1,'test1_t_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:38,592 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 125}]
+2012-08-26 01:27:39,565 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(1,'test1_t_updated_updated','test1_t_updated_updated','test1_t_updated_updated',-1,'test1_t_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:40,205 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:41,265 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('testfrombus1_t_updated- Child_','testfrombus1_t_updated- Child_','testfrombus1_t_updated- Child_',3,'testfrombus1_t_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:41,903 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 126}]
+2012-08-26 01:27:42,592 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(3,'testfrombus1_t_updated_updated','testfrombus1_t_updated_updated','testfrombus1_t_updated_updated',-1,'testfrombus1_t_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:43,238 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:44,303 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('testfrombus1_t_updated- Child_','testfrombus1_t_updated- Child_','testfrombus1_t_updated- Child_',4,'testfrombus1_t_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:44,942 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 127}]
+2012-08-26 01:27:45,631 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(4,'testfrombus1_t_updated_updated','testfrombus1_t_updated_updated','testfrombus1_t_updated_updated',-1,'testfrombus1_t_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:46,270 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:47,334 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-5_updated- Child_','par-5_updated- Child_','par-5_updated- Child_',9,'par-5_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:47,973 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 128}]
+2012-08-26 01:27:48,709 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(9,'par-5_updated_updated','par-5_updated_updated','par-5_updated_updated',-1,'par-5_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:49,349 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:50,414 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-6_updated- Child_','par-6_updated- Child_','par-6_updated- Child_',10,'par-6_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:51,053 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 129}]
+2012-08-26 01:27:51,745 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(10,'par-6_updated_updated','par-6_updated_updated','par-6_updated_updated',-1,'par-6_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:52,385 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:53,454 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-8_updated- Child_','par-8_updated- Child_','par-8_updated- Child_',12,'par-8_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:54,092 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 130}]
+2012-08-26 01:27:54,784 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(12,'par-8_updated_updated','par-8_updated_updated','par-8_updated_updated',-1,'par-8_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:55,423 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:56,494 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-9_updated- Child_','par-9_updated- Child_','par-9_updated- Child_',13,'par-9_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:27:57,132 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 131}]
+2012-08-26 01:27:57,825 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(13,'par-9_updated_updated','par-9_updated_updated','par-9_updated_updated',-1,'par-9_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:27:58,465 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:27:59,535 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-11_updated- Child_','par-11_updated- Child_','par-11_updated- Child_',15,'par-11_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:00,174 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 132}]
+2012-08-26 01:28:00,868 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(15,'par-11_updated_updated','par-11_updated_updated','par-11_updated_updated',-1,'par-11_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:01,507 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:02,579 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-12_updated- Child_','par-12_updated- Child_','par-12_updated- Child_',16,'par-12_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:03,240 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 133}]
+2012-08-26 01:28:03,935 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(16,'par-12_updated_updated','par-12_updated_updated','par-12_updated_updated',-1,'par-12_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:04,575 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:05,653 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-14_updated- Child_','par-14_updated- Child_','par-14_updated- Child_',18,'par-14_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:06,293 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 134}]
+2012-08-26 01:28:06,985 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(18,'par-14_updated_updated','par-14_updated_updated','par-14_updated_updated',-1,'par-14_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:07,624 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:08,702 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1_updated- Child_','ParentMenu1_updated- Child_','ParentMenu1_updated- Child_',98,'ParentMenu1_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:09,341 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 135}]
+2012-08-26 01:28:10,037 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(98,'ParentMenu1_updated_updated','ParentMenu1_updated_updated','ParentMenu1_updated_updated',-1,'ParentMenu1_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:10,676 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:11,753 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2_updated- Child_','ParentMenu2_updated- Child_','ParentMenu2_updated- Child_',99,'ParentMenu2_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:12,392 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 136}]
+2012-08-26 01:28:13,089 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(99,'ParentMenu2_updated_updated','ParentMenu2_updated_updated','ParentMenu2_updated_updated',-1,'ParentMenu2_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:13,728 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:14,804 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4_updated- Child_','ParentMenu4_updated- Child_','ParentMenu4_updated- Child_',101,'ParentMenu4_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:15,442 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 137}]
+2012-08-26 01:28:16,140 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(101,'ParentMenu4_updated_updated','ParentMenu4_updated_updated','ParentMenu4_updated_updated',-1,'ParentMenu4_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:16,780 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:17,861 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-7_updated- Child_','par-7_updated- Child_','par-7_updated- Child_',11,'par-7_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:18,500 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 138}]
+2012-08-26 01:28:19,200 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(11,'par-7_updated_updated','par-7_updated_updated','par-7_updated_updated',-1,'par-7_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:19,839 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:20,924 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-10_updated- Child_','par-10_updated- Child_','par-10_updated- Child_',14,'par-10_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:21,563 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 139}]
+2012-08-26 01:28:22,265 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(14,'par-10_updated_updated','par-10_updated_updated','par-10_updated_updated',-1,'par-10_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:22,905 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:23,990 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('par-13_updated- Child_','par-13_updated- Child_','par-13_updated- Child_',17,'par-13_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:24,633 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 140}]
+2012-08-26 01:28:25,335 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(17,'par-13_updated_updated','par-13_updated_updated','par-13_updated_updated',-1,'par-13_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:25,975 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:27,061 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0_updated- Child_','ParentMenu0_updated- Child_','ParentMenu0_updated- Child_',97,'ParentMenu0_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:27,700 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 141}]
+2012-08-26 01:28:28,674 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(97,'ParentMenu0_updated_updated','ParentMenu0_updated_updated','ParentMenu0_updated_updated',-1,'ParentMenu0_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:29,313 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:30,402 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3_updated- Child_','ParentMenu3_updated- Child_','ParentMenu3_updated- Child_',100,'ParentMenu3_updated- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:31,042 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 142}]
+2012-08-26 01:28:31,746 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(100,'ParentMenu3_updated_updated','ParentMenu3_updated_updated','ParentMenu3_updated_updated',-1,'ParentMenu3_updated_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:32,386 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:33,477 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu0- Child_','ParentMenu0- Child_','ParentMenu0- Child_',120,'ParentMenu0- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:34,116 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 143}]
+2012-08-26 01:28:34,820 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(120,'ParentMenu0_updated','ParentMenu0_updated','ParentMenu0_updated',-1,'ParentMenu0_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:35,459 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:36,550 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu1- Child_','ParentMenu1- Child_','ParentMenu1- Child_',121,'ParentMenu1- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:37,189 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 144}]
+2012-08-26 01:28:37,895 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(121,'ParentMenu1_updated','ParentMenu1_updated','ParentMenu1_updated',-1,'ParentMenu1_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:38,535 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:39,629 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu2- Child_','ParentMenu2- Child_','ParentMenu2- Child_',122,'ParentMenu2- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:40,268 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 145}]
+2012-08-26 01:28:40,971 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(122,'ParentMenu2_updated','ParentMenu2_updated','ParentMenu2_updated',-1,'ParentMenu2_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:41,630 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:42,725 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu3- Child_','ParentMenu3- Child_','ParentMenu3- Child_',123,'ParentMenu3- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:43,364 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 146}]
+2012-08-26 01:28:44,072 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(123,'ParentMenu3_updated','ParentMenu3_updated','ParentMenu3_updated',-1,'ParentMenu3_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:44,711 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:28:45,808 DatabaseFunctions line:87   DEBUG    [DBMenuInsert] SELECT * FROM MenuInsert('ParentMenu4- Child_','ParentMenu4- Child_','ParentMenu4- Child_',124,'ParentMenu4- Child_','SYS_PER_INSERT',1,'test from main');
+2012-08-26 01:28:46,447 DatabaseFunctions line:90   DEBUG    [DBMenuInsert] [{'result': 1, 'rescode': 147}]
+2012-08-26 01:28:47,155 DatabaseFunctions line:100  DEBUG    [DBMenuUpdate] SELECT * FROM MenuUpdate(124,'ParentMenu4_updated','ParentMenu4_updated','ParentMenu4_updated',-1,'ParentMenu4_updated','SYS_PER_UPDATE','updating test','(1, <Menu: Menu object>)',1,'updated ip');
+2012-08-26 01:28:47,794 DatabaseFunctions line:103  DEBUG    [DBMenuUpdate] [{'result': 1, 'rescode': 110}]
+2012-08-26 01:44:03,769 DatabaseFunctions line:66   ERROR    DBGroupTypeInsert
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 62, in DBGroupTypeInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: value too long for type character varying(20)
+CONTEXT:  SQL statement "INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'INSERT')"
+PL/pgSQL function "grouptypeinsert" line 33 at SQL statement
+
+2012-08-26 01:44:04,140 DatabaseFunctions line:66   ERROR    DBGroupTypeInsert
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 62, in DBGroupTypeInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
+2012-08-26 01:44:04,177 GroupTypeFunctions line:64   ERROR    ListAllGroupTypes : [self : <tx2.Users.BusinessFunctions.GroupTypeFunctions.GroupTypeFnx instance at 0x7f438d8a3ea8>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/GroupTypeFunctions.py", line 53, in ListAllGroupTypes
+    grouptypelist = self.getGroupTypeFromCache()
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/GroupTypeFunctions.py", line 46, in getGroupTypeFromCache
+    if GroupList is not -1 and GroupList is not None:
+NameError: global name 'GroupList' is not defined
+2012-08-26 01:48:05,089 DatabaseFunctions line:67   ERROR    DBGroupTypeInsert
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 63, in DBGroupTypeInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: value too long for type character varying(20)
+CONTEXT:  SQL statement "INSERT INTO "Users_userlogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES(by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),RequestedOperation,'INSERT')"
+PL/pgSQL function "grouptypeinsert" line 33 at SQL statement
+
+2012-08-26 01:48:05,410 DatabaseFunctions line:67   ERROR    DBGroupTypeInsert
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 63, in DBGroupTypeInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
+2012-08-26 01:50:01,002 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype0','grouptype0','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 1, 'rescode': 7}]
+2012-08-26 01:50:01,953 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype1','grouptype1','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 1, 'rescode': 8}]
+2012-08-26 01:50:53,774 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype0','grouptype0','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 2, 'rescode': 81}]
+2012-08-26 01:50:54,729 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype1','grouptype1','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 2, 'rescode': 81}]
+2012-08-26 01:51:16,849 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype0','grouptype0','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 2, 'rescode': 81}]
+2012-08-26 01:51:17,810 DatabaseFunctions line:64   DEBUG    [Query] SELECT * FROM GroupTypeInsert('grouptype1','grouptype1','SYS_PER_INSERT',1,'testing'); [RESULT] [{'result': 2, 'rescode': 81}]
