@@ -1,8 +1,10 @@
 
-{% extends "UserProfileMaster.html" %}
+{% extends "TXtemplates/UserProfileMaster.html" %}
     <title>{% block title %}Student Details{% endblock %}</title>
 
-{% block master_content_center %}
+
+
+{% block UserProfileMaster_content_center %}
 {% if msglist|length > 0 %}
 			{% for msg in msglist %}
 				<div class="w648 border_bottom h30 mb4 font_color_red">
@@ -15,6 +17,7 @@
 		
 
 <div id="respond">
+       <H2>Basic Details</H2>
       {% if errorlist|length > 0 %}
 			{% for err in errorlist %}
                     	<h6>	{{ err }}</h6>
@@ -63,8 +66,8 @@
            <label for="Degree"><small>Degree(required)</small></label>
           </p>
           
-           <p>
-            <textarea name="ComputerProficiency" id="comment" cols="100%" rows="10"></textarea>
+           <p>Computer Proficiency<br>
+            <textarea name="ComputerProficiency" id="comment" cols="100%" rows="15"></textarea>
             <label for="ComputerProficiency" style="display:none;"><small>Computer Proficiency(For BE MBA)
 </small></label>
           </p>

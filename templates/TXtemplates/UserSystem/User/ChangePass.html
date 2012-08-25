@@ -1,23 +1,10 @@
+{% extends "TXtemplates/UserProfileMaster.html" %}
+    <title>{% block title %}Change Password{% endblock %}</title>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-<title>{{title}}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="{{STATIC_URL}}css/layout.css" type="text/css" />
-<script src="{{STATIC_URL}}js/Validation.js" type="text/javascript"></script>
-{% include "analytics/script.html" %}
+{% block UserProfileMaster_content_center %}
 
-</head>
-<body id="top">
-
-<!-- ####################################################################################################### -->
-<!-- ####################################################################################################### -->
-<div class="wrapper row4">
-  <div id="container" class="clear">
     <!-- ####################################################################################################### -->
-    <h2>Register</h2>
+    <h2>Change Password</h2>
       <div id="respond">
       {% if errorlist|length > 0 %}
 			{% for err in errorlist %}
@@ -42,19 +29,12 @@
           </p>
           
           <p>
-            <input name="submit" type="submit" id="submit" value="Submit Form" />
+            <input name="submit" type="submit" id="submit" value="Submit" />
             &nbsp;
-            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset" />
           </p>
           
         </form>
       </div>
-    </div>
-    
-    </div>
-    <!-- ####################################################################################################### -->
-    <div class="clear"></div>
-  </div>
-</div>
-</body>
-</html>
+    </div>    
+{% endblock %}

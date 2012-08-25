@@ -1,68 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-<title>{{title}}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="{{STATIC_URL}}css/layout.css" type="text/css" />
-<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.4.1.min.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}js/jquery-slidedeck.pack.lite.js"></script>
-{% include "common/fancy-box-scripts.html" %}
-{% include "analytics/script.html" %}
+{% extends "TXtemplates/base.html" %}
 
-</head>
-<body id="top">
+{% block title %}Homepage{% endblock %}
 
-{% if msglist|length > 0 %}
-<div>
-				{% for msg in msglist %}
-<H2 align="center" FONT
-style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
-
-		  	  {% endif %}
-		  	  
-		  	  
-<div class="wrapper row1">
-
-   {% include "TXtemplates/common/top-left" %}
-    {% if loggedin %}
-    <div class="fl_right">
-    {% include "TXtemplates/common/loggedin_top_right" %}
-    </div>
-    {% else %}
-   {% include "TXtemplates/common/login-form" %}
+{% block row1_top_right %}
+	{% if loggedin %}
+	    <div class="fl_right">
+	    {% include "TXtemplates/common/loggedin_top_right" %}
+	    </div>
+	    {% else %}
+	   {% include "TXtemplates/common/login-form" %}
     {% endif %} 
-  </div>
-</div>
+{% endblock %}
 
 
-
-<!-- ####################################################################################################### -->
-
-{% include "TXtemplates/common/top-nav-row2.html" %}
-
-
-<!-- ####################################################################################################### -->
-<div class="wrapper row3">
+{% block wrapper_row3_class %}
+	
+	
   <div id="featured_slide">
     <!-- ####################################################################################################### -->
     <dl class="slidedeck">
       <dt>UIET Campus</dt>
       <dd><img src="{{STATIC_URL}}images/campus1.jpg" alt="" /></dd>
-      <!--<dt>Slide 2</dt>
-      <dd><img src="{{STATIC_URL}}images/Slide-2.jpg" alt="" /></dd>
-      <dt>Slide 3</dt>
-      <dd><img src="{{STATIC_URL}}images/Slide-3.jpg" alt="" /></dd>
-      <dt>Slide 4</dt>
-      <dd><img src="{{STATIC_URL}}images/Slide-4.jpg" alt="" /></dd>
-      <dt>Slide 5</dt>
-      <dd><img src="{{STATIC_URL}}images/demo/featured-slide/735x360.gif" alt="" /></dd>--!>
+      
     </dl>
   </div>
-  <!-- ####################################################################################################### -->
-</div>
-<!-- ####################################################################################################### -->
-<div class="wrapper row4">
+
+{%endblock%}
+
+{% block wrapper_row4_class %}
   <div id="container" class="clear">
     <!-- ####################################################################################################### -->
     <div id="homepage" class="clear">
@@ -166,18 +131,13 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
           </form>
           <p class="form_hint">* Please add name@domain.com to your trusted email list</p>
           --!>
+        
         </div>
 
       </div>
     </div>
     <!-- ####################################################################################################### -->
   </div>
-</div>
-<!-- ####################################################################################################### -->
-{% include "TXtemplates/common/footer.html" %}
 
+{% endblock %}
 
-{% include "TXtemplates/common/end_copyright.html" %}
-
-</body>
-</html>

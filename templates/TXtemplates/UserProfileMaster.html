@@ -1,45 +1,13 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-<title>{% block title %}{% endblock %}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="{{STATIC_URL}}css/layout.css" type="text/css" />
-<!-- 3 Column Stylesheet Added To The Page And Not To The Layout.css -->
-<link rel="stylesheet" href="{{STATIC_URL}}css/3_column.css" type="text/css" />
-{% include "analytics/script.html" %}
+{% extends "TXtemplates/base.html" %}
+  {% block before_css %}
+  <link rel="stylesheet" href="{{STATIC_URL}}css/3_column.css" type="text/css" />
 
-</head>
-<body id="top">
-
-{% if msglist|length > 0 %}
-<div>
-				{% for msg in msglist %}
-<H2 align="center" FONT
-style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
-
-		  	  {% endif %}
-		  	  
-		  	  
-<div class="wrapper row1">
-
-   {% include "TXtemplates/common/top-left" %}
-    
-    <div class="fl_right">
-    {% include "TXtemplates/common/loggedin_top_right" %}
-    </div>
-     
-  </div>
-</div>
-
+  {% endblock %}
+  
+  
 <!-- ####################################################################################################### -->
-
-{% include "TXtemplates/common/top-nav-row2.html" %}
-
-
-<!-- ####################################################################################################### -->
-<div class="wrapper row4">
+{% block wrapper_row4_class %}
   <div id="container" class="clear">
     <!-- ####################################################################################################### -->
     <div id="left_column">
@@ -111,7 +79,7 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et sapien id quam sodales tincidunt. Cras facilisis mi eu nibh ultricies sed malesuada metus varius.</p>
      
      --!>
-     			 {% block master_content_center %}{% endblock %}  
+     			 {% block UserProfileMaster_content_center %}{% endblock %}  
       
       <!-- ############ -->
      <!-- ############ -->
@@ -139,12 +107,4 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
 </div>
 <!-- ####################################################################################################### -->
   </div>
-</div>
-<!-- ####################################################################################################### -->
-{% include "TXtemplates/common/footer.html" %}
-
-
-{% include "TXtemplates/common/end_copyright.html" %}
-
-</body>
-</html>
+{% endblock %}

@@ -1,39 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-    <title>{% block title %}User Home{% endblock %}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="{{STATIC_URL}}css/layout.css" type="text/css" />
-<!-- 3 Column Stylesheet Added To The Page And Not To The Layout.css -->
-<link rel="stylesheet" href="{{STATIC_URL}}css/3_column.css" type="text/css" />
 
-{% block add_start_script %}{% endblock %}
-{% include "analytics/script.html" %}
-</head>
-<body id="top">
-<div class="wrapper row1">
-  <div id="header" class="clear">
-      {% include "common/top-left.html" %}
+{% extends "TXtemplates/base.html" %}
+  {% block before_css %}
+  <link rel="stylesheet" href="{{STATIC_URL}}css/3_column.css" type="text/css" />
 
-    <div class="fl_right">
-         {% include "common/user_top-right-links.html" %}
-    
-     
-
-    </div>
-  </div>
-</div>
+  {% endblock %}
+  
+  
 <!-- ####################################################################################################### -->
-{% include "common/top-nav-row2.html" %}
-
-<!-- ####################################################################################################### -->
-<div class="wrapper row3">
-  <div class="rnd">
-    <div id="container" class="clear">
-      <!-- ####################################################################################################### -->
-      <div id="left_column">
-        <div class="holder">
+{% block wrapper_row4_class %}
+  <div id="container" class="clear">
+    <!-- ####################################################################################################### -->
+    <div id="left_column">
+      <div class="holder">
           
           <h2 class="title">Links</h2>
           
@@ -56,9 +34,10 @@
           <div class="imgholder"><img src="{{STATIC_URL}}images/demo/190x90.gif" alt="" /></div>
           <div class="imgholder last"><img src="{{STATIC_URL}}images/demo/190x90.gif" alt="" /></div>
         </div>
-      </div>
-      <!-- ############ -->
-      <div id="content">
+ 
+    </div>
+    <!-- ############ -->
+    <div id="content">
         
         <!--
         <div class="imgholder"><img src="{{STATIC_URL}}images/demo/410x215.gif" alt="" /></div>
@@ -100,12 +79,12 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et sapien id quam sodales tincidunt. Cras facilisis mi eu nibh ultricies sed malesuada metus varius.</p>
      
      --!>
-     <!--<iframe src="/userprofile/UserProfile/StudentDetails/" width="420 px" height= "800 px" frameborder= 0 scrolling= no></iframe> --!>
-     			 {% block master_content_center %}{% endblock %}  
-      </div>
+     			 {% block UserProfileMaster_content_center %}{% endblock %}  
+      
       <!-- ############ -->
-      <div id="right_column">
-        <div class="holder">
+     <!-- ############ -->
+    <div id="right_column">
+      <div class="holder">
           <h2 class="title">Upcoming Events</h2>
           <p>Under Construction</p>
           <!--<ul>
@@ -118,21 +97,14 @@
         </div>--!>
         <div class="holder">
           <h2 class="title">Sponsored</h2>
-          <div class="imgholder250"><img src="{{STATIC_URL}}images/demo/250X250.jpg" alt="" /></div>
+          <div class="imgholder"><img src="{{STATIC_URL}}images/demo/240x90.gif" alt="" /></div>
           <div class="imgholder"><img src="{{STATIC_URL}}images/demo/240x90.gif" alt="" /></div>
           <div class="imgholder last"><img src="{{STATIC_URL}}images/demo/240x90.gif" alt="" /></div>
         </div>
-      </div>
-      <!-- ####################################################################################################### -->
     </div>
+    <!-- ####################################################################################################### -->
   </div>
 </div>
- <!-- ####################################################################################################### -->
-    </div>
+<!-- ####################################################################################################### -->
   </div>
-</div>
-{% include "common/footer.html" %}
-
-{% include "common/wrapper.html" %}
-</body>
-</html>
+{% endblock %}

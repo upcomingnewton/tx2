@@ -1,4 +1,4 @@
-{% extends "publicdisplaymaster.html" %}
+{% extends "TXtemplates/publicdisplaymaster.html" %}
 
     <title>{% block title %} Happenings @ UIET{% endblock %}</title>
  <body id="top">
@@ -17,7 +17,7 @@
 	            <p>{{j.3}}</p>
 	            {% endautoescape %}
 
-	            <p class="readmore"><a id="example4" href="{{j.5}}">Read More Here &raquo;</a></p>
+	            <p class="readmore"><a id="example2" href="{{j.5}}">Read More Here &raquo;</a></p>
 	          </li>
 	 {% endfor %}  
  {% endfor %}	          
@@ -29,7 +29,7 @@
  
  {% endblock %}  
  
-        {% block publicdisplay-master_pagination %}
+        {% block publicdisplay-master_pagination_top %}
         
         
         <ul>
@@ -47,6 +47,24 @@
         </ul>
         {% endblock %}  
 
+
+        {% block publicdisplay-master_pagination %}
+        
+        
+        <ul>
+        {%if prev %}
+        <li class="prev"><a href="/communication/News/{{prev_p}}">&laquo; Previous</a></li>
+        {% endif %}
+        
+        {% for i in pagerange %}
+        <li><a href="/communication/News/{{i}}">{{i}}</a></li>
+        {% endfor %}
+        
+        {% if next %}
+          <li class="next"><a href="/communication/News/{{next_p}}">Next &raquo;</a></li>
+        {% endif %}
+        </ul>
+        {% endblock %}  
  
  
  

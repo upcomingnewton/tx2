@@ -2,7 +2,9 @@
 {% extends "TXtemplates/UserProfileMaster.html" %}
     <title>{% block title %}Student Details{% endblock %}</title>
 
-{% block master_content_center %}
+
+
+{% block UserProfileMaster_content_center %}
 {% if msglist|length > 0 %}
 			{% for msg in msglist %}
 				<div class="w648 border_bottom h30 mb4 font_color_red">

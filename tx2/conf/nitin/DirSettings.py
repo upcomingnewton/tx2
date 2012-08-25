@@ -8,7 +8,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/static",
     #"/home/nitin/workspace/tx2/static",
-    UserPath + GLOBAL_STATICFILES_DIRS
+    UserPath + GLOBAL_STATICFILES_DIRS,
 )
 
 TEMPLATE_DIRS = (
@@ -17,7 +17,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     #"/home/nitin/tx2/templates",
     #"/home/nitin/workspace/tx2/templates",
-    UserPath + GLOBAL_TEMPLATE_DIRS
+    UserPath + GLOBAL_TEMPLATE_DIRS,
 )
 
 
