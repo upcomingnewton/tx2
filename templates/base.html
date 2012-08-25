@@ -6,11 +6,11 @@
 <head profile="http://gmpg.org/xfn/11">
 	
 <title>{% block title %}{% endblock %} - Training & Placement Committee, UIET Panjab University</title>
-{% include "TXtemplates/meta/html_head_meta.html" %}
+{% include "meta/html_head_meta.html" %}
   {% block before_css %}{% endblock %}
-	{% include "TXtemplates/meta/html_head_stylesheets.html" %}
+	{% include "meta/html_head_stylesheets.html" %}
         {% block forestyle %}{% endblock %}      
-        {% include "TXtemplates/meta/html_head_javascript.html" %}
+        {% include "meta/html_head_javascript.html" %}
 
 </head>
 
@@ -29,14 +29,14 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
 		  	  
 <div class="wrapper row1">
 
-   {% include "TXtemplates/common/top-left" %}
+   {% include "common/top-left" %}
     
     {% if loggedin %}
     <div class="fl_right">
-    {% include "TXtemplates/common/loggedin_top_right" %}
+    {% include "common/loggedin_top_right" %}
     </div>
     {% else %}
-   {% include "TXtemplates/common/login-form" %}
+   {% include "common/login-form" %}
     {% endif %} 
     
 </div>
@@ -45,7 +45,7 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
 
 <!-- ####################################################################################################### -->
 
-{% include "TXtemplates/common/top-nav-row2.html" %}
+{% include "common/top-nav-row2.html" %}
 
 <!--Till here common ####################################################################################################### -->
 
@@ -62,10 +62,10 @@ style="BACKGROUND-COLOR: white;color:black" >{{msg}}<H2>{% endfor %}
 
 
 <!-- ####################################################################################################### -->
-{% include "TXtemplates/common/footer.html" %}
+{% include "common/footer.html" %}
 
 
-{% include "TXtemplates/common/end_copyright.html" %}
+{% include "common/end_copyright.html" %}
 
 
 

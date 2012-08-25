@@ -1,14 +1,14 @@
-{% extends "TXtemplates/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Homepage{% endblock %}
 
 {% block row1_top_right %}
 	{% if loggedin %}
 	    <div class="fl_right">
-	    {% include "TXtemplates/common/loggedin_top_right" %}
+	    {% include "common/loggedin_top_right" %}
 	    </div>
 	    {% else %}
-	   {% include "TXtemplates/common/login-form" %}
+	   {% include "common/login-form" %}
     {% endif %} 
 {% endblock %}
 
