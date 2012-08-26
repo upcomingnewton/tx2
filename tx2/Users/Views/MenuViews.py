@@ -7,19 +7,19 @@ from tx2.Users.BusinessFunctions.MenuFunctions import MenuFnx
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity,getSystemGroup_NewUsers, getSystemUser_DaemonCreateUser
 from tx2.CONFIG import LoggerUser,SESSION_MESSAGE
+from django.contrib import messages
 import logging
 import datetime
+import inspect
 
 
 LoggerUser = logging.getLogger(LoggerUser)
 ExceptionMessage = 'ERROR : System has suffered some error while processing your request. Please try after some-time. If the problem persists, contact system administrators.'
 
 def ListAllMenu(HttpRequest):
-  msglist = AppendMessageList(HttpRequest)
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
-    msglist.append('Please Login to continue')
-    HttpRequest.session[SESSION_MESSAGE] = msglist
+    messages.error(HttpRequest,"Error.Please login to continue.")
     return HttpResponseRedirect('/user/login/')
   try:
     MenuObj = MenuFnx()
@@ -27,12 +27,17 @@ def ListAllMenu(HttpRequest):
     if MenuList[0] == 1:
       return render_to_response('UserSystem/Menu/ListMenu.html',{"MenuList":MenuList[1]},context_instance=RequestContext(HttpRequest))
     else:
-      HttpRequest.session[SESSION_MESSAGE] = [MenuList[1]]
+      messages.error(HttpRequest,"Error. %s" % (MenuList[0])) 
       return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('ListAllMenu')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,"Error. %s" % (str(ex))) 
+      return HttpResponseRedirect('/message/')
     
 def AddMenuIndex(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
@@ -49,10 +54,15 @@ def AddMenuIndex(HttpRequest):
     else:
       HttpRequest.session[SESSION_MESSAGE] = [ParentMenuList[1]]
       return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('AddMenuIndex')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')
     
 def EditMenuIndex(HttpRequest,MenuId):
   msglist = AppendMessageList(HttpRequest)
@@ -69,10 +79,15 @@ def EditMenuIndex(HttpRequest,MenuId):
     else:
       HttpRequest.session[SESSION_MESSAGE] = [MenuObject[1]]
       return HttpResponseRedirect('/message/')
-  except:
-    LoggerUser.exception('EditMenuIndex')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')
     
 # CB FNX
 
@@ -123,10 +138,15 @@ def AddMenu(HttpRequest):
       result = MenuFnxObj.Insert(MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'])
       HttpRequest.session[SESSION_MESSAGE] = [str(result)]
       return HttpResponseRedirect('/user/menu/list')
-  except:
-    LoggerUser.exception('AddMenu')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')
     
 def EditMenu(HttpRequest,MenuId):
   msglist = AppendMessageList(HttpRequest)
@@ -137,10 +157,15 @@ def EditMenu(HttpRequest,MenuId):
     return HttpResponseRedirect('/user/login/')
   try:
     pass
-  except:
-    LoggerUser.exception('EditMenu')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')
     
 def Delete(HttpRequest,MenuId):
   msglist = AppendMessageList(HttpRequest)
@@ -151,7 +176,12 @@ def Delete(HttpRequest,MenuId):
     return HttpResponseRedirect('/user/login/')
   try:
     pass
-  except:
-    LoggerUser.exception('Delete')
-    HttpRequest.session[SESSION_MESSAGE] = [ExceptionMessage]
-    return HttpResponseRedirect('/message/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      return HttpResponseRedirect('/message/')

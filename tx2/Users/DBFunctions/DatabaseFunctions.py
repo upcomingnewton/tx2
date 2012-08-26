@@ -136,10 +136,20 @@ def DBMenuUpdate(details):
       return {'result':-5,'rescode':str(ex)}
         
         
+#    SELECT * FROM groupmenuinsert(IN menustr character varying,
+#                                  IN groupid integer, 
+#                                  IN extrainfo character varying, 
+#                                  IN permissionstr character varying, 
+#                                  IN requestedoperation character varying, 
+#                                  IN by_user integer, 
+#                                  IN ip character varying, 
+#                                  OUT result integer, 
+#                                  OUT rescode integer)
+
 def DBGroupMenuInsert(details):
   try:
 	#SELECT * FROM  GroupMenuInsert(MenuStr,GroupID,PermissionStr,RequestedOperation,by_user,ip);
-        query = "SELECT * FROM GroupMenuInsert('" + details['MenuStr'] + "'," + str(details['GroupID']) + ",'" + details['PermissionStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
+        query = "SELECT * FROM GroupMenuInsert('" + details['MenuStr'] + "'," + str(details['GroupID']) + ",'" + details['extrainfo'] + "','" + details['PermissionStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
         return result[0]
   except Exception, ex:

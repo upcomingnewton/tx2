@@ -1,19 +1,17 @@
-CREATE OR REPLACE FUNCTION GroupMenuInsert(
-MenuStr VARCHAR,
-GroupID integer,
-PermissionStr VARCHAR,
-RequestedOperation VARCHAR,
-by_user INTEGER,
-ip VARCHAR,
-OUT result INTEGER,
-OUT rescode INTEGER
-) RETURNS RECORD AS $$
+-- Function: groupmenuinsert(character varying, integer, character varying, character varying, character varying, integer, character varying)
+
+DROP FUNCTION groupmenuinsert(character varying, integer, character varying, character varying, character varying, integer, character varying);
+
+CREATE OR REPLACE FUNCTION groupmenuinsert(IN menustr character varying, IN groupid integer, IN extrainfo character varying, IN permissionstr character varying, IN requestedoperation character varying, IN by_user integer, IN ip character varying, OUT result integer, OUT rescode integer)
+  RETURNS record AS
+$BODY$
 DECLARE 
     temp INTEGER;
     temp2 INTEGER;
     varrec RECORD;
     MenuArray INTEGER[];
     PermissionArray INTEGER[];
+    ExtraInfoArray VARCHAR[];
     MenuArraySize INTEGER;
     LogsDesc VARCHAR;
 BEGIN 
@@ -28,12 +26,13 @@ END IF;
 
 MenuArray := string_to_array(MenuStr,',');
 PermissionArray :=  string_to_array(PermissionStr,',');
+ExtraInfoArray := string_to_array(ExtraInfo,',');
 MenuArraySize := array_upper(MenuArray,1);
 
 FOR temp in 1..MenuArraySize LOOP
 	IF NOT EXISTS ( SELECT id FROM "Users_groupmenu" WHERE  "Menu_id"=MenuArray[temp] AND "Group_id"=GroupID AND "Active"=1 AND "Permission"= PermissionArray[temp]) THEN 
-		INSERT INTO "Users_groupmenu"("Menu_id","Group_id","Active","Permission")
-		VALUES (MenuArray[temp],GroupID,1,PermissionArray[temp]);
+		INSERT INTO "Users_groupmenu"("Menu_id", "Group_id", "Active", "ExtraInfo", "Permission")
+		VALUES (MenuArray[temp],GroupID,1,ExtraInfoArray[temp],PermissionArray[temp]);
 		GET DIAGNOSTICS temp2 := ROW_COUNT;
 		IF temp2 <> 1 THEN 
 			rescode := 85;
@@ -44,6 +43,7 @@ END IF;
 END LOOP;
 
 GET DIAGNOSTICS temp := ROW_COUNT;
+rescode := temp;
 RAISE NOTICE 'SIZE OF ARRAY = %, NO OF ROWS CHANGED = %',MenuArraySize,temp;
 
 LogsDesc = 'Menu = ' || array_to_string(MenuArray,',') || ' Permissiom = ' || array_to_string(PermissionArray,',');
@@ -60,6 +60,9 @@ ELSE
 RETURN;
 END IF;
 END;
-$$ LANGUAGE plpgsql;
-
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION groupmenuinsert(character varying, integer, character varying, character varying, character varying, integer, character varying)
+  OWNER TO "ThoughtXplore";
 

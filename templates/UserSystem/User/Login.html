@@ -2,7 +2,9 @@
     <title>{% block title %}Login{% endblock %}</title>
     
 {% block UserProfileMaster_content_center %}
-<div id="respond">
+<div class="row">
+  <div class="formtitle">Login</div>
+</div>
 <form action="/user/login/post/" method="post">
 {% csrf_token %}
   <div class="row">
@@ -17,5 +19,4 @@
     <input type="submit" id="submit" value="SUBMIT" />
   </div>
 </form>
-</div>
 {% endblock %}
