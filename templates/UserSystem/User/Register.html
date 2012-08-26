@@ -31,6 +31,18 @@
     <div class="labelclass" >Last Name</div>
     <div class="widgetclass" ><input type="text" name="RegisterUser_lname" class="widget" /></div>
   </div>
+  <div class="row">
+    <div class="labelclass" >Gender</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:60px;">
+        <select name="RegisterUser_gender" class="widget" style="float:left;width:55px;">
+          <option value="-1">select</option>
+          <option value="M">male</option>
+          <option value="F">female</option>
+        </select>
+      </div>
+    </div>
+  </div>
   <div>
     <div class="labelclass" >Date of Birth</div>
     <div class="widgetclass" >
@@ -105,22 +117,10 @@
       </div>
     </div>
   </div>
-<!--  <div class="row">-->
-<!--    <div class="labelclass" >Gender</div>-->
-<!--    <div class="widgetclass" >-->
-<!--      <select name="RegisterUser_gender" class="widget" style="float:left;width:70px;">-->
-<!--          <option value="-1">select</option>-->
-<!--          <option value="M">male</option>-->
-<!--          <option value="F">female</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="row">-->
-<!--    <div class="labelclass" >Last Name</div>-->
-<!--    <div class="widgetclass" ><input type="text" name="RegisterUser_lname" class="widget" /></div>-->
-<!--  </div>-->
-<!--  <div class="row">-->
-<!--    <input type="submit" id="submit" value="SUBMIT" />-->
-<!--  </div>-->
+
+  <div class="row"></div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
 </form>
 {% endblock %}

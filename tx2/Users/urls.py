@@ -9,10 +9,9 @@ urlpatterns = patterns('',
         url(r'^register/$','Users.Views.UserViewIndex.CreateUserIndex'),
         url(r'^password/change/$','Users.Views.UserViewIndex.ChangePassIndex'),
         url(r'^password/reset/$','Users.Views.UserViewIndex.ResetPasswordIndex'),
-        url(r'^password/reset/$','Users.Views.UserViewIndex.ResendAuthenticationEmailIndex'),
         url(r'^authenticate/resendemail/$','Users.Views.UserViews.ResendAuthenticationEmail'), #ResendAuthenticationEmail
-        url(r'^password/change/change/$','Users.Views.UserViews.ChangePass'),
-        url(r'^password/reset/reset/$','Users.Views.UserViews.ResetPass'),
+        url(r'^password/change/post/$','Users.Views.UserViews.ChangePass'),
+        url(r'^password/reset/post/$','Users.Views.UserViews.ResetPass'),
         
         # MENU URLS
         url(r'^menu/list/$','Users.Views.MenuViews.ListAllMenu'),
