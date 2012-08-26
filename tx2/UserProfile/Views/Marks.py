@@ -13,6 +13,7 @@ from tx2.UserProfile.BusinessFunctions.Marks import Marks
 from tx2.UserProfile.models import Board, SessionType
 from tx2.UserProfile.models import DegreeType
 from tx2.UserProfile.models import Degree
+from tx2.UserProfile.models import Marks as modelMarks
 from django.contrib import messages
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
@@ -260,7 +261,7 @@ def MarksPostSave(HttpRequest):
         if(flag!=-1):
           SessionEnd="1 "+SessionEndMonth+" "+SessionEndYear;
         if "SessionNumber" in HttpRequest.session:
-            SessionNumber=HttpRequest.session["SessionNumber"]
+            _SessionNumber=HttpRequest.session["SessionNumber"]
         else:
           messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionNumber')
           msglist.append("Error fetching data from form for SessionNumber");
@@ -321,7 +322,7 @@ def MarksPostSave(HttpRequest):
             msglist.append("Error fetching data from form for Board");
             flag=-1;
         if "Degree" in HttpRequest.session:
-            Degree=HttpRequest.session["Degree"]
+            _Degree=HttpRequest.session["Degree"]
         else:
             messages.error(HttpRequest,'ERROR : Error fetching data from form for Degree')
             msglist.append("Error fetching data from form for Degree");
@@ -332,8 +333,11 @@ def MarksPostSave(HttpRequest):
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
-        result=MarksObj.InsertMarks(SessionStart, SessionEnd, SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Boardid, Degree, logindetails["userid"],logindetails["userid"], ip)
-        
+        if(modelMarks.objects.filter(SessionNumber=_SessionNumber,Degree=_Degree,UserId=logindetails["userid"]).count()==0):
+          result=MarksObj.InsertMarks(SessionStart, SessionEnd, _SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Boardid, _Degree, logindetails["userid"],logindetails["userid"], ip)
+        else:
+          _id=modelMarks.objects.get(SessionNumber=_SessionNumber,Degree=_Degree,UserId=logindetails["userid"]).id;
+          result=MarksObj.UpdateMarks(_id,SessionStart, SessionEnd, _SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Boardid, _Degree, logindetails["userid"],logindetails["userid"], ip)
         
         msglist.append("result is %s"%result);
         if(result['result']==1):
