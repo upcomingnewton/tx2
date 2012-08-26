@@ -10,8 +10,12 @@ from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
 from tx2.UserProfile.BusinessFunctions.Marks import Marks
-from tx2.UserProfile.models import Board
+from tx2.UserProfile.models import Board, SessionType
 from tx2.UserProfile.models import DegreeType
+from tx2.UserProfile.models import Degree
+from tx2.UserProfile.models import Marks as modelMarks
+from django.contrib import messages
+from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 Logger_User = logging.getLogger(LoggerSecurity)
 
@@ -25,7 +29,15 @@ def DegreeIndex(HttpRequest):
 def SessionTypeIndex(HttpRequest):
     return render_to_response("UserProfile/SessionType.html",context_instance=RequestContext(HttpRequest))
 def MarksIndex(HttpRequest):
-    return render_to_response("UserProfile/Marks.html",context_instance=RequestContext(HttpRequest))
+  msglist = AppendMessageList(HttpRequest)
+  logindetails = GetLoginDetails(HttpRequest)
+  print logindetails
+  if( logindetails["userid"] == -1):
+    msglist.append('Please Login to continue')
+    HttpRequest.session[SESSION_MESSAGE] = msglist
+    return HttpResponseRedirect('/user/login/')
+      
+  return render_to_response("UserProfile/MarksCategory.html",context_instance=RequestContext(HttpRequest))
 
 def BoardInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
@@ -147,86 +159,192 @@ def SessionTypeInsert(HttpRequest):
         x, y = inst.args
         print 'x =', x
         print 'y =', y
-def MarksInsert(HttpRequest):
+def MarksSave(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
+    
     print logindetails
     if( logindetails["userid"] == -1):
         msglist.append('Please Login to continue')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
+        flag=1
+        v="";
+        if "v" in HttpRequest.GET:
+            v=HttpRequest.GET["v"]
+        else:
+            msglist.append("Error fetching data from url for v");
+            flag=-1;
+        if(v=="10th"):
+          SessionYearlyId=SessionType.objects.get(Name='Yearly').id;
+          DegreeTypeId10th=DegreeType.objects.get(Name="10th").id;
+          DegreeId10th=Degree.objects.get(Name="10th").id;
+          HttpRequest.session['SessionNumber']=1;
+          HttpRequest.session['SessionType']=SessionYearlyId;
+          HttpRequest.session['DegreeType']=DegreeTypeId10th;
+          HttpRequest.session['Degree']=DegreeId10th;
+        elif(v=="12th"):
+          SessionYearlyId=SessionType.objects.get(Name='Yearly').id;
+          DegreeTypeId12th=DegreeType.objects.get(Name="12th").id;
+          DegreeId12th=Degree.objects.get(Name="12th").id;
+          HttpRequest.session['SessionNumber']=1;
+          HttpRequest.session['SessionType']=SessionYearlyId;
+          HttpRequest.session['DegreeType']=DegreeTypeId12th;
+          HttpRequest.session['Degree']=DegreeId12th;
+        elif(v.find("Semester")!=-1):
+          SessionSemesterId=SessionType.objects.get(Name='Semester').id;
+          DegreeTypeIdUG=DegreeType.objects.get(Name="undergraduation").id;
+          DegreeIdBE=Degree.objects.get(Name="B.E.").id;
+          HttpRequest.session['SessionNumber']=int(v.split("Semester")[1]);
+          HttpRequest.session['SessionType']=SessionSemesterId;
+          HttpRequest.session['DegreeType']=DegreeTypeIdUG;
+          HttpRequest.session['Degree']=DegreeIdBE;
+        else:
+          msglist.append("Error: invalid url request.valid value not found");
+          flag=-1;
+        
+                              
+        if flag==-1:
+            HttpRequest.session[SESSION_MESSAGE] = msglist
+            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        Boardobj=Board.objects.all();
+        yearlist=range(1985,2014);
+        relist=range(0,20);
+        return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
+    except Exception as inst:
+        print type(inst)     # the exception instance
+        print inst.args      # arguments stored in .args
+        print inst           # __str__ allows args to printed directly
+        x, y = inst.args
+        print 'x =', x
+        print 'y =', y
+
+def MarksPostSave(HttpRequest):
+    msglist = AppendMessageList(HttpRequest)
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'ERROR : Please Login to continue')
+        HttpRequest.session[SESSION_MESSAGE] = msglist
+        return HttpResponseRedirect('/user/login/')
+    try:
         MarksObj=Marks()
         flag=1
-        if "SessionStart" in HttpRequest.POST:
-            SessionStart=HttpRequest.POST["SessionStart"]
+        if "SessionStartMonth" in HttpRequest.POST:
+            SessionStartMonth=HttpRequest.POST["SessionStartMonth"]
         else:
-            msglist.append("Error fetching data from form for SessionStart");
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionStartMonth')
+            msglist.append("Error fetching data from form for SessionStartMonth");
             flag=-1;
-        if "SessionEnd" in HttpRequest.POST:
-            SessionEnd=HttpRequest.POST["SessionEnd"]
+        if "SessionStartYear" in HttpRequest.POST:
+            SessionStartYear=HttpRequest.POST["SessionStartYear"]
         else:
-            msglist.append("Error fetching data from form for SessionEnd");
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionStartYear')
             flag=-1;
-        if "SessionNumber" in HttpRequest.POST:
-            SessionNumber=HttpRequest.POST["SessionNumber"]
+        if(flag!=-1):
+          SessionStart="1 "+SessionStartMonth+" "+SessionStartYear; 
+        if "SessionEndMonth" in HttpRequest.POST:
+            SessionEndMonth=HttpRequest.POST["SessionEndMonth"]
         else:
-            msglist.append("Error fetching data from form for SessionNumber");
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionEndMonth')
+            msglist.append("Error fetching data from form for SessionEndMonth");
             flag=-1;
-        if "SessionType" in HttpRequest.POST:
-            SessionType=HttpRequest.POST["SessionType"]
+        if "SessionEndYear" in HttpRequest.POST:
+            SessionEndYear=HttpRequest.POST["SessionEndYear"]
         else:
+          messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionEndYear')
+          msglist.append("Error fetching data from form for SessionEndYear");
+          flag=-1;
+        if(flag!=-1):
+          SessionEnd="1 "+SessionEndMonth+" "+SessionEndYear;
+        if "SessionNumber" in HttpRequest.session:
+            _SessionNumber=HttpRequest.session["SessionNumber"]
+        else:
+          messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionNumber')
+          msglist.append("Error fetching data from form for SessionNumber");
+          flag=-1;
+        if "SessionType" in HttpRequest.session:
+            SessionType=HttpRequest.session["SessionType"]
+        else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionType')
             msglist.append("Error fetching data from form for SessionType");
             flag=-1;
-        if "TotaMarks" in HttpRequest.POST:
-            TotaMarks=HttpRequest.POST["TotaMarks"]
+        if "TotalMarks" in HttpRequest.POST:
+            TotaMarks=HttpRequest.POST["TotalMarks"]
+            if is_integer(TotaMarks):
+              TotaMarks=int(TotaMarks)
+            else:
+              messages.error(HttpRequest,'ERROR : TotaMarks should be a number')
+              msglist.append("TotaMarks should be a number");
+              flag=-1;
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for TotaMarks')
+              
             msglist.append("Error fetching data from form for TotaMarks");
             flag=-1;
         if "SecuredMarks" in HttpRequest.POST:
             SecuredMarks=HttpRequest.POST["SecuredMarks"]
+            if is_integer(SecuredMarks):
+              SecuredMarks=int(SecuredMarks)
+            else:
+              messages.error(HttpRequest,'ERROR : SecuredMarks should be a number')
+              msglist.append("SecuredMarks should be a number");
+              flag=-1;
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for SecuredMarks')
             msglist.append("Error fetching data from form for SecuredMarks");
             flag=-1;
-        if "TotalReappears" in HttpRequest.POST:
-            TotalReappears=HttpRequest.POST["TotalReappears"]
+        if "TotalReapears" in HttpRequest.POST:
+            TotalReappears=HttpRequest.POST["TotalReapears"]
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for TotalReappears')
             msglist.append("Error fetching data from form for TotalReappears");
             flag=-1;
-        if "ReappearsRemaining" in HttpRequest.POST:
-            ReappearsRemaining=HttpRequest.POST["ReappearsRemaining"]
+        if "RepearsRemaining" in HttpRequest.POST:
+            ReappearsRemaining=HttpRequest.POST["RepearsRemaining"]
         else:
-            msglist.append("Error fetching data from form for ReappearsRemaining");
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for ReappearsRemaining')
+            msglist.append("Error fetching data from form for RepearsRemaining");
             flag=-1;
-        if "DegreeType" in HttpRequest.POST:
-            DegreeType=HttpRequest.POST["DegreeType"]
+        if "DegreeType" in HttpRequest.session:
+            DegreeType=HttpRequest.session["DegreeType"]
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for DegreeType')
             msglist.append("Error fetching data from form for DegreeType");
             flag=-1;
         if "Board" in HttpRequest.POST:
-            Board=HttpRequest.POST["Board"]
+            Boardid=HttpRequest.POST["Board"]
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for Board')
             msglist.append("Error fetching data from form for Board");
             flag=-1;
-        if "Degree" in HttpRequest.POST:
-            Degree=HttpRequest.POST["Degree"]
+        if "Degree" in HttpRequest.session:
+            _Degree=HttpRequest.session["Degree"]
         else:
+            messages.error(HttpRequest,'ERROR : Error fetching data from form for Degree')
             msglist.append("Error fetching data from form for Degree");
             flag=-1;
-        if "UserId" in HttpRequest.POST:
-            UserId=HttpRequest.POST["UserId"]
-        else:
-            msglist.append("Error fetching data from form for UserId");
-            flag=-1;
-                            
+        Boardobj=Board.objects.all();
+        yearlist=range(1985,2014);
+        relist=range(0,20);
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
+        if(modelMarks.objects.filter(SessionNumber=_SessionNumber,Degree=_Degree,UserId=logindetails["userid"]).count()==0):
+          result=MarksObj.InsertMarks(SessionStart, SessionEnd, _SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Boardid, _Degree, logindetails["userid"],logindetails["userid"], ip)
+        else:
+          _id=modelMarks.objects.get(SessionNumber=_SessionNumber,Degree=_Degree,UserId=logindetails["userid"]).id;
+          result=MarksObj.UpdateMarks(_id,SessionStart, SessionEnd, _SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Boardid, _Degree, logindetails["userid"],logindetails["userid"], ip)
         
-        result=MarksObj.InsertMarks(SessionStart, SessionEnd, SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Board, Degree, UserId,logindetails["userid"], ip)
         msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        if(result['result']==1):
+          messages.info(HttpRequest,"SUCCESS")
+        else:
+          messages.info(HttpRequest,"Error Occured please try again")
+        return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
     except Exception as inst:
         print type(inst)     # the exception instance
         print inst.args      # arguments stored in .args
