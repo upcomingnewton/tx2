@@ -1,0 +1,21 @@
+<html>
+<body>
+<form name="SessionTypeInput" action="/userprofile/Marks/SessionType/new" method="post">
+{% csrf_token %}
+SessionTypeName: <input type="text" name="SessionTypeName" />
+<input type="submit" value="Submit" />
+</form>
+<form name="SessionTypeDelete" action="/userprofile/Marks/SessionType/delete" method="post">
+{% csrf_token %}
+SessionTypeId: <input type="text" name="SessionTypeId" />
+<input type="submit" value="Delete" />
+</form>
+<form name="SessionTypeUpdate" action="/userprofile/Marks/SessionType/update" method="post">
+{% csrf_token %}
+SessionTypeId: <input type="text" name="SessionTypeId" />
+SessionTypeName:<input type="text" name="SessionTypeName" />
+<input type="submit" value="Update" />
+</form>
+<a href="/userprofile/Marks/SessionType/View">Select All Board</a>
+</body>
+</html>

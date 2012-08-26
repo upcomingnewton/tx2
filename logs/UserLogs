@@ -1043,3 +1043,35 @@ Traceback (most recent call last):
   File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 168, in DBGroupMenuDelete
     query = "SELECT * FROM GroupMenuDelete('" + details['MenuIDStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
 TypeError: cannot concatenate 'str' and 'tuple' objects
+2012-08-27 00:34:18,242 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. 5wnNlzFPufpFnfU_P4L5U6S989A_SL143_SHYPemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346007858.24
+2012-08-27 00:34:18,642 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... 5wnNlzFPufpFnfU_P4L5U6S989A_SL143_SHYPemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346007858.64
+2012-08-27 00:34:28,692 LoginDetails      line:84   DEBUG    [ClearLoginIdFromLoggedInUsersDict]  5wnNlzFPufpFnfU_P4L5U6S989A_SL143_SHYPemYJr8Twl2Lt3h_P4L5U6S989FqYg64=
+2012-08-27 00:49:48,653 UserViewIndex     line:42   ERROR    CreateUserIndex
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/UserViewIndex.py", line 40, in CreateUserIndex
+    return render_to_response('UserSystem/User/Register.html',{},context_instance=RequestContext(HttpRequest))
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 20, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 188, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 123, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 117, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 744, in render
+    bits.append(self.render_node(node, context))
+  File "/usr/local/lib/python2.7/site-packages/django/template/debug.py", line 73, in render_node
+    result = node.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 105, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 102, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 157, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateSyntaxError: Caught TemplateDoesNotExist while rendering: TXtemplates/base.html
+2012-08-27 00:52:12,767 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. sEgiQyE6yqB5xuldrChu5umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346008932.77
+2012-08-27 00:52:13,733 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... sEgiQyE6yqB5xuldrChu5umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346008933.73
+2012-08-27 00:52:20,369 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... sEgiQyE6yqB5xuldrChu5umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346008940.37
+2012-08-27 00:52:59,659 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... sEgiQyE6yqB5xuldrChu5umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346008979.66

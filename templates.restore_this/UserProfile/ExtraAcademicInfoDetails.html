@@ -1,0 +1,35 @@
+<html>
+<body>
+<form name="ExtraAcademicInfoDetailsInput" action="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoDetails/new" method="post">
+{% csrf_token %}
+User_id: <input type="text" name="User_id" /><br/>
+Title: <input type="text" name="Title" /><br/>
+Start: <input type="text" name="Start" /><br/>
+End: <input type="text" name="End" /><br/>
+Organisation: <input type="text" name="Organisation" /><br/>
+Designation: <input type="text" name="Designation" /><br/>
+Details: <input type="text" name="Details" /><br/>
+PlaceOfWork_id: <input type="text" name="PlaceOfWork_id" /><br/>
+FunctionalArea: <input type="text" name="FunctionalArea" /><br/>
+ExtraAcadmicInfoType_id: <input type="text" name="ExtraAcadmicInfoType_id" /><br/>
+References: <input type="text" name="References" /><br/>
+Summary: <input type="text" name="Summary" /><br/>
+<input type="submit" value="Submit" />
+<form name="ExtraAcademicInfoDetailsUpdate" action="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoDetails/update" method="post">
+{% csrf_token %}
+User_id: <input type="text" name="User_id" /><br/>
+Title: <input type="text" name="Title" /><br/>
+Start: <input type="text" name="Start" /><br/>
+End: <input type="text" name="End" /><br/>
+Organisation: <input type="text" name="Organisation" /><br/>
+Designation: <input type="text" name="Designation" /><br/>
+Details: <input type="text" name="Details" /><br/>
+PlaceOfWork_id: <input type="text" name="PlaceOfWork_id" /><br/>
+FunctionalArea: <input type="text" name="FunctionalArea" /><br/>
+ExtraAcadmicInfoType_id: <input type="text" name="ExtraAcadmicInfoType_id" /><br/>
+References: <input type="text" name="References" /><br/>
+Summary: <input type="text" name="Summary" /><br/>
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>

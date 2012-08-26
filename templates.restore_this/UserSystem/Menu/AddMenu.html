@@ -1,0 +1,48 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Menu - Create{% endblock %}</title>
+
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Create New Menu Item</div>
+</div>
+<form action="/user/menu/add/post/" method="post">
+{% csrf_token %}
+  <div class="row">
+    <div class="labelclass" >MenuName</div>
+    <div class="widgetclass" ><input type="text" name="MenuName" class="widget" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >MenuDesc</div>
+    <div class="widgetclass" ><input type="text" name="MenuDesc" class="widget" value="NULL" /></div>
+  </div>
+<!--  <div class="row">-->
+<!--    <div class="labelclass" >MenuUrl</div>-->
+<!--    <div class="widgetclass" ><input type="text" name="MenuUrl" class="widget" /></div>-->
+<!--  </div>-->
+  <div id="box">
+    {% for url in MenuUrlList %}
+        <input type="radio" name="MenuUrl" value="{{url}}" /> {{url}} <br />
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="labelclass" >MenuPid</div>
+    <div class="widgetclass" >
+      <select name="MenuPid" class="widget">
+        <option value="-1">select</option>
+        {% for menu in ParentMenuList %}
+          <option value="{{ menu.id }}">{{ menu.MenuName }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >MenuIcon</div>
+    <div class="widgetclass" ><input type="text" name="MenuIcon" class="widget" value="Null"></div>
+  </div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}
+
+

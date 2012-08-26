@@ -1,0 +1,31 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Groups - Listing{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">Select Groups to memory</div>
+  </div>
+<form action="/user/menu/list/post/edit/" method="post">
+{% csrf_token %}
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px;">Select</th>
+        <th scope="col" style="width:100px;">GroupName</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if GroupList|length %}
+        {% for Group in GroupList %}
+          <tr>
+            <td><input type="check" name="{{Group.id}}" /></td>
+            <td>{{ Group.GroupName }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    </tbody>
+  </table>
+</form>
+{% endblock %}

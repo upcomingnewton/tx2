@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block row1_top_right %}
+	{% if loggedin %}
+	    <div class="fl_right">
+	    {% include "common/loggedin_top_right" %}
+	    </div>
+	    {% else %}
+	   {% include "common/login-form" %}
+    {% endif %} 
+{% endblock %}
+
+
+{% block wrapper_row3_class %}
+	
+	
+  <div id="featured_slide">
+    <!-- ####################################################################################################### -->
+    <dl class="slidedeck">
+      <dt>UIET Campus</dt>
+      <dd><img src="{{STATIC_URL}}images/campus1.jpg" alt="" /></dd>
+      
+    </dl>
+  </div>
+
+{%endblock%}
+
+{% block wrapper_row4_class %}
+  <div id="container" class="clear">
+    <!-- ####################################################################################################### -->
+    <div id="homepage" class="clear">
+      <div class="fl_left">
+      
+         <a href="http://www.youtube.com/uietchd/" target="new"><h2 class="title">Official Youtube Page</h2></a>
+      
+		<div id="hpage_specials" class="clear" width="400px">
+          <ul>
+            <li class="last">
+              <div class="box">
+                <div class="imgholder" >
+                
+               <iframe width="360" height="360" src="http://www.youtube.com/embed/JfdRJ5XMDDQ" frameborder="0" allowfullscreen></iframe></div>
+                
+                
+              </div>
+            </li>
+            
+            
+          </ul>
+        </div>      
+        <br>
+        <a id= "example4" href="/recruiters/"><h2 class="title">Past Recruiters</h2></a>
+        <div id="hpage_gallery">
+          <ul class="clear">
+            <li class="last"><a href="#">
+            <embed pluginspage = "http://www.macromedia.com/go/getflashplayer" wmode="transparent" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" flashvars="host=picasaweb.google.com&amp;RGB=0x000000&amp;feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F115656418374999444803%2Falbumid%2F5776140411512547617%3Fkind%3Dphoto%26alt%3Drss" type ="application/x-shockwave-flash" height ="360" width="360"></embed>
+            </a></li>
+          </ul>
+        </div>
+              </div>
+      <!-- ############### -->
+      <div class="fl_right">
+        <a href="/communication/News/1"><h2 class="title">Latest News</h2></a>
+        <div id="hpage_latestnews">
+        
+        <ul>
+
+ {% for i in Happenings %}
+	 {% for j in i %}
+            <li class="clear">
+              <div >
+                <p><a id="example4" href="/communication/News/1/{{j.5}}">{{j.0}}</a>| Dated: {{j.1}}</p>
+                
+                {% autoescape off %}
+	            <p>{{j.3}}</p>
+	            {% endautoescape %}
+              </div>
+            </li>
+            	 {% endfor %}  
+ {% endfor %}	
+          </ul>
+          <p class="readmore"><a href="/communication/News/1">Click here to view all of the latest news and events &raquo;</a></p>
+        
+        
+        
+        </div>
+        
+        
+         <!--
+        <h2 class="title">Upcoming Events</h2>
+       
+        <div id="hpage_quicklinks">
+          <ul class="clear">
+            <li><a href="http://bit.ly/uietbrochure" target="new"> Placement Brochure</a></li>
+            <li><a href="#">Placement Team</a></li>
+            <li><a href="#">Placement Schedule</a></li>
+            <li><a href="#">Academic Calender</a></li>
+            <li><a href="http://uiet.puchd.ac.in/Faculty.aspx">Faculty</a></li>
+            <li><a href="#">Infrastructure</a></li>
+            <li><a id="example4" href="/recruiters/">Recruiters</a></li>
+            <li><a href="#">Graduate Programs</a></li>
+            <li><a href="#">Post-Graduate and Doctoral Programs</a></li>
+            <li><a href="http://uiet.puchd.ac.in/" target="new">UIET Official Website</a></li>
+            <li><a href="http://puchd.ac.in/" target="new" >Panjab University</a></li>
+            
+            
+          </ul>
+        </div>
+--!>
+<h2 class="title">Keep Up With What's Happening</h2>
+        <div id="hpage_socialize">
+          <ul>
+            <li><span>Facebook:</span> <a href="https://www.facebook.com/uiet.puchd">www.facebook.com/uiet.puchd</a></li>
+            <li><span>Twitter:</span> <a href="www.twitter.com/uietchd">www.twitter.com/uietchd</a></li>
+            <li><span>SMS Updates:</span> (Send ON UIET-PUCHD to 9870807070)</li>
+
+            <li class="last"><span>Youtube:</span> <a href="http://youtube.com/uietchd">www.youtube.com/uietchd</a></li>
+          </ul>
+          <!--
+          <p><strong>Subscribe To Our Newsletter</strong></p>
+          <p>Justoid nonummy laoreet phasellent penatoque in antesque pellus elis eget tincidunt. Nequatdui laorem justo a non tellus laoreet tincidunt ut vel velit.</p>
+          
+          <form action="#" method="post">
+            <fieldset>
+              <legend>Newsletter Signup:</legend>
+              <input type="text" id="newsletter" value="Enter Email Here&hellip;" onfocus="this.value=(this.value=='Enter Email Here&hellip;')? '' : this.value ;" />
+              <input type="image" id="subscribe" src="{{STATIC_URL}}images/sign-up.gif" alt="Submit" />
+            </fieldset>
+          </form>
+          <p class="form_hint">* Please add name@domain.com to your trusted email list</p>
+          --!>
+        
+        </div>
+
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+  </div>
+
+{% endblock %}
+

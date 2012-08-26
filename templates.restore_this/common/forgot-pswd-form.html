@@ -1,0 +1,9 @@
+
+      <form action="/user/password/reset/reset/" method="post" id="sitesearch">
+      {% csrf_token %}
+        <fieldset>
+          <strong>Forget Password:</strong>
+          <input type="text" name="ResetPasswordEmail" value="Forget Password&hellip;" onfocus="this.value=(this.value=='Forget Password&hellip;')? '' : this.value ;" />
+          <input  type="image" src="{{STATIC_URL}}images/search.gif" id="search" alt="Search" />
+        </fieldset>
+      </form>

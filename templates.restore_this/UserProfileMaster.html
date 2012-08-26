@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+  {% block before_css %}
+    <link rel="stylesheet" href="{{STATIC_URL}}css/3_column.css" type="text/css" />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/table.css" type="text/css" />
+  {% endblock %}
+{% block wrapper_row4_class %}
+  <div id="container" class="clear">
+    <div id="left_column">
+        <div class="holder">
+          <h2 class="title">Links</h2>
+          <ul class="nostart">
+          {% block left_menu %}{% endblock %}
+            <li><a href="/userprofile/UserProfile/UserHome/">User Profile</a></li>
+            <li><a href="#">Notices</a></li>
+            <li><a href="#">Notifications</a></li>
+            <li><a href="http://forum.thoughtxplore.com">Discussion portal</a></li>
+          </ul>
+        </div>
+        <div class="holder">
+          <h2 class="title">Sponsored</h2>
+          <div class="imgholder"><img src="{{STATIC_URL}}images/demo/190x90.gif" alt="" /></div>
+          <div class="imgholder last"><img src="{{STATIC_URL}}images/demo/190x90.gif" alt="" /></div>
+        </div>
+    </div>
+    <div id="content">
+    <!-- ########################### USER CONTENT ############################# -->
+     <div id="respond">
+      <div class="row"></div>
+      {% if messages %}
+        <div class="row"><span class="messageclass">message</span></div>
+        {% for msg in messages %}
+            <div class="messageclass" >{{ msg }}</div>
+        {% endfor %}
+        <div class="row"></div>
+      {% endif %}
+      {% block UserProfileMaster_content_center %}{% endblock %} 
+      <div class="row"></div>
+      </div> 
+    <!-- ########################### USER CONTENT ############################# -->
+    </div>
+    <div id="right_column">
+      <div class="holder">
+          <h2 class="title">Upcoming Events</h2>
+          <p>Under Construction</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

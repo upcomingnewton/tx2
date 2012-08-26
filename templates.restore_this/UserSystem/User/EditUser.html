@@ -1,0 +1,202 @@
+{% extends "master1.html" %}
+{% block title %}{{ title }}{% endblock%}
+{% block start_script %}
+	$('#DateofBirth').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate : new Date(1985,1,1,0,0,0,0),
+			maxDate : new Date(1995,21,31,23,59,59,0),
+	});
+
+{% endblock %}
+{% block add_start_script %}
+    <link type="text/css" href="{{STATIC_URL}}css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.18.custom.min.js"></script>
+{% endblock %}
+
+{% block master_content_center %}
+
+	<!-- empty line  -->
+		<div class="w648 h30 mb4"></div>
+   <!--  =============================== -->
+   <!-- ====== ###### TITLE ######## === -->
+    <!--  =============================== -->
+		<div class="w648 border_bottom h45 mb4 center">
+				<div style="font-size: 35px;">
+                      edit user ( put -1 for def. value )
+                </div>
+		</div>
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		
+	<!--  =============================== -->
+   <!-- ====== ###### MESSAGE LIST ######## === -->
+    <!--  =============================== -->
+		{% if msglist|length > 0 %}
+			{% for msg in msglist %}
+				<div class="w648 border_bottom h30 mb4 font_color_red">
+						{{ msg }}
+                </div>
+			{% endfor %}
+		{% endif %}
+		
+	<!--  =============================== -->
+   <!-- ====== ###### CONTENT ######## === -->
+    <!--  =============================== -->
+    <form  action="/user/admin/{{user.id}}/edit/edit/" method="post">
+		{% csrf_token %}
+		<!-- empty line  -->
+		<div class="w648 border_bottom h30 mb4"></div>
+		<!--  emailid  -->
+		<div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Email Id
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input id="UserEmail" name="UserEmail" type="text" class="tb1" readonly="true"  value="{{user.UserEmail}}" />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+     	<!--  password  -->
+               <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           Password
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="Password" id="Password" type="password" class="tb1"  />
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  fname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           fname
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <input name="FirstName" id="FirstName" type="text" class="tb1"  value="{{user.UserFirstName}}"/>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+         <!--  mname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           mnane                     </div>
+                     <div class="w300 hinherit float_left">
+                            <input name="MiddleName" id="MiddleName" type="text" class="tb1"  value="{{user.UserMiddleName}}"/>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+        <!--  lname  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           lname
+                     </div>
+                     <div class="w300 hinherit float_left">
+                             <input name="LastName" id="LastName" type="text" class="tb1"  value="{{user.UserLastName}}"/>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+          <!--  dob  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           dob
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <input name="DateofBirth" id="DateofBirth" type="text" class="tb1"  value="{{user.UserBirthDate}}"/>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+          <!--  gender  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           gender
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="Gender" id="Gender"  class="tb2">
+                             		<option value="{{ user.UserGender }}">{{ user.UserGender }}</option>
+					<option value="M">male</option>
+					<option value="F">female</option>
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+                
+<!--  entity  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           state
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="Entity" id="Entity"  class="tb2">
+                             		<option value="{{user.Entity.id}}">{{ user.Entity.EntityName }}</option>
+                             		{% if EntityList|length %}
+                             			{% for Entityobj in EntityList %}
+							<option value="{{Entityobj.id}}">{{stateobj.EntityName}}</option>
+						{%  endfor %}
+					{% endif %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+                
+<!--  permissions  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           state
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="Permission" id="Permission"  class="tb2">
+                             		<option value="-1">SELECT AN OPERATION</option>
+                             		{% if PermissionsList|length %}
+                             			{% for Permissionsobj in PermissionsList %}
+							<option value="{{Permissionsobj.id}}">{{Permissionsobj.PermissionName}}</option>
+						{%  endfor %}
+					{% endif %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+<!--  state  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           state
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="State" id="State"  class="tb2">
+                             		<option value="{{user.State.id}}">{{ user.State.StateName }}</option>
+                             		{% if StateList|length %}
+                             			{% for stateobj in StateList %}
+							<option value="{{stateobj.id}}">{{stateobj.StateName}}</option>
+						{%  endfor %}
+					{% endif %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+                
+<!--  Group  -->
+			  <div class="w648 border_bottom h30 mb4">
+                     <div class="w150 float_left h30 pl10 pr10 txt_align_right">
+                           group
+                     </div>
+                     <div class="w300 hinherit float_left">
+                            <select name="Group" id="Group"  class="tb2">
+                             		<option value="{{user.Group.id}}">{{user.Group.GroupName}}</option>
+					{% if GroupList|length %}
+                             			{% for group in GroupList %}
+							<option value="{{group.id}}">{{group.GroupName}}</option>
+						{% endfor %}
+					{% endif %}
+                             </select>
+                     </div>
+                     <div class="w170 hinherit float_left"></div>
+                </div>
+            
+      	<!--  submit -->
+      		<div class="w648 border_bottom h30 mb4 center" >
+                     <input type="submit" value="Edit" class="center"/>
+                </div>
+		</form>
+{% endblock %}
+
+

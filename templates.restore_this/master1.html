@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <title>{% block title %}thoughtXplore{% endblock %}</title>
+    <link href="{{STATIC_URL}}css/main.css" rel="stylesheet" type="text/css" />
+    <link href="{{STATIC_URL}}css/width.css" rel="stylesheet" type="text/css" />
+    <link href="{{STATIC_URL}}css/height.css" rel="stylesheet" type="text/css" />
+    <link href="{{STATIC_URL}}css/table.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{STATIC_URL}}js/js_misc.js" type="text/javascript"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.7.1.min.js"></script>
+	{% block add_start_script %}{% endblock %}
+	<script type="text/javascript">
+		$(document).ready(function () {
+	        $(".par_menu").click(function () {
+	            $(".par_child").slideUp(300);
+	            if ($(this).next().css("display") == "none") {
+	                $(this).next().slideDown(300);
+	            }
+	            else {
+	                $(this).next().slideUp(300);
+	            }
+	        });
+	    });
+		
+		
+		$(document).ready(function(){
+			{% block start_script %}{% endblock %}
+		});
+	</script>
+</head>
+
+<body>
+    <div id="master_content_upperbar" class="widthfull h25" style="background-color:#000000;">
+    	<div class="center w1100" style="color:#cccccc">
+    		{{ userid }} <<|>> {{ groupid }} <<|>> {{ loginid}}
+    	</div>
+    </div>
+    <div id="master_content_logobar" class="widthfull h75 pbottom20 mtop20 border_bottom">
+            <div class="w1100 center hinherit">
+                    <div id="logo">
+                        <a href="http://uiet.thoughtxplore.com">
+                            <img src="{{STATIC_URL}}images/tpc4.png" />
+                        </a>
+                    </div>
+            </div>
+    </div>
+    <div id="master_content_ads" class="widthfull h100 border_bottom"></div>
+	<div id="master_content_mainarea" class="widthfull h500">
+        <div class="w1100 center hinherit">
+			<div id="master_content_left" class="w150 hinherit float_left" >
+				<!-- {% block master_content_left %}{% endblock %} -->
+                <div id="personal_cont" class="w150 h100 mbottom20">
+                
+                </div>
+                <div id="menu_cont" class="w150">
+                    <div id="menu">
+                    <!-- 
+                                <div class="par_menu">MENU A</div>
+                                 <div class="par_child">
+                                    <div><a href="#">MENU A-1</a></div>
+                                    <div><a href="#">MENU A-2</a></div>
+                                    <div><a href="#">MENU A-3</a></div>
+                                    <div><a href="#">MENU A-4</a></div>
+                                </div>
+                       
+                                <div class="par_menu">MENU B</div>
+                                <div class="par_child">
+                                    <div><a href="#">MENU B-1</a></div>
+                                    <div><a href="#">MENU B-2</a></div>
+                                    <div><a href="#">MENU B-3</a></div>
+                                    <div><a href="#">MENU B-4</a></div>
+                                </div>
+                        
+                                <div class="par_menu">MENU C</div>
+                                 <div class="par_child">
+                                    <div><a href="#">MENU C-1</a></div>
+                                    <div><a href="#">MENU C-2</a></div>
+                                    <div><a href="#">MENU C-3</a></div>
+                                    <div><a href="#">MENU C-4</a></div>
+                                </div>
+                        
+                        
+                                <div class="par_menu">MENU D</div>
+                                 <div class="par_child">
+                                    <div><a href="#">MENU D-1</a></div>
+                                    <div><a href="#">MENU D-2</a></div>
+                                    <div><a href="#">MENU D-3</a></div>
+                                    <div><a href="#">MENU D-4</a></div>
+                                    <div><a href="#">MENU D-5</a></div>
+                                    <div><a href="#">MENU D-6</a></div>
+                                    <div><a href="#">MENU D-7</a></div>
+                                    <div><a href="#">MENU D-8</a></div>
+                                    <div><a href="#">MENU D-9</a></div>
+                                    <div><a href="#">MENU D-10</a></div>
+                                    <div><a href="#">MENU D-11</a></div>
+                                    <div><a href="#">MENU D-12</a></div>
+                                </div>
+                         -->
+                         {% for menul in menulist %}
+                         	{% for menu in menul %}
+	                         	{% if menu.MenuPid == -1 %}
+	                         		<div class="par_menu">{{ menu.MenuName }}</div>
+                                 	<div class="par_child">
+	                         	{% else %}
+	                         			<div><a href="#">{{ menu.MenuName }}</a></div>
+	                         	{% endif %}
+                         	{% endfor %}
+                         			</div>
+                         {% endfor %}
+                    </div>
+                </div>
+			</div>
+			<div id="master_content_center" class="w648 float_left hinherit border_left border_right">
+			 {% block master_content_center %}{% endblock %}  
+   			</div>
+            <div id="master_content_right" class="w295 hinherit float_left" >
+			 {% block master_content_right %}{% endblock %} 
+			</div>
+        </div>
+	</div>
+    <div id="master_content_lowerbar"  class="h100 widthfull" style="background-color:#cccccc;"></div>
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+/*
+Template Name: Academic Education
+File: 3 Column CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+#container #content{
+	display:block;
+	float:left;
+	width:450px;
+	margin-left:20px;
+	}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+
+#container #left_column .holder, #container #right_column .holder{
+	display:block;
+	width:100%;
+	margin-bottom:20px;
+	}
+
+#container #left_column .imgholder, #container #right_column .imgholder{
+	display:block;
+	margin-bottom:10px;
+	}
+
+#container #left_column .nostart li, #container #right_column .nostart li{
+	margin-bottom:3px;
+	}
+
+#container #left_column .last, #container #right_column .last{
+	margin-bottom:0;
+	}
+
+/* ----------------------------------------------Left Column-------------------------------------*/
+
+#container #left_column{
+	display:block;
+	float:left;
+	width:200px;
+	}
+
+#container #left_column .imgholder{
+	width:190px;
+	}
+
+/* ----------------------------------------------Right Column-------------------------------------*/
+
+#container #right_column{
+	display:block;
+	float:right;
+	width:270px;
+	}
+#container #right_column .imgholder250{
+	width:260px;
+	}
+#container #right_column .imgholder{
+	width:240px;
+	}
+	
+/* ----------------------------------------------Forms-------------------------------------*/
+
+#container #respond{
+	display:block;
+	width:100%;
+	font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+}
+	
+#container #respond .row{
+  width:450px;
+  margin-bottom:5px;
+  border-bottom:1px solid #ccc;
+  height:30px;
+}
+
+#container #respond .rowbig{
+  width:450px;
+  margin-bottom:5px;
+  border-bottom:1px solid #ccc;
+  height:100px;
+}
+
+#container #respond .labelclass
+{
+  width:140px;
+  height:inherit;
+  float:left;
+  padding-right:10px;
+  text-align:right;
+  margin-top:5px;
+}
+
+#container #respond .widgetclass
+{
+  width:285px;
+  height:inherit;
+  float:left;
+}
+
+#container #respond .widget
+{
+  width:285px;
+  height:22px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+#container #respond textarea
+{
+  width:285px;
+  height:88px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+
+#container #respond .submitclass
+{
+  width:285px;
+  height:88px;
+  border:1px solid #CCCCCC;
+  font-size:14px;
+	color:#000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+#container #respond #submit, #container #respond #reset{
+	height:25px;
+	background-color:#66ccff;
+	color:#000066;
+	font-family:sans-serif;
+	font-size:16px;
+	border:1px solid #000000;
+}
+
+.messageclass
+{
+  width:400px;
+  font-size:16px;
+	color:#cc0000;
+	font-family:sans-serif;
+  overflow:auto;
+  margin-top:2px;
+  padding:0px;
+}
+
+/*#container #respond input{*/
+/*	width:170px;*/
+/*	padding:2px;*/
+/*	border:1px solid #CCCCCC;*/
+/*	margin:5px 5px 0 0;*/
+/*	}*/
+
+/*#container #respond textarea{*/
+/*	width:98%;*/
+/*	border:1px solid #CCCCCC;*/
+/*	padding:2px;*/
+/*	overflow:auto;*/
+/*	}
+*/
+

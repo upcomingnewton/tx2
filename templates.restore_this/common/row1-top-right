@@ -1,0 +1,8 @@
+
+{% if loggedin %}
+    <div class="fl_right">
+    {% include "common/loggedin_top_right" %}
+    </div>
+    {% else %}
+   {% include "common/login-form" %}
+    {% endif %} 

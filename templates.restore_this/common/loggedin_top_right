@@ -1,0 +1,13 @@
+<ul>
+     Logged in as:<a href="/userprofile/UserProfile/UserHome/">
+     
+        {{fname}}
+      
+        </a> <hr>
+        <li>
+         <a href="/user/logout">Logout|</a>
+
+        <a href="/user/password/change">|Change Password</a></li>
+       
+        
+      </ul>
