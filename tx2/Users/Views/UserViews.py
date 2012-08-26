@@ -173,7 +173,7 @@ def AuthenticateUserFromEmail(HttpRequest,token,refs):
       return HttpResponseRedirect('/user/login/')
     else:
       return HttpResponseRedirect('/message/')
-   except Exception, ex:
+  except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
       msg = ''
