@@ -15,7 +15,7 @@ import inspect
 
 
 LoggerUser = logging.getLogger(LoggerUser)
-ExceptionMessage = 'ERROR : System has suffered some error while processing your request. Please try after some-time. If the problem persists, contact system administrators.'
+
 
 
 
@@ -26,22 +26,22 @@ def Login(HttpRequest):
   try:
     email = ''
     password = ''
-    flag = False
+    flag = 0
     if 'LoginUser_email' in HttpRequest.POST.keys():
       email = HttpRequest.POST['LoginUser_email']
     else:
       messages.error(HttpRequest,'ERROR : Email required for logging in.')
-      flag = True
+      flag = 1
     #TODO check if this is a valid email id or not
     if 'LoginUser_pass' in HttpRequest.POST.keys():
       password = HttpRequest.POST['LoginUser_pass']
     else:
       messages.error(HttpRequest,'ERROR : Password required for logging in.')
-      flag = True
+      flag = 1
     if( len(password) < 4):
       messages.error(HttpRequest,'ERROR : Minimum password length should be 4.')
-      flag = True
-    if flag is True:
+      flag = 1
+    if flag is 1:
       return HttpResponseRedirect('/user/login/')
     else:
       res = usrfn.LoginUser(email, password,Login_From_Type, ip)
@@ -52,19 +52,12 @@ def Login(HttpRequest):
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
 "fname":result['username']}
           HttpRequest.session["details"] = token
-          HttpRequest.session.set_expiry(0)
           return HttpResponseRedirect('/user/dashboard/')
         else:
-          if(res_forums[0]==1):
-              msg=str(res[1])+str(res_forums[1])
-          else:
-              msg=res[1]
-          msglist.append(msg)
-          HttpRequest.session[SESSION_MESSAGE] = msglist
+          messages.error(HttpRequest,res[1])
           return HttpResponseRedirect('/message/')
       else:
-        msglist.append(res[1])
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,res[1])
         return HttpResponseRedirect('/message/')
   except Exception, ex:
       frame = inspect.currentframe()
@@ -73,13 +66,12 @@ def Login(HttpRequest):
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
       LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-      messages.error(HttpRequest,'ERROR: Could not login user. ' + str(msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
                 
         
 def log_out(HttpRequest):
   ip = HttpRequest.META['REMOTE_ADDR']
-  msglist = AppendMessageList(HttpRequest)
   try:
     if "details" in HttpRequest.session.keys():
       token = HttpRequest.session['details']
@@ -90,28 +82,30 @@ def log_out(HttpRequest):
         if( result['result'] == 1):
           for sesskey in HttpRequest.session.keys():
             del HttpRequest.session[sesskey]
+          messages.error(HttpRequest,'You have been logged out sucessfully')
           return HttpResponseRedirect('/user/login/')
         else:
-          msglist.append(res[1])
-          HttpRequest.session[SESSION_MESSAGE] = msglist
+          messages.error(HttpRequest,res[1])
           return HttpResponseRedirect('/message/')
       else:
-        msglist.append(res[1])
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,res[1])
         return HttpResponseRedirect('/message/')
     else:
-      msglist.append("Please login in first , for loggging out")
-      HttpRequest.session[SESSION_MESSAGE] = msglist
+      messages.error(HttpRequest,'Invalid request.')
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
 
     
 #@never_cache
 def CreateUserFromSite(HttpRequest):  
-  msglist = []
   flag = 0
   ip = HttpRequest.META['REMOTE_ADDR']
   details = GetLoginDetails(HttpRequest)
@@ -121,72 +115,75 @@ def CreateUserFromSite(HttpRequest):
   try:
     email = HttpRequest.POST['RegisterUser_email']
     if len(email) < 4:
-      msglist.append('email required')
+      messages.error(HttpRequest,'email required')
       flag = 1
     pass1 = HttpRequest.POST['RegisterUser_pass']
     if len(pass1) < 4 or len(pass1) > 10:
-      msglist.append('password should be between 4 to 10 characters')
+      messages.error(HttpRequest,'password should be between 4 to 10 characters')
       flag = 1
     pass2 = HttpRequest.POST['RegisterUser_pass2']
     if pass1 != pass2:
-      msglist.append('passwords do not match ')
+      messages.error(HttpRequest,'passwords do not match ')
       flag = 1
     fname = HttpRequest.POST['RegisterUser_fname']
     if len(fname) < 2:
-      msglist.append('first name required')
+      messages.error(HttpRequest,'first name required')
       flag = 1
     mname = HttpRequest.POST['RegisterUser_mname']
     if len(mname) < 2 or mname == "":
       mname = "--"
     lname = HttpRequest.POST['RegisterUser_lname']
     if len(lname) < 4:
-      msglist.append('last name required')
+      messages.error(HttpRequest,'last name required')
       flag = 1
-    bday = HttpRequest.POST['RegisterUser_dob']
-    if len(bday) < 10:
-      msglist.append('birth date required')
-      flag = 1
-    bday = bday.split('/')
+    RegisterUser_dob_date = HttpRequest.POST['RegisterUser_dob_date']
+    RegisterUser_dob_month = HttpRequest.POST['RegisterUser_dob_month']
+    RegisterUser_dob_year = HttpRequest.POST['RegisterUser_dob_year']
     try:
-      bday = datetime.date(int(bday[2]),int(bday[0]),int(bday[1]))
+      bday = datetime.date(int(RegisterUser_dob_year),int(RegisterUser_dob_month),int(RegisterUser_dob_date))
     except ValueError as err:
-      msglist.append('Invalid Birthdate, '+ err.message)
+      messages.error(HttpRequest,'Invalid Birthdate')
     gender = HttpRequest.POST['RegisterUser_gender']
     if gender== "-1" :
-      msglist.append('Please select your gender')
+      messages.error(HttpRequest,'Please select your gender')
     if ( flag == 1 ):
-      HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/message/')
     else:
       insfnx = UserFnx()
       res = insfnx.InsertUser(email, pass2, fname, mname, lname, gender, bday,getSystemEntity(),getSystemGroup_NewUsers(),by,ip)
-      msglist.append(res[1])
-      HttpRequest.session[SESSION_MESSAGE] = msglist
+      messages.error(HttpRequest,res[1])
       return HttpResponseRedirect('/message/')
   except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
 
 def AuthenticateUserFromEmail(HttpRequest,token,refs):
   au_user = UserFnx()
   ip = HttpRequest.META['REMOTE_ADDR']
-  msglist = []
   try:
     res = au_user.AuthenticateUserFromSite(token, ip)
-    msglist.append(res[1])
-    HttpRequest.session[SESSION_MESSAGE] = msglist
+    messages.error(HttpRequest,res[1])
     if( res[0] == 1):
       return HttpResponseRedirect('/user/login/')
     else:
       return HttpResponseRedirect('/message/')
-  except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+   except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
 
 def CheckAndlogout(HttpRequest):
-  msglist = AppendMessageList(HttpRequest)
   ip = HttpRequest.META['REMOTE_ADDR']
   try:
     if "details" in HttpRequest.session.keys():
@@ -198,52 +195,46 @@ def CheckAndlogout(HttpRequest):
         if( result['result'] == 1):
           for sesskey in HttpRequest.session.keys():
             del HttpRequest.session[sesskey]
-        else:
-          msglist.append(res[1])
-          HttpRequest.session[SESSION_MESSAGE] = msglist
-      else:
-        msglist.append(res[1])
-        HttpRequest.session[SESSION_MESSAGE] = msglist
-    else:
-      pass
-    return msglist
-  except:
-    LoggerUser.exception('CheckAndlogout')
-    HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
-    return []
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return []
 
 
 def view_dashboard(HttpRequest):
-  msglist = AppendMessageList(HttpRequest)
   details = GetLoginDetails(HttpRequest)
   ip = HttpRequest.META['REMOTE_ADDR']
   try:
     if "details" in HttpRequest.session:
       if( details['userid'] == -1):
-        msglist.append('Please Login.')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         HttpResponseRedirect('/user/login/')
-      return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"]), 'msglist':msglist},context_instance=RequestContext(HttpRequest))
+      return render_to_response('UserSystem/User/home.html',{"details":str(HttpRequest.session["details"])},context_instance=RequestContext(HttpRequest))
     else:
       return HttpResponseRedirect('/user/login/')
   except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
-        
-        
 
 
 def ChangePass(HttpRequest):
-  msglist = []
   ip = HttpRequest.META['REMOTE_ADDR']
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
-    msglist.append('Please Login to continue')
-    HttpRequest.session[SESSION_MESSAGE] = msglist
+    messages.error(HttpRequest,'Please Login to continue')
     return HttpResponseRedirect('/user/login/')
   try:
-    HttpRequest.session[SESSION_MESSAGE] = msglist
     flag = -1
     oldpass = ''
     newpass = ''
@@ -251,38 +242,38 @@ def ChangePass(HttpRequest):
       oldpass = HttpRequest.POST['OldPassword']
     else:
       flag = 1
-      msglist.append('old password required')
+      messages.error(HttpRequest,'Please enter your old password.')
     if 'NewPassword1' in HttpRequest.POST:
       newpass = HttpRequest.POST['NewPassword1']
     else:
       flag = 1
-      msglist.append('new password required')
+      messages.error(HttpRequest,'Please enter new password')
     if flag == 1:
-      HttpRequest.session[SESSION_MESSAGE] = msglist
       return HttpResponseRedirect('/user/password/change/')
     else:
       UserObj = UserFnx()
       res = UserObj.ChangePassword(oldpass,newpass,int(details['userid']),ip,int(details['userid']),-1)
-      msglist.append(res[1])
-      HttpRequest.session[SESSION_MESSAGE] = msglist
+      messages.error(HttpRequest,res[1])
       return HttpResponseRedirect('/message/')
   except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
 	
 def ResetPass(HttpRequest):
-  msglist = []
   ip = HttpRequest.META['REMOTE_ADDR']
   try:
-    HttpRequest.session[SESSION_MESSAGE] = []
     if 'ResetPasswordEmail' in HttpRequest.POST:
       emailid = HttpRequest.POST['ResetPasswordEmail']
       UserObj = UserFnx()
       obj = UserObj.getUserObjectByEmailid(emailid)
       if obj[0] is not 1:
-        msglist.append(obj[1])
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,obj[1])
         return HttpResponseRedirect('/message/')
       else:
         details = GetLoginDetails(HttpRequest)
@@ -291,21 +282,17 @@ def ResetPass(HttpRequest):
         else:
           by = int(obj[1].id)
         res = UserObj.ForgetPassword(emailid,by,ip)
-        msglist.append(res[1])
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,res[1])
         return HttpResponseRedirect('/message/')
     else:
-      msglist.append('email required')
-      HttpRequest.session[SESSION_MESSAGE] = msglist
-      return render_to_response("UserSystem/User/ResetPassword.html",{},context_instance=RequestContext(HttpRequest))
+      messages.error(HttpRequest,'Please enter valid email id.')
+      return HttpResponseRedirect('/user/password/reset/')
   except Exception, ex:
-      LoggerUser.exception('log_in')
-      HttpRequest.session[SESSION_MESSAGE] = ['ERROR' + str(ex)]
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
-        
-
-
-from django.contrib.auth.models import User
-
-
-
