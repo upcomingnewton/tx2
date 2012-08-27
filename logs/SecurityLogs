@@ -1,0 +1,164 @@
+2012-08-27 14:53:39,436 Marks             line:218  ERROR    MarksSave : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {u'v': [u'Semester6']}>,
+POST:<QueryDict: {}>,
+COOKIES:{'csrftoken': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'sessionid': '8767b6d13e9d7fcf65242173993f6a73'},
+META:{'ALSA_CONFIG_PATH': '/etc/alsa-pulse.conf',
+ 'COLORTERM': 'gnome-terminal',
+ 'CONFIG_SITE': '/usr/share/site/x86_64-unknown-linux-gnu',
+ 'CONTENT_LENGTH': '',
+ 'CONTENT_TYPE': 'text/plain',
+ 'CPU': 'x86_64',
+ 'CSHEDIT': 'emacs',
+ 'CSRF_COOKIE': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'CVS_RSH': 'ssh',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-d5LVyGEdyP,guid=97fa14d22daabb8e016d84010000001b',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'DM_CONTROL': '/var/run/xdmctl',
+ 'FROM_HEADER': '',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GJS_DEBUG_OUTPUT': 'stderr',
+ 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-lHIaJN',
+ 'GPG_AGENT_INFO': '/tmp/keyring-lHIaJN/gpg:0:1',
+ 'GPG_TTY': '/dev/pts/1',
+ 'GTK_IM_MODULE': 'cedilla',
+ 'G_BROKEN_FILENAMES': '1',
+ 'G_FILENAME_ENCODING': '@locale,UTF-8,ISO-8859-15,CP1252',
+ 'HISTSIZE': '1000',
+ 'HOME': '/home/nitin',
+ 'HOST': 'linux-dshb.site',
+ 'HOSTNAME': 'linux-dshb.site',
+ 'HOSTTYPE': 'x86_64',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=1ca931eec61f615a2ff7ee4d325a91ec; sessionid=8767b6d13e9d7fcf65242173993f6a73',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/Marks/Marks/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
+ 'ICEAUTHORITY': '/home/nitin/.ICEauthority',
+ 'INPUTRC': '/etc/inputrc',
+ 'JAVA_BINDIR': '/usr/lib64/jvm/java/bin',
+ 'JAVA_HOME': '/usr/lib64/jvm/java',
+ 'JAVA_ROOT': '/usr/lib64/jvm/java',
+ 'JDK_HOME': '/usr/lib64/jvm/java',
+ 'JRE_HOME': '/usr/lib64/jvm/jre',
+ 'LANG': 'en_US.UTF-8',
+ 'LD_LIBRARY_PATH': '/usr/lib64/mpi/gcc/openmpi/lib64',
+ 'LESS': '-M -I -R',
+ 'LESSCLOSE': 'lessclose.sh %s %s',
+ 'LESSKEY': '/etc/lesskey.bin',
+ 'LESSOPEN': 'lessopen.sh %s',
+ 'LESS_ADVANCED_PREPROCESSOR': 'no',
+ 'LOGNAME': 'nitin',
+ 'LS_COLORS': 'no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:',
+ 'LS_OPTIONS': '-N --color=tty -T 0',
+ 'MACHTYPE': 'x86_64-suse-linux',
+ 'MAIL': '/var/spool/mail/nitin',
+ 'MALLOC_CHECK_': '3',
+ 'MALLOC_PERTURB_': '69',
+ 'MANPATH': '/usr/lib64/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man',
+ 'MINICOM': '-c on',
+ 'MORE': '-sl',
+ 'NNTPSERVER': 'news',
+ 'OLDPWD': '/home/nitin',
+ 'OSTYPE': 'linux',
+ 'PAGER': 'less',
+ 'PATH': '/usr/lib64/mpi/gcc/openmpi/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/.local/bin:/home/nitin/bin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools',
+ 'PATH_INFO': u'/userprofile/Marks/Marks/save',
+ 'PILOTPORT': 'usb:',
+ 'PROFILEREAD': 'true',
+ 'PWD': '/home/nitin/projects/tx2',
+ 'PYTHONSTARTUP': '/etc/pythonstart',
+ 'QT_IM_MODULE': 'xim',
+ 'QT_IM_SWITCHER': 'imsw-multi',
+ 'QT_SYSTEM_DIR': '/usr/share/desktop-data',
+ 'QUERY_STRING': 'v=Semester6',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'GET',
+ 'RUN_MAIN': 'true',
+ 'SCRIPT_NAME': u'',
+ 'SDK_HOME': '/usr/lib64/jvm/java',
+ 'SDL_AUDIODRIVER': 'pulse',
+ 'SERVER_NAME': 'localhost',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.2',
+ 'SESSION_MANAGER': 'local/linux-dshb.site:@/tmp/.ICE-unix/1613,unix/linux-dshb.site:/tmp/.ICE-unix/1613',
+ 'SHELL': '/bin/bash',
+ 'SHLVL': '1',
+ 'SSH_AGENT_PID': '1663',
+ 'SSH_ASKPASS': '/usr/lib/ssh/ssh-askpass',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-lHIaJN/ssh',
+ 'TERM': 'xterm',
+ 'TMPDIR': '/tmp',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'nitin',
+ 'WINDOWID': '58720262',
+ 'WINDOWMANAGER': '/usr/bin/gnome-session',
+ 'WINDOWPATH': '7',
+ 'XAUTHLOCALHOSTNAME': 'linux-dshb.site',
+ 'XCURSOR_THEME': 'DMZ',
+ 'XDG_CONFIG_DIRS': '/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share',
+ 'XDG_RUNTIME_DIR': '/run/user/nitin',
+ 'XDG_SEAT': 'seat0',
+ 'XDG_SESSION_COOKIE': '382f82cb9e7ddd7012e5467100000822-1345352043.403457-2092730631',
+ 'XDG_SESSION_ID': 'c1',
+ 'XDG_VTNR': '7',
+ 'XDM_MANAGED': 'method=classic,auto',
+ 'XKEYSYMDB': '/usr/X11R6/lib/X11/XKeysymDB',
+ 'XMODIFIERS': '@im=local',
+ 'XNLSPATH': '/usr/share/X11/nls',
+ 'XSESSION_IS_UP': 'yes',
+ '_': '/usr/bin/python',
+ 'mc': '() {  . /usr/share/mc/mc-wrapper.sh\n}',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fc5749f6270>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x7fc56d4aaed0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/UserProfile/Views/Marks.py", line 211, in MarksSave
+    return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts/__init__.py", line 20, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 181, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 160, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 168, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 108, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 136, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 239, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 214, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 239, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 192, in do_block
+    nodelist = parser.parse(('endblock', 'endblock %s' % block_name))
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 239, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 261, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 149, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 157, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: options_month.html

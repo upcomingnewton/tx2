@@ -1301,3 +1301,14 @@ error: [Errno 111] Connection refused
 2012-08-27 12:36:24,481 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051184.48
 2012-08-27 12:38:24,348 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051304.35
 2012-08-27 12:38:42,162 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051322.16
+2012-08-27 14:45:43,332 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1233} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 14:45:39.835007'); ]
+2012-08-27 14:45:43,333 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. ZIXhQg4b3i4cUn_SL143_SHQYfausumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346058943.33
+2012-08-27 14:45:48,598 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ZIXhQg4b3i4cUn_SL143_SHQYfausumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346058948.6
+2012-08-27 14:48:00,565 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ZIXhQg4b3i4cUn_SL143_SHQYfausumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059080.57
+2012-08-27 14:49:31,650 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ZIXhQg4b3i4cUn_SL143_SHQYfausumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059171.65
+2012-08-27 14:49:59,376 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1233,2,'2012-08-27 14:49:58.688403'); ]
+2012-08-27 14:50:42,210 DatabaseFunctions line:52   DEBUG    [ {'username': u'testf', 'userstate': 1, 'rescode': 115, 'userid': 384, 'result': 1, 'groupid': 21, 'loginid': 1234} ] [ SELECT * FROM UserLogin('testfromsite1@test.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 14:50:38.452005'); ]
+2012-08-27 14:50:42,211 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. wlFKFcFETvAqPHOh1ieJWumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059242.21
+2012-08-27 14:50:47,581 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... wlFKFcFETvAqPHOh1ieJWumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059247.58
+2012-08-27 14:53:30,923 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... wlFKFcFETvAqPHOh1ieJWumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059410.92
+2012-08-27 14:53:38,285 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... wlFKFcFETvAqPHOh1ieJWumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346059418.29

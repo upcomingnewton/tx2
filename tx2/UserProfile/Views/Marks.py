@@ -202,14 +202,14 @@ def MarksSave(HttpRequest):
           HttpRequest.session['Degree']=DegreeIdBE;
         else:
            messages.error(HttpRequest,"Error: invalid url")
-          flag=-1;
+           flag=-1;
         if flag==-1:
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         Boardobj=Board.objects.all();
         yearlist=range(1985,2014);
         relist=range(0,20);
         return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
-  except Exception, ex:
+    except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
       msg = ''
