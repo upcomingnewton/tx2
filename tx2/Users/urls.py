@@ -9,7 +9,7 @@ urlpatterns = patterns('',
         url(r'^logout/$','Users.Views.UserViews.log_out'),
         url(r'^register/$','Users.Views.UserViewIndex.CreateUserIndex'),
         url(r'^register/post/$','Users.Views.UserViews.CreateUserFromSite'),
-        url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViewIndex.AuthenticateUserFromEmail'),
+        url(r'^authenticate/email/(?P<token>\S+)/(?P<refs>\d+)/$','Users.Views.UserViews.AuthenticateUserFromEmail'),
         url(r'^authenticate/resendemail/$','Users.Views.UserViewIndex.ResendAuthenticationEmailIndex'),#TODO
         url(r'^authenticate/resendemail/post/$','Users.Views.UserViews.ResendAuthenticationEmail'), #ResendAuthenticationEmail
         url(r'^password/change/$','Users.Views.UserViewIndex.ChangePassIndex'),
