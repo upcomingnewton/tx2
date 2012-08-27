@@ -52,7 +52,7 @@ def Login(HttpRequest):
           token = {"userid":result['userid'],"groupid":result['groupid'],"loginid":encdec.encrypt( str(result['loginid'])),
 "fname":result['username']}
           HttpRequest.session["details"] = token
-          return HttpResponseRedirect('/user/dashboard/')
+          return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
         else:
           messages.error(HttpRequest,res[1])
           return HttpResponseRedirect('/message/')
@@ -254,7 +254,7 @@ def ChangePass(HttpRequest):
       UserObj = UserFnx()
       res = UserObj.ChangePassword(oldpass,newpass,int(details['userid']),ip,int(details['userid']),-1)
       messages.error(HttpRequest,res[1])
-      return HttpResponseRedirect('/message/')
+      return HttpResponseRedirect('/user/logout/')
   except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -287,6 +287,24 @@ def ResetPass(HttpRequest):
     else:
       messages.error(HttpRequest,'Please enter valid email id.')
       return HttpResponseRedirect('/user/password/reset/')
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+      
+def ResendAuthenticationEmail(HttpRequest):
+  try:
+    if 'ResendAuthenticationEmail' in HttpRequest.POST:
+      emailid = HttpRequest.POST['ResendAuthenticationEmail']
+      UserObj = UserFnx()
+      res = UserObj.ReAuthenticationEmail(emailid)
+      messages.error(HttpRequest,res[1])
+      return HttpResponseRedirect('/message/')
   except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)

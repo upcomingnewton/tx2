@@ -19,6 +19,7 @@ def DBInsertUser(userdetails):
   try:
         query = "SELECT * FROM UserInsert('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -33,6 +34,7 @@ def DBUpdateUser(userdetails):
   try:
         query = "SELECT * FROM UserUpdate('" + userdetails['email'] + "','" + userdetails['pass'] + "','" + userdetails['bday'] + "','" + userdetails['fname'] + "','" + userdetails['mname'] + "','" + userdetails['lname'] + "'," + str(userdetails['entity']) + ",'" + userdetails['gender'] + "','" + userdetails['LogsDesc'] + "','" + userdetails['PreviousState']  + "'," + str(userdetails['group']) + ",'" + userdetails['op'] + "'," + str(userdetails['by']) + ",'" + userdetails['ip'] +"'); "
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -47,6 +49,7 @@ def DBLoginUser(logindetails):
   try:
         query = "SELECT * FROM UserLogin('" + logindetails['email'] + "','" + logindetails['pass'] + "'," + str(logindetails['login_type']) + ",'" + logindetails['ip'] + "','" + str(datetime.now()) + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -61,6 +64,7 @@ def DBLogoutUser(details):
   try:
         query = "SELECT * FROM userlogout(" + str(details['loginid']) + "," +  str(details['logout_from']) + ",'" + str(datetime.now()) + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -77,6 +81,7 @@ def DBGroupTypeInsert(details):
   try:
         query = "SELECT * FROM GroupTypeInsert('"+ details['name'] +"','"+ details['desc'] +"','"+ details['req_op'] +"',"+ str(details['by']) +",'"+ details['ip'] +"');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -92,6 +97,7 @@ def DBGroupInsert(details):
   try:
         query = "SELECT * FROM GroupInsert('" + details['GroupName'] + "','" + details['GroupDescription'] + "'," + str(details['GroupType']) + "," + str(details['GroupEntity']) + ",'" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -110,6 +116,7 @@ def DBMenuInsert(details):
 	#SELECT * FROM  MenuInsert('MenuName','MenuDesc','MenuUrl','MenuPid','MenuIcon','RequestedOperation','by_user','_ip');
         query = "SELECT * FROM MenuInsert('" + details['MenuName'] + "','" + details['MenuDesc'] + "','" + details['MenuUrl'] + "'," + str(details['MenuPid']) + ",'" + details['MenuIcon'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -125,6 +132,7 @@ def DBMenuUpdate(details):
 	#SELECT * FROM  MenuUpdate(MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,RequestedOperation,LogDesc,LogPreviousState,'by_user','_ip');
         query = "SELECT * FROM MenuUpdate(" + str(details['MenuId']) + ",'" + details['MenuName'] + "','" + details['MenuDesc'] + "','" + details['MenuUrl'] + "'," + str(details['MenuPid']) + ",'" + details['MenuIcon'] + "','" + details['RequestedOperation'] + "','" + details['LogDesc'] + "','" + details['LogPreviousState'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -151,6 +159,7 @@ def DBGroupMenuInsert(details):
 	#SELECT * FROM  GroupMenuInsert(MenuStr,GroupID,PermissionStr,RequestedOperation,by_user,ip);
         query = "SELECT * FROM GroupMenuInsert('" + details['MenuStr'] + "'," + str(details['GroupID']) + ",'" + details['extrainfo'] + "','" + details['PermissionStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()
@@ -167,6 +176,7 @@ def DBGroupMenuDelete(details):
 	#SELECT * FROM  GroupMenuDelete(MenuIDStr,RequestedOperation,by_user,ip);
         query = "SELECT * FROM GroupMenuDelete('" + details['MenuIDStr'] + "','" + details['RequestedOperation'] + "'," + str(details['by']) + ",'" + details['ip'] + "');"
         result =  DBhelper.CallFunction(query)
+        UserLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
         return result[0]
   except Exception, ex:
       frame = inspect.currentframe()

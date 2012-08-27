@@ -1216,3 +1216,88 @@ Traceback (most recent call last):
   File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 138, in find_template
     raise TemplateDoesNotExist(name)
 TemplateDoesNotExist: UserSystem/User/Login.html
+2012-08-27 11:14:14,788 UserFunctions     line:359  ERROR    SendAuthenticationEmail : [self : <tx2.Users.BusinessFunctions.UserFunctions.UserFnx instance at 0x7f8fac076710>][email : testafter1@gmail.com][userid : 383][fname : testf][ip : 127.0.0.1]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/UserFunctions.py", line 352, in SendAuthenticationEmail
+    sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Email Verification - Training and Placement Cell, UIET",msg)
+  File "/home/nitin/projects/tx2/tx2/../tx2/Misc/Email.py", line 30, in sendMail
+    smtp = smtplib.SMTP(server)
+  File "/usr/lib64/python2.7/smtplib.py", line 242, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib64/python2.7/smtplib.py", line 302, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib64/python2.7/smtplib.py", line 277, in _get_socket
+    return socket.create_connection((port, host), timeout)
+  File "/usr/lib64/python2.7/socket.py", line 571, in create_connection
+    raise err
+error: [Errno 111] Connection refused
+2012-08-27 11:22:04,100 UserFunctions     line:383  ERROR    ReAuthenticationEmail : [self : <tx2.Users.BusinessFunctions.UserFunctions.UserFnx instance at 0x7f071efe3248>][email : testafter1@gmail.com]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/UserFunctions.py", line 375, in ReAuthenticationEmail
+    sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Email Verification - Training and Placement Cell, UIET",msg)
+  File "/home/nitin/projects/tx2/tx2/../tx2/Misc/Email.py", line 30, in sendMail
+    smtp = smtplib.SMTP(server)
+  File "/usr/lib64/python2.7/smtplib.py", line 242, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib64/python2.7/smtplib.py", line 302, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib64/python2.7/smtplib.py", line 277, in _get_socket
+    return socket.create_connection((port, host), timeout)
+  File "/usr/lib64/python2.7/socket.py", line 571, in create_connection
+    raise err
+error: [Errno 111] Connection refused
+2012-08-27 11:24:39,993 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346046879.99
+2012-08-27 11:24:44,774 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346046884.77
+2012-08-27 11:24:58,455 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346046898.46
+2012-08-27 11:25:23,357 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346046923.36
+2012-08-27 11:25:25,433 UserFunctions     line:58   DEBUG    FORUMS REG - SystemInit1@init.com , 200
+2012-08-27 11:28:44,651 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047124.65
+2012-08-27 11:29:09,269 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047149.27
+2012-08-27 11:32:36,872 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047356.87
+2012-08-27 11:32:39,426 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047359.43
+2012-08-27 11:33:04,509 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... ODiNvO4TPoS5REiGLx_SL143_SHfT_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047384.51
+2012-08-27 11:33:05,923 DatabaseFunctions line:37   DEBUG    [ {'result': -1, 'rescode': 97} ] [ SELECT * FROM UserUpdate('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=','2012-07-29','UserFirstName','UserMiddleName','UserLastName',1,'S','Changed Password','{oldpass:g66L7VKZV1Oi3uhfx1Vy3emYJr8Twl2Lt3h_P4L5U6S989FqYg64=}',1,'SYS_PER_UPDATE',1,'127.0.0.1');  ]
+2012-08-27 11:34:20,829 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1219,2,'2012-08-27 11:34:20.237469'); ]
+2012-08-27 11:34:31,020 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1220} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 11:34:28.087003'); ]
+2012-08-27 11:34:31,021 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. VG1lAek059CIhl7bNvqtbumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047471.02
+2012-08-27 11:34:35,440 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VG1lAek059CIhl7bNvqtbumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047475.44
+2012-08-27 11:34:48,390 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1220,2,'2012-08-27 11:34:47.830044'); ]
+2012-08-27 11:35:10,790 DatabaseFunctions line:52   DEBUG    [ {'username': u'NULL', 'userstate': -1, 'rescode': 112, 'userid': -1, 'result': -1, 'groupid': -1, 'loginid': -1} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','g66L7VKZV1Oi3uhfx1Vy3emYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 11:35:07.817398'); ]
+2012-08-27 11:35:42,407 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1221} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 11:35:39.599697'); ]
+2012-08-27 11:35:42,407 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. yZ0FVvZtAtCQMbEcf9q6BumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047542.41
+2012-08-27 11:35:46,552 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... yZ0FVvZtAtCQMbEcf9q6BumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346047546.55
+2012-08-27 11:46:37,980 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... yZ0FVvZtAtCQMbEcf9q6BumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048197.98
+2012-08-27 11:46:54,535 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... yZ0FVvZtAtCQMbEcf9q6BumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048214.54
+2012-08-27 11:46:56,087 DatabaseFunctions line:37   DEBUG    [ {'result': 1, 'rescode': 99} ] [ SELECT * FROM UserUpdate('SystemInit1@init.com','g66L7VKZV1Oi3uhfx1Vy3emYJr8Twl2Lt3h_P4L5U6S989FqYg64=','2012-07-29','UserFirstName','UserMiddleName','UserLastName',1,'S','Changed Password','{oldpass:EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=}',1,'SYS_PER_UPDATE',1,'127.0.0.1');  ]
+2012-08-27 11:47:06,001 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1221,2,'2012-08-27 11:47:05.410871'); ]
+2012-08-27 11:47:58,841 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1222} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','g66L7VKZV1Oi3uhfx1Vy3emYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 11:47:55.613190'); ]
+2012-08-27 11:47:58,843 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. 4lpxMKQVXILhuLYPG5JRMOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048278.84
+2012-08-27 11:48:04,339 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 4lpxMKQVXILhuLYPG5JRMOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048284.34
+2012-08-27 11:48:17,078 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 4lpxMKQVXILhuLYPG5JRMOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048297.08
+2012-08-27 11:48:34,913 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 4lpxMKQVXILhuLYPG5JRMOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048314.91
+2012-08-27 11:48:36,354 DatabaseFunctions line:37   DEBUG    [ {'result': 1, 'rescode': 99} ] [ SELECT * FROM UserUpdate('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=','2012-07-29','UserFirstName','UserMiddleName','UserLastName',1,'S','Changed Password','{oldpass:g66L7VKZV1Oi3uhfx1Vy3emYJr8Twl2Lt3h_P4L5U6S989FqYg64=}',1,'SYS_PER_UPDATE',1,'127.0.0.1');  ]
+2012-08-27 11:48:39,481 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1222,2,'2012-08-27 11:48:38.913969'); ]
+2012-08-27 11:48:52,207 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1223} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 11:48:49.286338'); ]
+2012-08-27 11:48:52,207 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. YD6TUkKP2ALEPH6xhMK6EumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048332.21
+2012-08-27 11:48:56,606 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... YD6TUkKP2ALEPH6xhMK6EumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346048336.61
+2012-08-27 11:49:10,339 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1223,2,'2012-08-27 11:49:09.729006'); ]
+2012-08-27 12:00:24,341 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1224} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 12:00:21.118248'); ]
+2012-08-27 12:00:24,343 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. zWhFhZGANgK3g6vtv1EznemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049024.34
+2012-08-27 12:01:01,349 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1224,2,'2012-08-27 12:01:00.766895'); ]
+2012-08-27 12:01:10,824 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1225} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 12:01:07.903120'); ]
+2012-08-27 12:01:10,825 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. li8R8QSzbXRDcz0gt3qznumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049070.83
+2012-08-27 12:01:15,932 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... li8R8QSzbXRDcz0gt3qznumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049075.93
+2012-08-27 12:02:14,387 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... li8R8QSzbXRDcz0gt3qznumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049134.39
+2012-08-27 12:03:14,475 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1225,2,'2012-08-27 12:03:13.890079'); ]
+2012-08-27 12:03:24,504 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1226} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 12:03:20.769762'); ]
+2012-08-27 12:03:24,505 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. JosUQArcbwFRJQdAE1MKyumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049204.51
+2012-08-27 12:03:29,702 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... JosUQArcbwFRJQdAE1MKyumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049209.7
+2012-08-27 12:04:34,967 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... JosUQArcbwFRJQdAE1MKyumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049274.97
+2012-08-27 12:06:05,779 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... JosUQArcbwFRJQdAE1MKyumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346049365.78
+2012-08-27 12:24:27,557 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1227} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-27 12:24:24.514498'); ]
+2012-08-27 12:24:27,558 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346050467.56
+2012-08-27 12:24:32,187 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346050472.19
+2012-08-27 12:27:03,326 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346050623.33
+2012-08-27 12:36:24,481 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051184.48
+2012-08-27 12:38:24,348 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051304.35
+2012-08-27 12:38:42,162 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... HigJHn4ftNrv4BjUP3NTGemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346051322.16

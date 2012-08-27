@@ -93,8 +93,8 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('InsertUser : %s' % (msg))
-      return (-2,self.MakeExceptionMessage(str(ex)))  
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,self.MakeExceptionMessage(str(ex)))
       
   def UpdateUser(self,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
     try:
@@ -125,7 +125,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('UpdateUser : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
   def AuthenticateUserFromSite(self,emailid,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -159,7 +159,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('UserAuthenticationByEmail : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def LoginUser(self,email,password,_type,ip):
@@ -181,7 +181,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('LoginUser : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def LogoutUser(self,loginid,out_from):
@@ -201,7 +201,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('LogoutUser : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
     
   def ChangeUserGroup(self,userid,GroupName,by,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -232,7 +232,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('ChangeUserGroup : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
       
@@ -257,14 +257,13 @@ class UserFnx():
         return (-1,'ERROR: Old Pasword does not match')
       if user_obj.UserPassword == newpass:
         # NO NEED TO CHANGE, IT IS ALREADY SAME
-        res1= self.ResetPswdforForums(emailid, self.encrypt.decrypt(newpass))
-        
+        #res1= self.ResetPswdforForums(emailid, self.encrypt.decrypt(newpass))
         return (1,"SUCESS.Your password has been changed sucessfully.")
       PreviousState = "{oldpass:"+ oldpass + "}"
       LogsDesc = 'Changed Password'
       user_obj.UserPassword = newpass
       
-      res1= self.ResetPswdforForums(user_obj.UserEmail, self.encrypt.decrypt(newpass))
+      #res1= self.ResetPswdforForums(user_obj.UserEmail, self.encrypt.decrypt(newpass))
       
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
@@ -279,7 +278,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('UpdateUser : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
             
   def ForgetPassword(self,emailid,by,ip,op=SYSTEM_PERMISSION_UPDATE):
@@ -291,6 +290,8 @@ class UserFnx():
       user_obj = user_obj[1]
       if by == -1:
         by = user_obj.id
+      if user_obj.Group.GroupName == getSystemGroup_NewUsers():
+        return (-1,"You have not verified your email account.")
       PreviousState = "{oldpass:"+ user_obj.UserPassword + "}"
       LogsDesc = 'Forget Password'
       import random
@@ -300,7 +301,7 @@ class UserFnx():
       result = self.UpdateUser(user_obj,LogsDesc,PreviousState,by,ip,op)
       if result[0] == 1 :
         self.ForgetPasswordEmail(emailid,password)
-        self.ResetPswdforForums(emailid, password)
+        #self.ResetPswdforForums(emailid, password)
         return (1,"SUCESS.Your password has been changed sucessfully.") 
       elif result[0] == -2:
         return (-2,'Error in Changing Password')
@@ -312,7 +313,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('ForgetPassword : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def ReSendAuthenticationEmail(self,emailid,ip):
@@ -330,13 +331,13 @@ class UserFnx():
       else:
         self.SendAuthenticationEmail(user.UserEmail,user.id,user.UserFirstName,ip)
     except Exception, ex:
-        frame = inspect.currentframe()
-        args, _, _, values = inspect.getargvalues(frame)
-        msg = ''
-        for i in args:
-          msg += "[%s : %s]" % (i,values[i])
-        self.UserLogger.exception('ReSendAuthenticationEmail : %s' % (msg))
-        return (-2,self.MakeExceptionMessage(str(ex)))
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,self.MakeExceptionMessage(str(ex)))
 
 ########################### E-MAIL FUNCTIONS #####################
 
@@ -356,7 +357,31 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('SendAuthenticationEmail : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,self.MakeExceptionMessage(str(ex)))
+      
+  def ReAuthenticationEmail(self,email):
+    try:
+      userobj = self.getUserObjectByEmailid(email)
+      if userobj[0] != 1:
+        return (-1,userobj[1])
+      userobj = userobj[1]
+      token= self.encrypt.encrypt(str(userobj.id) + '___' + email)
+      import time
+      refs = int(time.time())
+      msg = "Dear " + userobj.UserFirstName + "\n"
+      msg += "Please click on following link to activate your account \n\n"
+      msg += "http://uiet.thoughtxplore.com/user/authenticate/email/"+token+"/" + str(refs) + "/"
+      msg += "\n\nRegards \n Training and Placement Cell, UIET"
+      sendMail([ "thoughtxplore@gmail.com",email],"no-reply@thoughtxplore.com","Email Verification - Training and Placement Cell, UIET",msg)
+      return (1,'An email has been sent. Please check your inbox.')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
   def ForgetPasswordEmail(self,email,password):
@@ -371,7 +396,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('ForgetPasswordEmail : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
       
 ########################### E-MAIL FUNCTIONS #####################
@@ -389,7 +414,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('getAllUsers : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
   def getUserObjectByEmailid(self,emailid):
@@ -407,7 +432,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('getUserObjectByEmailid : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
 
@@ -426,7 +451,7 @@ class UserFnx():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.UserLogger.exception('getUserObjectByUserId : %s' % (msg))
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
 
     
