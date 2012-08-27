@@ -10,7 +10,7 @@ from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
 from tx2.UserProfile.BusinessFunctions.Marks import Marks
-from tx2.UserProfile.models import Board, SessionType, StudentDetails
+from tx2.UserProfile.models import Board, SessionType
 from tx2.UserProfile.models import DegreeType
 from tx2.UserProfile.models import Degree
 from tx2.UserProfile.models import Marks as modelMarks
@@ -31,16 +31,13 @@ def SessionTypeIndex(HttpRequest):
 def MarksIndex(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
   logindetails = GetLoginDetails(HttpRequest)
+  print logindetails
   if( logindetails["userid"] == -1):
     msglist.append('Please Login to continue')
     HttpRequest.session[SESSION_MESSAGE] = msglist
     return HttpResponseRedirect('/user/login/')
-  else:
-    if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
-        StudDetailStatus= True
-    else:
-        StudDetailStatus= False
-    return render_to_response("UserProfile/MarksCategory.html",context_instance=RequestContext(HttpRequest))
+      
+  return render_to_response("UserProfile/MarksCategory.html",context_instance=RequestContext(HttpRequest))
 
 def BoardInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
