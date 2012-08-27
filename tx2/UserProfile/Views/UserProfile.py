@@ -156,7 +156,6 @@ def CategoryUpdate(HttpRequest):
         print 'y =', y
 
 def StudentDetailsIndex(HttpRequest):
-    print "here"
     msglist = AppendMessageList(HttpRequest)
     logindetails = GetLoginDetails(HttpRequest)
     if( logindetails["userid"] == -1):
@@ -265,9 +264,9 @@ def StudentDetailsUpdateIndex(HttpRequest):
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
             
-   # if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
-    #    StudDetailStatus= False
-   # else:
+    if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
+        StudDetailStatus= False
+    else:
     StudDetailStatus= True
     return render_to_response("UserProfile/StudentDetailsUpdate.html",{'StudDetailStatus':StudDetailStatus,'BranchList':Branch.objects.all(),'CategoryList':Category.objects.all(),'DegreeList':Degree.objects.all()},context_instance=RequestContext(HttpRequest))
             
