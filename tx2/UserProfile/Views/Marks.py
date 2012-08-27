@@ -10,13 +10,14 @@ from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
 from tx2.UserProfile.BusinessFunctions.Marks import Marks
-from tx2.UserProfile.models import Board, SessionType
+from tx2.UserProfile.models import Board, SessionType, StudentDetails
 from tx2.UserProfile.models import DegreeType
 from tx2.UserProfile.models import Degree
 from tx2.UserProfile.models import Marks as modelMarks
 from django.contrib import messages
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
+import inspect
 Logger_User = logging.getLogger(LoggerSecurity)
 
 
@@ -31,13 +32,16 @@ def SessionTypeIndex(HttpRequest):
 def MarksIndex(HttpRequest):
   msglist = AppendMessageList(HttpRequest)
   logindetails = GetLoginDetails(HttpRequest)
-  print logindetails
   if( logindetails["userid"] == -1):
     msglist.append('Please Login to continue')
     HttpRequest.session[SESSION_MESSAGE] = msglist
     return HttpResponseRedirect('/user/login/')
-      
-  return render_to_response("UserProfile/MarksCategory.html",context_instance=RequestContext(HttpRequest))
+  else:
+    if( StudentDetails.objects.filter(User=logindetails["userid"]).exists()):
+        StudDetailStatus= True
+    else:
+        StudDetailStatus= False
+    return render_to_response("UserProfile/MarksCategory.html",context_instance=RequestContext(HttpRequest))
 
 def BoardInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
@@ -160,14 +164,9 @@ def SessionTypeInsert(HttpRequest):
         print 'x =', x
         print 'y =', y
 def MarksSave(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
-    
-    print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         flag=1
@@ -175,7 +174,7 @@ def MarksSave(HttpRequest):
         if "v" in HttpRequest.GET:
             v=HttpRequest.GET["v"]
         else:
-            msglist.append("Error fetching data from url for v");
+            messages.error(HttpRequest,'Error fetching details.')
             flag=-1;
         if(v=="10th"):
           SessionYearlyId=SessionType.objects.get(Name='Yearly').id;
@@ -202,24 +201,23 @@ def MarksSave(HttpRequest):
           HttpRequest.session['DegreeType']=DegreeTypeIdUG;
           HttpRequest.session['Degree']=DegreeIdBE;
         else:
-          msglist.append("Error: invalid url request.valid value not found");
+           messages.error(HttpRequest,"Error: invalid url")
           flag=-1;
-        
-                              
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         Boardobj=Board.objects.all();
         yearlist=range(1985,2014);
         relist=range(0,20);
         return render_to_response("UserProfile/MarksSave.html",{'BoardObject':Boardobj,'yearlist':yearlist,'relist':relist},context_instance=RequestContext(HttpRequest))
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 def MarksPostSave(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
