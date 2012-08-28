@@ -1369,3 +1369,28 @@ error: [Errno 111] Connection refused
 2012-08-28 11:13:28,359 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... LVhL2IRY_P4L5U6S98oudcpR_P4L5U6S98Nwikh_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346132608.36
 2012-08-28 11:13:29,392 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... LVhL2IRY_P4L5U6S98oudcpR_P4L5U6S98Nwikh_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346132609.39
 2012-08-28 11:13:35,442 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... LVhL2IRY_P4L5U6S98oudcpR_P4L5U6S98Nwikh_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346132615.44
+2012-08-28 11:29:14,123 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1249} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-28 11:29:13.485746'); ]
+2012-08-28 11:29:14,124 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133554.12
+2012-08-28 11:29:15,114 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133555.11
+2012-08-28 11:29:33,824 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133573.82
+2012-08-28 11:32:59,581 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133779.58
+2012-08-28 11:33:27,006 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133807.01
+2012-08-28 11:34:42,075 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133882.08
+2012-08-28 11:35:47,535 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133947.54
+2012-08-28 11:36:08,945 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133968.95
+2012-08-28 11:36:10,206 ContextProcessors line:41   ERROR    EXCEPTION IN UserContextProcessor
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/ContextProcessors.py", line 34, in UserContextProcessor
+    logindetails = GetLoginDetails(HttpRequest)
+NameError: global name 'HttpRequest' is not defined
+2012-08-28 11:36:32,194 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133992.19
+2012-08-28 11:36:32,267 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346133992.27
+2012-08-28 11:36:32,267 ContextProcessors line:35   DEBUG    ==== IT IS HERE 1
+2012-08-28 11:36:32,268 ContextProcessors line:41   ERROR    EXCEPTION IN UserContextProcessor
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/ContextProcessors.py", line 37, in UserContextProcessor
+    return {"userid":token['userid'],"groupid":token['groupid'],"loginid":token['loginid'],"fname":token["fname"], "loggedin":True}
+NameError: global name 'token' is not defined
+2012-08-28 11:36:50,886 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.89
+2012-08-28 11:36:50,958 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.96
+2012-08-28 11:36:50,958 ContextProcessors line:35   DEBUG    ==== IT IS HERE 1
