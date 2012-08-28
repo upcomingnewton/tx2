@@ -1,0 +1,84 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Student Details{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Student Details</div>
+</div>
+
+{% if StudDetailStatus %}
+
+<div class="rowbig">
+  <span class="messageclass" >If you find anything missing, please bring it to <br /> our notice ( thoughtxplore@gmail.com )</span>
+</div>
+<form action="/userprofile/UserProfile/StudentDetails/new/" method="post">
+{% csrf_token %}
+
+  <div class="row">
+    <div class="labelclass" >RollNo</div>
+    <div class="widgetclass" ><input type="text" name="RollNo" class="widget" /> </div>
+  </div>
+  
+  <div class="row">
+    <div class="labelclass" >BranchMajor</div>
+    <div class="widgetclass" >
+        <select name="BranchMajor" class="widget" style="float:left;width:150px;">
+            {% for branch in BranchList %}
+              <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="labelclass" >BranchMinor</div>
+    <div class="widgetclass" >
+        <select name="BranchMinor" class="widget" style="float:left;width:150px;">
+            {% for branch in BranchList %}
+              <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="labelclass" >Category</div>
+    <div class="widgetclass" >
+        <select name="Category" class="widget" style="float:left;width:150px;">
+            {% for Category in CategoryList %}
+              <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="labelclass" >Degree</div>
+    <div class="widgetclass" >
+        <select name="Degree" class="widget" style="float:left;width:150px;">
+            {% for Degree in DegreeList %}
+              <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+  
+  <div class="rowbig">
+    <div class="labelclass" >ComputerProficiency</div>
+    <div class="widgetclass" >
+      <textarea name="ComputerProficiency"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+
+{% else %}
+
+<p> Your Details have been recorded, <br>You can enter marks now.<br> Thanks </p>
+
+{% endif %}
+
+{% endblock %}
