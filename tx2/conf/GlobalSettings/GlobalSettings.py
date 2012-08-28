@@ -117,7 +117,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     #'ThoughtXplore.txContextProcessors.MenuContextProcessor',
-    #'ThoughtXplore.txContextProcessors.UserContextProcessor',
+    'tx2.ContextProcessors.UserContextProcessor',
     #'ThoughtXplore.txContextProcessors.TEMPLATE_PARAM_USER_NOT_LOGGED_IN',
     #'tx2.ContextProcessors.MessageContextProcessor',
     
