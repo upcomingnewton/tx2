@@ -34,7 +34,7 @@ def home(HttpRequest):
         list2.append(list1)
     print list2
     list1=zip(list2)
-    return render_to_response('TXtemplates/index.html',{'Happenings':list1,'title':'Home', },context_instance=RequestContext(HttpRequest))
+    return render_to_response('index.html',{'Happenings':list1,'title':'Home', },context_instance=RequestContext(HttpRequest))
 
 def recruitersIndex(HttpRequest):
     return render_to_response('Public/recruiters.html',{'title':'Past Recruiters', },context_instance=RequestContext(HttpRequest))
