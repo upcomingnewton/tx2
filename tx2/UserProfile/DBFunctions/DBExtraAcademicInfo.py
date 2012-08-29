@@ -7,7 +7,7 @@ Created on 01-Aug-2012
 from tx2.DataBaseHelper import DBhelper
 from tx2.CONFIG import LOGGER_COMMUNICATION, LoggerQuery
 from tx2.CONFIG import LOGGER_USER_PROFILE
-
+import inspect
 import logging
 
 CommunicationLogger = logging.getLogger(LOGGER_COMMUNICATION)
@@ -22,10 +22,16 @@ def DBExtraAcademicInfoTypeInsert(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBInsertExtraAcademicInfoType',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBInsertExtraAcademicInfoType',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+    
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)} 
+                                                                   
 def DBExtraAcademicInfoTypeUpdate(details):
     query = "SELECT * FROM ExtraAcademicInfoTypeUpdate(%s,'%s','%s','%s','%s','%s');"%(details["Id"],details["ExtraAcademicInfoTypeName"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
@@ -34,11 +40,15 @@ def DBExtraAcademicInfoTypeUpdate(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoTypeUpdate',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBExtraAcademicInfoTypeUpdate',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
-
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
+    
 def DBFunctionalAreaTypeInsert(details):
     query = "SELECT * FROM FunctionalAreaTypeInsert('%s','%s',%s,'%s');"%(details["FunctionalAreaTypeName"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
@@ -47,10 +57,15 @@ def DBFunctionalAreaTypeInsert(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBInsertFunctionalAreaType',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBInsertFunctionalAreaType',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
+
 def DBFunctionalAreaTypeUpdate(details):
     query = "SELECT * FROM FunctionalAreaTypeUpdate(%s,'%s','%s','%s',%s,'%s');"%(details["Id"],details["FunctionalAreaTypeName"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
@@ -59,10 +74,14 @@ def DBFunctionalAreaTypeUpdate(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaTypeUpdate',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBFunctionalAreaTypeUpdate',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
 
 def DBExtraAcademicInfoDetailsInsert(details):
     query = "SELECT * FROM ExtraAcademicInfoDetailsInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s',%s,'%s');"%(details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["RequestedOperation"],details["by_user"],details["ip"]);
@@ -72,10 +91,14 @@ def DBExtraAcademicInfoDetailsInsert(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsInsert',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBExtraAcademicInfoDetailsInsert',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}                                                                
 def DBExtraAcademicInfoDetailsUpdate(details):
     query = "SELECT * FROM ExtraAcademicInfoDetailsUpdate(%s,%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s','%s',%s,'%s');"%(details["Id"],details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
@@ -84,11 +107,14 @@ def DBExtraAcademicInfoDetailsUpdate(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBExtraAcademicInfoDetailsUpdate',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
-
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
 
 def DBFunctionalAreaListInsert(details):
     query = "SELECT * FROM FunctionalAreaListInsert(%s,'%s','%s',%s,'%s');"%(details["FunctionalAreaType_id"],details["FunctionalArea"],details["RequestedOperation"],details["by_user"],details["ip"]);
@@ -98,11 +124,14 @@ def DBFunctionalAreaListInsert(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaListInsert',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBFunctionalAreaListInsert',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
-
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
 def DBFunctionalAreaListUpdate(details):
     query = "SELECT * FROM FunctionalAreaListUpdate(%s,%s,'%s','%s','%s',%s,'%s');"%(details["Id"],details["FunctionalAreaType_id"],details["FunctionalArea"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
@@ -111,7 +140,11 @@ def DBFunctionalAreaListUpdate(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBFunctionalAreaListUpdate',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBFunctionalAreaListUpdate',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}                                                                
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}

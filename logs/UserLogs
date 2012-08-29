@@ -1394,3 +1394,18 @@ NameError: global name 'token' is not defined
 2012-08-28 11:36:50,886 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.89
 2012-08-28 11:36:50,958 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.96
 2012-08-28 11:36:50,958 ContextProcessors line:35   DEBUG    ==== IT IS HERE 1
+2012-08-28 21:47:18,520 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1273} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-28 21:47:13.772955'); ]
+2012-08-28 21:47:18,522 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170638.52
+2012-08-28 21:47:20,890 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170640.89
+2012-08-28 21:47:24,738 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170644.74
+2012-08-28 21:47:50,298 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170670.3
+2012-08-28 21:47:54,051 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170674.05
+2012-08-28 21:47:57,842 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170677.84
+2012-08-28 21:48:36,901 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170716.9
+2012-08-28 21:48:40,617 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170720.62
+2012-08-28 21:48:44,369 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170724.37
+2012-08-28 21:49:01,098 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170741.1
+2012-08-28 21:49:04,911 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170744.91
+2012-08-28 21:49:08,742 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170748.74
+2012-08-28 21:49:09,936 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170749.94
+2012-08-28 21:49:14,003 LoginDetails      line:72   DEBUG    [UpdateLoggedInUsersDict] Updating... VdeBM4Zfw_P4L5U6S982MbljkfOBnLOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346170754.0
