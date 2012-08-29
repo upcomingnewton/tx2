@@ -13,6 +13,7 @@ from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
 from tx2.UserProfile.models import Degree,Branch,Category, StudentDetails
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
+from django.contrib import messages
 LogUser = logging.getLogger(LoggerUser)
 
 
@@ -27,7 +28,7 @@ def BranchInsert(HttpRequest):
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
+        messages.error(HttpRequest,'Please Login to continue')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
@@ -36,13 +37,13 @@ def BranchInsert(HttpRequest):
         if "BranchName" in HttpRequest.POST:
             BranchName=HttpRequest.POST["BranchName"]
         else:
-            msglist.append("Error fetching data from form for BranchName");
+            messages.error(HttpRequest,"Error fetching data from form for BranchName");
             flag=-1;
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         result=UserProfileObj.InsertBranch(BranchName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
+        messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
         print type(inst)     # the exception instance
@@ -57,7 +58,7 @@ def BranchUpdate(HttpRequest):
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
+        messages.error(HttpRequest,'Please Login to continue')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
@@ -66,18 +67,18 @@ def BranchUpdate(HttpRequest):
         if "Id" in HttpRequest.POST:
             Id=HttpRequest.POST["Id"]
         else:
-            msglist.append("Error fetching data from form for Id");
+            messages.error(HttpRequest,"Error fetching data from form for Id");
             flag=-1;
         if "BranchName" in HttpRequest.POST:
             BranchName=HttpRequest.POST["BranchName"]
         else:
-            msglist.append("Error fetching data from form for BranchName");
+            messages.error(HttpRequest,"Error fetching data from form for BranchName");
             flag=-1;
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         result=UserProfileObj.UpdateBranch(Id, BranchName,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
+        messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
         print type(inst)     # the exception instance
@@ -95,7 +96,7 @@ def CategoryInsert(HttpRequest):
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
+        messages.error(HttpRequest,'Please Login to continue')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
@@ -104,13 +105,13 @@ def CategoryInsert(HttpRequest):
         if "CategoryName" in HttpRequest.POST:
             CategoryName=HttpRequest.POST["CategoryName"]
         else:
-            msglist.append("Error fetching data from form for CategoryName");
+            messages.error(HttpRequest,"Error fetching data from form for CategoryName");
             flag=-1;
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         result=UserProfileObj.InsertCategory(CategoryName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
+        messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
         print type(inst)     # the exception instance
@@ -125,7 +126,7 @@ def CategoryUpdate(HttpRequest):
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
+        messages.error(HttpRequest,'Please Login to continue')
         HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
@@ -134,18 +135,18 @@ def CategoryUpdate(HttpRequest):
         if "CategoryName" in HttpRequest.POST:
             CategoryName=HttpRequest.POST["CategoryName"]
         else:
-            msglist.append("Error fetching data from form for CategoryName");
+            messages.error(HttpRequest,"Error fetching data from form for CategoryName");
             flag=-1;
         if "Id" in HttpRequest.POST:
             Id=HttpRequest.POST["Id"]
         else:
-            msglist.append("Error fetching data from form for Id");
+            messages.error(HttpRequest,"Error fetching data from form for Id");
             flag=-1;
         if flag==-1:
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
         result=UserProfileObj.UpdateCategory(Id, CategoryName,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
+        messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
     except Exception as inst:
         print type(inst)     # the exception instance
@@ -160,7 +161,7 @@ def StudentDetailsIndex(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     logindetails = GetLoginDetails(HttpRequest)
     if( logindetails["userid"] == -1):
-            msglist.append('Please Login to continue')
+            messages.error(HttpRequest,'Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
             
@@ -177,7 +178,7 @@ def StudentDetailsInsert(HttpRequest):
         print "here in student details"
         print msglist
         if( logindetails["userid"] == -1):
-            msglist.append('Please Login to continue')
+            messages.error(HttpRequest,'Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
         try:
@@ -190,47 +191,58 @@ def StudentDetailsInsert(HttpRequest):
             Degree = -1
             Category = -1
             ComputerProficiency = ""
-            
+            aieee='null'
             if "RollNo" in HttpRequest.POST:
                 RollNo=HttpRequest.POST["RollNo"]
                 if len(RollNo) == 0:
-                      msglist.append("RollNo is required");
+                      messages.error(HttpRequest,"RollNo is required");
                       flag=-1;
             else:
-                msglist.append("Error fetching data from form for RollNo");
+                messages.error(HttpRequest,"Error fetching data from form for RollNo");
                 flag=-1;
             
+            if "AIEEERank" in HttpRequest.POST:
+                aieee= int(HttpRequest.POST["AIEEERank"])
+                if is_integer(aieee):
+                  aieee=int(aieee)
+                else:
+                  messages.error(HttpRequest,"Error AIEEE Rank should be number only");
+                  flag=-1;
+            else:
+                messages.error(HttpRequest,"Error fetching data from form for aieee");
+                flag=-1;
+                
             if "BranchMajor" in HttpRequest.POST:
                 BranchMajor= int(HttpRequest.POST["BranchMajor"])
                 if BranchMajor == -1:
-                    msglist.append("Please select value for BranchMajor");
+                    messages.error(HttpRequest,"Please select value for BranchMajor");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for BranchMajor");
+                messages.error(HttpRequest,"Error fetching data from form for BranchMajor");
                 flag=-1;
             
             if "BranchMinor" in HttpRequest.POST:
                 BranchMinor= int(HttpRequest.POST["BranchMinor"])
             else:
-                msglist.append("Error fetching data from form for BranchMinor");
+                messages.error(HttpRequest,"Error fetching data from form for BranchMinor");
                 flag=-1;                    
             
             if "Degree" in HttpRequest.POST:
                 Degree=int(HttpRequest.POST["Degree"])
                 if Degree == -1:
-                    msglist.append("Please select value for Degree");
+                    messages.error(HttpRequest,"Please select value for Degree");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for Degree");
+                messages.error(HttpRequest,"Error fetching data from form for Degree");
                 flag=-1;
             
             if "Category" in HttpRequest.POST:
                 Category=int(HttpRequest.POST["Category"])
                 if Category == -1:
-                    msglist.append("Please select value for Category");
+                    messages.error(HttpRequest,"Please select value for Category");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for Category");
+                messages.error(HttpRequest,"Error fetching data from form for Category");
                 flag=-1;
             
             if "ComputerProficiency" in HttpRequest.POST:
@@ -245,14 +257,14 @@ def StudentDetailsInsert(HttpRequest):
                 UserProfileObj=UserProfile()
                 BranchObj = Branch.objects.get(id=BranchMajor)
                 Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
-                result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
-                msglist.append(result[1])
+                result=UserProfileObj.InsertStudentDetails(UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip, Group)
+                messages.error(HttpRequest,result[1])
                 print msglist
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
         except Exception as inst:
             LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'StudentDetailsInsert'))
-            msglist.append('Some Error has occoured')
+            messages.error(HttpRequest,'Some Error has occoured')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
 
@@ -261,7 +273,7 @@ def StudentDetailsUpdateIndex(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     logindetails = GetLoginDetails(HttpRequest)
     if( logindetails["userid"] == -1):
-            msglist.append('Please Login to continue')
+            messages.error(HttpRequest,'Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
             
@@ -278,7 +290,7 @@ def StudentDetailsUpdate(HttpRequest):
         print "here in student details"
         print msglist
         if( logindetails["userid"] == -1):
-            msglist.append('Please Login to continue')
+            messages.error(HttpRequest,'Please Login to continue')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/user/login/')
         try:
@@ -294,51 +306,51 @@ def StudentDetailsUpdate(HttpRequest):
             if "Id" in HttpRequest.POST:
                 Id=HttpRequest.POST["Id"]
                 if len(Id) == 0:
-                      msglist.append("Id is required");
+                      messages.error(HttpRequest,"Id is required");
                       flag=-1;
             else:
-                msglist.append("Error fetching data from form for Id");
+                messages.error(HttpRequest,"Error fetching data from form for Id");
                 flag=-1;
             if "RollNo" in HttpRequest.POST:
                 RollNo=HttpRequest.POST["RollNo"]
                 if len(RollNo) == 0:
-                      msglist.append("RollNo is required");
+                      messages.error(HttpRequest,"RollNo is required");
                       flag=-1;
             else:
-                msglist.append("Error fetching data from form for RollNo");
+                messages.error(HttpRequest,"Error fetching data from form for RollNo");
                 flag=-1;
             
             if "BranchMajor" in HttpRequest.POST:
                 BranchMajor= int(HttpRequest.POST["BranchMajor"])
                 if BranchMajor == -1:
-                    msglist.append("Please select value for BranchMajor");
+                    messages.error(HttpRequest,"Please select value for BranchMajor");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for BranchMajor");
+                messages.error(HttpRequest,"Error fetching data from form for BranchMajor");
                 flag=-1;
             
             if "BranchMinor" in HttpRequest.POST:
                 BranchMinor= int(HttpRequest.POST["BranchMinor"])
             else:
-                msglist.append("Error fetching data from form for BranchMinor");
+                messages.error(HttpRequest,"Error fetching data from form for BranchMinor");
                 flag=-1;                    
             
             if "Degree" in HttpRequest.POST:
                 Degree=int(HttpRequest.POST["Degree"])
                 if Degree == -1:
-                    msglist.append("Please select value for Degree");
+                    messages.error(HttpRequest,"Please select value for Degree");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for Degree");
+                messages.error(HttpRequest,"Error fetching data from form for Degree");
                 flag=-1;
             
             if "Category" in HttpRequest.POST:
                 Category=int(HttpRequest.POST["Category"])
                 if Category == -1:
-                    msglist.append("Please select value for Category");
+                    messages.error(HttpRequest,"Please select value for Category");
                     flag=-1;
             else:
-                msglist.append("Error fetching data from form for Category");
+                messages.error(HttpRequest,"Error fetching data from form for Category");
                 flag=-1;
             
             if "ComputerProficiency" in HttpRequest.POST:
@@ -354,13 +366,13 @@ def StudentDetailsUpdate(HttpRequest):
                 BranchObj = Branch.objects.get(id=BranchMajor)
                 Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
                 result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
-                msglist.append(result[1])
+                messages.error(HttpRequest,result[1])
                 print msglist
                 HttpRequest.session[SESSION_MESSAGE] = msglist
                 return HttpResponseRedirect('/message/')
         except Exception as inst:
             LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'StudentDetailsInsert'))
-            msglist.append('Some Error has occoured')
+            messages.error(HttpRequest,'Some Error has occoured')
             HttpRequest.session[SESSION_MESSAGE] = msglist
             return HttpResponseRedirect('/message/')
 

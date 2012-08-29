@@ -164,7 +164,7 @@ def DBCategoryUpdate(details):
 
 def DBStudentDetailsInsert(details):
     try:
-        query = "SELECT * FROM StudentDetailsInsert(%s,'%s',%s,%s,%s,%s,'%s','%s',%s,'%s');"%(details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details["RequestedOperation"],details["by_user"],details["ip"]);
+        query = "SELECT * FROM StudentDetailsInsert(%s,'%s',%s,%s,%s,%s,'%s','%s','%s',%s,'%s');"%(details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details['aieee'],details["RequestedOperation"],details["by_user"],details["ip"]);
         UserProfileLogger.debug('[%s] %s'%('DBInsertStudentDetails',query))
         QueryLogger.debug('[%s] %s'%('DBInsertStudentDetails',query))
         result =  DBhelper.CallFunction(query)

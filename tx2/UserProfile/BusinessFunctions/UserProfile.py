@@ -121,7 +121,7 @@ class UserProfile(object):
           self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
     
-    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
+    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
           details={'UserId':UserId,
                      'RollNo':RollNo,
@@ -130,6 +130,7 @@ class UserProfile(object):
                      'Degree':Degree,
                      'CategoryId':CategoryId,
                      'ComputerProficiency':ComputerProficiency,
+                     'aieee':aieee,
                      'RequestedOperation':'SYS_PER_INSERT',
                      'by_user':by_user,
                      'ip':ip,};
