@@ -5,32 +5,49 @@
 <div class="row">
   <div class="formtitle">Student Details</div>
 </div>
-
-{% if StudDetailStatus %}
-
 <div class="rowbig">
   <span class="messageclass" >If you find anything missing, please bring it to <br /> our notice ( thoughtxplore@gmail.com )</span>
 </div>
-<form action="/userprofile/UserProfile/StudentDetails/new" method="post">
+{% if StudDetailStatus %}
+  <form action="/userprofile/UserProfile/StudentDetails/update" method="post">
+{% else %}
+  <form action="/userprofile/UserProfile/StudentDetails/new" method="post">
+{% endif %}
 {% csrf_token %}
+
+{% if StudDetailStatus %}
+  <input type="hidden" value="{{StudentDetailsObj.id}}" name="Id">
+{% else %}
+    <input type="hidden" value="-1" name="Id">
+{% endif %}
 
   <div class="row">
     <div class="labelclass" >RollNo</div>
-    <div class="widgetclass" ><input type="text" name="RollNo" class="widget" /> </div>
+    <div class="widgetclass" ><input type="text" name="RollNo" class="widget" {% if StudDetailStatus %} value="{{StudentDetailsObj.RollNo}}" {% endif %}/> </div>
   </div>
 
   <div class="row">
     <div class="labelclass" >AIEEE Rank</div>
-    <div class="widgetclass" ><input type="text" name="AIEEERank" class="widget" /> </div>
+    <div class="widgetclass" ><input type="text" name="AIEEERank" class="widget" {% if StudDetailStatus %} value="{{StudentDetailsObj.AIEEE}}" {% endif %} /> </div>
   </div>
   
   <div class="row">
     <div class="labelclass" >BranchMajor</div>
     <div class="widgetclass" >
         <select name="BranchMajor" class="widget" style="float:left;width:150px;">
+          {% if StudDetailStatus %}
+            {% for branch in BranchList %}
+              {% if StudentDetailsObj.BranchMajor.id == branch.id %}
+                <option value="{{ branch.id }}" selected="selected">{{ branch.BranchName }}</option>
+              {% else %}
+                <option value="{{ branch.id }}" >{{ branch.BranchName }}</option>
+              {% endif %}
+            {% endfor %}
+          {% else %}
             {% for branch in BranchList %}
               <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
             {% endfor %}
+          {% endif %}
         </select>
     </div>
   </div>
@@ -39,9 +56,19 @@
     <div class="labelclass" >BranchMinor</div>
     <div class="widgetclass" >
         <select name="BranchMinor" class="widget" style="float:left;width:150px;">
+          {% if StudDetailStatus %}
+            {% for branch in BranchList %}
+              {% if StudentDetailsObj.BranchMinor.id == branch.id %}
+                <option value="{{ branch.id }}" selected="selected">{{ branch.BranchName }}</option>
+              {% else %}
+                <option value="{{ branch.id }}" >{{ branch.BranchName }}</option>
+              {% endif %}
+            {% endfor %}
+          {% else %}
             {% for branch in BranchList %}
               <option value="{{ branch.id }}">{{ branch.BranchName }}</option>
             {% endfor %}
+          {% endif %}
         </select>
     </div>
   </div>
@@ -50,9 +77,19 @@
     <div class="labelclass" >Category</div>
     <div class="widgetclass" >
         <select name="Category" class="widget" style="float:left;width:150px;">
+          {% if StudDetailStatus %}
             {% for Category in CategoryList %}
-              <option value="{{ Category.id }}">{{ Category.CategoryName }}</option>
+              {% if StudentDetailsObj.Category.id == Category.id %}
+                <option value="{{ Category.id }}" selected="selected">{{  Category.CategoryName }}</option>
+              {% else %}
+                <option value="{{ Category.id }}" >{{  Category.CategoryName }}</option>
+              {% endif %}
             {% endfor %}
+          {% else %}
+            {% for Category in CategoryList %}
+              <option value="{{ Category.id }}">{{  Category.CategoryName }}</option>
+            {% endfor %}
+          {% endif %}
         </select>
     </div>
   </div>
@@ -61,9 +98,19 @@
     <div class="labelclass" >Degree</div>
     <div class="widgetclass" >
         <select name="Degree" class="widget" style="float:left;width:150px;">
+          {% if StudDetailStatus %}
             {% for Degree in DegreeList %}
-              <option value="{{ Degree.id }}">{{ Degree.Name }}</option>
+              {% if StudentDetailsObj.Degree.id == Degree.id %}
+                <option value="{{ Degree.id }}" selected="selected">{{  Degree.Name }}</option>
+              {% else %}
+                <option value="{{ Degree.id }}" >{{  Degree.Name }}</option>
+              {% endif %}
             {% endfor %}
+          {% else %}
+            {% for Degree in DegreeList %}
+              <option value="{{ Degree.id }}">{{  Degree.Name }}</option>
+            {% endfor %}
+          {% endif %}
         </select>
     </div>
   </div>
@@ -71,7 +118,7 @@
   <div class="rowbig">
     <div class="labelclass" >ComputerProficiency</div>
     <div class="widgetclass" >
-      <textarea name="ComputerProficiency"></textarea>
+      <textarea name="ComputerProficiency"> {% if StudDetailStatus %} {{StudentDetailsObj.ComputerProficiency}} {% endif %}</textarea>
     </div>
   </div>
 
@@ -79,11 +126,4 @@
     <input type="submit" id="submit" value="SUBMIT" />
   </div>
 </form>
-
-{% else %}
-
-<p> Your Details have been recorded, <br>You can enter marks now.<br> Thanks </p>
-
-{% endif %}
-
 {% endblock %}

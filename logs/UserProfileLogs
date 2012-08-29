@@ -1,0 +1,17 @@
+2012-08-30 02:12:20,546 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(225,384,'testsite-update',14,15,3,3,'  i dont require this. i am a test user but still i am updating this thing.','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I15<sS>User_id><p8<I384<sS>RollNo><p9<Vtestsite<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<Vi dont require this. i am a test user<p22<sS>DegreePursuing_id><p23<I2<sS>State_id><p24<I1<sS>Category_id><p25<I2<sS>AIEEE><p26<NsS>id><p27<I225<sS>BranchMajor_id><p28<I13<sb.','SYS_PER_INSERT',384,'127.0.0.1');
+2012-08-30 02:12:20,662 DBFunctions       line:196  ERROR    DBStudentDetailsUpdate : [details : {'ip': '127.0.0.1', 'RequestedOperation': 'SYS_PER_INSERT', 'CategoryId': 3, 'BranchMinor': 15, 'by_user': 384, 'RollNo': u'testsite-update', 'Degree': 3, 'UserId': 384, 'ComputerProficiency': u'  i dont require this. i am a test user but still i am updating this thing.', 'prev': 'cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I15<sS>User_id><p8<I384<sS>RollNo><p9<Vtestsite<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<Vi dont require this. i am a test user<p22<sS>DegreePursuing_id><p23<I2<sS>State_id><p24<I1<sS>Category_id><p25<I2<sS>AIEEE><p26<NsS>id><p27<I225<sS>BranchMajor_id><p28<I13<sb.', 'BranchMajor': 14, 'Id': 225}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/UserProfile/DBFunctions/DBFunctions.py", line 187, in DBStudentDetailsUpdate
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: function studentdetailsupdate(integer, integer, unknown, integer, integer, integer, integer, unknown, unknown, unknown, integer, unknown) does not exist
+LINE 1: SELECT * FROM StudentDetailsUpdate(225,384,'testsite-update'...
+                      ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+2012-08-30 02:12:20,675 UserProfile       line:178  DEBUG    [InsertStudentDetails] == Exception {'result': -5, 'rescode': "function studentdetailsupdate(integer, integer, unknown, integer, integer, integer, integer, unknown, unknown, unknown, integer, unknown) does not exist\nLINE 1: SELECT * FROM StudentDetailsUpdate(225,384,'testsite-update'...\n                      ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n"}, 384==

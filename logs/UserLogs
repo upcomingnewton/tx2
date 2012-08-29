@@ -1,0 +1,12 @@
+2012-08-30 02:07:04,404 DatabaseFunctions line:52   DEBUG    [ {'username': u'testf', 'userstate': 1, 'rescode': 115, 'userid': 384, 'result': 1, 'groupid': 21, 'loginid': 1288} ] [ SELECT * FROM UserLogin('testfromsite1@test.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 02:07:03.717909'); ]
+2012-08-30 02:07:04,405 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272624.41
+2012-08-30 02:07:05,488 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272625.49
+2012-08-30 02:07:05,491 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272625.49
+2012-08-30 02:09:18,453 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272758.45
+2012-08-30 02:09:18,533 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272758.53
+2012-08-30 02:10:58,676 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272858.68
+2012-08-30 02:10:58,748 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272858.75
+2012-08-30 02:11:57,835 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272917.84
+2012-08-30 02:11:57,906 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272917.91
+2012-08-30 02:12:20,375 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272940.38
+2012-08-30 02:12:21,238 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... VI0VcKua6XgVtZzOT_SL143_SHv1vemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346272941.24
