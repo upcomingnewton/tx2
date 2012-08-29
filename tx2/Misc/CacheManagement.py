@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.contrib.contenttypes.models import ContentType
 from tx2.Security.models import SecurityStates,Entity,SecurityPermissions
 from tx2.conf.LocalProjectConfig import CACHE_CONTENTTYPES_LIST , CACHE_STATES_LIST , CACHE_PERMISSIONS_LIST
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE,SYSTEM_STATE_DELETED
 
 PREFIXKEY = "CM_"
 def setCache(key,value,timeout=1*7*24*60*60):
@@ -58,6 +59,14 @@ def getStates():
 		return StatesList
 	else:
 		return state_list
+		
+def getDeletedState():
+  StatesList = getStates()
+  for x in StatesList:
+    #print '%s : %d' % (x.StateName,x.id)
+    if x.StateName == SYSTEM_STATE_DELETED:
+      return x.id
+  return -1
 		
 def getPermissions():
 	permissions_list = getCache(CACHE_PERMISSIONS_LIST)

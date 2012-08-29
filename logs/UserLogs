@@ -1394,3 +1394,190 @@ NameError: global name 'token' is not defined
 2012-08-28 11:36:50,886 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.89
 2012-08-28 11:36:50,958 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... Y_P4L5U6S98w9_SL143_SHlWFK_SL143_SHToEHIfcASOsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346134010.96
 2012-08-28 11:36:50,958 ContextProcessors line:35   DEBUG    ==== IT IS HERE 1
+2012-08-29 10:03:39,438 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1278} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-29 10:03:36.312565'); ]
+2012-08-29 10:03:39,439 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. _SL143_SHAuf7_SL143_SHnE2aWLYculxDUzmemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346214819.44
+2012-08-29 10:03:43,943 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... _SL143_SHAuf7_SL143_SHnE2aWLYculxDUzmemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346214823.94
+2012-08-29 10:03:44,229 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... _SL143_SHAuf7_SL143_SHnE2aWLYculxDUzmemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346214824.23
+2012-08-29 10:04:14,344 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... _SL143_SHAuf7_SL143_SHnE2aWLYculxDUzmemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346214854.34
+2012-08-29 10:04:14,387 MenuFunctions     line:109  ERROR    getAllMenuObj : [self : <tx2.Users.BusinessFunctions.MenuFunctions.MenuFnx instance at 0x7fbb5bd693b0>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/MenuFunctions.py", line 98, in getAllMenuObj
+    MenuList = Menu.objects.filter(State__id != getDeletedState())
+NameError: global name 'State__id' is not defined
+2012-08-29 10:04:16,942 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... _SL143_SHAuf7_SL143_SHnE2aWLYculxDUzmemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346214856.94
+2012-08-29 10:10:21,999 MenuFunctions     line:109  ERROR    getAllMenuObj : [self : <tx2.Users.BusinessFunctions.MenuFunctions.MenuFnx instance at 0x7fbd7bc2d908>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/MenuFunctions.py", line 98, in getAllMenuObj
+    MenuList = Menu.objects.filter(State__id != getDeletedState())
+NameError: global name 'State__id' is not defined
+2012-08-29 10:13:46,983 MenuFunctions     line:109  ERROR    getAllMenuObj : [self : <tx2.Users.BusinessFunctions.MenuFunctions.MenuFnx instance at 0x7f95d6346ab8>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/MenuFunctions.py", line 98, in getAllMenuObj
+    MenuList = Menu.objects.filter(State != getDeletedState())
+NameError: global name 'State' is not defined
+2012-08-29 10:32:15,583 MenuFunctions     line:110  ERROR    getAllMenuObj : [self : <tx2.Users.BusinessFunctions.MenuFunctions.MenuFnx instance at 0x7fd63c080878>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/MenuFunctions.py", line 99, in getAllMenuObj
+    MenuList = Menu.objects.filter(State != getDeletedState())
+NameError: global name 'State' is not defined
+2012-08-29 10:33:41,872 MenuFunctions     line:123  ERROR    getDeletedMenuObj : [self : <tx2.Users.BusinessFunctions.MenuFunctions.MenuFnx instance at 0x7fd63c080878>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/BusinessFunctions/MenuFunctions.py", line 115, in getDeletedMenuObj
+    MenuList = Menu.objects.filter(State == getDeletedState())
+NameError: global name 'State' is not defined
+2012-08-29 10:36:54,909 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1279} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-29 10:36:52.040336'); ]
+2012-08-29 10:36:54,910 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216814.91
+2012-08-29 10:36:59,235 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216819.24
+2012-08-29 10:36:59,525 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216819.53
+2012-08-29 10:37:12,272 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216832.27
+2012-08-29 10:37:12,853 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216832.85
+2012-08-29 10:38:16,428 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216896.43
+2012-08-29 10:38:16,724 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216896.72
+2012-08-29 10:38:24,205 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216904.21
+2012-08-29 10:38:25,732 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216905.73
+2012-08-29 10:38:46,027 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216926.03
+2012-08-29 10:38:47,556 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346216927.56
+2012-08-29 10:40:17,775 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217017.78
+2012-08-29 10:40:17,825 MenuViews         line:206  ERROR    AddMenu : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'MenuName': [u'test from site'], u'MenuPid': [u'121'], u'MenuDesc': [u'NULL'], u'MenuUrlInput': [u'NULL'], u'csrfmiddlewaretoken': [u'1ca931eec61f615a2ff7ee4d325a91ec'], u'MenuIcon': [u'Null']}>,
+COOKIES:{'csrftoken': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'sessionid': '508ee06cd9e2fe03a367e44f77beb593'},
+META:{'ALSA_CONFIG_PATH': '/etc/alsa-pulse.conf',
+ 'COLORTERM': 'gnome-terminal',
+ 'CONFIG_SITE': '/usr/share/site/x86_64-unknown-linux-gnu',
+ 'CONTENT_LENGTH': '134',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CPU': 'x86_64',
+ 'CSHEDIT': 'emacs',
+ 'CSRF_COOKIE': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'CVS_RSH': 'ssh',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-zYYvce33db,guid=41d42c2fe990201b8ed6efd700000095',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'DM_CONTROL': '/var/run/xdmctl',
+ 'FROM_HEADER': '',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GJS_DEBUG_OUTPUT': 'stderr',
+ 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-xWzeri',
+ 'GPG_AGENT_INFO': '/tmp/keyring-xWzeri/gpg:0:1',
+ 'GPG_TTY': '/dev/pts/1',
+ 'GTK_IM_MODULE': 'cedilla',
+ 'G_BROKEN_FILENAMES': '1',
+ 'G_FILENAME_ENCODING': '@locale,UTF-8,ISO-8859-15,CP1252',
+ 'HISTSIZE': '1000',
+ 'HOME': '/home/nitin',
+ 'HOST': 'linux-dshb.site',
+ 'HOSTNAME': 'linux-dshb.site',
+ 'HOSTTYPE': 'x86_64',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CACHE_CONTROL': 'no-cache',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=1ca931eec61f615a2ff7ee4d325a91ec; sessionid=508ee06cd9e2fe03a367e44f77beb593',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_PRAGMA': 'no-cache',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/user/menu/add/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
+ 'ICEAUTHORITY': '/home/nitin/.ICEauthority',
+ 'INPUTRC': '/etc/inputrc',
+ 'JAVA_BINDIR': '/usr/lib64/jvm/java/bin',
+ 'JAVA_HOME': '/usr/lib64/jvm/java',
+ 'JAVA_ROOT': '/usr/lib64/jvm/java',
+ 'JDK_HOME': '/usr/lib64/jvm/java',
+ 'JRE_HOME': '/usr/lib64/jvm/jre',
+ 'LANG': 'en_US.UTF-8',
+ 'LD_LIBRARY_PATH': '/usr/lib64/mpi/gcc/openmpi/lib64',
+ 'LESS': '-M -I -R',
+ 'LESSCLOSE': 'lessclose.sh %s %s',
+ 'LESSKEY': '/etc/lesskey.bin',
+ 'LESSOPEN': 'lessopen.sh %s',
+ 'LESS_ADVANCED_PREPROCESSOR': 'no',
+ 'LOGNAME': 'nitin',
+ 'LS_COLORS': 'no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:',
+ 'LS_OPTIONS': '-N --color=tty -T 0',
+ 'MACHTYPE': 'x86_64-suse-linux',
+ 'MAIL': '/var/spool/mail/nitin',
+ 'MALLOC_CHECK_': '3',
+ 'MALLOC_PERTURB_': '69',
+ 'MANPATH': '/usr/lib64/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man',
+ 'MINICOM': '-c on',
+ 'MORE': '-sl',
+ 'NNTPSERVER': 'news',
+ 'OLDPWD': '/home/nitin',
+ 'OSTYPE': 'linux',
+ 'PAGER': 'less',
+ 'PATH': '/usr/lib64/mpi/gcc/openmpi/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/.local/bin:/home/nitin/bin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools',
+ 'PATH_INFO': u'/user/menu/add/post/',
+ 'PILOTPORT': 'usb:',
+ 'PROFILEREAD': 'true',
+ 'PWD': '/home/nitin/projects/tx2',
+ 'PYTHONSTARTUP': '/etc/pythonstart',
+ 'QT_IM_MODULE': 'xim',
+ 'QT_IM_SWITCHER': 'imsw-multi',
+ 'QT_SYSTEM_DIR': '/usr/share/desktop-data',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'RUN_MAIN': 'true',
+ 'SCRIPT_NAME': u'',
+ 'SDK_HOME': '/usr/lib64/jvm/java',
+ 'SDL_AUDIODRIVER': 'pulse',
+ 'SERVER_NAME': 'localhost',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.2',
+ 'SESSION_MANAGER': 'local/linux-dshb.site:@/tmp/.ICE-unix/1635,unix/linux-dshb.site:/tmp/.ICE-unix/1635',
+ 'SHELL': '/bin/bash',
+ 'SHLVL': '1',
+ 'SSH_AGENT_PID': '1685',
+ 'SSH_ASKPASS': '/usr/lib/ssh/ssh-askpass',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-xWzeri/ssh',
+ 'TERM': 'xterm',
+ 'TMPDIR': '/tmp',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'nitin',
+ 'WINDOWID': '52428805',
+ 'WINDOWMANAGER': '/usr/bin/gnome-session',
+ 'WINDOWPATH': '7',
+ 'XAUTHLOCALHOSTNAME': 'linux-dshb.site',
+ 'XCURSOR_THEME': 'DMZ',
+ 'XDG_CONFIG_DIRS': '/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share',
+ 'XDG_RUNTIME_DIR': '/run/user/nitin',
+ 'XDG_SEAT': 'seat0',
+ 'XDG_SESSION_COOKIE': '382f82cb9e7ddd7012e5467100000822-1345352166.76254-1163838447',
+ 'XDG_SESSION_ID': 'c1',
+ 'XDG_VTNR': '7',
+ 'XDM_MANAGED': 'method=classic,auto',
+ 'XKEYSYMDB': '/usr/X11R6/lib/X11/XKeysymDB',
+ 'XMODIFIERS': '@im=local',
+ 'XNLSPATH': '/usr/share/X11/nls',
+ 'XSESSION_IS_UP': 'yes',
+ '_': '/usr/bin/python',
+ 'mc': '() {  . /usr/share/mc/mc-wrapper.sh\n}',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f7f0c279270>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x7f7f04d7f250>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/Users/Views/MenuViews.py", line 176, in AddMenu
+    if MenuUrl1 == 'NULL' and MenuUrl2 != '-1':
+UnboundLocalError: local variable 'MenuUrl2' referenced before assignment
+2012-08-29 10:40:20,415 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217020.42
+2012-08-29 10:41:07,562 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217067.56
+2012-08-29 10:41:09,095 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217069.09
+2012-08-29 10:41:24,370 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217084.37
+2012-08-29 10:41:26,958 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217086.96
+2012-08-29 10:41:40,196 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217100.2
+2012-08-29 10:41:42,791 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 2sNX4g9sIwsj2bOxZuwe6umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346217102.79

@@ -4,7 +4,7 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBMenuInsert , DBMenuUpdate
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.CONFIG import LoggerUser
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE
-from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey
+from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey,getDeletedState
 import logging
 import inspect
 
@@ -43,7 +43,6 @@ class MenuFnx():
                 
   def Update(self,MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,LogDesc,RequestedOperation=SYSTEM_PERMISSION_UPDATE):
     MenuObj = self.getMenuObjByMenuId(MenuId)
-    #TODO comparisons, change only those values which are required and let others remain same
     if  MenuObj[0] is -1:
       return (-1,'Menu does not exist.')
     PreviousState = str(MenuObj)
@@ -96,11 +95,25 @@ class MenuFnx():
     try:
       MenuList = self.getMenuListFromCache()
       if MenuList[0] is not 1:
-        MenuList = Menu.objects.all()
+        getDeletedState()
+        MenuList = Menu.objects.exclude(State = getDeletedState())
         setCache(self.CACHEKEY,MenuList)
       else:
         MenuList = MenuList[1]
       return (1,MenuList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
+      
+  def getDeletedMenuObj(self):
+    try:
+        MenuList = Menu.objects.filter(State = getDeletedState())
+        return (1,MenuList)
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
