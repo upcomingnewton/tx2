@@ -10,6 +10,8 @@ from tx2.Security.BusinessFunctions.PermissionFunctions import PermissionFnx
 from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
 import logging
 Logger_User = logging.getLogger(LoggerSecurity)
+import inspect
+from django.contrib import messages
 
         
 def index():
@@ -113,12 +115,10 @@ def GroupSecurityCreateIndex(HttpRequest):
         
         
 def GroupSecurityCreate(HttpRequest):
-    msglist = []
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
     	PermissionId = -1
@@ -129,44 +129,42 @@ def GroupSecurityCreate(HttpRequest):
     	if "GroupSecurity_permission" in HttpRequest.POST:
     		PermissionId = int(HttpRequest.POST["GroupSecurity_permission"])
     	else:
-    		msglist.append("Error fetching data from form for permission")
+    		messages.error(HttpRequest,"Error fetching data from form for permission")
     		flag = -1
     	if "GroupSecurity_state" in HttpRequest.POST:
     		StateId = int( HttpRequest.POST["GroupSecurity_state"])
     	else:
-    		msglist.append("Error fetching data from form for state")
+    		messages.error(HttpRequest,"Error fetching data from form for state")
     		flag = -1
     	if "GroupSecurity_contenttype" in HttpRequest.POST:
     		ContentTypeId = int(HttpRequest.POST["GroupSecurity_contenttype"])
     	else:
-    		msglist.append("Error fetching data from form for contenttype")
+    		messages.error(HttpRequest,"Error fetching data from form for contenttype")
     		flag = -1
     	if "GroupSecurity_group" in HttpRequest.POST:
     		GroupId = int ( HttpRequest.POST["GroupSecurity_group"] )
     	else:
-    		msglist.append("Error fetching data from form for group")
+    		messages.error(HttpRequest,"Error fetching data from form for group")
     		flag = -1
-    	print PermissionId,StateId,ContentTypeId,GroupId
     	if flag == -1:
-    		HttpRequest.session[SESSION_MESSAGE] = msglist
-    		return HttpResponseRedirect('/security/contenttypes/create/')
+    		return HttpResponseRedirect('/message/')
     	else:
     		if ( PermissionId == -1) or  (StateId == -1) or  (ContentTypeId == -1)  or  (GroupId == -1 ):
-    			print 'lol2'
-    			msglist.append('Invalid Values. Please select proper values')
-    			HttpRequest.session[SESSION_MESSAGE] = msglist
-    			return HttpResponseRedirect('/security/contenttypes/create/')
+    			messages.error(HttpRequest,'Invalid Values. Please select proper values')
+    			return HttpResponseRedirect('/message/')
     		else:
-    			print 'lol3'
     			ContentTypeObj = ContentTypeFnx()
-    			print PermissionId,StateId,ContentTypeId,GroupId
+    			_str = 'GroupId %d , StateId %d, PermissionId %d, ContentTypeId %d' % (GroupId,StateId,PermissionId,ContentTypeId)
+    			messages.error(HttpRequest,_str)
     			res = ContentTypeObj.CreateGroupContentSecurity(GroupId,StateId,PermissionId,ContentTypeId, int(logindetails["userid"]),ip)
-    			msglist = []
-    			msglist.append(res)
-    			HttpRequest.session[SESSION_MESSAGE] = msglist
-			return HttpResponseRedirect('/security/contenttypes/list/')
-    except:
-        Logger_User.exception('[%s][%s] == EXCEPTION =='%('GroupSecurityCreate',ip))
-        msglist.append('Error Occured while fetching your request')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
-        HttpResponseRedirect('/message/')
+    			messages.error(HttpRequest,str(res))
+        return HttpResponseRedirect('/message/')
+    except Exception, ex:
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')

@@ -15,13 +15,15 @@
     <div class="labelclass" >MenuDesc</div>
     <div class="widgetclass" ><input type="text" name="MenuDesc" class="widget" value="NULL" /></div>
   </div>
-<!--  <div class="row">-->
-<!--    <div class="labelclass" >MenuUrl</div>-->
-<!--    <div class="widgetclass" ><input type="text" name="MenuUrl" class="widget" /></div>-->
-<!--  </div>-->
+  <div class="row"><span class="message">Either Enter value or select from list</span></div>
+  <div class="row">
+    <div class="labelclass" >MenuUrl</div>
+    <div class="widgetclass" ><input type="text" name="MenuUrlInput" class="widget" value="NULL"/></div>
+  </div>
   <div id="box">
+        <input type="radio" name="MenuUrlList" value="-1" />Select<br />
     {% for url in MenuUrlList %}
-        <input type="radio" name="MenuUrl" value="{{url}}" /> {{url}} <br />
+        <input type="radio" name="MenuUrlList" value="{{url}}" /> {{url}} <br />
     {% endfor %}
   </div>
   <div class="row">

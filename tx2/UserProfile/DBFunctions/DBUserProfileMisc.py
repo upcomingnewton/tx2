@@ -8,6 +8,7 @@ from tx2.CONFIG import LOGGER_COMMUNICATION, LoggerQuery
 from tx2.CONFIG import LOGGER_USER_PROFILE
 
 import logging
+import inspect
 
 CommunicationLogger = logging.getLogger(LOGGER_COMMUNICATION)
 QueryLogger = logging.getLogger(LoggerQuery)
@@ -21,7 +22,12 @@ def DBMedicalInfoInsert(details):
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBMedicalInfoInsert',result))
         return result[0]
-    except Exception as inst:
-        exception_log = "[%s] %s"%('DBMedicalInfoInsert',query)
-        UserProfileLogger.exception(exception_log)
-        return {'result':-1,'rescode':-1,'exception':inst}
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
+    

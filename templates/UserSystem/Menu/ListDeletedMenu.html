@@ -1,5 +1,5 @@
 {% extends "UserProfileMaster.html" %}
-    <title>{% block title %}Menu - Listing{% endblock %}</title>
+    <title>{% block title %}Menu - Listing Deleted{% endblock %}</title>
     
 {% block UserProfileMaster_content_center %}
   <div class="row">
@@ -7,7 +7,7 @@
     <div class="widgetclass" ><a href="/user/menu/add/"class="widget" />Create A New Menu Item</a></div>
   </div>
   <div class="row">
-    <div class="formtitle">Lisiting all Menu</div>
+    <div class="formtitle">Lisiting all Deleted Menu</div>
   </div>
   <table id="tablecss" >
     <thead>
@@ -18,8 +18,7 @@
         <th scope="col" style="width:20px;">MenuPid</th>
         <th scope="col" style="width:50px;">State</th>
         <th scope="col" style="width:100px;">MenuIcon</th>
-        <th scope="col" style="width:80px;">EDIT</th>
-        <th scope="col" style="width:80px;">DELETE</th>
+        <th scope="col" style="width:80px;">RE-ACTIVATE</th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +31,7 @@
             <td>{{ Menu.MenuPid }}</td>
             <td>{{ Menu.State.StateName }}</td>
             <td>{{ Menu.MenuIcon }}</td>
-            <td><a href="/user/menu/edit/{{Menu.id}}/$" value="Edit" /></td>
-            <td><a href="/user/menu/delete/{{Menu.id}}/$" value="Edit" /></td>
+            <td><a href="/user/menu/activate/{{Menu.id}}/$" value="Re-Activate" /></td>
           </tr>
         {% endfor %}
       {% else %}

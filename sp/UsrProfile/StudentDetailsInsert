@@ -6,6 +6,7 @@ _BranchMinor integer,
 _DegreePursuing_id integer, 
 _Category_id integer,
 _ComputerProficiency VARCHAR,
+_aieee varchar,
 RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
@@ -34,9 +35,9 @@ END IF;
 
 INSERT INTO "UserProfile_studentdetails"(
              "User_id", "RollNo", "BranchMajor_id", "BranchMinor", "DegreePursuing_id", 
-            "Category_id", "ComputerProficiency", "State_id")
+            "Category_id", "ComputerProficiency", "AIEEE","State_id")
     VALUES (_User_id, _RollNo, _BranchMajor_id, _BranchMinor, _DegreePursuing_id, 
-            _Category_id, _ComputerProficiency, varrec.varsci);
+            _Category_id, _ComputerProficiency,_aieee, varrec.varsci);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 

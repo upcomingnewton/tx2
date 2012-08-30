@@ -18,11 +18,12 @@ urlpatterns = patterns('',
         url(r'^password/reset/post/$','Users.Views.UserViews.ResetPass'),
         
         # MENU URLS
-#        url(r'^menu/list/$','Users.Views.MenuViews.ListAllMenu'),
-#        url(r'^menu/add/$','Users.Views.MenuViews.AddMenuIndex'),
-#        url(r'^menu/edit/$','Users.Views.MenuViews.EditMenuIndex'),
-        #url(r'^menu/delete/$','Users.Views.MenuViews.#TODO make view here'),
-        
+        url(r'^menu/list/$','Users.Views.MenuViews.ListAllMenu'),
+        url(r'^menu/list/delete/$','Users.Views.MenuViews.ListDeletedMenu'),
+        url(r'^menu/add/$','Users.Views.MenuViews.AddMenuIndex'),
+        url(r'^menu/edit/(?P<MenuId>)/$','Users.Views.MenuViews.EditMenuIndex'),
+        url(r'^menu/delete/(?P<MenuId>)/$','Users.Views.MenuViews.DeleteMenuIndex'),
+        url(r'^menu/activate/(?P<MenuId>)/$','Users.Views.MenuViews.DeleteMenuIndex'),
         # post-back for logging in 
         
         
@@ -35,9 +36,10 @@ urlpatterns = patterns('',
 #        url(r'^admin/(?P<userid>\d+)/edit/edit/$','Users.Views.UserAdminViews.EditUser'),
         
         # MENU URLS #TODO
-        #url(r'^menu/add/post/$','Users.Views.MenuViews.AddMenuIndex'),
-        #url(r'^menu/edit/post/$','Users.Views.MenuViews.EditMenuIndex'),
-        #url(r'^menu/delete/post/$','Users.Views.MenuViews.#TODO make view here'),
+        url(r'^menu/add/post/$','Users.Views.MenuViews.AddMenu'),
+        url(r'^menu/edit/(?P<MenuId>\d+)/post/$','Users.Views.MenuViews.EditMenu'),
+        url(r'^menu/delete/(?P<MenuId>\d+)/post/$','Users.Views.MenuViews.Delete'),
+        url(r'^menu/activate/(?P<MenuId>\d+)/post/$','Users.Views.MenuViews.Activate'),
     ###########################################################################################
 #   url(r'^grouptype/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
 #   url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),

@@ -74,6 +74,7 @@ class StudentDetails(models.Model):
 	DegreePursuing = models.ForeignKey(Degree)
 	Category = models.ForeignKey(Category)
 	ComputerProficiency = models.CharField(max_length=500)
+	AIEEE = models.CharField(max_length=15)
 	State=models.ForeignKey(SecurityStates)
 
 class StudentSkills(models.Model):

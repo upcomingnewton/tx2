@@ -121,7 +121,7 @@ class UserProfile(object):
           self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
     
-    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
+    def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
           details={'UserId':UserId,
                      'RollNo':RollNo,
@@ -130,6 +130,7 @@ class UserProfile(object):
                      'Degree':Degree,
                      'CategoryId':CategoryId,
                      'ComputerProficiency':ComputerProficiency,
+                     'aieee':aieee,
                      'RequestedOperation':'SYS_PER_INSERT',
                      'by_user':by_user,
                      'ip':ip,};
@@ -147,7 +148,7 @@ class UserProfile(object):
             self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
             return {'result':-5,'error_msg':error_msg}
         
-    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
+    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip):
         try:
           _Id=int(_Id)
           obj=StudentDetails.objects.get(id=_Id);
@@ -163,16 +164,17 @@ class UserProfile(object):
                      'Degree':Degree,
                      'CategoryId':CategoryId,
                      'ComputerProficiency':ComputerProficiency,
+                     'aieee':aieee,
                      'prev':prev,
-                     'RequestedOperation':'SYS_PER_INSERT',
+                     'RequestedOperation':'SYS_PER_UPDATE',
                      'by_user':by_user,
                      'ip':ip,};
           result=DBFunctions.DBStudentDetailsUpdate(details);
           if( result['result'] == 1 ):
-              UserFnxObj = UserFnx()
-              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
-              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
-              return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+#              UserFnxObj = UserFnx()
+#              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
+#              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
+              return (result,"Your basic profile necessary has been sucessfully updated. ")
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
