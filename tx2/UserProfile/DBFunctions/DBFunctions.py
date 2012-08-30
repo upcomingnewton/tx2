@@ -181,7 +181,7 @@ def DBStudentDetailsInsert(details):
 
 def DBStudentDetailsUpdate(details):
     try:
-        query = "SELECT * FROM StudentDetailsUpdate(%s,%s,'%s',%s,%s,%s,%s,'%s','%s','%s',%s,'%s');"%(details['Id'],details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+        query = "SELECT * FROM StudentDetailsUpdate(%s,%s,'%s',%s,%s,%s,%s,'%s','%s','%s','%s',%s,'%s');"%(details['Id'],details["UserId"],details["RollNo"],details["BranchMajor"],details["BranchMinor"],details["Degree"],details["CategoryId"],details["ComputerProficiency"],details['aieee'],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
         UserProfileLogger.debug('[%s] %s'%('DBStudentDetailsUpdate',query))
         QueryLogger.debug('[%s] %s'%('DBStudentDetailsUpdate',query))
         result =  DBhelper.CallFunction(query)

@@ -7,6 +7,7 @@ _BranchMinor integer,
 _DegreePursuing_id integer, 
 _Category_id integer,
 _ComputerProficiency VARCHAR,
+_aieee varchar,
 prev varchar,
 RequestedOperation VARCHAR,
 by_user INTEGER,
@@ -47,6 +48,7 @@ set "User_id"=_User_id,
 "DegreePursuing_id"=_DegreePursuing_id,
 "Category_id"=_Category_id, 
 "ComputerProficiency"=_ComputerProficiency, 
+"AIEEE"=_aieee,
 "State_id"=varrec.varsci
 WHERE id=_Id;
 

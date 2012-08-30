@@ -148,7 +148,7 @@ class UserProfile(object):
             self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
             return {'result':-5,'error_msg':error_msg}
         
-    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,by_user,ip, Group):
+    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
           _Id=int(_Id)
           obj=StudentDetails.objects.get(id=_Id);
@@ -164,8 +164,9 @@ class UserProfile(object):
                      'Degree':Degree,
                      'CategoryId':CategoryId,
                      'ComputerProficiency':ComputerProficiency,
+                     'aieee':aieee,
                      'prev':prev,
-                     'RequestedOperation':'SYS_PER_INSERT',
+                     'RequestedOperation':'SYS_PER_UPDATE',
                      'by_user':by_user,
                      'ip':ip,};
           result=DBFunctions.DBStudentDetailsUpdate(details);

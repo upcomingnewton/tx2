@@ -14,6 +14,7 @@ from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
 from tx2.UserProfile.models import Degree,Branch,Category, StudentDetails
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
+import inspect
 from django.contrib import messages
 LogUser = logging.getLogger(LoggerUser)
 
@@ -328,6 +329,17 @@ def StudentDetailsUpdate(HttpRequest):
             else:
                 messages.error(HttpRequest,"Error fetching data from form for Id");
                 flag=-1;
+            if "AIEEERank" in HttpRequest.POST:
+                aieee= int(HttpRequest.POST["AIEEERank"])
+                if is_integer(aieee):
+                  aieee=int(aieee)
+                else:
+                  messages.error(HttpRequest,"Error AIEEE Rank should be number only");
+                  flag=-1;
+            else:
+                messages.error(HttpRequest,"Error fetching data from form for aieee");
+                flag=-1;
+            
             if "RollNo" in HttpRequest.POST:
                 RollNo=HttpRequest.POST["RollNo"]
                 if len(RollNo) == 0:
@@ -380,7 +392,7 @@ def StudentDetailsUpdate(HttpRequest):
                 UserProfileObj=UserProfile()
                 BranchObj = Branch.objects.get(id=BranchMajor)
                 Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
-                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,UserId, ip, Group)
+                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip, Group)
                 messages.error(HttpRequest,result[1])
                 return HttpResponseRedirect('/message/')
         except Exception, ex:
