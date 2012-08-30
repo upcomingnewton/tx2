@@ -1,4 +1,4 @@
- <form action="/user/login/post/" method="post" id="login">
+<ul> <form action="/user/login/post/" method="post" id="login">
        {% csrf_token %}
  
       <fieldset>
@@ -9,3 +9,5 @@
         <input type="image" src="{{STATIC_URL}}images/sign_in.gif" id="signin" alt="Sign In" />
       </fieldset>
     </form>
+
+</ul>
