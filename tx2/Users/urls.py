@@ -21,9 +21,9 @@ urlpatterns = patterns('',
         url(r'^menu/list/$','Users.Views.MenuViews.ListAllMenu'),
         url(r'^menu/list/delete/$','Users.Views.MenuViews.ListDeletedMenu'),
         url(r'^menu/add/$','Users.Views.MenuViews.AddMenuIndex'),
-        url(r'^menu/edit/(?P<MenuId>)/$','Users.Views.MenuViews.EditMenuIndex'),
-        url(r'^menu/delete/(?P<MenuId>)/$','Users.Views.MenuViews.DeleteMenuIndex'),
-        url(r'^menu/activate/(?P<MenuId>)/$','Users.Views.MenuViews.DeleteMenuIndex'),
+        url(r'^menu/edit/(?P<MenuId>\d+)/$','Users.Views.MenuViews.EditMenuIndex'),
+        url(r'^menu/delete/(?P<MenuId>\d+)/$','Users.Views.MenuViews.DeleteMenuIndex'),
+        url(r'^menu/activate/(?P<MenuId>\d+)/$','Users.Views.MenuViews.ActivateMenuIndex'),
         # post-back for logging in 
         
         

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 from tx2.Users.models import Menu
 from tx2.Users.DBFunctions.DatabaseFunctions import DBMenuInsert , DBMenuUpdate
 from tx2.Users.DBFunctions.Messages import decode
@@ -42,10 +43,13 @@ class MenuFnx():
       return (-2,str(ex)) 
                 
   def Update(self,MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,by,ip,LogDesc,RequestedOperation=SYSTEM_PERMISSION_UPDATE):
-    MenuObj = self.getMenuObjByMenuId(MenuId)
-    if  MenuObj[0] is -1:
+    MenuObj = ''
+    try:
+      MenuObj = Menu.objects.get(id=MenuId)
+    except ObjectDoesNotExist:
       return (-1,'Menu does not exist.')
     PreviousState = str(MenuObj)
+    #TODO store based on comparisons
     try:
       details = {
 		   		'MenuId':MenuId,
@@ -143,6 +147,25 @@ class MenuFnx():
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex)) 
 
+
+  def getDeletedMenuObjByMenuId(self,menuid):
+    try:
+      MenuList = self.getDeletedMenuObj()
+      if MenuList[0] is 1:
+        for x in MenuList[1]:
+          if x.id == menuid:
+            return (1,x)
+        return (-1,'ERROR : Menu does not exist')
+      else:
+        return (-1,'ERROR : Error retrieving requested data from database')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex)) 
 
   def getParentMenu(self):
     try:

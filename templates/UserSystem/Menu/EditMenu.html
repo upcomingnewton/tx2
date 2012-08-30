@@ -21,17 +21,29 @@
   <div class="row"><span class="message">Either Enter value or select from list</span></div>
   <div class="row">
     <div class="labelclass" >MenuUrl</div>
-    <div class="widgetclass" ><input type="text" name="MenuUrlInput" class="widget" value="{{MenuObj.MenuUrl}}" /></div>
+    <div class="widgetclass" ><input type="text" id="MenuUrlInputBox" name="MenuUrlInput" class="widget" value="{{MenuObj.MenuUrl}}" /></div>
   </div>
   <div id="box">
     {% for url in MenuUrlList %}
       {% if url == MenuObj.MenuUrl %}
-        <input type="radio" name="MenuUrl" value="{{url}}" selected="selected"/> {{url}} <br />
+        <input type="radio" id="radio_{{ forloop.counter }}" name="MenuUrl" value="{{url}}" checked="checked" onclick="PutValueToTextBox(this.id)" /> {{url}} <br />
       {% else %}
-        <input type="radio" name="MenuUrl" value="{{url}}" /> {{url}} <br />
+        <input type="radio" id="radio_{{ forloop.counter }}" name="MenuUrl" value="{{url}}" onclick="PutValueToTextBox(this.id)" /> {{url}} <br />
       {% endif %}
     {% endfor %}
   </div>
+  <!-- ========================================================= -->
+    <script type="text/javascript">
+      function  PutValueToTextBox(id)
+      {
+        ele = document.getElementById(id);
+        if(ele)
+        {
+          document.getElementById('MenuUrlInputBox').value = ele.value;
+        }
+      }
+    </script>
+  <!-- ========================================================= -->
   <div class="row">
     <div class="labelclass" >MenuPid</div>
     <div class="widgetclass" >
@@ -42,6 +54,7 @@
             <option value="{{ menu.id }}" selected="selected">{{ menu.MenuName }}</option>
           {% else %}
             <option value="{{ menu.id }}">{{ menu.MenuName }}</option>
+          {% endif %}
         {% endfor %}
       </select>
     </div>
@@ -61,7 +74,7 @@
 
 {% else %}
 <h1>Details of menu are not available.</h1>
-{% endif %}}
+{% endif %}
 {% endblock %}
 
 

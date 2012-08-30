@@ -1,12 +1,14 @@
 # Create your views here.
+import urls
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
+from tx2.ShowAllUrlsInDjango import MakeAllUrls
 from tx2.Users.BusinessFunctions.MenuFunctions import MenuFnx
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity,getSystemGroup_NewUsers, getSystemUser_DaemonCreateUser
-from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_DELETE, SYSTEM_PERMISSION_INSERT
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_DELETE, SYSTEM_PERMISSION_INSERT, SYSTEM_PERMISSION_UPDATE
 from tx2.CONFIG import LoggerUser,SESSION_MESSAGE
 from django.contrib import messages
 import logging
@@ -71,8 +73,10 @@ def AddMenuIndex(HttpRequest):
   try:
     MenuObj = MenuFnx()
     ParentMenuList = MenuObj.getParentMenu()
+    MenuUrlList = []
+    MakeAllUrls('/',urls.urlpatterns,MenuUrlList, depth=0)
     if ParentMenuList[0] == 1:
-      return render_to_response('UserSystem/Menu/AddMenu.html',{"ParentMenuList":ParentMenuList[1]},context_instance=RequestContext(HttpRequest))
+      return render_to_response('UserSystem/Menu/AddMenu.html',{"ParentMenuList":ParentMenuList[1],'MenuUrlList':MenuUrlList},context_instance=RequestContext(HttpRequest))
     else:
       messages.error(HttpRequest,ParentMenuList[1])
       return HttpResponseRedirect('/message/')
@@ -87,15 +91,20 @@ def AddMenuIndex(HttpRequest):
       return HttpResponseRedirect('/message/')
     
 def EditMenuIndex(HttpRequest,MenuId):
+  print '==== EditMenuIndex ==== ' +  str(MenuId)
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
     messages.error(HttpRequest,'Please Login to continue')
     return HttpResponseRedirect('/user/login/')
   try:
     MenuObj = MenuFnx()
-    MenuObject = MenuObj.getMenuObjByMenuId(MenuId)
+    MenuObject = MenuObj.getMenuObjByMenuId(int(MenuId))
     if MenuObject[0] == 1:
-      return render_to_response('UserSystem/Menu/EditMenu.html',{"MenuObj":MenuObject[1]},context_instance=RequestContext(HttpRequest))
+      MenuObj = MenuFnx()
+      ParentMenuList = MenuObj.getParentMenu()
+      MenuUrlList = []
+      MakeAllUrls('/',urls.urlpatterns,MenuUrlList, depth=0)
+      return render_to_response('UserSystem/Menu/EditMenu.html',{"MenuObj":MenuObject[1],"ParentMenuList":ParentMenuList[1],'MenuUrlList':MenuUrlList},context_instance=RequestContext(HttpRequest))
     else:
       messages.error(HttpRequest,MenuObject[1])
       return HttpResponseRedirect('/message/')
@@ -111,6 +120,7 @@ def EditMenuIndex(HttpRequest,MenuId):
 
       
 def DeleteMenuIndex(HttpRequest,MenuId):
+  print '==== EditMenuIndex ==== ' +  str(MenuId)
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
     messages.error(HttpRequest,'Please Login to continue')
@@ -128,12 +138,13 @@ def DeleteMenuIndex(HttpRequest,MenuId):
       return HttpResponseRedirect('/message/')
       
 def ActivateMenuIndex(HttpRequest,MenuId):
+  print '==== EditMenuIndex ==== ' +  str(MenuId)
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
     messages.error(HttpRequest,'Please Login to continue')
     return HttpResponseRedirect('/user/login/')
   try:
-    return HttpResponseRedirect('/user/menu/activte/' + str(MenuId) + '/post/')
+    return HttpResponseRedirect('/user/menu/activate/' + str(MenuId) + '/post/')
   except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -171,19 +182,13 @@ def AddMenu(HttpRequest):
     else:
       messages.error(HttpRequest,'ERROR : MenuDesc not found or No value is entered for MenuDesc')
       flag = 1
-    if "MenuUrlInput" in HttpRequest.POST and len(HttpRequest.POST['MenuUrlInput']) > 0:
-      MenuUrl1 = HttpRequest.POST['MenuUrlInput']
-    if "MenuUrlList" in HttpRequest.POST and len(HttpRequest.POST['MenuUrlList']) > 0:
-      MenuUrl2 = HttpRequest.POST['MenuUrlList']
-    if MenuUrl1 == 'NULL' and MenuUrl2 != '-1':
-      MenuUrl = MenuUrl2
-    if MenuUrl2 == '-1' and MenuUrl1 != 'NULL':
-      MenuUrl = MenuUrl1
+    if "MenuUrlInput" in HttpRequest.POST:
+      MenuUrl = HttpRequest.POST['MenuUrlInput']
     else:
       messages.error(HttpRequest,'ERROR : MenuUrl not found or Improper value is entered for MenuUrl')
       flag = 1
     if "MenuIcon" in HttpRequest.POST and len(HttpRequest.POST['MenuIcon']) > 0:
-      MenuName = HttpRequest.POST['MenuIcon']
+      MenuIcon = HttpRequest.POST['MenuIcon']
     else:
       messages.error(HttpRequest,'ERROR : MenuIcon not found or No value is entered for MenuIcon')
       flag = 1
@@ -196,6 +201,7 @@ def AddMenu(HttpRequest):
       return HttpResponseRedirect('/message/')
     else:
       MenuFnxObj = MenuFnx()
+      print MenuName, MenuDesc, MenuUrl,MenuPid,MenuIcon
       result = MenuFnxObj.Insert(MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'])
       messages.error(HttpRequest,str(result))
       return HttpResponseRedirect('/user/menu/list')
@@ -231,19 +237,13 @@ def EditMenu(HttpRequest,MenuId):
     else:
       messages.error(HttpRequest,'ERROR : MenuDesc not found or No value is entered for MenuDesc')
       flag = 1
-    if "MenuUrlInput" in HttpRequest.POST and len(HttpRequest.POST['MenuUrlInput']) > 0:
-      MenuUrl1 = HttpRequest.POST['MenuUrlInput']
-    if "MenuUrlList" in HttpRequest.POST and len(HttpRequest.POST['MenuUrlList']) > 0:
-      MenuUrl2 = HttpRequest.POST['MenuUrlList']
-    if MenuUrl1 == 'NULL' and MenuUrl2 != '-1':
-      MenuUrl = MenuUrl2
-    if MenuUrl2 == '-1' and MenuUrl1 != 'NULL':
-      MenuUrl = MenuUrl1
+    if "MenuUrlInput" in HttpRequest.POST:
+      MenuUrl = HttpRequest.POST['MenuUrlInput']
     else:
       messages.error(HttpRequest,'ERROR : MenuUrl not found or Improper value is entered for MenuUrl')
       flag = 1
     if "MenuIcon" in HttpRequest.POST and len(HttpRequest.POST['MenuIcon']) > 0:
-      MenuName = HttpRequest.POST['MenuIcon']
+      MenuIcon = HttpRequest.POST['MenuIcon']
     else:
       messages.error(HttpRequest,'ERROR : MenuIcon not found or No value is entered for MenuIcon')
       flag = 1
@@ -261,7 +261,7 @@ def EditMenu(HttpRequest,MenuId):
       return HttpResponseRedirect('/message/')
     else:
       MenuFnxObj = MenuFnx()
-      result = MenuFnxObj.Update(MenuId,MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],LogDesc)
+      result = MenuFnxObj.Update(int(MenuId),MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],LogDesc)
       messages.error(HttpRequest,str(result))
       return HttpResponseRedirect('/user/menu/list')
   except Exception, ex:
@@ -281,10 +281,10 @@ def Delete(HttpRequest,MenuId):
     return HttpResponseRedirect('/user/login/')
   try:
     MenuObj = MenuFnx()
-    MenuObject = MenuObj.getMenuObjByMenuId(MenuId)
+    MenuObject = MenuObj.getMenuObjByMenuId(int(MenuId))
     if MenuObject[0] == 1:
       MenuObject = MenuObject[1]
-      result = MenuFnxObj.Update(MenuId,MenuObject.MenuName,MenuObject.MenuDesc,MenuObject.MenuUrl,MenuObject.MenuPid,MenuObject.MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],'Delete',RequestedOperation=SYSTEM_PERMISSION_DELETE)
+      result = MenuObj.Update(int(MenuId),MenuObject.MenuName,MenuObject.MenuDesc,MenuObject.MenuUrl,MenuObject.MenuPid,MenuObject.MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],'Delete',RequestedOperation=SYSTEM_PERMISSION_DELETE)
       messages.error(HttpRequest,str(result))
       return HttpResponseRedirect('/user/menu/list')
     else:
@@ -301,16 +301,18 @@ def Delete(HttpRequest,MenuId):
       return HttpResponseRedirect('/message/')
       
 def Activate(HttpRequest,MenuId):
+  LoggerUser.debug("== ACTIVATE FUNCTION, MENUID = %d",int(MenuId))
   details = GetLoginDetails(HttpRequest)
   if( details['userid'] == -1):
     messages.error(HttpRequest,'Please Login to continue')
     return HttpResponseRedirect('/user/login/')
   try:
     MenuObj = MenuFnx()
-    MenuObject = MenuObj.getMenuObjByMenuId(MenuId)
+    MenuObject = MenuObj.getDeletedMenuObjByMenuId(int(MenuId))
     if MenuObject[0] == 1:
       MenuObject = MenuObject[1]
-      result = MenuFnxObj.Update(MenuId,MenuObject.MenuName,MenuObject.MenuDesc,MenuObject.MenuUrl,MenuObject.MenuPid,MenuObject.MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],'ReActivation',RequestedOperation=SYSTEM_PERMISSION_INSERT)
+      print " ** I HAVE GOT THE MENU OBJECT " + MenuObject.MenuName
+      result = MenuObj.Update(int(MenuId),MenuObject.MenuName,MenuObject.MenuDesc,MenuObject.MenuUrl,MenuObject.MenuPid,MenuObject.MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'],'ReActivation',RequestedOperation=SYSTEM_PERMISSION_UPDATE)
       messages.error(HttpRequest,str(result))
       return HttpResponseRedirect('/user/menu/list')
     else:
