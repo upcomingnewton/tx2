@@ -321,6 +321,7 @@ def StudentDetailsUpdate(HttpRequest):
             Degree = -1
             Category = -1
             ComputerProficiency = ""
+            aieee = 'null'
             if "Id" in HttpRequest.POST:
                 Id=HttpRequest.POST["Id"]
                 if len(Id) == 0:
@@ -390,9 +391,7 @@ def StudentDetailsUpdate(HttpRequest):
                 return HttpResponseRedirect('/message/')
             else:
                 UserProfileObj=UserProfile()
-                BranchObj = Branch.objects.get(id=BranchMajor)
-                Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
-                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip, Group)
+                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip)
                 messages.error(HttpRequest,result[1])
                 return HttpResponseRedirect('/message/')
         except Exception, ex:

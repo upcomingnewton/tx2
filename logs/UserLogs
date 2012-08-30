@@ -29,3 +29,255 @@
 2012-08-30 08:00:38,399 DatabaseFunctions line:52   DEBUG    [ {'username': u'NULL', 'userstate': -1, 'rescode': 112, 'userid': -1, 'result': -1, 'groupid': -1, 'loginid': -1} ] [ SELECT * FROM UserLogin('test1@test.com','IXALSiq9gyuAWwBMjAkoD_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:00:36.791945'); ]
 2012-08-30 08:00:57,550 DatabaseFunctions line:52   DEBUG    [ {'username': u'NULL', 'userstate': -1, 'rescode': 112, 'userid': -1, 'result': -1, 'groupid': -1, 'loginid': -1} ] [ SELECT * FROM UserLogin('test1@test.com','IXALSiq9gyuAWwBMjAkoD_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:00:56.419440'); ]
 2012-08-30 08:01:11,479 DatabaseFunctions line:52   DEBUG    [ {'username': u'NULL', 'userstate': -1, 'rescode': 112, 'userid': -1, 'result': -1, 'groupid': -1, 'loginid': -1} ] [ SELECT * FROM UserLogin('test1@test.com','DVPJyv4lxrqK6G_P4L5U6S98rMkJb9OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:01:10.376043'); ]
+2012-08-30 08:15:16,536 DatabaseFunctions line:52   DEBUG    [ {'username': u'testf', 'userstate': 1, 'rescode': 115, 'userid': 384, 'result': 1, 'groupid': 21, 'loginid': 1291} ] [ SELECT * FROM UserLogin('testfromsite1@test.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:15:15.664302'); ]
+2012-08-30 08:15:16,537 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294716.54
+2012-08-30 08:15:17,790 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294717.79
+2012-08-30 08:15:17,869 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294717.87
+2012-08-30 08:15:26,675 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294726.68
+2012-08-30 08:15:26,721 UserProfile       line:404  ERROR    StudentDetailsUpdate : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'BranchMinor': [u'1'], u'Category': [u'2'], u'Degree': [u'1'], u'RollNo': [u'testsite-update'], u'ComputerProficiency': [u'  i dont require this. i am a test user '], u'AIEEERank': [u'None'], u'csrfmiddlewaretoken': [u'1ca931eec61f615a2ff7ee4d325a91ec'], u'BranchMajor': [u'13'], u'Id': [u'225']}>,
+COOKIES:{'csrftoken': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'sessionid': 'ac02bfb7f701914ba9053ccccd0885ed'},
+META:{'ALSA_CONFIG_PATH': '/etc/alsa-pulse.conf',
+ 'COLORTERM': 'gnome-terminal',
+ 'CONFIG_SITE': '/usr/share/site/x86_64-unknown-linux-gnu',
+ 'CONTENT_LENGTH': '207',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CPU': 'x86_64',
+ 'CSHEDIT': 'emacs',
+ 'CSRF_COOKIE': '1ca931eec61f615a2ff7ee4d325a91ec',
+ 'CVS_RSH': 'ssh',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-z9tJtALOcV,guid=91ebbf928eeab8fee1b6251200000095',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'DM_CONTROL': '/var/run/xdmctl',
+ 'FROM_HEADER': '',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GJS_DEBUG_OUTPUT': 'stderr',
+ 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-QU2tQa',
+ 'GPG_AGENT_INFO': '/tmp/keyring-QU2tQa/gpg:0:1',
+ 'GPG_TTY': '/dev/pts/0',
+ 'GTK_IM_MODULE': 'cedilla',
+ 'G_BROKEN_FILENAMES': '1',
+ 'G_FILENAME_ENCODING': '@locale,UTF-8,ISO-8859-15,CP1252',
+ 'HISTSIZE': '1000',
+ 'HOME': '/home/nitin',
+ 'HOST': 'linux-dshb.site',
+ 'HOSTNAME': 'linux-dshb.site',
+ 'HOSTTYPE': 'x86_64',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=1ca931eec61f615a2ff7ee4d325a91ec; sessionid=ac02bfb7f701914ba9053ccccd0885ed',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/UserProfile/StudentDetails/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
+ 'ICEAUTHORITY': '/home/nitin/.ICEauthority',
+ 'INPUTRC': '/etc/inputrc',
+ 'JAVA_BINDIR': '/usr/lib64/jvm/java/bin',
+ 'JAVA_HOME': '/usr/lib64/jvm/java',
+ 'JAVA_ROOT': '/usr/lib64/jvm/java',
+ 'JDK_HOME': '/usr/lib64/jvm/java',
+ 'JRE_HOME': '/usr/lib64/jvm/jre',
+ 'LANG': 'en_US.UTF-8',
+ 'LD_LIBRARY_PATH': '/usr/lib64/mpi/gcc/openmpi/lib64',
+ 'LESS': '-M -I -R',
+ 'LESSCLOSE': 'lessclose.sh %s %s',
+ 'LESSKEY': '/etc/lesskey.bin',
+ 'LESSOPEN': 'lessopen.sh %s',
+ 'LESS_ADVANCED_PREPROCESSOR': 'no',
+ 'LOGNAME': 'nitin',
+ 'LS_COLORS': 'no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.xz=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:',
+ 'LS_OPTIONS': '-N --color=tty -T 0',
+ 'MACHTYPE': 'x86_64-suse-linux',
+ 'MAIL': '/var/spool/mail/nitin',
+ 'MALLOC_CHECK_': '3',
+ 'MALLOC_PERTURB_': '69',
+ 'MANPATH': '/usr/lib64/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/local/share/man:/usr/share/man',
+ 'MINICOM': '-c on',
+ 'MORE': '-sl',
+ 'NNTPSERVER': 'news',
+ 'OLDPWD': '/home/nitin/projects',
+ 'OSTYPE': 'linux',
+ 'PAGER': 'less',
+ 'PATH': '/usr/lib64/mpi/gcc/openmpi/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools:/home/nitin/.local/bin:/home/nitin/bin:/home/nitin/Documents/android/android-sdk-linux/tools:/home/nitin/Documents/android/android-sdk-linux/platform-tools',
+ 'PATH_INFO': u'/userprofile/UserProfile/StudentDetails/update',
+ 'PILOTPORT': 'usb:',
+ 'PROFILEREAD': 'true',
+ 'PWD': '/home/nitin/projects/tx2',
+ 'PYTHONSTARTUP': '/etc/pythonstart',
+ 'QT_IM_MODULE': 'xim',
+ 'QT_IM_SWITCHER': 'imsw-multi',
+ 'QT_SYSTEM_DIR': '/usr/share/desktop-data',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'RUN_MAIN': 'true',
+ 'SCRIPT_NAME': u'',
+ 'SDK_HOME': '/usr/lib64/jvm/java',
+ 'SDL_AUDIODRIVER': 'pulse',
+ 'SERVER_NAME': 'localhost',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.2',
+ 'SESSION_MANAGER': 'local/linux-dshb.site:@/tmp/.ICE-unix/1636,unix/linux-dshb.site:/tmp/.ICE-unix/1636',
+ 'SHELL': '/bin/bash',
+ 'SHLVL': '1',
+ 'SSH_AGENT_PID': '1686',
+ 'SSH_ASKPASS': '/usr/lib/ssh/ssh-askpass',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-QU2tQa/ssh',
+ 'TERM': 'xterm',
+ 'TMPDIR': '/tmp',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'nitin',
+ 'WINDOWID': '75497477',
+ 'WINDOWMANAGER': '/usr/bin/gnome-session',
+ 'WINDOWPATH': '7',
+ 'XAUTHLOCALHOSTNAME': 'linux-dshb.site',
+ 'XCURSOR_THEME': 'DMZ',
+ 'XDG_CONFIG_DIRS': '/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share',
+ 'XDG_RUNTIME_DIR': '/run/user/nitin',
+ 'XDG_SEAT': 'seat0',
+ 'XDG_SESSION_COOKIE': '382f82cb9e7ddd7012e5467100000822-1345718150.247783-475855916',
+ 'XDG_SESSION_ID': 'c1',
+ 'XDG_VTNR': '7',
+ 'XDM_MANAGED': 'method=classic,auto',
+ 'XKEYSYMDB': '/usr/X11R6/lib/X11/XKeysymDB',
+ 'XMODIFIERS': '@im=local',
+ 'XNLSPATH': '/usr/share/X11/nls',
+ 'XSESSION_IS_UP': 'yes',
+ '_': '/usr/bin/python',
+ 'mc': '() {  . /usr/share/mc/mc-wrapper.sh\n}',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f2a31919270>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x7f2a29d0ed50>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/UserProfile/Views/UserProfile.py", line 333, in StudentDetailsUpdate
+    aieee= int(HttpRequest.POST["AIEEERank"])
+ValueError: invalid literal for int() with base 10: 'None'
+2012-08-30 08:15:27,583 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294727.58
+2012-08-30 08:16:57,025 LoginDetails      line:19   ERROR    EXCEPTION IN GetLoginDetails
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    if "details" in request.session.keys():
+  File "/usr/local/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 58, in keys
+    return self._session.keys()
+  File "/usr/local/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 195, in _get_session
+    self._session_cache = self.load()
+  File "/usr/local/lib/python2.7/site-packages/django/contrib/sessions/backends/cached_db.py", line 22, in load
+    data = super(SessionStore, self).load()
+  File "/usr/local/lib/python2.7/site-packages/django/contrib/sessions/backends/db.py", line 20, in load
+    expire_date__gt=datetime.datetime.now()
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 734, in execute_sql
+    cursor = self.connection.cursor()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/__init__.py", line 250, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 140, in _cursor
+    self.connection = Database.connect(**conn_params)
+OperationalError: could not connect to server: Connection timed out
+	Is the server running on host "119.18.58.214" and accepting
+	TCP/IP connections on port 5432?
+
+2012-08-30 08:17:16,859 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294836.86
+2012-08-30 08:17:16,859 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346294836.86
+2012-08-30 08:22:14,597 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295134.6
+2012-08-30 08:22:14,668 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295134.67
+2012-08-30 08:22:35,983 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295155.98
+2012-08-30 08:22:36,830 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... 8GDSiY7sSAVoew6cBH_SL143_SHU2umYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295156.83
+2012-08-30 08:23:06,305 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1291,2,'2012-08-30 08:23:06.186163'); ]
+2012-08-30 08:23:15,773 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 21, 'loginid': 1292} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:23:15.045744'); ]
+2012-08-30 08:23:15,774 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295195.77
+2012-08-30 08:23:17,087 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295197.09
+2012-08-30 08:23:17,173 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295197.17
+2012-08-30 08:23:55,875 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295235.88
+2012-08-30 08:23:56,290 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295236.29
+2012-08-30 08:24:15,455 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295255.46
+2012-08-30 08:24:47,700 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295287.7
+2012-08-30 08:24:48,188 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295288.19
+2012-08-30 08:24:57,048 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295297.05
+2012-08-30 08:24:57,120 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295297.12
+2012-08-30 08:29:44,065 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295584.07
+2012-08-30 08:29:44,563 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295584.56
+2012-08-30 08:31:10,208 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295670.21
+2012-08-30 08:31:10,876 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295670.88
+2012-08-30 08:33:34,076 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295814.08
+2012-08-30 08:33:34,336 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295814.34
+2012-08-30 08:34:03,547 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295843.55
+2012-08-30 08:34:04,218 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295844.22
+2012-08-30 08:34:17,083 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295857.08
+2012-08-30 08:34:17,748 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295857.75
+2012-08-30 08:34:29,964 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295869.96
+2012-08-30 08:34:30,227 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295870.23
+2012-08-30 08:35:08,605 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295908.61
+2012-08-30 08:35:23,001 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295923.0
+2012-08-30 08:35:23,667 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... t_SL143_SH8XYeK75CCcwySX93UGsOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346295923.67
+2012-08-30 08:38:44,767 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1292,2,'2012-08-30 08:38:44.648371'); ]
+2012-08-30 08:40:15,543 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1293} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:40:14.944677'); ]
+2012-08-30 08:40:15,544 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296215.54
+2012-08-30 08:40:16,480 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296216.48
+2012-08-30 08:40:16,558 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296216.56
+2012-08-30 08:41:37,396 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296297.4
+2012-08-30 08:41:37,657 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296297.66
+2012-08-30 08:41:42,816 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296302.82
+2012-08-30 08:41:43,074 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296303.07
+2012-08-30 08:41:44,954 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296304.95
+2012-08-30 08:41:45,459 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296305.46
+2012-08-30 08:41:47,169 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296307.17
+2012-08-30 08:41:47,676 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296307.68
+2012-08-30 08:41:48,569 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296308.57
+2012-08-30 08:41:48,831 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296308.83
+2012-08-30 08:41:49,727 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296309.73
+2012-08-30 08:41:49,992 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296309.99
+2012-08-30 08:42:00,002 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296320.0
+2012-08-30 08:42:00,683 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296320.68
+2012-08-30 08:42:12,368 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296332.37
+2012-08-30 08:42:13,048 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296333.05
+2012-08-30 08:42:28,658 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296348.66
+2012-08-30 08:42:29,327 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296349.33
+2012-08-30 08:42:41,416 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296361.42
+2012-08-30 08:42:42,093 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296362.09
+2012-08-30 08:42:54,301 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296374.3
+2012-08-30 08:42:54,981 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296374.98
+2012-08-30 08:43:07,538 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296387.54
+2012-08-30 08:43:08,210 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... D3EHGhh3EzDdxXZVdab1b_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296388.21
+2012-08-30 08:43:12,190 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1293,2,'2012-08-30 08:43:12.070736'); ]
+2012-08-30 08:43:21,354 DatabaseFunctions line:52   DEBUG    [ {'username': u'testf', 'userstate': 1, 'rescode': 115, 'userid': 384, 'result': 1, 'groupid': 21, 'loginid': 1294} ] [ SELECT * FROM UserLogin('testfromsite1@test.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:43:20.750292'); ]
+2012-08-30 08:43:21,354 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296401.35
+2012-08-30 08:43:22,378 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296402.38
+2012-08-30 08:43:22,448 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296402.45
+2012-08-30 08:43:35,991 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296415.99
+2012-08-30 08:43:36,750 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296416.75
+2012-08-30 08:43:40,423 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296420.42
+2012-08-30 08:43:40,493 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... IR8Di2TZFoIHkAC_SL143_SHi_P4L5U6S98eE6OmYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296420.49
+2012-08-30 08:43:48,416 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1294,2,'2012-08-30 08:43:48.297979'); ]
+2012-08-30 08:46:37,407 DatabaseFunctions line:52   DEBUG    [ {'username': u'fname', 'userstate': 1, 'rescode': 115, 'userid': 398, 'result': 1, 'groupid': 4, 'loginid': 1296} ] [ SELECT * FROM UserLogin('testfromsite2@test.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-08-30 08:46:36.806925'); ]
+2012-08-30 08:46:37,407 LoginDetails      line:35   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296597.41
+2012-08-30 08:46:38,321 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296598.32
+2012-08-30 08:46:38,390 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296598.39
+2012-08-30 08:46:54,513 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296614.51
+2012-08-30 08:46:55,244 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296615.24
+2012-08-30 08:47:26,964 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296646.96
+2012-08-30 08:47:27,034 LoginDetails      line:62   DEBUG    [UpdateLoggedInUsersDict] Adding... zmIPGhNTArIuv0p8ho_P4L5U6S98ke_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346296647.03

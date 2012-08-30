@@ -148,7 +148,7 @@ class UserProfile(object):
             self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
             return {'result':-5,'error_msg':error_msg}
         
-    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
+    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip):
         try:
           _Id=int(_Id)
           obj=StudentDetails.objects.get(id=_Id);
@@ -174,7 +174,7 @@ class UserProfile(object):
 #              UserFnxObj = UserFnx()
 #              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
 #              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
-              return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+              return (result,"Your basic profile necessary has been sucessfully updated. ")
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
