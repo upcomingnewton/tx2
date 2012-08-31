@@ -176,9 +176,9 @@ class UserProfile(object):
                      'ip':ip,};
           result=DBFunctions.DBStudentDetailsUpdate(details);
           if( result['result'] == 1 ):
-#              UserFnxObj = UserFnx()
-#              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
-#              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
+              UserFnxObj = UserFnx()
+              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
+              self.UserProfileLogger.debug('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
               return (result,"Your basic profile necessary has been sucessfully updated. ")
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
