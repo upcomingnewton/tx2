@@ -114,29 +114,31 @@ class GroupMenuFnx():
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
       
-  def Edit(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
-    MenuIDStr = self.getStringFromList(MenuIDList)
-    if MenuIDStr[0] != 1:
-      return (-1,MenuIDStr[1])
+  def Edit(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
+    PreviousList = self.getGroupMenuObjectByGroupID(GroupID)
+    if PreviousList[0] != 1:
+      return (-1,PreviousList[1])
+    else:
+      PreviousList = PreviousList[1]
     try:
-      details = {
-        'MenuIDStr':MenuIDStr[1],
-        'RequestedOperation':RequestedOperation,
-        'by':by,
-        'ip':ip,
-        }
-      result = DBGroupMenuDelete(details)
-      if (result['result'] == 1):
-        from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
-        # get a list of groups, and delete cache for each
-        GroupFnxObj = GroupFnx()
-        GroupList = GroupFnxObj.ListAllGroups()
-        if GroupList[0] == 1:
-          for x in GroupList[1]:
-            deleteCacheKey(self.getKey(x.id))
-        return (1,'SUCESS. Group Menus has been sucessfully deleted from database.') 
-      else:
-        return (-1,decode(result))
+      CommonEle = []
+      NewEle = []
+      DeleteEle = []
+      for x in PreviousList:
+        if x.Menu.id in MenuList:
+          CommonEle.append(x.Menu.id)
+        else:
+          DeleteEle.append(x.id)
+      
+      for x in MenuList:
+        if x not in CommonEle:
+          NewEle.append(x)
+      
+      self.UserLogger.debug('GroupMenuEdit - MenuList passed = %s' % (self.getStringFromList(MenuList)[1]))
+      self.UserLogger.debug('GroupMenuEdit - NewEle = %s' % (self.getStringFromList(NewEle)[1]))
+      self.UserLogger.debug('GroupMenuEdit - CommonEle = %s' % (self.getStringFromList(CommonEle)[1]))
+      self.UserLogger.debug('GroupMenuEdit - DeleteEle = %s' % (self.getStringFromList(DeleteEle)[1]))
+      return (1,"SUCESS")
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)

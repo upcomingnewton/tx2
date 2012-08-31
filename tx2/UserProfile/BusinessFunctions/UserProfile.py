@@ -138,8 +138,13 @@ class UserProfile(object):
           if( result['result'] == 1 ):
               UserFnxObj = UserFnx()
               res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
-              self.UserProfileLogger.debug('[%s] == %s =='%("ChangeUserGroup",str(res)))
+              self.UserProfileLogger.debug('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
               return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
+          elif:
+              UserFnxObj = UserFnx()
+              res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
+              self.UserProfileLogger.exception('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
+              return (result,"Your basic profile necessary has already been created.)
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
