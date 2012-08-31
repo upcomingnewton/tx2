@@ -140,7 +140,7 @@ class UserProfile(object):
               res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
               self.UserProfileLogger.debug('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
               return (result,"Your basic profile necessary for authentication has been sucessfully updated. We will update through email as soon as it is activated by your respective branch admin")
-          elif:
+          elif result['result'] == 2:
               UserFnxObj = UserFnx()
               res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
               self.UserProfileLogger.exception('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
