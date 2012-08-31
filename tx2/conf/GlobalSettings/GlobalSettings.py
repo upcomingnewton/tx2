@@ -1,6 +1,6 @@
 # Django settings for tx2 project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 #LogHandlers.py
