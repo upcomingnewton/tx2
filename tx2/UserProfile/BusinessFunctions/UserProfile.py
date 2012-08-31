@@ -144,7 +144,7 @@ class UserProfile(object):
               UserFnxObj = UserFnx()
               res = UserFnxObj.ChangeUserGroup(UserId,Group,by_user,ip)
               self.UserProfileLogger.exception('[%s][%d] == %s =='%("ChangeUserGroup",UserId,str(res)))
-              return (result,"Your basic profile necessary has already been created.)
+              return (result,"Your basic profile necessary has already been created.")
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
