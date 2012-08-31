@@ -10,30 +10,36 @@
   <div class="row">
     <div class="labelclass" >Session Start</div>
     <div class="widgetclass" >
-      <div style="float:left;width:120px;">
-      	<select name="SessionStartMonth" class="widget" style="float:left;width:115px;">
+      <div style="float:left;width:60px;">
+      	<select name="SessionStartMonth" class="widget" style="float:left;width:55px;">
       	{% include "options_month.html" %}
       	</select>
     	</div>
-    	<div style="float:left;width:120px;">
-      	<select name="SessionStartYear" class="widget" style="float:left;width:115px;">
+    	<div style="float:left;width:80px;">
+      	<select name="SessionStartYear" class="widget" style="float:left;width:75px;">
       	{% include "options_year.html" %}
       	</select>
+    	</div>
+    	<div style="float:left;width:95px;">
+         {% if MarksObj %}Cur.Val:{{ MarksObj.SessionStart.month }}/{{ MarksObj.SessionStart.year }}{% endif %}
     	</div>
     </div>
   </div>
   <div class="row">
     <div class="labelclass" >Session End</div>
     <div class="widgetclass" >
-      <div style="float:left;width:120px;">
-      	<select name="SessionEndMonth" class="widget" style="float:left;width:115px;">
+      <div style="float:left;width:60px;">
+      	<select name="SessionEndMonth" class="widget" style="float:left;width:55px;">
       	{% include "options_month.html" %}
       	</select>
     	</div>
-    	<div style="float:left;width:120px;">
-      	<select name="SessionEndYear" class="widget" style="float:left;width:115px;">
+    	<div style="float:left;width:80px;">
+      	<select name="SessionEndYear" class="widget" style="float:left;width:75px;">
       	{% include "options_year.html" %}
       	</select>
+    	</div>
+    	<div style="float:left;width:95px;">
+         {% if MarksObj %}Cur.Val:{{ MarksObj.SessionEnd.month }}/{{ MarksObj.SessionEnd.year }}{% endif %}
     	</div>
     </div>
   </div>
