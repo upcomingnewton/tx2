@@ -45,12 +45,12 @@ urlpatterns = patterns('',
 #   url(r'^grouptype/create/$','Users.Views.GroupTypeViews.GroupTypeIndex'),
 #   url(r'^grouptype/create/new/$','Users.Views.GroupTypeViews.CreateNewGroup'), 
 #   
-#   url(r'^group/$','Users.Views.GroupViews.GroupIndex',{'__list':'true','__create':'false'}),
-#   url(r'^group/create/$','Users.Views.GroupViews.GroupIndex',{'__list':'false','__create':'true'}),
-#   url(r'^group/create/new/$','Users.Views.GroupViews.CreateNewGroup'), 
- #   url(r'^group/(?P<gid>\d+)/users/add/$','txUser.Views_Group.AddUsers_Index'),
-  #  url(r'^group/(?P<gid>\d+)/users/add/new/$','txUser.Views_Group.AddUsersToGroup'),
-  #  url(r'^group/(?P<gid>\d+)/users/edit/$','txUser.Views_Group.EditUsers_Index'),
+    url(r'^group/$','Users.Views.GroupViews.GroupIndex',{'options':'simple'}),
+    url(r'^group/add/$','Users.Views.GroupViews.CreateNewGroupIndex'),
+    url(r'^group/add/post/$','Users.Views.GroupViews.CreateNewGroup'),
+    url(r'^group/select/$','Users.Views.GroupViews.GroupIndex',{'options':'select'}),
+    url(r'^group/options/$','Users.Views.GroupViews.GroupIndex',{'options':'options'}),
+    url(r'^group/select/post/$','Users.Views.GroupViews.GroupSelectToMemory'),
 
     
     # admin

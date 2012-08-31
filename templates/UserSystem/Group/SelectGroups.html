@@ -5,21 +5,35 @@
   <div class="row">
     <div class="formtitle">Select Groups to memory</div>
   </div>
-<form action="/user/menu/list/post/edit/" method="post">
+{% if options == 'select' %}
+<form action="/user/group/select/post/" method="post">
 {% csrf_token %}
+{% endif %}
   <table id="tablecss" >
     <thead>
       <tr>
-        <th scope="col" style="width:25px;">Select</th>
+        {% if options == 'select' %}
+          <th scope="col" style="width:25px;">Select</th>
+        {% endif %}
         <th scope="col" style="width:100px;">GroupName</th>
+        {% if options == 'options' %}
+          <th scope="col" style="width:25px;">Menu</th>
+          <th scope="col" style="width:25px;">Users</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
       {% if GroupList|length %}
         {% for Group in GroupList %}
           <tr>
-            <td><input type="check" name="{{Group.id}}" /></td>
-            <td>{{ Group.GroupName }}</td>
+              {% if options == 'select' %}
+                <td><input type="checkbox" name="SelectedGroups" value="{{Group.id}}" /></td>
+              {% endif %}
+              <td>{{ Group.GroupName }}</td>
+              {% if options == 'options' %}
+                <td><a href="#">Menu</a></td>
+                <td><a href="#">Users</a></td>
+              {% endif %}
           </tr>
         {% endfor %}
       {% else %}
@@ -27,5 +41,10 @@
       {% endif %}
     </tbody>
   </table>
+{% if options == 'select' %}
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+{% endif %}
 </form>
 {% endblock %}
