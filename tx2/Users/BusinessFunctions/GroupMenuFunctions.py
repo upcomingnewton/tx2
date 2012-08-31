@@ -32,6 +32,20 @@ class GroupMenuFnx():
         msg += "[%s : %s]" % (i,values[i])
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
+    
+  def getListFromString(self,_str):
+    _str = _str.split(self.MenuSep)
+    try:
+      _List = [int(x) for x in _str]
+      return (1,_List)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
         
   def Insert(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
     MenuStr = self.getStringFromList(MenuList)
@@ -41,9 +55,8 @@ class GroupMenuFnx():
     if PermissionStr[0] != 1:
       return (-1,PermissionStr[1])
     ExtraInfo = self.getStringFromList(extrainfo)
-    if PermissionStr[0] != 1:
-      return (-1,PermissionStr[1])
-    print 'Insertb  : ' + str(ExtraInfo[1])
+    if ExtraInfo[0] != 1:
+      return (-1,ExtraInfo[1])
     try:
       details = {
         'MenuStr':MenuStr[1],
@@ -70,6 +83,38 @@ class GroupMenuFnx():
       return (-2,str(ex))
 
   def Delete(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
+    MenuIDStr = self.getStringFromList(MenuIDList)
+    if MenuIDStr[0] != 1:
+      return (-1,MenuIDStr[1])
+    try:
+      details = {
+        'MenuIDStr':MenuIDStr[1],
+        'RequestedOperation':RequestedOperation,
+        'by':by,
+        'ip':ip,
+        }
+      result = DBGroupMenuDelete(details)
+      if (result['result'] == 1):
+        from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
+        # get a list of groups, and delete cache for each
+        GroupFnxObj = GroupFnx()
+        GroupList = GroupFnxObj.ListAllGroups()
+        if GroupList[0] == 1:
+          for x in GroupList[1]:
+            deleteCacheKey(self.getKey(x.id))
+        return (1,'SUCESS. Group Menus has been sucessfully deleted from database.') 
+      else:
+        return (-1,decode(result))
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+  def Edit(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
     MenuIDStr = self.getStringFromList(MenuIDList)
     if MenuIDStr[0] != 1:
       return (-1,MenuIDStr[1])

@@ -20,7 +20,7 @@ class GroupFnx(models.Model):
   def CreateGroup(self,gname,gdesc,gtype,entity,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
     eid = entity
     if entity == -1:
-      e_obj = getSystemEntity()
+      eid = getSystemEntity()
     try:
       details = {
                            'ip':ip,
@@ -48,7 +48,6 @@ class GroupFnx(models.Model):
 
 
   # SELECTION AND QUERY FUNCTIONS
-            
   def getGroupFromCache(self,name=-1,groupid = -1):
     GroupList = getCache(self.CACHE_KEY_ALL_GROUPS)
     try:

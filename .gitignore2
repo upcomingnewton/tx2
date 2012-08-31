@@ -6,4 +6,5 @@
 local_settings.py
 tx2/build/*
 tx2/settings.py
-logs/*
+tx2/settings.py
+tx2/settings.py
