@@ -10,11 +10,24 @@ from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
 from tx2.UserProfile.BusinessFunctions.ExtraAcademicInfo import ExtraAcademicInfo
+from django.contrib import messages
 import logging
+import inspect
 Logger_User = logging.getLogger(LoggerSecurity)
 
 def ExtraAcdemicInfoTypeIndex(HttpRequest):
-    return render_to_response("UserProfile/ExtraAcdemicInfoType.html",context_instance=RequestContext(HttpRequest))
+    try:
+      return render_to_response("UserProfile/ExtraAcdemicInfoType.html",context_instance=RequestContext(HttpRequest))
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+
 def ExtraAcdemicInfoTypeInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -38,13 +51,15 @@ def ExtraAcdemicInfoTypeInsert(HttpRequest):
         result=ExtraAcademicInfoObj.InsertExtraAcademicInfoType(ExtraAcademicInfoTypeName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def ExtraAcdemicInfoTypeUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -74,13 +89,15 @@ def ExtraAcdemicInfoTypeUpdate(HttpRequest):
         result=ExtraAcademicInfoObj.UpdateExtraAcademicInfoType(Id, ExtraAcademicInfoTypeName, logindetails["userid"], ip);
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 def FunctionalAreaTypeIndex(HttpRequest):
     return render_to_response("UserProfile/FunctionalAreaType.html",context_instance=RequestContext(HttpRequest))
@@ -107,13 +124,15 @@ def FunctionalAreaTypeInsert(HttpRequest):
         result=ExtraAcademicInfoObj.InsertFunctionalAreaType(FunctionalAreaTypeName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def FunctionalAreaTypeUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -143,13 +162,15 @@ def FunctionalAreaTypeUpdate(HttpRequest):
         result=ExtraAcademicInfoObj.UpdateFunctionalAreaType(Id, FunctionalAreaTypeName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 def ExtraAcademicInfoDetailsIndex(HttpRequest):
     return render_to_response("UserProfile/ExtraAcademicInfoDetails.html",context_instance=RequestContext(HttpRequest))
@@ -231,13 +252,15 @@ def ExtraAcademicInfoDetailsInsert(HttpRequest):
         result=ExtraAcademicInfoObj.InsertExtraAcademicInfoDetails(User_id, Title, Start, End, Organisation, Designation, Details, PlaceOfWork_id, FunctionalArea, ExtraAcadmicInfoType_id, References, Summary, logindetails["userid"], ip);
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def ExtraAcademicInfoDetailsUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -321,13 +344,15 @@ def ExtraAcademicInfoDetailsUpdate(HttpRequest):
         result=ExtraAcademicInfoObj.UpdateExtraAcademicInfoDetails(Id, User_id, Title, Start, End, Organisation, Designation, Details, PlaceOfWork_id, FunctionalArea, ExtraAcadmicInfoType_id, References, Summary, logindetails["userid"], ip);
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 
 def FunctionalAreaListIndex(HttpRequest):
@@ -360,13 +385,15 @@ def FunctionalAreaListInsert(HttpRequest):
         result=ExtraAcademicInfoObj.InsertFunctionalAreaList(FunctionalAreaType_id, FunctionalArea, logindetails["userid"], ip);
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def FunctionalAreaListUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -400,10 +427,12 @@ def FunctionalAreaListUpdate(HttpRequest):
         result=ExtraAcademicInfoObj.UpdateFunctionalAreaList(Id, FunctionalAreaType_id, FunctionalArea, logindetails["userid"], ip);
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
