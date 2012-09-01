@@ -46,13 +46,14 @@ class UserProfile(object):
                 self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
             return result
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
     def UpdateBranch(self,_Id,BranchName,by_user,ip):
         try:
@@ -81,13 +82,14 @@ class UserProfile(object):
                 self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
           return result
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
     def InsertCategory(self,CategoryName,by_user,ip):
         try:
@@ -98,13 +100,14 @@ class UserProfile(object):
             result=DBFunctions.DBCategoryInsert(details);
             return result
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
     def UpdateCategory(self,_Id,CategoryName,by_user,ip):
         try:
@@ -123,13 +126,14 @@ class UserProfile(object):
           result=DBFunctions.DBCategoryUpdate(details);
           return result
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
     def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
@@ -159,13 +163,14 @@ class UserProfile(object):
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
     def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip,Group):
         try:
@@ -198,11 +203,12 @@ class UserProfile(object):
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception, ex:
-          frame = inspect.currentframe()
-          args, _, _, values = inspect.getargvalues(frame)
-          msg = ''
-          for i in args:
-            msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            msg = ''
+            for i in args:
+              msg += "[%s : %s]" % (i,values[i])
+            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+            messages.error(HttpRequest,'ERROR: ' + str(ex))
+            return HttpResponseRedirect('/message/')
         
