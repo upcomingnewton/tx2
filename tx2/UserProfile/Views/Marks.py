@@ -20,7 +20,6 @@ from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 import inspect
 import datetime
-from tx2.Communication.Views.AdminCommViews import LogUser
 Logger_User = logging.getLogger(LoggerSecurity)
 
 
