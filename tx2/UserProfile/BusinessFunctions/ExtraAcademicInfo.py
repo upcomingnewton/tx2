@@ -27,10 +27,15 @@ class ExtraAcademicInfo:
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBExtraAcademicInfoTypeInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertExtraAcademicInfoType in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
   def UpdateExtraAcademicInfoType(self,_Id,ExtraAcademicInfoTypeName,by_user,ip):
         try:
             _Id=int(_Id)
@@ -50,11 +55,15 @@ class ExtraAcademicInfo:
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBExtraAcademicInfoTypeUpdate(details);
             return result
-        except:
-            error_msg = 'Error @ InsertExtraAcademicInfoType in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
-  
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
   def InsertFunctionalAreaType(self,FunctionalAreaTypeName,by_user,ip):
         try:
             details={'FunctionalAreaTypeName':FunctionalAreaTypeName,
@@ -63,10 +72,15 @@ class ExtraAcademicInfo:
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBFunctionalAreaTypeInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertFunctionalAreaType in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
   def UpdateFunctionalAreaType(self,_Id,FunctionalAreaTypeName,by_user,ip):
         try:
           _Id=int(_Id)
@@ -89,8 +103,9 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateFunctionalAreaType : %s' % (msg))
-          return (-2,self.MakeExceptionMessage(str(ex)))  
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+          
   
   def InsertExtraAcademicInfoDetails(self,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
@@ -111,10 +126,15 @@ class ExtraAcademicInfo:
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBExtraAcademicInfoDetailsInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
   
   def UpdateExtraAcademicInfoDetails(self,_Id,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
@@ -150,8 +170,9 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateExtraAcademicInfoDetails : %s' % (msg))
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
+        
         
   def InsertFunctionalAreaList(self,FunctionalAreaType_id,FunctionalArea,by_user,ip):
         try:
@@ -162,10 +183,15 @@ class ExtraAcademicInfo:
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBFunctionalAreaListInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertExtraAcademicInfoDetails in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
   def UpdateFunctionalAreaList(self,_Id,FunctionalAreaType_id,FunctionalArea,by_user,ip):
         try:
           _Id=int(_Id)
@@ -189,5 +215,6 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateFunctionalAreaList : %s' % (msg))
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
+        

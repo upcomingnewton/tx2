@@ -45,10 +45,15 @@ class UserProfile(object):
                 res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
                 self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
             return result
-        except:
-            error_msg = 'Error @ InsertBoard in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateBranch(self,_Id,BranchName,by_user,ip):
         try:
           _Id=int(_Id)
@@ -81,9 +86,9 @@ class UserProfile(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateBranch : %s' % (msg))
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
-    
+        
     def InsertCategory(self,CategoryName,by_user,ip):
         try:
             details={'CategoryName':CategoryName,
@@ -92,10 +97,15 @@ class UserProfile(object):
                      'ip':ip,};
             result=DBFunctions.DBCategoryInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertCategory in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateCategory(self,_Id,CategoryName,by_user,ip):
         try:
           _Id=int(_Id)
@@ -118,9 +128,9 @@ class UserProfile(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
-    
+        
     def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
           details={'UserId':UserId,
@@ -148,10 +158,14 @@ class UserProfile(object):
           else:
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
-        except Exception as inst:
-            error_msg = 'Error @ InsertStudentDetails in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%(inst))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip):
         try:
@@ -189,5 +203,6 @@ class UserProfile(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserProfileLogger.exception('UpdateCategory : %s' % (msg))
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
+        

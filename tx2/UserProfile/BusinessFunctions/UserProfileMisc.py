@@ -6,6 +6,7 @@ Created on 06-Aug-2012
 from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.DBFunctions import DBUserProfileMisc
 import logging
+import inspect
 class UserProfileMisc:
   def __init__(self):
         '''
@@ -25,7 +26,12 @@ class UserProfileMisc:
                      'ip':ip,};
             result=DBUserProfileMisc.DBMedicalInfoInsert(details);
             return result
-        except Exception as init:
-            error_msg = 'Error @ InsertMedicalInfo in Business Functions%s'%init
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        

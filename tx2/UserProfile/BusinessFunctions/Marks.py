@@ -8,7 +8,7 @@ from tx2.UserProfile.DBFunctions import DBFunctions
 from tx2.UserProfile.models import Marks as mymarks
 import pickle
 import logging
-
+import inspect
 
 class Marks(object):
     '''
@@ -29,10 +29,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBBoardInsert(details);
             return result
-        except:
-            error_msg = 'Error @ InsertBoard in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def InsertDegreeType(self,DegreeTypeName,by_user,ip):
         try:
             details={'DegreeTypeName':DegreeTypeName,
@@ -41,10 +46,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBDegreeTypeInsert(details);
             return result
-        except Exception as inst:
-            error_msg = 'Error @ InsertDegreeTypeName in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def InsertDegree(self,DegreeName,by_user,ip):
         try:
             details={'DegreeName':DegreeName,
@@ -53,10 +63,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBDegreeInsert(details);
             return result
-        except Exception as inst:
-            error_msg = 'Error @ InsertDegreeName in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def InsertSessionType(self,SessionTypeName,by_user,ip):
         try:
             details={'SessionTypeName':SessionTypeName,
@@ -65,10 +80,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBSessionTypeInsert(details);
             return result
-        except Exception as inst:
-            error_msg = 'Error @ InsertSessionTypeName in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def InsertMarks(self,SessionStart,SessionEnd,SessionNumber,SessionType,TotalMarks,SecuredMarks,TotalReappears,ReappearsRemaining,DegreeType,Board,Degree,UserId,by_user,ip):
         try:
             details={'SessionStart':SessionStart,
@@ -88,10 +108,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBMarksInsert(details);
             return result
-        except Exception as inst:
-            error_msg = 'Error @ InsertMarks in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateMarks(self,_Id,SessionStart,SessionEnd,SessionNumber,SessionType,TotalMarks,SecuredMarks,TotalReappears,ReappearsRemaining,DegreeType,Board,Degree,UserId,by_user,ip):
         try:
             _Id=int(_Id)
@@ -123,11 +148,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBMarksUpdate(details);
             return result
-        except Exception as inst:
-            error_msg = 'Error @ InsertMarks in Business Functions %s'%(inst)
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
-    
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def DeleteBoard(self,BoardId,by_user,ip):
         try:
             details={'BoardId':int(BoardId),
@@ -136,10 +165,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBBoardDelete(details);
             return result
-        except:
-            error_msg = 'Error @ DeleteBoard in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateBoard(self,BoardId,BoardName,by_user,ip):
         try:
             details={'BoardId':int(BoardId),
@@ -149,10 +183,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBBoardUpdate(details);
             return result
-        except:
-            error_msg = 'Error @ InsertBoard in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateDegreeType(self,DegreeTypeId,DegreeTypeName,by_user,ip):
         try:
             details={'DegreeTypeId':DegreeTypeId,
@@ -162,11 +201,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBDegreeTypeUpdate(details);
             return result
-        except:
-            error_msg = 'Error @ UpdateDegreeType in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
-    
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateDegree(self,DegreeId,DegreeName,by_user,ip):
         try:
             details={'DegreeId':DegreeId,
@@ -176,11 +219,15 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBDegreeUpdate(details);
             return result
-        except:
-            error_msg = 'Error @ UpdateDegree in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
-    
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
     def UpdateSessionType(self,SessionTypeId,SessionTypeName,by_user,ip):
         try:
             details={'SessionTypeId':SessionTypeId,
@@ -190,7 +237,12 @@ class Marks(object):
                      'ip':ip,};
             result=DBFunctions.DBSessionTypeUpdate(details);
             return result
-        except:
-            error_msg = 'Error @ UpdateSessionType in Business Functions'
-            self.UserProfileLogger.exception('[%s] == Exception =='%('AddComment'))
-            return {'result':-5,'error_msg':error_msg}
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+        
