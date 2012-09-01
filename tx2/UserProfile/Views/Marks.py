@@ -19,6 +19,7 @@ from django.contrib import messages
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 import inspect
+from tx2.Communication.Views.AdminCommViews import LogUser
 Logger_User = logging.getLogger(LoggerSecurity)
 
 
@@ -65,13 +66,15 @@ def BoardInsert(HttpRequest):
         result=MarksObj.InsertBoard(BoardName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def DegreeTypeInsert(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -505,13 +508,15 @@ def DegreeTypeSelect(HttpRequest):
         
         return render_to_response("UserProfile/ViewData.html",{'mydata':mylist,})
         
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 
 def BoardDelete(HttpRequest):
@@ -609,13 +614,15 @@ def BoardUpdate(HttpRequest):
         result=MarksObj.UpdateBoard(BoardId,BoardName, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 def DegreeTypeUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)

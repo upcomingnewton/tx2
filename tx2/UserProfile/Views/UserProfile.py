@@ -47,13 +47,16 @@ def BranchInsert(HttpRequest):
         result=UserProfileObj.InsertBranch(BranchName, logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+    
 def BranchUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -82,14 +85,15 @@ def BranchUpdate(HttpRequest):
         result=UserProfileObj.UpdateBranch(Id, BranchName,logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
-
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def CategoryIndex(HttpRequest):
     return render_to_response("UserProfile/Category.html",context_instance=RequestContext(HttpRequest))
 def CategoryInsert(HttpRequest):
@@ -115,13 +119,15 @@ def CategoryInsert(HttpRequest):
         result=UserProfileObj.InsertCategory(CategoryName, logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def CategoryUpdate(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -150,13 +156,15 @@ def CategoryUpdate(HttpRequest):
         result=UserProfileObj.UpdateCategory(Id, CategoryName,logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 
 ############## COMMON VIEW FOR BOTH INSERT AND UPDATE ############################

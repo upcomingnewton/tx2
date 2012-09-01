@@ -11,6 +11,7 @@ from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
 from tx2.UserProfile.BusinessFunctions.UserProfileMisc import UserProfileMisc
 import logging
+import inspect
 Logger_User = logging.getLogger(LoggerSecurity)
 
 def MedicalInfoIndex(HttpRequest):
@@ -63,10 +64,12 @@ def MedicalInfoInsert(HttpRequest):
         result=UserProfileMiscObj.InsertMedicalInfo(User_id, Height, Weight, LeftEye, RightEye, DisabilityInfo, logindetails["userid"], ip)
         msglist.append("result is %s"%result);
         return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
