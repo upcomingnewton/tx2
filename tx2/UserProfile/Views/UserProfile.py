@@ -9,14 +9,14 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LoggerUser
+from tx2.CONFIG import  SESSION_MESSAGE, LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
 from tx2.UserProfile.models import Degree,Branch,Category, StudentDetails
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 import inspect
 from django.contrib import messages
-LogUser = logging.getLogger(LoggerUser)
+LogUser = logging.getLogger(LOGGER_USER_PROFILE)
 
 
 #def UserHome(HttpRequest):

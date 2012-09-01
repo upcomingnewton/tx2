@@ -7,12 +7,12 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
+from tx2.CONFIG import  LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.ExtraAcademicInfo import ExtraAcademicInfo
 from django.contrib import messages
 import logging
 import inspect
-Logger_User = logging.getLogger(LoggerSecurity)
+Logger_User = logging.getLogger(LOGGER_USER_PROFILE)
 
 def ExtraAcdemicInfoTypeIndex(HttpRequest):
     try:

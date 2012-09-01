@@ -8,11 +8,12 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
+from tx2.CONFIG import  SESSION_MESSAGE, LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.UserProfileMisc import UserProfileMisc
+from django.contrib import messages
 import logging
 import inspect
-Logger_User = logging.getLogger(LoggerSecurity)
+Logger_User = logging.getLogger(LOGGER_USER_PROFILE)
 
 def MedicalInfoIndex(HttpRequest):
     return render_to_response("UserProfile/MedicalInfo.html",context_instance=RequestContext(HttpRequest))
@@ -70,6 +71,6 @@ def MedicalInfoInsert(HttpRequest):
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
