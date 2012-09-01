@@ -15,6 +15,12 @@ import inspect
 Logger_User = logging.getLogger(LOGGER_USER_PROFILE)
 
 def ExtraAcdemicInfoTypeIndex(HttpRequest):
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'Please Login to continue')
+        return HttpResponseRedirect('/user/login/')
+    
     try:
       return render_to_response("UserProfile/ExtraAcdemicInfoType.html",context_instance=RequestContext(HttpRequest))
     except Exception, ex:
@@ -93,6 +99,12 @@ def ExtraAcdemicInfoTypeUpdate(HttpRequest):
       return HttpResponseRedirect('/message/')
 
 def FunctionalAreaTypeIndex(HttpRequest):
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'Please Login to continue')
+        return HttpResponseRedirect('/user/login/')
+    
     return render_to_response("UserProfile/FunctionalAreaType.html",context_instance=RequestContext(HttpRequest))
 def FunctionalAreaTypeInsert(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -160,6 +172,13 @@ def FunctionalAreaTypeUpdate(HttpRequest):
       return HttpResponseRedirect('/message/')
 
 def ExtraAcademicInfoDetailsIndex(HttpRequest):
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'Please Login to continue')
+        return HttpResponseRedirect('/user/login/')
+    
     return render_to_response("UserProfile/ExtraAcademicInfoDetails.html",context_instance=RequestContext(HttpRequest))
 def ExtraAcademicInfoDetailsInsert(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
@@ -337,6 +356,12 @@ def ExtraAcademicInfoDetailsUpdate(HttpRequest):
 
 
 def FunctionalAreaListIndex(HttpRequest):
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'Please Login to continue')
+        return HttpResponseRedirect('/user/login/')
+    
     return render_to_response("UserProfile/FunctionalAreaList.html",context_instance=RequestContext(HttpRequest))
 def FunctionalAreaListInsert(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
