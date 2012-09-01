@@ -4,7 +4,7 @@ from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupInsert, DBgetUserIDLi
 from tx2.Users.DBFunctions.Messages import decode
 from tx2.Users.HelperFunctions.DefaultValues import getSystemEntity
 from tx2.CONFIG import LoggerUser
-from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_ENTITY,CACHE_KEY_SYSTEM_ENTITY, SESSION_SELECTED_GROUPS
 from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey
 from tx2.Security.models import Entity
 import logging

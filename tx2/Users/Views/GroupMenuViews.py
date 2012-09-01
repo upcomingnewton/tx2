@@ -4,8 +4,9 @@ from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import  SESSION_MESSAGE, LoggerUser
+from tx2.Users.BusinessFunctions.GroupMenuFunctions import GroupMenuFnx
 from tx2.Users.BusinessFunctions.GroupFunctions import GroupFnx
-from tx2.Users.BusinessFunctions.GroupTypeFunctions import GroupTypeFnx
+from tx2.Users.BusinessFunctions.MenuFunctions import MenuFnx
 from tx2.conf.LocalProjectConfig import  SESSION_SELECTED_GROUPS
 import logging
 import inspect
@@ -14,25 +15,71 @@ Logger_User = logging.getLogger(LoggerUser)
 
 
 ##################################################################
-def GroupIndex(HttpRequest, options):
+def GroupMenuViewIndex(HttpRequest):
   ip = HttpRequest.META['REMOTE_ADDR']
   logindetails = GetLoginDetails(HttpRequest)
   if( logindetails["userid"] == -1):
       messages.error(HttpRequest,'Please Login to continue')
       return HttpResponseRedirect('/user/login/')
   try:
-    GroupFnxObj  = GroupFnx()
-    GroupList = GroupFnxObj.ListAllGroups()
-    if(GroupList[0] == 1):
-      if SESSION_SELECTED_GROUPS not in HttpRequest.session.keys():
-        del HttpRequest.session[SESSION_SELECTED_GROUPS]
-      GroupList  = GroupList[1]
-      if( len (GroupList) == 0):
-        messages.error(HttpRequest,'There are no Group in the system')
-      return render_to_response("UserSystem/Group/SelectGroups.html",{'GroupList':GroupList,'options':options},context_instance=RequestContext(HttpRequest))
+    if SESSION_SELECTED_GROUPS not in HttpRequest.session.keys():
+      messages.error(HttpRequest,'Please select some groups for furthur operations')
+      return HttpResponseRedirect('/user/group/select/')
     else:
-      messages.error(HttpRequest,'ERROR : %s' % GroupList[0])
+      SelectedGroups = HttpRequest.session[SESSION_SELECTED_GROUPS]
+      return render_to_response("UserSystem/Group/EditGroup.html",{'SelectedGroups':SelectedGroups},context_instance=RequestContext(HttpRequest))
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
+
+
+##################################################################
+def GroupMenuDetailsIndex(HttpRequest,GroupID):
+  ip = HttpRequest.META['REMOTE_ADDR']
+  logindetails = GetLoginDetails(HttpRequest)
+  if( logindetails["userid"] == -1):
+      messages.error(HttpRequest,'Please Login to continue')
+      return HttpResponseRedirect('/user/login/')
+  try:
+    GroupMenuFnxobj = GroupMenuFnx()
+    GroupMenuObjList = GroupMenuFnxobj.getGroupMenuObjectByGroupID(int(GroupID))
+    if GroupMenuObjList[0] != 1:
+      messages.error(HttpRequest,"ERROR " + str(GroupMenuObjList[1]))
+      return HttpResponseRedirect('/message/')
+    ParentGroupMenuList  = GroupMenuFnxobj.getParentGroupMenuObjectByGroupID(int(GroupID))
+    if ParentGroupMenuList[0] != 1:
+      messages.error(HttpRequest,"ERROR " + str(ParentGroupMenuList[1]))
+      return HttpResponseRedirect('/message/')
+    return render_to_response("UserSystem/Group/EditGroup.html",{'ParentGroupMenuList':ParentGroupMenuList[1],'GroupMenuObjList':GroupMenuObjList[1]},context_instance=RequestContext(HttpRequest))
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+
+##################################################################
+def GroupMenuEditIndex(HttpRequest, options):
+  ip = HttpRequest.META['REMOTE_ADDR']
+  logindetails = GetLoginDetails(HttpRequest)
+  if( logindetails["userid"] == -1):
+      messages.error(HttpRequest,'Please Login to continue')
+      return HttpResponseRedirect('/user/login/')
+  try:
+    if SESSION_SELECTED_GROUPS not in HttpRequest.session.keys():
+      messages.error(HttpRequest,'Please select some groups for furthur operations')
+      return HttpResponseRedirect('/user/group/select/')
+    else:
+      SelectedGroups = HttpRequest.session[SESSION_SELECTED_GROUPS]
   except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
