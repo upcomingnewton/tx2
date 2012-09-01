@@ -38,22 +38,21 @@ class UserProfile(object):
               GroupTypeObj = GroupTypeFnx()
               GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
               if( GroupType[0] != -1 ):
-                self.UserProfileLogger.exception('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
+                self.UserProfileLogger.debug('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
                 GroupFnxObj = GroupFnx()
                 res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType[1].id,-1,by_user,ip)
-                self.UserProfileLogger.exception('[%s] == %s'%("GroupFnxObj",str(res)))
+                self.UserProfileLogger.debug('[%s] == %s'%("GroupFnxObj",str(res)))
                 res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
-                self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
+                self.UserProfileLogger.debug('[%s == %s'%("GroupFnxObj",str(res)))
             return result
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateBranch(self,_Id,BranchName,by_user,ip):
         try:
@@ -74,22 +73,21 @@ class UserProfile(object):
               GroupTypeObj = GroupTypeFnx()
               GroupType = GroupTypeObj.getGroupTypeByName(SYSTEM_USERDEFINED_GROUPTYPE)
               if( GroupType[0] != -1 ):
-                self.UserProfileLogger.exception('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
+                self.UserProfileLogger.debug('[%s]== %s,%d'%("GroupTypeObj",GroupType[1].GroupTypeName,GroupType[1].id))
                 GroupFnxObj = GroupFnx()
                 res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName ,"GROUP_"  + BranchName,GroupType[1].id,-1,by_user,ip)
-                self.UserProfileLogger.exception('[%s] == %s'%("GroupFnxObj",str(res)))
+                self.UserProfileLogger.debug('[%s] == %s'%("GroupFnxObj",str(res)))
                 res = GroupFnxObj.CreateGroup("GROUP_"  + BranchName + "_UN-AUTHENTICATED" ,"GROUP_"  + BranchName + "_UN-AUTHENTICATED",GroupType[1].id,-1,by_user,ip)
-                self.UserProfileLogger.exception('[%s == %s'%("GroupFnxObj",str(res)))
+                self.UserProfileLogger.debug('[%s == %s'%("GroupFnxObj",str(res)))
           return result
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
         
     def InsertCategory(self,CategoryName,by_user,ip):
         try:
@@ -100,15 +98,14 @@ class UserProfile(object):
             result=DBFunctions.DBCategoryInsert(details);
             return result
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
-        
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+                
     def UpdateCategory(self,_Id,CategoryName,by_user,ip):
         try:
           _Id=int(_Id)
@@ -126,15 +123,14 @@ class UserProfile(object):
           result=DBFunctions.DBCategoryUpdate(details);
           return result
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
-        
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+    
     def InsertStudentDetails(self,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip, Group):
         try:
           details={'UserId':UserId,
@@ -163,15 +159,14 @@ class UserProfile(object):
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
-        
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+         
     def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip,Group):
         try:
           _Id=int(_Id)
@@ -203,12 +198,10 @@ class UserProfile(object):
                 self.UserProfileLogger.debug('[%s] == Exception %s, %d=='%("InsertStudentDetails",str(result),UserId))
                 return (-1,"Some error has occured. Please try again")
         except Exception, ex:
-            frame = inspect.currentframe()
-            args, _, _, values = inspect.getargvalues(frame)
-            msg = ''
-            for i in args:
-              msg += "[%s : %s]" % (i,values[i])
-            LogUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-            messages.error(HttpRequest,'ERROR: ' + str(ex))
-            return HttpResponseRedirect('/message/')
-        
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
