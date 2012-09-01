@@ -46,6 +46,23 @@ class GroupMenuFnx():
         msg += "[%s : %s]" % (i,values[i])
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
+      
+  def getUniqueIntegersList(self,_list):
+    UList = []
+    try:
+      for x in range(0,len(_list)):
+        if _list[x] not in _list[x+1:]:
+          UList.append(_list[x])
+      return (1,UList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+    
         
   def Insert(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
     MenuStr = self.getStringFromList(MenuList)
@@ -114,7 +131,7 @@ class GroupMenuFnx():
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
       
-  def Edit(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
+  def Edit(self,MenuList,GroupID,_PermissionList,_extrainfo,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
     PreviousList = self.getGroupMenuObjectByGroupID(GroupID)
     if PreviousList[0] != 1:
       return (-1,PreviousList[1])
@@ -124,20 +141,28 @@ class GroupMenuFnx():
       CommonEle = []
       NewEle = []
       DeleteEle = []
+      PermissionList = []
+      extrainfo = []
       for x in PreviousList:
         if x.Menu.id in MenuList:
           CommonEle.append(x.Menu.id)
         else:
           DeleteEle.append(x.id)
       
-      for x in MenuList:
-        if x not in CommonEle:
-          NewEle.append(x)
+      for x in range(0,len(MenuList)):
+        if MenuList[x] not in CommonEle:
+          NewEle.append(MenuList[x])
+          PermissionList.append(_PermissionList[x])
+          extrainfo.append(_extrainfo[x])
       
-      self.UserLogger.debug('GroupMenuEdit - MenuList passed = %s' % (self.getStringFromList(MenuList)[1]))
-      self.UserLogger.debug('GroupMenuEdit - NewEle = %s' % (self.getStringFromList(NewEle)[1]))
-      self.UserLogger.debug('GroupMenuEdit - CommonEle = %s' % (self.getStringFromList(CommonEle)[1]))
-      self.UserLogger.debug('GroupMenuEdit - DeleteEle = %s' % (self.getStringFromList(DeleteEle)[1]))
+      # 1. delete 
+      if len(DeleteEle) > 0 :
+        resultDel = self.Delete(DeleteEle,by,ip,Delop)
+        self.UserLogger.debug('%s %s' % ('DELETE',str(resultDel)))
+      # 2. insert
+      if len(NewEle) > 0 :
+        resultIns = self.Insert(NewEle,GroupID,PermissionList,extrainfo,by,ip,Insop)
+        self.UserLogger.debug('%s %s' % ('INSERT',str(resultIns)))
       return (1,"SUCESS")
     except Exception, ex:
       frame = inspect.currentframe()
@@ -175,6 +200,27 @@ class GroupMenuFnx():
       else:
         GroupMenuObjList = GroupMenuObjList[1]
       return (1,GroupMenuObjList)
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+  def getParentGroupMenuObjectByGroupID(self,groupid):
+    try:
+      ParentGroupMenuList = []
+      GroupMenuObjList = self.getGroupMenuObjectByGroupID(groupid)
+      if GroupMenuObjList[0] != 1:
+        return (-1,GroupMenuObjList[1])
+      else:
+        GroupMenuObjList = GroupMenuObjList[1]
+        for x in GroupMenuObjList:
+          if x.Menu.MenuPid == -1:
+            ParentGroupMenuList.append(x)
+      return (1,ParentGroupMenuList)
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)

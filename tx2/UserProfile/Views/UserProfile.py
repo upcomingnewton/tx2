@@ -391,7 +391,9 @@ def StudentDetailsUpdate(HttpRequest):
                 return HttpResponseRedirect('/message/')
             else:
                 UserProfileObj=UserProfile()
-                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip)
+                BranchObj = Branch.objects.get(id=BranchMajor)
+                Group = "GROUP_"  + BranchObj.BranchName  + "_UN-AUTHENTICATED"
+                result=UserProfileObj.UpdateStudentDetails(Id,UserId, RollNo, BranchMajor, BranchMinor, Degree, Category, ComputerProficiency,aieee,UserId, ip,Group)
                 messages.error(HttpRequest,result[1])
                 return HttpResponseRedirect('/message/')
         except Exception, ex:

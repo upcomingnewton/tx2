@@ -167,7 +167,7 @@ class UserProfile(object):
           self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
-    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip):
+    def UpdateStudentDetails(self,_Id,UserId,RollNo,BranchMajor,BranchMinor,Degree,CategoryId,ComputerProficiency,aieee,by_user,ip,Group):
         try:
           _Id=int(_Id)
           obj=StudentDetails.objects.get(id=_Id);
