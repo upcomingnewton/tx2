@@ -33,7 +33,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   def UpdateExtraAcademicInfoType(self,_Id,ExtraAcademicInfoTypeName,by_user,ip):
@@ -61,7 +61,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   def InsertFunctionalAreaType(self,FunctionalAreaTypeName,by_user,ip):
@@ -78,7 +78,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   def UpdateFunctionalAreaType(self,_Id,FunctionalAreaTypeName,by_user,ip):
@@ -103,7 +103,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
           
   
@@ -132,7 +132,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   
@@ -170,7 +170,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
         
@@ -189,7 +189,7 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   def UpdateFunctionalAreaList(self,_Id,FunctionalAreaType_id,FunctionalArea,by_user,ip):
@@ -215,6 +215,6 @@ class ExtraAcademicInfo:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
