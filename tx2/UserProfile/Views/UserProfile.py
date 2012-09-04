@@ -4,12 +4,11 @@ Created on 26-Jul-2012
 @author: jivjot
 '''
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponseRedirect, HttpRequest
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LOGGER_USER_PROFILE
+from tx2.CONFIG import LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.UserProfile import UserProfile
 from tx2.UserProfile.models import Degree,Branch,Category, StudentDetails
 from tx2.Misc.MIscFunctions1 import is_integer
@@ -25,13 +24,11 @@ LogUser = logging.getLogger(LOGGER_USER_PROFILE)
 def BranchIndex(HttpRequest):
     return render_to_response("UserProfile/Branch.html",context_instance=RequestContext(HttpRequest))
 def BranchInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
         messages.error(HttpRequest,'Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
         UserProfileObj=UserProfile()
@@ -42,11 +39,10 @@ def BranchInsert(HttpRequest):
             messages.error(HttpRequest,"Error fetching data from form for BranchName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=UserProfileObj.InsertBranch(BranchName, logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -58,13 +54,11 @@ def BranchInsert(HttpRequest):
       return HttpResponseRedirect('/message/')
     
 def BranchUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
         messages.error(HttpRequest,'Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
         UserProfileObj=UserProfile()
@@ -80,11 +74,10 @@ def BranchUpdate(HttpRequest):
             messages.error(HttpRequest,"Error fetching data from form for BranchName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=UserProfileObj.UpdateBranch(Id, BranchName,logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -97,13 +90,11 @@ def BranchUpdate(HttpRequest):
 def CategoryIndex(HttpRequest):
     return render_to_response("UserProfile/Category.html",context_instance=RequestContext(HttpRequest))
 def CategoryInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
         messages.error(HttpRequest,'Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
         UserProfileObj=UserProfile()
@@ -114,11 +105,10 @@ def CategoryInsert(HttpRequest):
             messages.error(HttpRequest,"Error fetching data from form for CategoryName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=UserProfileObj.InsertCategory(CategoryName, logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -129,13 +119,11 @@ def CategoryInsert(HttpRequest):
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
 def CategoryUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
         messages.error(HttpRequest,'Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
         return HttpResponseRedirect('/user/login/')
     try:
         UserProfileObj=UserProfile()
@@ -151,11 +139,10 @@ def CategoryUpdate(HttpRequest):
             messages.error(HttpRequest,"Error fetching data from form for Id");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=UserProfileObj.UpdateCategory(Id, CategoryName,logindetails["userid"], ip)
         messages.error(HttpRequest,"result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
