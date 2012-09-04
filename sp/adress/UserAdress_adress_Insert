@@ -1,0 +1,54 @@
+--SELECT * FROM UserAdress_adress_Insert('AdressNo','StreetAdress1','StreetAdress2',1,1,3,'PinCode','SYS_PER_INSERT',1,'test');
+
+CREATE OR REPLACE FUNCTION UserAdress_adress_Insert(
+AdressNo character varying(50),
+StreetAdress1 character varying(500),
+StreetAdress2 character varying(500),
+City INTEGER,
+State INTEGER,
+Country INTEGER,
+PinCode character varying(15),
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'adress','UserAdress');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "UserAdress_adress"("AdressNo", "StreetAdress1", "StreetAdress2", "City_id","State_id", "Country_id", "PinCode")
+                          VALUES(AdressNo,StreetAdress1,StreetAdress2,City,State,Country,PinCode);
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 216;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "UserAdress_adress" WHERE "AdressNo"=AdressNo AND "StreetAdress1"=StreetAdress1 AND "StreetAdress2"=StreetAdress2 AND "City_id"= City AND "State_id"=State  AND "Country_id"=Country AND "PinCode"=PinCode;
+INSERT INTO "UserAdress_useradresslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

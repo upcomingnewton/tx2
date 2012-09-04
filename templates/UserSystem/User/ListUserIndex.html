@@ -1,0 +1,41 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}List Users{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">List Users</div>
+</div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:50px;">UserId</th>
+        <th scope="col" style="width:100px;">Email</th>
+        <th scope="col" style="width:250px;">Fname</th>
+        <th scope="col" style="width:250px;">Mname</th>
+        <th scope="col" style="width:250px;">Lname</th>
+        <th scope="col" style="width:250px;">Dob</th>
+        <th scope="col" style="width:250px;">Entity</th>
+        <th scope="col" style="width:250px;">Group</th>
+        <th scope="col" style="width:250px;">State</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in UserList %}
+        <form method="post" action="/user/edit/{{user.id}}/post/">
+        {% csrf_token %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.UserEmail }}</td>
+          <td>{{ user.UserFirstName }}</td>
+          <td>{{ user.UserMiddleName }}</td>
+          <td>{{ user.UserLastName }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.Entity.EntityName }}</td>
+          <td>{{ user.Group.GroupName }}</td>
+          <td>{{ user.State.StateName }}</td>
+        </tr>
+        </form>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

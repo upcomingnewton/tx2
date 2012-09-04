@@ -1,0 +1,73 @@
+--SELECT * FROM UserAdress_UserContactInfo_Update(1,'MobileNo1UP','AltEmail2UP','FatherNameUP','FatherContactNoUP','MotherNameUP','MotherContactNoUP',2,2,'SYS_PER_INSERT',1,'test');
+
+CREATE OR REPLACE FUNCTION UserAdress_UserContactInfo_Update(
+_User integer,
+MobileNo character varying(20),
+AltEmail character varying(500),
+FatherName character varying(310),
+FatherContactNo character varying(20),
+MotherName  character varying(310),
+MotherContactNo  character varying(20),
+ParmanentAdress  integer,
+PresentAdress integer,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+)RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+IF NOT EXISTS ( SELECT id FROM "UserAdress_usercontactinfo" WHERE "User_id"= _User ) THEN 
+	rescode := 236;
+	result := -2;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'usercontactinfo','UserAdress');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+
+UPDATE "UserAdress_usercontactinfo"
+SET  "MobileNo"=MobileNo, 
+     "AltEmail"=AltEmail, 
+     "FatherName"=FatherName, 
+     "FatherContactNo"=FatherContactNo, 
+     "MotherName"=MotherName, 
+     "MotherContactNo"=MotherContactNo, 
+     "ParmanentAdress"=ParmanentAdress, 
+     "PresentAdress"=PresentAdress
+WHERE "User_id" = _User;
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 237;
+	result := -1;
+        RETURN;
+END IF;
+
+
+SELECT id INTO rescode FROM "UserAdress_usercontactinfo" WHERE "User_id"= _User;
+INSERT INTO "UserAdress_useradresslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+	rescode := 240;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

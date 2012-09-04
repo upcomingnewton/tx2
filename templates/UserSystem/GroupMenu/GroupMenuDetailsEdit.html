@@ -1,0 +1,47 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}GroupMenu{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">GroupMenu</div>
+  </div>
+  
+
+
+      {% if ParentGroupMenuList|length %}
+        {% for ParentGroupMenuObj in ParentGroupMenuList %}
+          <table id="tablecss" >
+          <thead>
+           <tr>
+              <th scope="col" style="width:50px;">SELECT</th>
+              <th scope="col" style="width:100px;">MenuName</th>
+              <th scope="col" style="width:150px;">MenuUrl</th>
+              <th scope="col" style="width:50px;">Permission</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="col" style="width:50px;"></th>
+            <td style="color:red;width:100px;">{{ ParentGroupMenuObj.Menu.MenuName }}</td>
+            <td style="color:red;width:150px;">{{ ParentGroupMenuObj.Menu.MenuUrl }}</td>
+            <td style="color:red;width:50px;">{{ ParentGroupMenuObj.Permission }}</td>
+          </tr>
+          {% for GroupMenuObj in GroupMenuObjList %}
+            {% if ParentGroupMenuObj.Menu.id == GroupMenuObj.Menu.MenuPid %}
+              <tr>
+                <th scope="col" style="width:50px;"><input type="checkbox" name="{{GroupMenuObj.Menu.id}}" /> </th>
+                <td style="width:100px;">{{ GroupMenuObj.Menu.MenuName }}</td>
+                <td style="width:150px;">{{ GroupMenuObj.Menu.MenuUrl }}</td>
+                <td style="width:50px;">{{ GroupMenuObj.Permission }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    
+
+{% endblock %}

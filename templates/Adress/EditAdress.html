@@ -1,0 +1,197 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Edit Adress{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Edit Adress</div>
+</div>
+{% if Permanent != 'Null'%}
+<form action="/adress/adress/edit/post/" method="post">
+{% else %}
+<form action="/adress/adress/add/post/" method="post">
+{% endif %}
+{% csrf_token %}
+  <!-- =============================================================  -->
+  <div class="row">
+    <span class="messageclass">Permanent Adress</span>
+  </div>
+  <div class="row">
+    <div class="labelclass" >DoorNo (50 chars)</div>
+    <div class="widgetclass" ><input type="text" name="PermanentAdressNo" class="widget" {% if Permanent != 'Null'%} value="{{Permanent.AdressNo}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Street Adress 1</div>
+    <div class="widgetclass" ><input type="text" name="PermanentStreetAdress1" class="widget" {% if Permanent != 'Null'%} value="{{Permanent.StreetAdress1}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Street Adress 2</div>
+    <div class="widgetclass" ><input type="text" name="PermanentStreetAdress2" class="widget" {% if Permanent != 'Null'%} value="{{Permanent.StreetAdress2}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >City</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PermanentCity" class="widget" >
+           {% if Permanent != 'Null'%}
+            {% for city in CityList %}
+              {% if Permanent.City.id == city.id %}
+                <option value="{{city.id}}" selected="selected">{{city.CityName}}</option>
+              {% else %}
+                <option value="{{city.id}}">{{city.CityName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for city in CityList %}
+              <option value="{{city.id}}">{{city.CityName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >State</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PermanentState" class="widget" >
+           {% if Permanent != 'Null'%}
+            {% for state in StateList %}
+              {% if Permanent.State.id == state.id %}
+                <option value="{{state.id}}" selected="selected">{{state.StateName}}</option>
+              {% else %}
+                <option value="{{state.id}}">{{state.StateName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for state in StateList %}
+              <option value="{{state.id}}">{{state.StateName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Country</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PermanentCountry" class="widget" >
+           {% if Permanent != 'Null'%}
+            {% for country in CountryList %}
+              {% if Permanent.Country.id == country.id %}
+                <option value="{{country.id}}" selected="selected">{{country.CountryName}}</option>
+              {% else %}
+                <option value="{{country.id}}">{{country.CountryName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for country in CountryList %}
+              <option value="{{country.id}}">{{country.CountryName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >PinCode</div>
+    <div class="widgetclass" ><input type="text" name="PermanentPinCode" class="widget"  {% if Permanent != 'Null'%} value="{{Permanent.PinCode}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <!-- =============================================================  -->
+  <div class="row">
+    <span class="messageclass">Present Adress</span>
+  </div>
+  <div class="row">
+    <div class="labelclass" >DoorNo (50 chars)</div>
+    <div class="widgetclass" ><input type="text" name="PresentAdressNo" class="widget" {% if Present != 'Null'%} value="{{Present.AdressNo}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Street Adress 1</div>
+    <div class="widgetclass" ><input type="text" name="PresentStreetAdress1" class="widget" {% if Present != 'Null'%} value="{{Present.StreetAdress1}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Street Adress 2</div>
+    <div class="widgetclass" ><input type="text" name="PresentStreetAdress2" class="widget" {% if Present != 'Null'%} value="{{Present.StreetAdress2}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >City</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PresentCity" class="widget" >
+           {% if Present != 'Null'%}
+            {% for city in CityList %}
+              {% if Present.City.id == city.id %}
+                <option value="{{city.id}}" selected="selected">{{city.CityName}}</option>
+              {% else %}
+                <option value="{{city.id}}">{{city.CityName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for city in CityList %}
+              <option value="{{city.id}}">{{city.CityName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >State</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PresentState" class="widget" >
+           {% if Present != 'Null'%}
+            {% for state in StateList %}
+              {% if Present.State.id == state.id %}
+                <option value="{{state.id}}" selected="selected">{{state.StateName}}</option>
+              {% else %}
+                <option value="{{state.id}}">{{state.StateName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for state in StateList %}
+              <option value="{{state.id}}">{{state.StateName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Country</div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="PresentCountry" class="widget" >
+           {% if Present != 'Null'%}
+            {% for country in CountryList %}
+              {% if Present.Country.id == country.id %}
+                <option value="{{country.id}}" selected="selected">{{country.CountryName}}</option>
+              {% else %}
+                <option value="{{country.id}}">{{country.CountryName}}</option>
+              {% endif %}
+            {% endfor %}
+           {% else %}
+            <option value="-1">SELECT</option>
+            {% for country in CountryList %}
+              <option value="{{country.id}}">{{country.CountryName}}</option>
+            {% endfor %}
+           {% endif %}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >PinCode</div>
+    <div class="widgetclass" ><input type="text" name="PresentPinCode" class="widget"  {% if Present != 'Null'%} value="{{Present.PinCode}}" {% else %} value="--" {% endif %} /></div>
+  </div>
+  <!-- =============================================================  -->
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}
