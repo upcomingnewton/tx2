@@ -19,6 +19,9 @@ class ExtraAcademicInfo:
         Constructor
         '''
         self.UserProfileLogger=logging.getLogger(LOGGER_USER_PROFILE)
+        def MakeExceptionMessage(self,msg):
+          return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
+  
   def InsertExtraAcademicInfoType(self,ExtraAcademicInfoTypeName,by_user,ip):
         try:
             details={'ExtraAcademicInfoTypeName':ExtraAcademicInfoTypeName,
@@ -107,7 +110,7 @@ class ExtraAcademicInfo:
           return (-2,self.MakeExceptionMessage(str(ex)))
           
   
-  def InsertExtraAcademicInfoDetails(self,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
+  def InsertExtraAcademicInfoDetails(self,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
             details={'User_id':User_id,
                      'Title':Title,
@@ -116,7 +119,7 @@ class ExtraAcademicInfo:
                      'Organisation':Organisation,
                      'Designation':Designation,
                      'Details':Details,
-                     'PlaceOfWork_id':PlaceOfWork_id,
+                     'PlaceOfWork':PlaceOfWork,
                      'FunctionalArea':FunctionalArea,
                      'References':References,
                      'Summary':Summary,
@@ -136,7 +139,7 @@ class ExtraAcademicInfo:
           return (-2,self.MakeExceptionMessage(str(ex)))
         
   
-  def UpdateExtraAcademicInfoDetails(self,_Id,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork_id,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
+  def UpdateExtraAcademicInfoDetails(self,_Id,User_id,Title,Start,End,Organisation,Designation,Details,PlaceOfWork,FunctionalArea,ExtraAcadmicInfoType_id,References,Summary,by_user,ip):
         try:
             _Id=int(_Id)
             obj=ExtraAcademicInfoDetails.objects.get(id=_Id);
@@ -153,7 +156,7 @@ class ExtraAcademicInfo:
                      'Organisation':Organisation,
                      'Designation':Designation,
                      'Details':Details,
-                     'PlaceOfWork_id':PlaceOfWork_id,
+                     'PlaceOfWork':PlaceOfWork,
                      'FunctionalArea':FunctionalArea,
                      'References':References,
                      'Summary':Summary,
@@ -163,6 +166,25 @@ class ExtraAcademicInfo:
                      'by_user':by_user,
                      'ip':ip,};
             result=DBExtraAcademicInfo.DBExtraAcademicInfoDetailsUpdate(details);
+            return result
+        except Exception, ex:
+          frame = inspect.currentframe()
+          args, _, _, values = inspect.getargvalues(frame)
+          msg = ''
+          for i in args:
+            msg += "[%s : %s]" % (i,values[i])
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          return (-2,self.MakeExceptionMessage(str(ex)))
+  def DeleteExtraAcademicInfoDetails(self,_Id,UserId,by_user,ip):
+        try:
+            _Id=int(_Id)
+            
+            details={'Id':_Id,
+                     'User_id':UserId,
+                     'RequestedOperation':'SYS_PER_DELETE',
+                     'by_user':by_user,
+                     'ip':ip,};
+            result=DBExtraAcademicInfo.DBExtraAcademicInfoDetailsDelete(details);
             return result
         except Exception, ex:
           frame = inspect.currentframe()

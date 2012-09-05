@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ExtraAcademicInfoDetailsUpdate(
+CREATE OR REPLACE FUNCTION ExtraAcademicInfoDetailsDelete(
 _Id integer,
 _User_id integer,
 RequestedOperation VARCHAR,
@@ -31,7 +31,7 @@ END IF;
 
 Update "UserProfile_extraacademicinfodetails"
 set
-"State_id"=varrec.varsci, 
+"State_id"=varrec.varsci 
 WHERE Id=_Id;
 
 GET DIAGNOSTICS temp := ROW_COUNT;
@@ -41,8 +41,7 @@ IF temp <> 1 THEN
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "UserProfile_extraacademicinfodetails" WHERE "User_id"=_User_id and "Start"=_Start and "Organisation"=_Organisation;
-
+rescode := _Id;
 
 INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
 VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'DELETE','VALUE Deleted');

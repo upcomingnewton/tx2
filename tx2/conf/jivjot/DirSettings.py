@@ -1,4 +1,4 @@
-from tx2.conf.GlobalSettings.DirSettings import GLOBAL_STATICFILES_DIRS, GLOBAL_TEMPLATE_DIRS
+from settings import GLOBAL_STATICFILES_DIRS, GLOBAL_TEMPLATE_DIRS
 UserPath = "/home/jivjot/Dropbox/Eclipse_workspace/"
 
 # Additional locations of static files

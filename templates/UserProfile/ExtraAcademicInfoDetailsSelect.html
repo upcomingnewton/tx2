@@ -1,0 +1,41 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Project Details Listing{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="labelclass" ></div>
+    <div class="widgetclass" ><a href="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoDetails/"class="widget" >Create A New Project Entry</a></div>
+  </div>
+  <div class="row">
+    <div class="formtitle">Lisiting all Project of the User</div>
+  </div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px;">Sr.</th>
+        <th scope="col" style="width:100px;">Project Title</th>
+        <th scope="col" style="width:150px;">Start Date</th>
+        <th scope="col" style="width:20px;">End Date</th>
+        <th scope="col" style="width:50px;">View</th>
+        <th scope="col" style="width:100px;">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if ObjList|length %}
+        {% for Obj in ObjList %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ Obj.Title }}</td>
+            <td>{{ Obj.Start.month}}/{{Obj.Start.year }}</td>
+            <td>{{ Obj.End.month}}/{{Obj.End.year }}</td>
+            
+            <td><a href="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoDetails/?v={{Obj.id}}">View</td>
+            <td><a href="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoDetails/delete?v={{Obj.id}}">Delete</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

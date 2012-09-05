@@ -6,7 +6,7 @@ _End timestamp without time zone,
 _Organisation varchar,
 _Designation varchar,
 _Details varchar,
-_PlaceOfWork_id integer,
+_PlaceOfWork varchar,
 _FunctionalArea varchar,
 _ExtraAcadmicInfoType_id integer,
 _References varchar,
@@ -39,10 +39,10 @@ END IF;
 
 INSERT INTO "UserProfile_extraacademicinfodetails"(
              "User_id", "Title", "Start", "End", "Organisation", "Designation", 
-            "Details", "PlaceOfWork_id", "FunctionalArea", "ExtraAcadmicInfoType_id", 
+            "Details", "PlaceOfWork", "FunctionalArea", "ExtraAcadmicInfoType_id", 
             "State_id", "References", "Summary")
     VALUES (_User_id, _Title, _Start, _End, _Organisation, _Designation, 
-            _Details, _PlaceOfWork_id, _FunctionalArea, _ExtraAcadmicInfoType_id, 
+            _Details, _PlaceOfWork, _FunctionalArea, _ExtraAcadmicInfoType_id, 
             varrec.varsci, _References, _Summary);
 
 GET DIAGNOSTICS temp := ROW_COUNT;

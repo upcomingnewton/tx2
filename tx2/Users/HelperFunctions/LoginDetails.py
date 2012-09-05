@@ -8,6 +8,8 @@ LOGGERUSER = logging.getLogger(LoggerUser)
 
 def GetLoginDetails(request):
     encdec  = Encrypt()
+  # return {"userid":1,"groupid":1,"loginid": 1,"fname":1,}
+    
     try:
         if "details" in request.session.keys():
             token = request.session["details"]
