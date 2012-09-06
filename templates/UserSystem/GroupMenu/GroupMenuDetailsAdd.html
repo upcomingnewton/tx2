@@ -15,7 +15,7 @@
           <table id="tablecss" >
           <thead>
            <tr>
-              <th scope="col" style="width:20px;">SELECT</th>
+              <th scope="col" style="width:50px;">SELECT</th>
               <th scope="col" style="width:150px;">PUBLIC</th>
               <th scope="col" style="width:150px;">MenuName</th>
               <th scope="col" style="width:150px;">MenuUrl</th>
@@ -23,8 +23,8 @@
           </thead>
           <tbody>
           <tr>
-            <th scope="col" style="width:20px;"></th>
-            <th scope="col" style="width:150px;"></th>
+            <td scope="col" style="width:50px;"><input type="checkbox" id="MenuCheck_{{ParentMenuObj.id}}" name="MenuList" value="{{ParentMenuObj.id}}" readonly="true" /></td>
+            <td scope="col" style="width:150px;"><input type="hidden"  name="Perm_{{ParentMenuObj.id}}" value="1" /></td>
             <td scope="col" style="color:red;width:150px;">{{ ParentMenuObj.MenuName }}</td>
             <td scope="col" style="color:red;width:150px;">{{ ParentMenuObj.MenuUrl }}</td>
           </tr>
@@ -33,14 +33,16 @@
               <tr>
                 <td style="width:20px;"><input type="checkbox" id="MenuCheck_{{MenuObj.id}}" name="MenuList" value="{{MenuObj.id}}" /> </td>
                 <td style="width:150px;">
-                  <input type="radio" name="Perm_{{MenuObj.id}}" value="1" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}})" />
-                  <input type="radio" name="Perm_{{MenuObj.id}}" value="-1" checked="true" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}})"/>
+                  <input type="radio" name="Perm_{{MenuObj.id}}" value="1" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}},{{MenuObj.MenuPid}})" />
+                  <input type="radio" name="Perm_{{MenuObj.id}}" value="-1" checked="true" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}},{{MenuObj.MenuPid}})"/>
                 </td>
                 <script type="text/javascript">
-                  function changeCheckButton(id)
+                  function changeCheckButton(id,pid)
                   {
                     eleid = "MenuCheck_" + id
+                    parid = "MenuCheck_" + pid
                     document.getElementById(eleid).checked = true;
+                    document.getElementById(parid).checked = true;
                   }
                 </script>
                 <td style="width:100px;">{{ MenuObj.MenuName }}</td>

@@ -52,10 +52,12 @@ def GroupMenuDetailsIndex(HttpRequest,GroupID):
   try:
     GroupMenuFnxobj = GroupMenuFnx()
     GroupMenuObjList = GroupMenuFnxobj.getGroupMenuObjectByGroupID(int(GroupID))
+    print GroupMenuObjList
     if GroupMenuObjList[0] != 1:
       messages.error(HttpRequest,"ERROR " + str(GroupMenuObjList[1]))
       return HttpResponseRedirect('/message/')
     ParentGroupMenuList  = GroupMenuFnxobj.getParentGroupMenuObjectByGroupID(int(GroupID))
+    print ParentGroupMenuList
     if ParentGroupMenuList[0] != 1:
       messages.error(HttpRequest,"ERROR " + str(ParentGroupMenuList[1]))
       return HttpResponseRedirect('/message/')
