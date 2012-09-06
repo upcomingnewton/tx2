@@ -1,14 +1,37 @@
-<html>
-<body>
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Medical Info{% endblock %}</title>
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Medical Info</div>
+</div>
+<div class="rowbig">
+  <span class="messageclass" >If you find anything missing, please bring it to <br /> our notice ( thoughtxplore@gmail.com )</span>
+</div>
 <form name="MedicalInfoInput" action="/userprofile/UserProfileMisc/MedicalInfo/new" method="post">
 {% csrf_token %}
-User_id: <input type="text" name="User_id" /><br/>
-Height: <input type="text" name="Height" /><br/>
-Weight: <input type="text" name="Weight" /><br/>
-LeftEye: <input type="text" name="LeftEye" /><br/>
-RightEye: <input type="text" name="RightEye" /><br/>
-DisabilityInfo: <input type="text" name="DisabilityInfo" /><br/>
-<input type="submit" value="Submit" />
+{% if MedicalInfoStatus %}
+  <input type="hidden" value="{{MedicalInfoStatus.id}}" name="Id">
+{% endif %}
+<div class="row">
+    <div class="labelclass" >Height (in cm): </div>
+    <div class="widgetclass" ><input type="text" name="Height" class="widget" {% if MedicalInfoStatus %} value="{{MedicalInfoStatus.Height}}"{% endif %}/> </div>
+</div>
+<div class="row">
+    <div class="labelclass" >Weight (in kg): </div>
+    <div class="widgetclass" ><input type="text" name="Weight" class="widget" {% if MedicalInfoStatus %} value="{{MedicalInfoStatus.Weight}}"{% endif %}/> </div>
+</div>
+<div class="row">
+    <div class="labelclass" >Left Eye: </div>
+    <div class="widgetclass" ><input type="text" name="LeftEye" class="widget" {% if MedicalInfoStatus %} value="{{MedicalInfoStatus.LeftEye}}"{% endif %}/> </div>
+</div>
+<div class="row">
+    <div class="labelclass" >Right Eye: </div>
+    <div class="widgetclass" ><input type="text" name="RightEye" class="widget" {% if MedicalInfoStatus %} value="{{MedicalInfoStatus.RightEye}}"{% endif %}/> </div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >Disability Info: </div>
+    <div class="widgetclass" ><textarea name="DisabilityInfo">{% if MedicalInfoStatus %}{{MedicalInfoStatus.DisabilityInfo}}{% endif %}</textarea> </div>
+</div>
+<center><input type="submit" value="Save" /><center>
 </form>
-</body>
-</html>
+{% endblock %}

@@ -95,5 +95,11 @@ urlpatterns = patterns('',
                        url(r'^UserProfileMisc/MedicalInfo/delete$','UserProfile.Views.UserProfileMisc.MedicalInfoDelete'),
                        url(r'^UserProfileMisc/MedicalInfo/update$','UserProfile.Views.UserProfileMisc.MedicalInfoUpdate'),
                        url(r'^UserProfileMisc/MedicalInfo/$','UserProfile.Views.UserProfileMisc.MedicalInfoIndex'),
+                      #LegalInfo
+                       url(r'^UserProfileMisc/LegalInfo/new$','UserProfile.Views.UserProfileMisc.LegalInfoInsert'),
+                       url(r'^UserProfileMisc/LegalInfo/View$','UserProfile.Views.UserProfileMisc.LegalInfoSelect'),
+                       url(r'^UserProfileMisc/LegalInfo/delete$','UserProfile.Views.UserProfileMisc.LegalInfoDelete'),
+                       url(r'^UserProfileMisc/LegalInfo/update$','UserProfile.Views.UserProfileMisc.LegalInfoUpdate'),
+                       url(r'^UserProfileMisc/LegalInfo/$','UserProfile.Views.UserProfileMisc.LegalInfoIndex'),
                       
                       )
