@@ -163,6 +163,13 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
   padding:0px;
 }
 
+.formtitle
+{
+	font-size:20px;
+	font-family:sans-serif;
+	color:#cc0000;
+}
+
 /*#container #respond input{*/
 /*	width:170px;*/
 /*	padding:2px;*/

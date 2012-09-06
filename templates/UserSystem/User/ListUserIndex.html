@@ -17,6 +17,9 @@
         <th scope="col" style="width:250px;">Entity</th>
         <th scope="col" style="width:250px;">Group</th>
         <th scope="col" style="width:250px;">State</th>
+        <th scope="col" style="width:250px;">Perm</th>
+        <th scope="col" style="width:250px;">Logs</th>
+        <th scope="col" style="width:250px;">Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -26,13 +29,43 @@
         <tr>
           <td>{{ user.id }}</td>
           <td>{{ user.UserEmail }}</td>
-          <td>{{ user.UserFirstName }}</td>
-          <td>{{ user.UserMiddleName }}</td>
-          <td>{{ user.UserLastName }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.Entity.EntityName }}</td>
-          <td>{{ user.Group.GroupName }}</td>
+          <td><input type="text" name="UserFirstName" value="{{ user.UserFirstName }}" /></td>
+          <td><input type="text" name="UserMiddleName" value="{{ user.UserMiddleName }}" /></td>
+          <td><input type="text" name="UserLastName" value="{{ user.UserLastName }}" /></td>
+          <td><input type="text" name="DOB" value="{{user.UserBirthDate.day}}/{{user.UserBirthDate.month}}/{{user.UserBirthDate.year}}" /></td>
+          <td>
+            <select name="UserEntity">
+            {% for e in EntityList %}
+              {% if e.id ==  user.Entity.id %}
+                <option value="{{e.id}}"  selected="selected">{{e.EntityName}}</option>
+              {% else %}
+                <option value="{{e.id}}">{{e.EntityName}}</option>
+              {% endif %}
+            {% endfor %}
+            </select>
+          </td>
+          <td>
+          <select name="GroupID">
+            {% for g in GroupList %}
+              {% if g.id ==  user.Group.id %}
+                <option value="{{g.id}}"  selected="selected">{{g.GroupName}}</option>
+              {% else %}
+                <option value="{{g.id}}">{{g.GroupName}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          </td>
           <td>{{ user.State.StateName }}</td>
+          <td>
+          <select name="OperationRequest">
+            <option value="-1">SELECT</option>
+            {% for p in PermList %}
+              <option value="{{p.id}}">{{p.PermissionName}}</option>
+            {% endfor %}
+          </select>
+          </td>
+          <td><input type="text" name="LogsDesc" /></td>
+          <td><input type="submit" id="submit" value="SUBMIT" /></td>
         </tr>
         </form>
       {% endfor %}
