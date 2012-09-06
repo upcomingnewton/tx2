@@ -1,18 +1,6 @@
 CREATE OR REPLACE FUNCTION ExtraAcademicInfoDetailsUpdate(
 _Id integer,
 _User_id integer,
-_Title varchar,
-_Start timestamp without time zone,
-_End timestamp without time zone,
-_Organisation varchar,
-_Designation varchar,
-_Details varchar,
-_PlaceOfWork_id integer,
-_FunctionalArea varchar,
-_ExtraAcadmicInfoType_id integer,
-_References varchar,
-_Summary varchar,
-prev varchar,
 RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
@@ -26,17 +14,13 @@ BEGIN
 temp := 0;
 
 IF NOT EXISTS ( SELECT id FROM "UserProfile_extraacademicinfodetails" WHERE id=_Id) THEN
-	result := -4;
+	result := 2;
   	rescode := 161;
 	RETURN;
 END IF;
 
 
-IF EXISTS ( SELECT id FROM "UserProfile_extraacademicinfodetails" WHERE "User_id"=_User_id and "Start"=_Start and "Organisation"=_Organisation and id<>_Id) THEN
-	result := -3;
-  	rescode := 200;
-	RETURN;
-END IF;
+
 
 SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'extraacademicinfodetails','UserProfile');
 IF varrec.result <> 1 THEN
@@ -47,19 +31,7 @@ END IF;
 
 Update "UserProfile_extraacademicinfodetails"
 set
-"User_id"=_User_id,
-"Title"=_Title,
-"Start"=_Start, 
-"End"=_End, 
-"Organisation"=_Organisation,
-"Designation"=_Designation,
-"Details"=_Details, 
-"PlaceOfWork_id"=_PlaceOfWork_id, 
-"FunctionalArea"=_FunctionalArea, 
-"ExtraAcadmicInfoType_id"=_ExtraAcadmicInfoType_id,
 "State_id"=varrec.varsci, 
-"References"=_References, 
-"Summary"=_Summary
 WHERE Id=_Id;
 
 GET DIAGNOSTICS temp := ROW_COUNT;
@@ -73,7 +45,7 @@ SELECT id INTO rescode FROM "UserProfile_extraacademicinfodetails" WHERE "User_i
 
 
 INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
-VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'UPDATE',prev);
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'DELETE','VALUE Deleted');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;

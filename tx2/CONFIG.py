@@ -17,6 +17,7 @@ LOGGER_MENU = ''
 LOGGER_QUERY = 'LOGGER_QueryLogger'
 LOGGER_UserReg = 'LOGGER_UserReg'
 LOGGER_COMMUNICATION = 'LOGGER_Communication'
+LoggerAdress = 'LOGGER_Adress'
 
 LOGGER_USER_PROFILE = 'LOGGER_UserProfile'
 LOGGER_ADRESS = 'LOGGER_Adress'

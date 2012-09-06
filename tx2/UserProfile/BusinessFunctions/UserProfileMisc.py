@@ -32,6 +32,6 @@ class UserProfileMisc:
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         

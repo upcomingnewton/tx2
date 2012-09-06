@@ -7,9 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
-from tx2.CONFIG import  SESSION_MESSAGE, LoggerSecurity
+from tx2.CONFIG import  LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.Marks import Marks
 from tx2.UserProfile.models import Board, SessionType, StudentDetails
 from tx2.UserProfile.models import DegreeType
@@ -19,7 +18,8 @@ from django.contrib import messages
 from tx2.Misc.MIscFunctions1 import is_integer
 import logging
 import inspect
-Logger_User = logging.getLogger(LoggerSecurity)
+import datetime
+Logger_User = logging.getLogger(LOGGER_USER_PROFILE)
 
 
 def BoardIndex(HttpRequest):
@@ -43,13 +43,11 @@ def MarksIndex(HttpRequest):
         return HttpResponseRedirect('/userprofile/UserProfile/StudentDetails/')
 
 def BoardInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -57,29 +55,28 @@ def BoardInsert(HttpRequest):
         if "BoardName" in HttpRequest.POST:
             BoardName=HttpRequest.POST["BoardName"]
         else:
-            msglist.append("Error fetching data from form for BoardName");
+            messages.error(HttpRequest,"Error fetching data from form for BoardName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.InsertBoard(BoardName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 def DegreeTypeInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -87,14 +84,13 @@ def DegreeTypeInsert(HttpRequest):
         if "DegreeTypeName" in HttpRequest.POST:
             DegreeTypeName=HttpRequest.POST["DegreeTypeName"]
         else:
-            msglist.append("Error fetching data from form for DegreeTypeName");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeTypeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.InsertDegreeType(DegreeTypeName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -106,13 +102,11 @@ def DegreeTypeInsert(HttpRequest):
       return HttpResponseRedirect('/message/')
       
 def DegreeInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -120,14 +114,13 @@ def DegreeInsert(HttpRequest):
         if "DegreeName" in HttpRequest.POST:
             DegreeName=HttpRequest.POST["DegreeName"]
         else:
-            msglist.append("Error fetching data from form for DegreeName");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.InsertDegree(DegreeName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -139,13 +132,11 @@ def DegreeInsert(HttpRequest):
       return HttpResponseRedirect('/message/')
       
 def SessionTypeInsert(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -153,14 +144,13 @@ def SessionTypeInsert(HttpRequest):
         if "SessionTypeName" in HttpRequest.POST:
             SessionTypeName=HttpRequest.POST["SessionTypeName"]
         else:
-            msglist.append("Error fetching data from form for SessionTypeName");
+            messages.error(HttpRequest,"Error fetching data from form for SessionTypeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.InsertSessionType(SessionTypeName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -263,6 +253,11 @@ def MarksPostSave(HttpRequest):
             messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionStartYear')
             flag=-1;
         if(flag!=-1):
+<<<<<<< HEAD
+=======
+#          datetime.date.
+          #datetime.date(int(SessionStartYear),int(SessionStartMonth),1)
+>>>>>>> ada8d97f1042e1607cee72ece4192a798375a356
           SessionStart= "1 "+SessionStartMonth+" "+SessionStartYear; 
         if "SessionEndMonth" in HttpRequest.POST:
             SessionEndMonth=HttpRequest.POST["SessionEndMonth"]
@@ -371,13 +366,11 @@ def MarksPostSave(HttpRequest):
 
       
 def MarksUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -386,77 +379,76 @@ def MarksUpdate(HttpRequest):
         if "Id" in HttpRequest.POST:
             Id=HttpRequest.POST["Id"]
         else:
-            msglist.append("Error fetching data from form for SessionStart");
+            messages.error(HttpRequest,"Error fetching data from form for SessionStart");
             flag=-1;
         
         if "SessionStart" in HttpRequest.POST:
             SessionStart=HttpRequest.POST["SessionStart"]
         else:
-            msglist.append("Error fetching data from form for SessionStart");
+            messages.error(HttpRequest,"Error fetching data from form for SessionStart");
             flag=-1;
         if "SessionEnd" in HttpRequest.POST:
             SessionEnd=HttpRequest.POST["SessionEnd"]
         else:
-            msglist.append("Error fetching data from form for SessionEnd");
+            messages.error(HttpRequest,"Error fetching data from form for SessionEnd");
             flag=-1;
         if "SessionNumber" in HttpRequest.POST:
             SessionNumber=HttpRequest.POST["SessionNumber"]
         else:
-            msglist.append("Error fetching data from form for SessionNumber");
+            messages.error(HttpRequest,"Error fetching data from form for SessionNumber");
             flag=-1;
         if "SessionType" in HttpRequest.POST:
             SessionType=HttpRequest.POST["SessionType"]
         else:
-            msglist.append("Error fetching data from form for SessionType");
+            messages.error(HttpRequest,"Error fetching data from form for SessionType");
             flag=-1;
         if "TotaMarks" in HttpRequest.POST:
             TotaMarks=HttpRequest.POST["TotaMarks"]
         else:
-            msglist.append("Error fetching data from form for TotaMarks");
+            messages.error(HttpRequest,"Error fetching data from form for TotaMarks");
             flag=-1;
         if "SecuredMarks" in HttpRequest.POST:
             SecuredMarks=HttpRequest.POST["SecuredMarks"]
         else:
-            msglist.append("Error fetching data from form for SecuredMarks");
+            messages.error(HttpRequest,"Error fetching data from form for SecuredMarks");
             flag=-1;
         if "TotalReappears" in HttpRequest.POST:
             TotalReappears=HttpRequest.POST["TotalReappears"]
         else:
-            msglist.append("Error fetching data from form for TotalReappears");
+            messages.error(HttpRequest,"Error fetching data from form for TotalReappears");
             flag=-1;
         if "ReappearsRemaining" in HttpRequest.POST:
             ReappearsRemaining=HttpRequest.POST["ReappearsRemaining"]
         else:
-            msglist.append("Error fetching data from form for ReappearsRemaining");
+            messages.error(HttpRequest,"Error fetching data from form for ReappearsRemaining");
             flag=-1;
         if "DegreeType" in HttpRequest.POST:
             DegreeType=HttpRequest.POST["DegreeType"]
         else:
-            msglist.append("Error fetching data from form for DegreeType");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeType");
             flag=-1;
         if "Board" in HttpRequest.POST:
             Board=HttpRequest.POST["Board"]
         else:
-            msglist.append("Error fetching data from form for Board");
+            messages.error(HttpRequest,"Error fetching data from form for Board");
             flag=-1;
         if "Degree" in HttpRequest.POST:
             Degree=HttpRequest.POST["Degree"]
         else:
-            msglist.append("Error fetching data from form for Degree");
+            messages.error(HttpRequest,"Error fetching data from form for Degree");
             flag=-1;
         if "UserId" in HttpRequest.POST:
             UserId=HttpRequest.POST["UserId"]
         else:
-            msglist.append("Error fetching data from form for UserId");
+            messages.error(HttpRequest,"Error fetching data from form for UserId");
             flag=-1;
                             
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         
         result=MarksObj.UpdateMarks(Id,SessionStart, SessionEnd, SessionNumber, SessionType, TotaMarks, SecuredMarks, TotalReappears, ReappearsRemaining, DegreeType, Board, Degree, UserId,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -468,13 +460,10 @@ def MarksUpdate(HttpRequest):
       return HttpResponseRedirect('/message/')
 
 def BoardSelect(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         mylist=Board.objects.all()
@@ -492,36 +481,33 @@ def BoardSelect(HttpRequest):
       
       
 def DegreeTypeSelect(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         mylist=DegreeType.objects.all()
         
         return render_to_response("UserProfile/ViewData.html",{'mydata':mylist,})
         
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 
 def BoardDelete(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -529,14 +515,13 @@ def BoardDelete(HttpRequest):
         if "BoardId" in HttpRequest.POST:
             BoardId=HttpRequest.POST["BoardId"]
         else:
-            msglist.append("Error fetching data from form for BoardId");
+            messages.error(HttpRequest,"Error fetching data from form for BoardId");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.DeleteBoard(BoardId, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -548,13 +533,11 @@ def BoardDelete(HttpRequest):
       return HttpResponseRedirect('/message/')
 
 def DegreeTypeDelete(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -562,14 +545,13 @@ def DegreeTypeDelete(HttpRequest):
         if "DegreeTypeId" in HttpRequest.POST:
             DegreeTypeId=HttpRequest.POST["DegreeTypeId"]
         else:
-            msglist.append("Error fetching data from form for DegreeTypeId");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeTypeId");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.DeleteDegreeType(DegreeTypeId, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -582,13 +564,11 @@ def DegreeTypeDelete(HttpRequest):
 
 
 def BoardUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -596,35 +576,34 @@ def BoardUpdate(HttpRequest):
         if "BoardName" in HttpRequest.POST:
             BoardName=HttpRequest.POST["BoardName"]
         else:
-            msglist.append("Error fetching data from form for BoardName");
+            messages.error(HttpRequest,"Error fetching data from form for BoardName");
             flag=-1;
         if "BoardId" in HttpRequest.POST:
             BoardId=HttpRequest.POST["BoardId"]
         else:
-            msglist.append("Error fetching data from form for BoardId");
+            messages.error(HttpRequest,"Error fetching data from form for BoardId");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.UpdateBoard(BoardId,BoardName, logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
-    except Exception as inst:
-        print type(inst)     # the exception instance
-        print inst.args      # arguments stored in .args
-        print inst           # __str__ allows args to printed directly
-        x, y = inst.args
-        print 'x =', x
-        print 'y =', y
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
 
 def DegreeTypeUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -632,19 +611,18 @@ def DegreeTypeUpdate(HttpRequest):
         if "DegreeTypeId" in HttpRequest.POST:
             DegreeTypeId=HttpRequest.POST["DegreeTypeId"]
         else:
-            msglist.append("Error fetching data from form for DegreeTypeId");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeTypeId");
             flag=-1;
         if "DegreeTypeName" in HttpRequest.POST:
             DegreeTypeName=HttpRequest.POST["DegreeTypeName"]
         else:
-            msglist.append("Error fetching data from form for DegreeTypeName");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeTypeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.UpdateDegreeType(DegreeTypeId, DegreeTypeName,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -657,13 +635,11 @@ def DegreeTypeUpdate(HttpRequest):
          
         
 def DegreeUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -671,19 +647,18 @@ def DegreeUpdate(HttpRequest):
         if "DegreeId" in HttpRequest.POST:
             DegreeId=HttpRequest.POST["DegreeId"]
         else:
-            msglist.append("Error fetching data from form for DegreeId");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeId");
             flag=-1;
         if "DegreeName" in HttpRequest.POST:
             DegreeName=HttpRequest.POST["DegreeName"]
         else:
-            msglist.append("Error fetching data from form for DegreeName");
+            messages.error(HttpRequest,"Error fetching data from form for DegreeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.UpdateDegree(DegreeId, DegreeName,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
@@ -695,13 +670,11 @@ def DegreeUpdate(HttpRequest):
       return HttpResponseRedirect('/message/')
         
 def SessionTypeUpdate(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
     print logindetails
     if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+        messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')
     try:
         MarksObj=Marks()
@@ -709,19 +682,18 @@ def SessionTypeUpdate(HttpRequest):
         if "SessionTypeId" in HttpRequest.POST:
             SessionTypeId=HttpRequest.POST["SessionTypeId"]
         else:
-            msglist.append("Error fetching data from form for SessionTypeId");
+            messages.error(HttpRequest,"Error fetching data from form for SessionTypeId");
             flag=-1;
         if "SessionTypeName" in HttpRequest.POST:
             SessionTypeName=HttpRequest.POST["SessionTypeName"]
         else:
-            msglist.append("Error fetching data from form for SessionTypeName");
+            messages.error(HttpRequest,"Error fetching data from form for SessionTypeName");
             flag=-1;
         if flag==-1:
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+            return HttpResponseRedirect('/message/')
         result=MarksObj.UpdateSessionType(SessionTypeId, SessionTypeName,logindetails["userid"], ip)
-        msglist.append("result is %s"%result);
-        return render_to_response("UserProfile/Message.html",{'mylist':msglist,})
+        messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)

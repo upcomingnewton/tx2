@@ -1,0 +1,174 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Search Users{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Search Users</div>
+</div>
+<form action="/user/search/post/" method="post">
+{% csrf_token %}
+  <!-- =============================================================  -->
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:50px;">Include</th>
+        <th scope="col" style="width:100px;">And/Or</th>
+        <th scope="col" style="width:250px;">Field</th>
+        <th scope="col" style="width:250px;">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+<!-- USER ID -->
+        <tr>
+          <td><input type="checkbox" name="Include_UserID" /></td>
+          <td>
+            <select name="AndOr_UserID">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            User ID
+          </td>
+          <td><input type="text" name="Search_UserID" /> </td>
+        </tr>
+<!-- EMAIL ADRESS -->
+        <tr>
+          <td><input type="checkbox" name="Include_Email" /></td>
+          <td>
+            <select name="AndOr_Email">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            Email
+          </td>
+          <td><input type="text" name="Search_Email" /> </td>
+        </tr>
+<!-- FIRST NAME -->
+        <tr>
+          <td><input type="checkbox" name="Include_FirstName" /></td>
+          <td>
+            <select name="AndOr_FirstName">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            FirstName
+          </td>
+          <td><input type="text" name="Search_FirstName" /> </td>
+        </tr>
+<!-- MIDDLE NAME -->
+        <tr>
+          <td><input type="checkbox" name="Include_MiddleName" /></td>
+          <td>
+            <select name="AndOr_MiddleName">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            MiddleName
+          </td>
+          <td><input type="text" name="Search_MiddleName" /> </td>
+        </tr>
+<!-- LAST NAME -->
+        <tr>
+          <td><input type="checkbox" name="Include_LastName" /></td>
+          <td>
+            <select name="AndOr_LastName">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            LastName
+          </td>
+          <td><input type="text" name="Search_LastName" /> </td>
+        </tr>
+<!-- DATE OF BIRTH -->
+        <tr>
+          <td><input type="checkbox" name="Include_DOB" /></td>
+          <td>
+            <select name="AndOr_DOB">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            DOB
+          </td>
+          <td><input type="text" name="Search_DOB" />(mm/dd/yyyy)</td>
+        </tr>
+<!-- ENTITY -->
+        <tr>
+          <td><input type="checkbox" name="Include_Entity" /></td>
+          <td>
+            <select name="AndOr_Entity">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            Entity
+          </td>
+          <td>
+            <select name="Search_Entity">
+                <option value="-1">SELECT</option>
+              {% for entity in EntityList %}
+                <option value="{{entity.id}}">{{ entity.EntityName }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+<!-- GROUP -->
+        <tr>
+          <td><input type="checkbox" name="Include_Group" /></td> 
+          <td>
+            <select name="AndOr_Group">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            Group
+          </td>
+          <td>
+            <select name="Search_Group">
+                <option value="-1">SELECT</option>
+              {% for group in GroupList %}
+                <option value="{{group.id}}">{{ group.GroupName }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+<!-- STATE -->
+        <tr>
+          <td><input type="checkbox" name="Include_State" /></td>
+          <td>
+            <select name="AndOr_State">
+              <option value="AND" selected="selected">AND</option>
+              <option value="OR" >OR</option>
+            </select>
+          </td>
+          <td>
+            State
+          </td>
+          <td>
+            <select name="Search_State">
+                <option value="-1">SELECT</option>
+              {% for state in StateList %}
+                <option value="{{state.id}}">{{ state.StateName }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+    </tbody>
+    </table>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}

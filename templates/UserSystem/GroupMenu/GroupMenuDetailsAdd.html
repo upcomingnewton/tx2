@@ -1,0 +1,58 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}GroupMenu{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">GroupMenu</div>
+  </div>
+  <form action="/user/groupmenu/add/post/" method="post">
+  {% csrf_token %}
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+      {% if ParentMenuList|length %}
+        {% for ParentMenuObj in ParentMenuList %}
+          <table id="tablecss" >
+          <thead>
+           <tr>
+              <th scope="col" style="width:20px;">SELECT</th>
+              <th scope="col" style="width:150px;">PUBLIC</th>
+              <th scope="col" style="width:150px;">MenuName</th>
+              <th scope="col" style="width:150px;">MenuUrl</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="col" style="width:20px;"></th>
+            <th scope="col" style="width:150px;"></th>
+            <td scope="col" style="color:red;width:150px;">{{ ParentMenuObj.MenuName }}</td>
+            <td scope="col" style="color:red;width:150px;">{{ ParentMenuObj.MenuUrl }}</td>
+          </tr>
+          {% for MenuObj in MenuList %}
+            {% if ParentMenuObj.id == MenuObj.MenuPid %}
+              <tr>
+                <td style="width:20px;"><input type="checkbox" id="MenuCheck_{{MenuObj.id}}" name="MenuList" value="{{MenuObj.id}}" /> </td>
+                <td style="width:150px;">
+                  <input type="radio" name="Perm_{{MenuObj.id}}" value="1" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}})" />
+                  <input type="radio" name="Perm_{{MenuObj.id}}" value="-1" checked="true" style="width:50px;" onclick="changeCheckButton({{MenuObj.id}})"/>
+                </td>
+                <script type="text/javascript">
+                  function changeCheckButton(id)
+                  {
+                    eleid = "MenuCheck_" + id
+                    document.getElementById(eleid).checked = true;
+                  }
+                </script>
+                <td style="width:100px;">{{ MenuObj.MenuName }}</td>
+                <td style="width:150px;">{{ MenuObj.MenuUrl }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+</form>
+{% endblock %}

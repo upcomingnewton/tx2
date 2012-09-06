@@ -1,4 +1,5 @@
 from tx2.CONFIG import TEMPLATE_PARAM_USER_NOT_LOGGED_IN, GROUP_MENU_PREFIX, SESSION_MESSAGE, LoggerUser
+from tx2.conf.LocalProjectConfig import  SESSION_SELECTED_GROUPS
 from django.core.cache import cache
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 #from ThoughtXplore.txMenu.BusinessFunctions.LoginMenuFunctions import MakeGroupMenu
@@ -39,7 +40,19 @@ def UserContextProcessor(request):
         return {"userid":TEMPLATE_PARAM_USER_NOT_LOGGED_IN,"groupid":TEMPLATE_PARAM_USER_NOT_LOGGED_IN,"loginid":TEMPLATE_PARAM_USER_NOT_LOGGED_IN, "fname":[], "loggedin":False }
     except:
         LOGGERUSER.exception('EXCEPTION IN UserContextProcessor')
-        
+
+def GroupContextProcessor(request):
+    #print request.session['SESSION_SELECTED_GROUPS']
+    try:
+      if 'SESSION_SELECTED_GROUPS' in request.session.keys():
+        SelectedGroups = str(request.session['SESSION_SELECTED_GROUPS'])
+        print '==== VALUE FOUND AND ADDED TO CP ===='
+      else:
+        SelectedGroups = []
+        print '==== VALUE **NOT** FOUND AND ADDED TO CP ===='
+      return {"SelectedGroups":SelectedGroups }
+    except:
+        LOGGERUSER.exception('EXCEPTION IN UserContextProcessor')
     
         
 #def MessageContextProcessor(request):

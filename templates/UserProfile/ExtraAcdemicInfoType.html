@@ -1,15 +1,21 @@
-<html>
-<body>
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Insert Extra Academic Info Type{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Please Enter Name for Extra Academic Info</div>
+</div>
 <form name="ExtraAcademicInfoInput" action="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoType/new" method="post">
 {% csrf_token %}
-ExtraAcademicInfoName: <input type="text" name="ExtraAcdemicInfoTypeName" />
+ <div class="row">
+    <div class="labelclass" >ExtraAcademic Info Name</div>
+	    <div class="widgetclass" >
+	    	<input type="text" name="ExtraAcdemicInfoTypeName" />
+	    </div>
+</div>
+
+
+
 <input type="submit" value="Submit" />
 </form>
-<form name="ExtraAcademicInfoUpdate" action="/userprofile/ExtraAcademicInfo/ExtraAcademicInfoType/update" method="post">
-{% csrf_token %}
-Id: <input type="text" name="Id" />
-ExtraAcademicInfoName: <input type="text" name="ExtraAcdemicInfoTypeName" />
-<input type="submit" value="Submit" />
-</form>
-</body>
-</html>
+{% endblock %}

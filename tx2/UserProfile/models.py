@@ -53,7 +53,7 @@ class ExtraAcademicInfoDetails(models.Model):
 	Organisation=models.CharField(max_length=500)
 	Designation=models.CharField(max_length=500)
 	Details=models.TextField()
-	PlaceOfWork=models.ForeignKey(Adress) # this should be changed to adress id
+	PlaceOfWork=models.CharField(max_length=1000) # this should be changed to adress id #TODO change to adress field
 	FunctionalArea = models.TextField() # this will contain the FunctionalAreaList's id  separated by some sep, (comma-sep values)
 	ExtraAcadmicInfoType =models.ForeignKey(ExtraAcademicInfoType)
 	State=models.ForeignKey(SecurityStates)

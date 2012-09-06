@@ -10,7 +10,9 @@ from tx2.conf.LocalProjectConfig import  SESSION_SELECTED_GROUPS
 import logging
 import inspect
 from django.contrib import messages
-Logger_User = logging.getLogger(LoggerUser)
+
+
+LoggerUser = logging.getLogger(LoggerUser)
 
 
 ##################################################################
@@ -24,8 +26,8 @@ def GroupIndex(HttpRequest, options):
     GroupFnxObj  = GroupFnx()
     GroupList = GroupFnxObj.ListAllGroups()
     if(GroupList[0] == 1):
-      if SESSION_SELECTED_GROUPS not in HttpRequest.session.keys():
-        del HttpRequest.session[SESSION_SELECTED_GROUPS]
+#      if SESSION_SELECTED_GROUPS in HttpRequest.session.keys():
+#        del HttpRequest.session[SESSION_SELECTED_GROUPS]
       GroupList  = GroupList[1]
       if( len (GroupList) == 0):
         messages.error(HttpRequest,'There are no Group in the system')
@@ -127,8 +129,8 @@ def GroupSelectToMemory(HttpRequest):
   try:
       grouplist = HttpRequest.POST.getlist('SelectedGroups')
       grouplist = [int(x) for x in grouplist]
-      HttpRequest.Session[SESSION_SELECTED_GROUPS] = grouplist
-      messages.error(HttpRequest,"Selected Groups have been sucessfully added to memory")
+      HttpRequest.session['SESSION_SELECTED_GROUPS'] = grouplist
+      messages.error(HttpRequest,"Selected Groups have been sucessfully added to memory" + str(HttpRequest.session['SESSION_SELECTED_GROUPS']))
       return HttpResponseRedirect('/user/group/')
   except Exception, ex:
       frame = inspect.currentframe()

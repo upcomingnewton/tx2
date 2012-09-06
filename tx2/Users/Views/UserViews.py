@@ -314,3 +314,123 @@ def ResendAuthenticationEmail(HttpRequest):
       LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
+      
+def EditUser(HttpRequest,UserID):
+  ip = HttpRequest.META['REMOTE_ADDR']
+  details = GetLoginDetails(HttpRequest)
+  if( details['userid'] == -1):
+    messages.error(HttpRequest,'Please Login to continue')
+    return HttpResponseRedirect('/user/login/')
+  try:
+    UserFirstName = ''
+    UserMiddleName = ''
+    UserLastName = ''
+    UserDobDay = ''
+    UserDobMon = ''
+    UserDobYear = ''
+    GroupID = ''
+    UserGender = ''
+    UserEntity = ''
+    op = ''
+    LogsDesc = ''
+    bday = ''
+    flag = False
+    if 'UserFirstName' in HttpRequest.POST:
+      UserFirstName = HttpRequest.POST['UserFirstName']
+    else:
+      messages.error(HttpRequest,'UserFirstName is not found in request')
+      flag = True
+    if 'UserMiddleName' in HttpRequest.POST:
+      UserMiddleName = HttpRequest.POST['UserMiddleName']
+    else:
+      messages.error(HttpRequest,'UserMiddleName is not found in request')
+      flag = True
+    if 'UserLastName' in HttpRequest.POST:
+      UserFirstName = HttpRequest.POST['UserLastName']
+    else:
+      messages.error(HttpRequest,'UserLastName is not found in request')
+      flag = True
+    if 'GroupID' in HttpRequest.POST:
+      GroupID = int(HttpRequest.POST['GroupID'])
+    else:
+      messages.error(HttpRequest,'GroupID is not found in request')
+      flag = True
+    if GroupID == -1:
+      messages.error(HttpRequest,'Please select some value for GroupID')
+      flag = True
+    if 'UserEntity' in HttpRequest.POST:
+      UserEntity = HttpRequest.POST['UserEntity']
+    else:
+      messages.error(HttpRequest,'UserEntity is not found in request')
+      flag = True
+    if UserEntity == -1:
+      messages.error(HttpRequest,'Please select some value for UserEntity')
+      flag = True
+    if 'UserDobDay' in HttpRequest.POST:
+      UserDobDay = HttpRequest.POST['UserDobDay']
+    else:
+      messages.error(HttpRequest,'UserDobDay is not found in request')
+      flag = True
+    if 'UserDobMon' in HttpRequest.POST:
+      UserDobMon = HttpRequest.POST['UserDobMon']
+    else:
+      messages.error(HttpRequest,'UserDobMon is not found in request')
+      flag = True
+    if 'UserDobYear' in HttpRequest.POST:
+      UserDobYear = HttpRequest.POST['UserDobYear']
+    else:
+      messages.error(HttpRequest,'UserDobYear is not found in request')
+      flag = True
+    if 'op' in HttpRequest.POST:
+      op = HttpRequest.POST['op']
+    else:
+      messages.error(HttpRequest,'OperationRequest is not found in request')
+      flag = True
+    if 'LogsDesc' in HttpRequest.POST:
+      LogsDesc = HttpRequest.POST['LogsDesc']
+    else:
+      messages.error(HttpRequest,'LogsDesc is not found in request')
+      flag = True
+    if 'UserDobYear' in HttpRequest.POST:
+      UserDobYear = HttpRequest.POST['UserDobYear']
+    else:
+      messages.error(HttpRequest,'UserDobYear is not found in request')
+      flag = True
+    try:
+      bday = datetime.date(int(UserDobYear),int(UserDobMon),int(UserDobDay))
+    except ValueError as err:
+      messages.error(HttpRequest,'Invalid Birthdate')
+      flag = True
+    if flag == True:
+      return #TODO enter the url here
+    else:
+      # update here
+      UserFnxObj = UserFnx()
+      UserObj = UserFnxObj.getUserObjectByUserId(UserID)
+      if UserFnxObj[0] == 1:
+        UserObj = UserObj[1]
+        #TODO generate a previous state here
+        UserObj.UserBirthDate = bday
+        UserObj.UserFirstName = UserFirstName
+        UserObj.UserMiddleName = UserMiddleName
+        UserObj.UserLastName = UserLastName
+        UserObj.UserEntity = UserEntity
+        UserObj.UserGender = UserGender
+        UserObj.Group = GroupID
+        res = UserFnxObj.UpdateUser(self,UserObj,LogsDesc,_PreviousState,int(logindetails['userid']),ip,op)
+        if (res[0] == 1):
+          messages.error(HttpRequest,"Updated values sucessfully." + str(res[1]))
+        else:
+          messages.error(HttpRequest,"Error." + str(res[1]))
+        return #TODO enter url here
+      else:
+        messages.error(HttpRequest,'ERROR : ' + str(UserObj[1]))
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')

@@ -1,0 +1,50 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}GroupMenu{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">GroupMenu</div>
+  </div>
+  
+
+
+      {% if ParentGroupMenuList|length %}
+        {% for ParentGroupMenuObj in ParentGroupMenuList %}
+          <table id="tablecss" >
+          <thead>
+           <tr>
+              <th scope="col" style="width:100px;">MenuName</th>
+              <th scope="col" style="width:150px;">MenuUrl</th>
+              <th scope="col" style="width:50px;">Permission</th>
+              <th scope="col" style="width:80px;">EDIT</th>
+              <th scope="col" style="width:80px;">DELETE</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="color:red;width:100px;">{{ ParentGroupMenuObj.Menu.MenuName }}</td>
+            <td style="color:red;width:150px;">{{ ParentGroupMenuObj.Menu.MenuUrl }}</td>
+            <td style="color:red;width:50px;">{{ ParentGroupMenuObj.Permission }}</td>
+            <td style="color:red;width:80px;"><a href="/user/menu/edit/{{ParentGroupMenuObj.Menu.id}}/"  />Edit</td>
+            <td style="color:red;width:80px;"><a href="/user/menu/delete/{{ParentGroupMenuObj.Menu.id}}/" />Delete</td>
+          </tr>
+          {% for GroupMenuObj in GroupMenuObjList %}
+            {% if ParentGroupMenuObj.Menu.id == GroupMenuObj.Menu.MenuPid %}
+              <tr>
+                <td style="width:100px;">{{ GroupMenuObj.Menu.MenuName }}</td>
+                <td style="width:150px;">{{ GroupMenuObj.Menu.MenuUrl }}</td>
+                <td style="width:50px;">{{ GroupMenuObj.Permission }}</td>
+                <td style="width:80px;"><a href="/user/menu/edit/{{GroupMenuObj.Menu.id}}/"  />Edit</td>
+                <td style="width:80px;"><a href="/user/menu/delete/{{GroupMenuObj.Menu.id}}/" />Delete</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    
+
+{% endblock %}

@@ -35,7 +35,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def InsertDegreeType(self,DegreeTypeName,by_user,ip):
@@ -52,7 +52,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def InsertDegree(self,DegreeName,by_user,ip):
@@ -69,7 +69,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def InsertSessionType(self,SessionTypeName,by_user,ip):
@@ -86,7 +86,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def InsertMarks(self,SessionStart,SessionEnd,SessionNumber,SessionType,TotalMarks,SecuredMarks,TotalReappears,ReappearsRemaining,DegreeType,Board,Degree,UserId,by_user,ip):
@@ -114,7 +114,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateMarks(self,_Id,SessionStart,SessionEnd,SessionNumber,SessionType,TotalMarks,SecuredMarks,TotalReappears,ReappearsRemaining,DegreeType,Board,Degree,UserId,by_user,ip):
@@ -154,7 +154,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def DeleteBoard(self,BoardId,by_user,ip):
@@ -171,7 +171,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateBoard(self,BoardId,BoardName,by_user,ip):
@@ -189,7 +189,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateDegreeType(self,DegreeTypeId,DegreeTypeName,by_user,ip):
@@ -207,7 +207,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateDegree(self,DegreeId,DegreeName,by_user,ip):
@@ -225,7 +225,7 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         
     def UpdateSessionType(self,SessionTypeId,SessionTypeName,by_user,ip):
@@ -243,6 +243,6 @@ class Marks(object):
           msg = ''
           for i in args:
             msg += "[%s : %s]" % (i,values[i])
-          self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
           return (-2,self.MakeExceptionMessage(str(ex)))
         

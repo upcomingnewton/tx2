@@ -1,0 +1,68 @@
+--SELECT * FROM UserAdress_adress_Update(2,'AdressNoUp','StreetAdress1Up','StreetAdress2Up',1,1,3,'PinCodeUp','SYS_PER_INSERT',1,'test');
+
+CREATE OR REPLACE FUNCTION UserAdress_adress_Update(
+AdressID INTEGER,
+AdressNo character varying(50),
+StreetAdress1 character varying(500),
+StreetAdress2 character varying(500),
+City INTEGER,
+State INTEGER,
+Country INTEGER,
+PinCode character varying(15),
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+IF NOT EXISTS ( SELECT id FROM "UserAdress_adress" WHERE id= AdressID ) THEN 
+	rescode := 221;
+	result := -2;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'adress','UserAdress');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+UPDATE "UserAdress_adress"
+SET "AdressNo"=AdressNo, 
+    "StreetAdress1"=StreetAdress1, 
+    "StreetAdress2"=StreetAdress2, 
+    "City_id"=City,
+    "State_id"=State, 
+    "Country_id"=Country, 
+    "PinCode"=PinCode
+WHERE id= AdressID;
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 222;
+	result := -1;
+        RETURN;
+END IF;
+
+INSERT INTO "UserAdress_useradresslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,AdressID,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+  rescode := 225;
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

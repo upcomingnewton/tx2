@@ -1,0 +1,56 @@
+
+--SELECT * FROM UserAdress_State_Insert('Chandigarh','SYS_PER_INSERT',1,'test');
+
+CREATE OR REPLACE FUNCTION UserAdress_State_Insert(
+Name character varying(500),
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+IF EXISTS ( SELECT id FROM "UserAdress_state" WHERE "StateName"=Name) THEN
+	  result := 2;
+  	rescode := 206;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'state','UserAdress');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "UserAdress_state"("StateName")
+	VALUES(Name);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 207;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "UserAdress_state" WHERE "StateName"=Name;
+INSERT INTO "UserAdress_useradresslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription", "LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'insert','NULL');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

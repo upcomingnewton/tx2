@@ -131,39 +131,62 @@ class GroupMenuFnx():
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
       
-  def Edit(self,MenuList,GroupID,_PermissionList,_extrainfo,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
+  def AddGroupMenu(self,MenuList,GroupID,_PermissionList,_extrainfo,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
     PreviousList = self.getGroupMenuObjectByGroupID(GroupID)
     if PreviousList[0] != 1:
       return (-1,PreviousList[1])
     else:
       PreviousList = PreviousList[1]
     try:
-      CommonEle = []
+      #CommonEle = []
       NewEle = []
-      DeleteEle = []
+      #DeleteEle = []
       PermissionList = []
       extrainfo = []
-      for x in PreviousList:
-        if x.Menu.id in MenuList:
-          CommonEle.append(x.Menu.id)
-        else:
-          DeleteEle.append(x.id)
       
       for x in range(0,len(MenuList)):
-        if MenuList[x] not in CommonEle:
+        if MenuList[x] not in PreviousList:
           NewEle.append(MenuList[x])
           PermissionList.append(_PermissionList[x])
           extrainfo.append(_extrainfo[x])
       
-      # 1. delete 
-      if len(DeleteEle) > 0 :
-        resultDel = self.Delete(DeleteEle,by,ip,Delop)
-        self.UserLogger.debug('%s %s' % ('DELETE',str(resultDel)))
+#      # 1. delete 
+#      if len(DeleteEle) > 0 :
+#        resultDel = self.Delete(DeleteEle,by,ip,Delop)
+#        self.UserLogger.debug('%s %s' % ('DELETE',str(resultDel)))
       # 2. insert
       if len(NewEle) > 0 :
         resultIns = self.Insert(NewEle,GroupID,PermissionList,extrainfo,by,ip,Insop)
-        self.UserLogger.debug('%s %s' % ('INSERT',str(resultIns)))
-      return (1,"SUCESS")
+        return resultIns
+      else:
+        return (-1,'No element to add')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return (-2,str(ex))
+      
+  def DeleteGroupMenu(self,MenuList,GroupID,by,ip,Insop=SYSTEM_PERMISSION_INSERT,Delop=SYSTEM_PERMISSION_DELETE):
+    PreviousList = self.getGroupMenuObjectByGroupID(GroupID)
+    if PreviousList[0] != 1:
+      return (-1,PreviousList[1])
+    else:
+      PreviousList = PreviousList[1]
+    try:
+      #CommonEle = []
+      DeleteEle = []
+      for x in PreviousList:
+        if x.Menu.id in MenuList:
+          DeleteEle.append(x.id)
+          
+      if len(DeleteEle) > 0 :
+        resultDel = self.Delete(DeleteEle,by,ip,Delop)
+        return resultDel
+      else:
+        return (-1,'No element to delete')
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)

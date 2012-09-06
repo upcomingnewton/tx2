@@ -84,7 +84,7 @@ def DBFunctionalAreaTypeUpdate(details):
       return {'result':-5,'rescode':str(ex)}
 
 def DBExtraAcademicInfoDetailsInsert(details):
-    query = "SELECT * FROM ExtraAcademicInfoDetailsInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s',%s,'%s');"%(details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM ExtraAcademicInfoDetailsInsert(%s,'%s','%s','%s','%s','%s','%s','%s','%s',%s,'%s','%s','%s',%s,'%s');"%(details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsInsert',query))
         QueryLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsInsert',query))
@@ -100,12 +100,28 @@ def DBExtraAcademicInfoDetailsInsert(details):
       UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return {'result':-5,'rescode':str(ex)}                                                                
 def DBExtraAcademicInfoDetailsUpdate(details):
-    query = "SELECT * FROM ExtraAcademicInfoDetailsUpdate(%s,%s,'%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s','%s','%s','%s',%s,'%s');"%(details["Id"],details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork_id"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    query = "SELECT * FROM ExtraAcademicInfoDetailsUpdate(%s,%s,'%s','%s','%s','%s','%s','%s','%s','%s',%s,'%s','%s','%s','%s',%s,'%s');"%(details["Id"],details["User_id"],details["Title"],details["Start"],details["End"],details["Organisation"],details["Designation"],details["Details"],details["PlaceOfWork"],details["FunctionalArea"],details["ExtraAcadmicInfoType_id"],details["References"],details["Summary"],details["prev"],details["RequestedOperation"],details["by_user"],details["ip"]);
     try:
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',query))
         QueryLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',query))
         result =  DBhelper.CallFunction(query)
         UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsUpdate',result))
+        return result[0]
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
+def DBExtraAcademicInfoDetailsDelete(details):
+    query = "SELECT * FROM ExtraAcademicInfoDetailsDelete(%s,%s,'%s',%s,'%s');"%(details["Id"],details["User_id"],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsDelete',query))
+        QueryLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsDelete',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBExtraAcademicInfoDetailsDelete',result))
         return result[0]
     except Exception, ex:
       frame = inspect.currentframe()

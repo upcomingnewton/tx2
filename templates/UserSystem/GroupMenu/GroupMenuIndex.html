@@ -1,0 +1,25 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}GroupMenu{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">GroupMenu</div>
+  </div>
+  
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col">Select Some Link</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for group in SelectedGroups %}
+          <tr>
+            <td>
+              <a href="/user/groupmenu/{{group}}/details/" >{{group}}</a>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

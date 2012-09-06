@@ -1,0 +1,69 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Edit Contact Information{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Edit Contact Information</div>
+</div>
+<form action="/adress/contactinfo/edit/post/" method="post">
+{% csrf_token %}
+  <!-- =============================================================  -->
+  <div class="row">
+    <div class="labelclass" >Mobile No. </div>
+    <div class="widgetclass" ><input type="text" name="MobileNo" class="widget" value="{{UserContactInfo.MobileNo}}" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Alt. Email</div>
+    <div class="widgetclass" ><input type="text" name="AltEmail" class="widget" value="{{UserContactInfo.AltEmail}}" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Father Name</div>
+    <div class="widgetclass" ><input type="text" name="FatherName" class="widget" value="{{UserContactInfo.FatherName}}" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Father ContactNo</div>
+    <div class="widgetclass" ><input type="text" name="FatherContactNo" class="widget" value="{{UserContactInfo.FatherContactNo}}" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Mother Name</div>
+    <div class="widgetclass" ><input type="text" name="MotherName" class="widget" value="{{UserContactInfo.MotherName}}" /></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Mother ContactNo</div>
+    <div class="widgetclass" ><input type="text" name="MotherContactNo" class="widget" value="{{UserContactInfo.MotherContactNo}}" /></div>
+  </div>
+  <div class="row">
+    <span class="messageclass" >Permanent Adress (<a href="/adress/adress/">edit</a>) </span>
+  </div>
+  {% if PermanentAdress != -1 %}
+  <div class="row">Door No. = &nbsp;&nbsp;{{PermanentAdress.AdressNo}},</div>
+  <div class="row">StreetAdress1 = &nbsp;&nbsp; {{PermanentAdress.StreetAdress1}},</div>
+  <div class="row">StreetAdress2 =  &nbsp;&nbsp;{{PermanentAdress.StreetAdress2}},</div>
+  <div class="row">{{PermanentAdress.City.CityName}}, {{PermanentAdress.State.StateName}}</div>
+  <div class="row">{{PermanentAdress.PinCode}}</div>
+  {% else %}
+  <div class="row">
+    <span class="messageclass" >Error in retieving adress.</span>
+  </div>
+  {% endif %}
+  <div>
+    <span class="messageclass">Present Adress (<a href="/adress/adress/">edit</a>)</span>
+  </div>
+  {% if PresentAdress != -1 %}
+  <div class="row">Door No.= &nbsp;&nbsp;{{PresentAdress.AdressNo}},</div>
+  <div class="row">StreetAdress1 = &nbsp;&nbsp; {{ PresentAdress.StreetAdress1}},</div>
+  <div class="row">StreetAdress2 = &nbsp;&nbsp;{{ PresentAdress.StreetAdress2}},</div>
+  <div class="row">{{ PresentAdress.City.CityName}}, {{ PresentAdress.State.StateName}}</div>
+  <div class="row">{{ PresentAdress.PinCode}}</div>
+  
+  {% else %}
+  <div class="row">
+    <span class="messageclass" >Error in retieving adress.</span>
+  </div>
+  {% endif %}
+  <input type="hidden" name="UserID" value="{{User_ID}}" />
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}

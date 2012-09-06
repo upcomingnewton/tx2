@@ -1,0 +1,34 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}State - Edit{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">State - Edit</div>
+</div>
+<form action="/adress/state/add/post/" method="post">
+{% csrf_token %}
+  <div class="row">
+    <div class="labelclass" >StateName</div>
+    <div class="widgetclass" ><input type="text" name="StateName" class="widget" /></div>
+  </div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px;">Sr.</th>
+        <th scope="col" style="width:200px;">StateName</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for state in StateList %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ state.StateName }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
