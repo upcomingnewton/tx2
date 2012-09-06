@@ -1,6 +1,18 @@
 from tx2.CONFIG import SESSION_MESSAGE
 from tx2.DataBaseHelper import DBhelper
 import os
+import re
+
+
+def replaceContentUrls(content, typeReturn='ANCHOR'):
+        urls= re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', content)
+        
+        if(typeReturn=='ANCHOR'):
+            for i in urls:
+                k="<a href='"+i+"' target='new' >"+i+"</a>"
+                content=content.replace(i,k)
+        return content
+
 def AppendMessageList(HttpRequest):
     msglist = []
     try:
