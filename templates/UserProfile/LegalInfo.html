@@ -1,0 +1,27 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Legal Info{% endblock %}</title>
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Legal Info</div>
+</div>
+<div class="rowbig">
+  <span class="messageclass" >If you find anything missing, please bring it to <br /> our notice ( thoughtxplore@gmail.com )</span>
+</div>
+<form name="MedicalInfoInput" action="/userprofile/UserProfileMisc/MedicalInfo/new" method="post">
+{% csrf_token %}
+{% if LegalInfoStatus %}
+  <input type="hidden" value="{{LegalInfoStatus.id}}" name="Id">
+{% endif %}
+<div class="row">
+    <div class="labelclass" >PassPort No: </div>
+    <div class="widgetclass" ><input type="text" name="PassPortNo" class="widget" {% if LegalInfoStatus %} value="{{LegalInfoStatus.PassPortNo}}"{% endif %}/> </div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >Any Legal Issue: </div>
+    <div class="widgetclass" ><textarea name="AnyLegalIssue">{% if LegalInfoStatus %}{{LegalInfoStatus.AnyLegalIssue}}{% endif %}</textarea> </div>
+</div>
+<center>
+<input type="submit" value="Save" />
+</center>
+</form>
+{% endblock %}

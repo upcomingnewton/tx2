@@ -30,4 +30,20 @@ def DBMedicalInfoInsert(details):
         msg += "[%s : %s]" % (i,values[i])
       UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return {'result':-5,'rescode':str(ex)}
+def DBMedicalInfoUpdate(details):
+    query = "SELECT * FROM MedicalInfoUpdate(%s,%s,'%s','%s','%s','%s','%s','%s','%s',%s,'%s');"%(details["Id"],details["User_id"],details["Height"],details["Weight"],details["LeftEye"],details["RightEye"],details['DisabilityInfo'],details['prev'],details["RequestedOperation"],details["by_user"],details["ip"]);
+    try:
+        UserProfileLogger.debug('[%s] %s'%('DBMedicalInfoUpdate',query))
+        QueryLogger.debug('[%s] %s'%('DBMedicalInfoUpdate',query))
+        result =  DBhelper.CallFunction(query)
+        UserProfileLogger.debug('[%s] %s'%('DBMedicalInfoUpdate',result))
+        return result[0]
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      UserProfileLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      return {'result':-5,'rescode':str(ex)}
     

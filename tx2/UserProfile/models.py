@@ -90,6 +90,7 @@ class MedicalInfo(models.Model):
 	DisabilityInfo = models.TextField()
 	
 class LegalInfo(models.Model):
+	User = models.ForeignKey(User)
 	AnyLegalIssue = models.CharField(max_length=1000)
 	PassPortNo = models.CharField(max_length=25)
 	
