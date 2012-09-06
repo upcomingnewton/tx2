@@ -253,14 +253,6 @@ def MarksPostSave(HttpRequest):
             messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionStartYear')
             flag=-1;
         if(flag!=-1):
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-#          datetime.date.
-          #datetime.date(int(SessionStartYear),int(SessionStartMonth),1)
->>>>>>> ada8d97f1042e1607cee72ece4192a798375a356
-=======
->>>>>>> b579faa88a5e50915bef661eaefa44ae05880283
           SessionStart= "1 "+SessionStartMonth+" "+SessionStartYear; 
         if "SessionEndMonth" in HttpRequest.POST:
             SessionEndMonth=HttpRequest.POST["SessionEndMonth"]
