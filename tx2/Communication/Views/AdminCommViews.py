@@ -45,18 +45,19 @@ def adminNewsPost(HttpRequest):
         return HttpResponseRedirect('/user/login/')
     else:
         try:
-            comm_call=CommunicationFunctions.MessageFnx()
+            print "1"
+            comm_call=CommunicationFunctions.PostCommunicationFnx()
+            print "2"
             title= HttpRequest.POST['Title']
             _content=HttpRequest.POST['Content']
-            visibility=HttpRequest.POST['Visibility']
-            #print "fine"
+            print "fine"
             tstamp=datetime.datetime.strptime(HttpRequest.POST["date_"], "%m/%d/%Y")
             #print "fine2"
             #print str(tstamp)
             
-            
+            print "here"
             result= comm_call.PostNews(title, _content, tstamp,logindetails["userid"],ip)
-       
+            print result
             if(result["result"]==-2):
                 return HttpResponseRedirect('/user/login')
             elif(result["result"]==1):
@@ -64,6 +65,7 @@ def adminNewsPost(HttpRequest):
             else:
                 msglist.append(result[1])
             HttpRequest.session[SESSION_MESSAGE] = msglist
+            print msglist
             return HttpResponseRedirect('/message/')
             
         except Exception as inst:
@@ -84,7 +86,7 @@ def adminNoticePost(HttpRequest):
         return HttpResponseRedirect('/user/login/')
     else:
         try:
-            comm_call=CommunicationFunctions.MessageFnx()
+            comm_call=CommunicationFunctions.PostCommunicationFnx()
             title= HttpRequest.POST['Title']
             _content=HttpRequest.POST['Content']
             visibility=HttpRequest.POST['Visibility']

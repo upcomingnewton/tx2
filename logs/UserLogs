@@ -366,3 +366,37 @@
 2012-09-05 23:35:08,325 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... g5UaiG2gRvCv5ygBRQnrc_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346868308.33
 2012-09-05 23:35:13,574 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... g5UaiG2gRvCv5ygBRQnrc_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346868313.57
 2012-09-05 23:35:13,581 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... g5UaiG2gRvCv5ygBRQnrc_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346868313.58
+2012-09-06 21:29:30,266 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1862} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-09-06 21:29:29.555206'); ]
+2012-09-06 21:29:30,267 LoginDetails      line:37   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947170.27
+2012-09-06 21:29:31,325 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947171.33
+2012-09-06 21:29:31,398 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947171.4
+2012-09-06 21:29:40,138 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947180.14
+2012-09-06 21:29:40,203 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947180.2
+2012-09-06 21:29:45,988 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947185.99
+2012-09-06 21:29:46,159 DatabaseFunctions line:108  ERROR    DBGroupInsert : [details : {'GroupType': 3, 'ip': '127.0.0.1', 'GroupDescription': u"this group will be used by menu's for users which are not logged in", 'GroupName': u'AnonymousUsers', 'RequestedOperation': 'SYS_PER_INSERT', 'by': 1, 'GroupEntity': 1}]
+Traceback (most recent call last):
+  File "/home/nitin/projects/tx2/tx2/../tx2/Users/DBFunctions/DatabaseFunctions.py", line 99, in DBGroupInsert
+    result =  DBhelper.CallFunction(query)
+  File "/home/nitin/projects/tx2/tx2/../tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/lib/python2.7/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python2.7/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: syntax error at or near "s"
+LINE 1: ...'AnonymousUsers','this group will be used by menu's for user...
+                                                             ^
+
+2012-09-06 21:29:46,695 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947186.7
+2012-09-06 21:29:46,772 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947186.77
+2012-09-06 21:29:55,761 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947195.76
+2012-09-06 21:29:55,826 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947195.83
+2012-09-06 21:30:03,153 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947203.15
+2012-09-06 21:30:03,652 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947203.65
+2012-09-06 21:30:11,058 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947211.06
+2012-09-06 21:30:11,123 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947211.12
+2012-09-06 21:30:17,942 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947217.94
+2012-09-06 21:30:18,302 DatabaseFunctions line:100  DEBUG    [ {'result': 1, 'rescode': 36} ] [ SELECT * FROM GroupInsert('AnonymousUsers','this group will be used by menus for users which are not logged in',3,1,'SYS_PER_INSERT',1,'127.0.0.1'); ]
+2012-09-06 21:30:18,804 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947218.8
+2012-09-06 21:30:18,878 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947218.88
+2012-09-06 21:30:25,303 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1862,2,'2012-09-06 21:30:25.179029'); ]

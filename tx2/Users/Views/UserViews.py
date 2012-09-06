@@ -325,15 +325,12 @@ def EditUser(HttpRequest,UserID):
     UserFirstName = ''
     UserMiddleName = ''
     UserLastName = ''
-    UserDobDay = ''
-    UserDobMon = ''
-    UserDobYear = ''
+    UserDOB = ''
     GroupID = ''
     UserGender = ''
     UserEntity = ''
     op = ''
     LogsDesc = ''
-    bday = ''
     flag = False
     if 'UserFirstName' in HttpRequest.POST:
       UserFirstName = HttpRequest.POST['UserFirstName']
@@ -366,23 +363,8 @@ def EditUser(HttpRequest,UserID):
     if UserEntity == -1:
       messages.error(HttpRequest,'Please select some value for UserEntity')
       flag = True
-    if 'UserDobDay' in HttpRequest.POST:
-      UserDobDay = HttpRequest.POST['UserDobDay']
-    else:
-      messages.error(HttpRequest,'UserDobDay is not found in request')
-      flag = True
-    if 'UserDobMon' in HttpRequest.POST:
-      UserDobMon = HttpRequest.POST['UserDobMon']
-    else:
-      messages.error(HttpRequest,'UserDobMon is not found in request')
-      flag = True
-    if 'UserDobYear' in HttpRequest.POST:
-      UserDobYear = HttpRequest.POST['UserDobYear']
-    else:
-      messages.error(HttpRequest,'UserDobYear is not found in request')
-      flag = True
-    if 'op' in HttpRequest.POST:
-      op = HttpRequest.POST['op']
+    if 'OperationRequest' in HttpRequest.POST:
+      op = HttpRequest.POST['OperationRequest']
     else:
       messages.error(HttpRequest,'OperationRequest is not found in request')
       flag = True
@@ -391,38 +373,39 @@ def EditUser(HttpRequest,UserID):
     else:
       messages.error(HttpRequest,'LogsDesc is not found in request')
       flag = True
-    if 'UserDobYear' in HttpRequest.POST:
-      UserDobYear = HttpRequest.POST['UserDobYear']
+    if 'DOB' in HttpRequest.POST:
+      UserDOB = HttpRequest.POST['DOB']
+      UserDOB = UserDOB.split('/')
     else:
-      messages.error(HttpRequest,'UserDobYear is not found in request')
+      messages.error(HttpRequest,'UserDOB is not found in request')
       flag = True
     try:
-      bday = datetime.date(int(UserDobYear),int(UserDobMon),int(UserDobDay))
+      UserDOB = datetime.date(int(UserDOB[2]),int(UserDOB[1]),int(UserDOB[0]))
     except ValueError as err:
       messages.error(HttpRequest,'Invalid Birthdate')
       flag = True
     if flag == True:
-      return #TODO enter the url here
+      return HttpResponseRedirect('/user/list/')
     else:
       # update here
       UserFnxObj = UserFnx()
       UserObj = UserFnxObj.getUserObjectByUserId(UserID)
-      if UserFnxObj[0] == 1:
+      if UserObj[0] == 1:
         UserObj = UserObj[1]
         #TODO generate a previous state here
-        UserObj.UserBirthDate = bday
+        UserObj.UserBirthDate = UserDOB
         UserObj.UserFirstName = UserFirstName
         UserObj.UserMiddleName = UserMiddleName
         UserObj.UserLastName = UserLastName
-        UserObj.UserEntity = UserEntity
+        UserObj.UserEntity.id = UserEntity
         UserObj.UserGender = UserGender
-        UserObj.Group = GroupID
-        res = UserFnxObj.UpdateUser(self,UserObj,LogsDesc,_PreviousState,int(logindetails['userid']),ip,op)
+        UserObj.Group.id = GroupID
+        res = UserFnxObj.UpdateUser(UserObj,LogsDesc,'_PreviousState',int(details['userid']),ip,op)
         if (res[0] == 1):
           messages.error(HttpRequest,"Updated values sucessfully." + str(res[1]))
         else:
           messages.error(HttpRequest,"Error." + str(res[1]))
-        return #TODO enter url here
+        return HttpResponseRedirect('/user/list/')
       else:
         messages.error(HttpRequest,'ERROR : ' + str(UserObj[1]))
   except Exception, ex:

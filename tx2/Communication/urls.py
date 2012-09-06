@@ -8,7 +8,8 @@ urlpatterns = patterns('',
         url(r'^Admin/News/Post$','Communication.Views.AdminCommViews.adminNewsPost'),
         url(r'^News/(?P<page>\S+)/(?P<item>\S+)/$','Communication.Views.CommViews.newsitemIndex'),
         url(r'^News/(?P<token>\S+)/$','Communication.Views.CommViews.newsIndex'),
-        url(r'^Notices/$','Communication.Views.CommViews.noticeIndex'),
+        url(r'^Notice/(?P<page>\S+)/(?P<item>\S+)/$','Communication.Views.CommViews.noticeitemIndex'),  
+        url(r'^Notice/(?P<token>\S+)/$','Communication.Views.CommViews.noticeIndex'),
         
         
         

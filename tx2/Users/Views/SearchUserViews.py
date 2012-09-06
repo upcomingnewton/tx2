@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from tx2.Misc.MIscFunctions1 import AppendMessageList
+from tx2.Security.BusinessFunctions.PermissionFunctions import PermissionFnx
 from tx2.Security.BusinessFunctions.StateFunctions import StateFnx
 from tx2.Security.models import Entity
 from tx2.Users.models import User
@@ -177,7 +178,19 @@ def ListUser(HttpRequest):
     if 'SearchUserAppModel' in HttpRequest.session:
       query = HttpRequest.session['SearchUserAppModel']
       UserList = User.objects.raw(query)
-      return render_to_response('UserSystem/User/ListUserIndex.html',{'UserList':UserList},context_instance=RequestContext(HttpRequest))
+      PermList = []
+      GroupList = []
+      EntityList = []
+      PermissionFnxObj = PermissionFnx()
+      PermList = PermissionFnxObj.ListAllPermissions()
+      if PermList[0] != 1:
+        messages.error(HttpRequest,"ERROR. " + str(PermList[1]))
+      EntityList = Entity.objects.all()
+      GroupFnxObj = GroupFnx()
+      GroupList = GroupFnxObj.ListAllGroups()
+      if GroupList[0] != 1:
+        messages.error(HttpRequest,"ERROR. " + str(GroupList[1]))
+      return render_to_response('UserSystem/User/ListUserIndex.html',{'UserList':UserList,'EntityList':EntityList,'GroupList':GroupList[1],'PermList':PermList[1]},context_instance=RequestContext(HttpRequest))
     else:
       return HttpResponseRedirect('/user/search/')
   except Exception, ex:
