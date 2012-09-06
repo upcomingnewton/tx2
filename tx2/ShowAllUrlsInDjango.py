@@ -11,7 +11,7 @@ def show_urls(append,urllist, depth=0):
 def MakeAllUrls(append,urllist,_list, depth=0):
     for entry in urllist:
 	    t =  append +  entry.regex.pattern[1:]
-	    _list.append(t)
+	    _list.append(t[:-1])
             if hasattr(entry, 'url_patterns'):
             	MakeAllUrls(t,entry.url_patterns,_list, depth + 1)
 

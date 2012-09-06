@@ -16,9 +16,6 @@ import inspect
 
 LoggerUser = logging.getLogger(LoggerUser)
 
-
-
-
     
 def Login(HttpRequest):
   usrfn = UserFnx()
