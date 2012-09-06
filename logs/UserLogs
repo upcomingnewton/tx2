@@ -400,6 +400,7 @@ LINE 1: ...'AnonymousUsers','this group will be used by menu's for user...
 2012-09-06 21:30:18,804 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947218.8
 2012-09-06 21:30:18,878 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... SmFNCE1OFenUPnSn03Z4WemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346947218.88
 2012-09-06 21:30:25,303 DatabaseFunctions line:67   DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM userlogout(1862,2,'2012-09-06 21:30:25.179029'); ]
+<<<<<<< HEAD
 2012-09-06 16:52:08,382 DatabaseFunctions line:52   DEBUG    [ {'username': u'UserFirstName', 'userstate': 1, 'rescode': 115, 'userid': 1, 'result': 1, 'groupid': 1, 'loginid': 1869} ] [ SELECT * FROM UserLogin('SystemInit1@init.com','EvK6Hl1xB_P4L5U6S984fpPi2yaq1rOmYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-09-06 16:52:07.397443'); ]
 2012-09-06 16:52:08,383 LoginDetails      line:37   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. qHey_P4L5U6S98GfMJvDR5XGGGEySY_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930528.38
 2012-09-06 16:52:09,939 LoginDetails      line:64   DEBUG    [UpdateLoggedInUsersDict] Adding... qHey_P4L5U6S98GfMJvDR5XGGGEySY_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930529.94
@@ -557,3 +558,37 @@ MultiValueDictKeyError: "Key 'Perm_153' not found in <QueryDict: {u'Perm_155': [
 2012-09-06 17:31:12,406 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... aQoDTnSgDYKGKWwzOH7bzumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346932872.41
 2012-09-06 17:31:17,684 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... aQoDTnSgDYKGKWwzOH7bzumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346932877.68
 2012-09-06 17:31:17,687 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... aQoDTnSgDYKGKWwzOH7bzumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346932877.69
+=======
+2012-09-06 16:51:17,251 DatabaseFunctions line:52   DEBUG    [ {'username': u'jivjot', 'userstate': 1, 'rescode': 115, 'userid': 456, 'result': 1, 'groupid': 35, 'loginid': 1868} ] [ SELECT * FROM UserLogin('testjivjot@gmail.com','UUQPIPFnrA_SL143_SHj_SL143_SHOq8jv7FCumYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-09-06 16:51:16.253245'); ]
+2012-09-06 16:51:17,272 LoginDetails      line:37   DEBUG    [AddLoginIdToLoggedInUsersDict] Adding.. nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930477.27
+2012-09-06 16:51:17,938 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930477.94
+2012-09-06 16:51:18,753 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930478.75
+2012-09-06 16:51:28,336 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930488.34
+2012-09-06 16:51:29,224 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930489.22
+2012-09-06 16:52:50,581 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930570.58
+2012-09-06 16:52:51,567 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930571.57
+2012-09-06 16:54:38,414 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930678.41
+2012-09-06 16:54:39,188 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... nPsGtjjRmf2iq1RecksLoemYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346930679.19
+2012-09-06 17:12:21,123 DatabaseFunctions line:52   DEBUG    [ {'username': u'jivjot', 'userstate': 1, 'rescode': 115, 'userid': 456, 'result': 1, 'groupid': 35, 'loginid': 1872} ] [ SELECT * FROM UserLogin('testjivjot@gmail.com','UUQPIPFnrA_SL143_SHj_SL143_SHOq8jv7FCumYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'127.0.0.1','2012-09-06 17:12:20.165887'); ]
+2012-09-06 17:12:21,124 LoginDetails      line:49   DEBUG    [AddLoginIdToLoggedInUsersDict] Updating.. ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931741.12
+2012-09-06 17:12:21,570 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931741.57
+2012-09-06 17:12:22,464 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931742.46
+2012-09-06 17:12:29,009 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931749.01
+2012-09-06 17:12:29,870 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931749.87
+2012-09-06 17:12:33,107 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931753.11
+2012-09-06 17:12:33,918 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931753.92
+2012-09-06 17:12:35,889 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931755.89
+2012-09-06 17:12:36,874 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931756.87
+2012-09-06 17:13:04,190 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931784.19
+2012-09-06 17:13:04,965 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931784.97
+2012-09-06 17:13:06,612 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931786.61
+2012-09-06 17:13:07,641 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931787.64
+2012-09-06 17:13:17,419 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931797.42
+2012-09-06 17:13:18,527 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931798.53
+2012-09-06 17:13:22,079 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931802.08
+2012-09-06 17:13:22,928 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931802.93
+2012-09-06 17:13:28,078 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931808.08
+2012-09-06 17:13:29,062 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931809.06
+2012-09-06 17:13:32,452 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931812.45
+2012-09-06 17:13:33,363 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZZR9ZqVgC8PKhGVmNRMMsumYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346931813.36
+>>>>>>> 81f60a56df583efb91f742a64e37da93a83421cd
