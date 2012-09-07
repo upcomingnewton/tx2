@@ -1,11 +1,8 @@
-CREATE OR REPLACE FUNCTION MedicalInfoUpdate(
+CREATE OR REPLACE FUNCTION LegalInfoUpdate(
 _id integer,
 _User_id integer,
-_Height varchar,
-_Weight varchar,
-_LeftEye varchar,
-_RightEye varchar,
-_DisabilityInfo varchar,
+_PassPortNo varchar,
+_AnyLegalIssue varchar,
 prev varchar,
 RequestedOperation VARCHAR,
 by_user INTEGER,
@@ -19,32 +16,29 @@ DECLARE
 BEGIN 
 temp := 0;
 
-IF NOT EXISTS ( SELECT id FROM "UserProfile_medicalinfo" WHERE id=_id) THEN
+IF NOT EXISTS ( SELECT id FROM "UserProfile_legalinfo" WHERE id=_id) THEN
 	result := -4;
   	rescode := 161;
 	RETURN;
 END IF;
 
-IF EXISTS ( SELECT id FROM "UserProfile_medicalinfo" WHERE "User_id"=_User_id and id<>_id) THEN
+IF EXISTS ( SELECT id FROM "UserProfile_legalinfo" WHERE "User_id"=_User_id and id<>_id) THEN
 	result := -3;
   	rescode := 200;
 	RETURN;
 END IF;
 
-SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'medicalinfo','UserProfile');
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'legalinfo','UserProfile');
 IF varrec.result <> 1 THEN
 	rescode :=  varrec.rescode;
 	result := -2;
 	RETURN;
 END IF;
 
-Update 
-"UserProfile_medicalinfo"
-set "Height"=_Height, 
-"Weight"=_Weight, 
-"LeftEye"=_LeftEye, 
-"RightEye"=_RightEye, 
-"DisabilityInfo"=_DisabilityInfo
+Update "UserProfile_legalinfo"
+set
+"AnyLegalIssue"=_AnyLegalIssue, 
+"PassPortNo"=_PassPortNo
 where id=_id;
 
 GET DIAGNOSTICS temp := ROW_COUNT;
@@ -53,9 +47,7 @@ IF temp <> 1 THEN
 	result := -1;
         RETURN;
 END IF;
-
 rescode := _id;
-	
 
 INSERT INTO "UserProfile_userprofilelogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
 VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'UPDATE',prev);

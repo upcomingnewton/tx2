@@ -345,7 +345,8 @@ def MarksPostSave(HttpRequest):
         if(result['result']==1):
           messages.info(HttpRequest,"SUCCESS.Your details have been recorded for %s" % (HttpRequest.session['Message_MarksFillingFor']))
         else:
-          messages.info(HttpRequest,"Some Error Occured please try again")
+          messages.error(HttpRequest,"result is %s"%result);
+          return HttpResponseRedirect('/message/')
         if 'Message_MarksFillingFor' in HttpRequest.session:
           del HttpRequest.session['Message_MarksFillingFor']
         return HttpResponseRedirect('/userprofile/Marks/Marks/')

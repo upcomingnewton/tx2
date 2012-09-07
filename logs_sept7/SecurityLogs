@@ -1,0 +1,10 @@
+2012-09-06 19:21:08,807 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 50
+2012-09-06 19:21:08,809 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-06 19:21:08,811 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-06 19:21:46,160 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(21,36,1,1,'SYS_PER_INSERT',1,'117.197.114.164');
+2012-09-06 19:21:46,168 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 2, 'rescode': 71}]
+2012-09-06 19:21:54,773 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 50
+2012-09-06 19:21:54,775 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-06 19:21:54,777 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-06 19:22:10,716 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(21,36,2,1,'SYS_PER_INSERT',1,'117.197.114.164');
+2012-09-06 19:22:10,721 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 2, 'rescode': 71}]

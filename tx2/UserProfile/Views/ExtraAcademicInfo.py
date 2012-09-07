@@ -252,7 +252,9 @@ def ExtraAcademicInfoDetailsDelete(HttpRequest):
               messages.info(HttpRequest,"Does NOt Exist");
             elif(result['result']==-2):
               messages.error(HttpRequest,"You do not have the required privelege to this particular page.Either you do not have authenticated yourself or You have not completed your previous details ");
-            
+            else:
+              messages.error(HttpRequest,"result is %s"%result);
+              return HttpResponseRedirect('/message/')
             return HttpResponseRedirect('/message/')
           except ObjectDoesNotExist:
             messages.error(HttpRequest,"Does NOt Exist");
@@ -370,18 +372,20 @@ def ExtraAcademicInfoDetailsInsert(HttpRequest):
           result=ExtraAcademicInfoObj.UpdateExtraAcademicInfoDetails(_id,logindetails["userid"], Title, _Start, End, _Organisation, Designation, Details, PlaceOfWork, FunctionalArea, ExtraAcadmicInfoType_id, References, Summary, logindetails["userid"], ip);
           if(result['result']==-2):
             messages.error(HttpRequest,"You do not have the required privelege to this particular page.Either you do not have authenticated yourself or You have not completed your previous details ");
-          if(result['result']==1):
+          elif(result['result']==1):
               messages.info(HttpRequest,"Congrats Your details have been saved");
-          if(result['result']==-4):
+          elif(result['result']==-4):
               messages.error(HttpRequest,"Details does not exist");
-          if(result['result']==-3):
+          elif(result['result']==-3):
               messages.error(HttpRequest,"Already Exists");
-            
+          else:
+            messages.error(HttpRequest,"result is %s"%result);
+            return HttpResponseRedirect('/message/')
         else:
           result=ExtraAcademicInfoObj.InsertExtraAcademicInfoDetails(logindetails["userid"], Title, _Start, End, _Organisation, Designation, Details, PlaceOfWork, FunctionalArea, ExtraAcadmicInfoType_id, References, Summary, logindetails["userid"], ip);
           if(result['result']==-2):
             messages.error(HttpRequest,"You do not have the required privelege to this particular page.Either you do not have authenticated yourself or You have not completed your previous details ");
-          if(result['result']==1):
+          elif(result['result']==1):
               messages.error(HttpRequest,"Congrats Your details have been saved");
               if(result['result']==2):
                 dt=datetime.datetime.strptime(_Start,'%d %b %Y')
@@ -392,6 +396,9 @@ def ExtraAcademicInfoDetailsInsert(HttpRequest):
                     messages.error(HttpRequest,"We found a previous entry similar to Entered by You.");
                     messages.error(HttpRequest,"As Our System does not allow duplicate value.");
                     messages.error(HttpRequest,"We have updated your Entry with your current entered values");
+                else:
+                  messages.error(HttpRequest,"result is %s"%updateres);
+                  return HttpResponseRedirect('/message/')
             
           
         

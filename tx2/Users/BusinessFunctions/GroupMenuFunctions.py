@@ -1,7 +1,7 @@
 from tx2.Users.models import Menu,GroupMenu,Group
 from tx2.Users.DBFunctions.DatabaseFunctions import DBGroupMenuInsert , DBGroupMenuDelete
 from tx2.CONFIG import LoggerUser
-from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_DELETE
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_DELETE,SYSTEM_STATE_DELETED
 from tx2.Misc.CacheManagement import setCache,getCache,deleteCacheKey
 from tx2.Users.DBFunctions.Messages import decode
 import logging
@@ -65,13 +65,13 @@ class GroupMenuFnx():
     
         
   def Insert(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
-    MenuStr = self.getStringFromList(MenuList)
+    MenuStr = self.getStringFromList((MenuList))
     if MenuStr[0] != 1:
       return (-1,MenuStr[1])
-    PermissionStr = self.getStringFromList(PermissionList)
+    PermissionStr = self.getStringFromList((PermissionList))
     if PermissionStr[0] != 1:
       return (-1,PermissionStr[1])
-    ExtraInfo = self.getStringFromList(extrainfo)
+    ExtraInfo = self.getStringFromList((extrainfo))
     if ExtraInfo[0] != 1:
       return (-1,ExtraInfo[1])
     try:
@@ -100,7 +100,7 @@ class GroupMenuFnx():
       return (-2,str(ex))
 
   def Delete(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
-    MenuIDStr = self.getStringFromList(MenuIDList)
+    MenuIDStr = self.getStringFromList(self.getUniqueIntegersList(MenuIDList)[1])
     if MenuIDStr[0] != 1:
       return (-1,MenuIDStr[1])
     try:
@@ -202,6 +202,7 @@ class GroupMenuFnx():
     try:
       GroupMenuList = getCache(self.getKey(groupid))
       if GroupMenuList is not -1 and GroupMenuList is not None:
+        print '===== CACHE RETURN :: %d ====== ' % (groupid)
         return (1,GroupMenuList)
       else:
         return (-1,'ERROR in Retrieveing GroupMenuList from cache')
@@ -216,12 +217,16 @@ class GroupMenuFnx():
       
   def getGroupMenuObjectByGroupID(self,groupid):
     try:
-      GroupMenuObjList = self.getListFromCache(groupid)
-      if GroupMenuObjList[0] != 1:
-        GroupMenuObjList = GroupMenu.objects.filter(Group__id = groupid)
+      GroupMenuObjList = []
+      GroupMenuList = self.getListFromCache(groupid)
+      if GroupMenuList[0] != 1:
+        GroupMenuList = GroupMenu.objects.filter(Group__id = groupid)
+        for m in GroupMenuList:
+          if m.Menu.State.StateName != SYSTEM_STATE_DELETED:
+            GroupMenuObjList.append(m)
         setCache(self.getKey(groupid),GroupMenuObjList)
       else:
-        GroupMenuObjList = GroupMenuObjList[1]
+        GroupMenuObjList = GroupMenuList[1]
       return (1,GroupMenuObjList)
     except Exception, ex:
       frame = inspect.currentframe()
