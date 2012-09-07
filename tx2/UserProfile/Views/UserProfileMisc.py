@@ -135,3 +135,52 @@ def MedicalInfoInsert(HttpRequest):
       Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
+
+def LegalInfoInsert(HttpRequest):
+    ip = HttpRequest.META['REMOTE_ADDR']
+    logindetails = GetLoginDetails(HttpRequest)
+    print logindetails
+    if( logindetails["userid"] == -1):
+        messages.error(HttpRequest,'Please Login to continue')
+        return HttpResponseRedirect('/user/login/')
+    try:
+        UserProfileMiscObj=UserProfileMisc()
+        flag=1
+        if "PassPortNo" in HttpRequest.POST:
+            PassPortNo=HttpRequest.POST["PassPortNo"]
+            
+        else:
+            messages.error(HttpRequest,"Error fetching data from form for PassPortNo");
+            flag=-1;
+        if "AnyLegalIssue" in HttpRequest.POST:
+            AnyLegalIssue=HttpRequest.POST["AnyLegalIssue"]
+           
+        else:
+            messages.error(HttpRequest,"Error fetching data from form for AnyLegalIssue");
+            flag=-1;
+        if flag==-1:
+            return HttpResponseRedirect('/message/')
+        
+        if "Id" in HttpRequest.POST:
+            Id=HttpRequest.POST["Id"]
+            result=UserProfileMiscObj.UpdateLegalInfo(Id,logindetails["userid"], PassPortNo, AnyLegalIssue, logindetails["userid"], ip)
+        else:
+            result=UserProfileMiscObj.InsertLegalInfo(logindetails["userid"], PassPortNo, AnyLegalIssue, logindetails["userid"], ip)
+        if result['result']==-2:
+          messages.error(HttpRequest,"You do not have privelege to this table.");
+          messages.error(HttpRequest,"Either your profile is complete or you have not authenticated yourself");
+        elif result['result']==1:
+          messages.error(HttpRequest,"Congrats Your value has been saved");
+          
+        else:
+          messages.error(HttpRequest,"result is %s"%result);
+        return HttpResponseRedirect('/message/')
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
