@@ -1,5 +1,5 @@
 from django.db import models
-from tx2.Security.models import SecurityStates
+from tx2.Security.models import SecurityStates,SecurityPermissions
 from tx2.Users.models import User
 from tx2.UserProfile.models import Branch
 from django.contrib.contenttypes.models import ContentType
