@@ -2326,3 +2326,5 @@ PL/pgSQL function "groupmenuinsert" line 28 at SQL statement
 2012-09-07 09:57:28,438 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZvyllK3UgBfAPRtu5zx1O_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346992048.44
 2012-09-07 09:57:29,285 LoginDetails      line:74   DEBUG    [UpdateLoggedInUsersDict] Updating... ZvyllK3UgBfAPRtu5zx1O_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=: 1346992049.28
 >>>>>>> 754cd7ff690625399d3841b9acca8c47d4f95bcd
+2012-09-07 15:59:36,656 DatabaseFunctions line:37   DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserUpdate('testjivjot@gmail.com','UUQPIPFnrA_SL143_SHj_SL143_SHOq8jv7FCumYJr8Twl2Lt3h_P4L5U6S989FqYg64=','1990-07-01','jivjot','--','singh',1,'M','ChangeUserGroup','35',21,'SYS_PER_UPDATE',456,'127.0.0.1');  ]
+2012-09-07 16:17:07,539 DatabaseFunctions line:37   DEBUG    [ {'result': 1, 'rescode': 99} ] [ SELECT * FROM UserUpdate('testjivjot@gmail.com','UUQPIPFnrA_SL143_SHj_SL143_SHOq8jv7FCumYJr8Twl2Lt3h_P4L5U6S989FqYg64=','1990-07-01','jivjot','--','singh',1,'M','ChangeUserGroup','4',21,'SYS_PER_UPDATE',456,'127.0.0.1');  ]
