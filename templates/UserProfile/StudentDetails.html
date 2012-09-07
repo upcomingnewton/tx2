@@ -58,7 +58,7 @@
         <select name="BranchMinor" class="widget" style="float:left;width:150px;">
           {% if StudDetailStatus %}
             {% for branch in BranchList %}
-              {% if StudentDetailsObj.BranchMinor.id == branch.id %}
+              {% if StudentDetailsObj.BranchMinor == branch.id %}
                 <option value="{{ branch.id }}" selected="selected">{{ branch.BranchName }}</option>
               {% else %}
                 <option value="{{ branch.id }}" >{{ branch.BranchName }}</option>
