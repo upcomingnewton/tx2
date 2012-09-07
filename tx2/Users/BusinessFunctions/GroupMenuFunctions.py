@@ -65,13 +65,13 @@ class GroupMenuFnx():
     
         
   def Insert(self,MenuList,GroupID,PermissionList,extrainfo,by,ip,RequestedOperation=SYSTEM_PERMISSION_INSERT):
-    MenuStr = self.getStringFromList(self.getUniqueIntegersList(MenuList))
+    MenuStr = self.getStringFromList((MenuList))
     if MenuStr[0] != 1:
       return (-1,MenuStr[1])
-    PermissionStr = self.getStringFromList(self.getUniqueIntegersList(PermissionList))
+    PermissionStr = self.getStringFromList((PermissionList))
     if PermissionStr[0] != 1:
       return (-1,PermissionStr[1])
-    ExtraInfo = self.getStringFromList(self.getUniqueIntegersList(extrainfo))
+    ExtraInfo = self.getStringFromList((extrainfo))
     if ExtraInfo[0] != 1:
       return (-1,ExtraInfo[1])
     try:
@@ -100,7 +100,7 @@ class GroupMenuFnx():
       return (-2,str(ex))
 
   def Delete(self,MenuIDList,by,ip,RequestedOperation=SYSTEM_PERMISSION_DELETE):
-    MenuIDStr = self.getStringFromList(self.getUniqueIntegersList(MenuIDList))
+    MenuIDStr = self.getStringFromList(self.getUniqueIntegersList(MenuIDList)[1])
     if MenuIDStr[0] != 1:
       return (-1,MenuIDStr[1])
     try:

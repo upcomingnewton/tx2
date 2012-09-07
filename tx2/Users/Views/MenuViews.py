@@ -201,7 +201,8 @@ def AddMenu(HttpRequest):
       return HttpResponseRedirect('/message/')
     else:
       MenuFnxObj = MenuFnx()
-      print MenuName, MenuDesc, MenuUrl,MenuPid,MenuIcon
+      if MenuPid == -1:
+        MenuUrl = MenuName
       result = MenuFnxObj.Insert(MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'])
       messages.error(HttpRequest,str(result))
       return HttpResponseRedirect('/user/menu/list')
