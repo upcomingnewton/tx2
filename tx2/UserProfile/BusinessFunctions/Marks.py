@@ -21,6 +21,9 @@ class Marks(object):
         Constructor
         '''
         self.UserProfileLogger=logging.getLogger(LOGGER_USER_PROFILE)
+    def MakeExceptionMessage(self,msg):
+          return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
+  
     def InsertBoard(self,BoardName,by_user,ip):
         try:
             details={'BoardName':BoardName,

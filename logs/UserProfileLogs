@@ -8,3 +8,381 @@
 2012-09-06 17:13:18,518 DBUserProfileMisc line:39   DEBUG    [DBMedicalInfoUpdate] [{'result': 1, 'rescode': 1}]
 2012-09-06 17:13:28,875 DBUserProfileMisc line:36   DEBUG    [DBMedicalInfoUpdate] SELECT * FROM MedicalInfoUpdate(1,456,'165','56','1.4','1.5','vfvf','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<MedicalInfo<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>User_id><p7<I456<sS>Weight><p8<V56<p9<sS>_state><p10<ccopy_reg<_reconstructor<p11<(cdjango.db.models.base<ModelState<p12<c__builtin__<object<p13<Ntp14<Rp15<(dp16<S>adding><p17<I00<sS>db><p18<S>default><p19<sbsS>LeftEye><p20<V1<p21<sS>Height><p22<V165<p23<sS>DisabilityInfo><p24<Vvfvf<p25<sS>RightEye><p26<V1.5<p27<sS>id><p28<I1<sb.','SYS_PER_UPDATE',456,'127.0.0.1');
 2012-09-06 17:13:29,054 DBUserProfileMisc line:39   DEBUG    [DBMedicalInfoUpdate] [{'result': 1, 'rescode': 1}]
+2012-09-07 09:38:40,474 UserProfileMisc   line:55   ERROR    InsertLegalInfo : [self : <tx2.UserProfile.BusinessFunctions.UserProfileMisc.UserProfileMisc instance at 0x1f29050>][User_id : 456][PassPortNo : 1234][AnyLegalIssue : dfvfarf][by_user : 456][ip : 127.0.0.1]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 47, in InsertLegalInfo
+    result=DBUserProfileMisc.DBLegalInfoInsert(details);
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/DBFunctions/DBUserProfileMisc.py", line 34, in DBLegalInfoInsert
+    query = "SELECT * FROM LegalInfoInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s');"%(details["User_id"],details["PassPortNo"],details["AnyLegalIssue"],details["RequestedOperation"],details["by_user"],details["ip"]);
+TypeError: not enough arguments for format string
+2012-09-07 09:38:40,504 UserProfileMisc   line:184  ERROR    LegalInfoInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'PassPortNo': [u'1234'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'AnyLegalIssue': [u'dfvfarf']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'sessionid': '6e11fec6921c803905803036768d29b5'},
+META:{'CONTENT_LENGTH': '90',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-UPM0QOCXW0,guid=38415b910f169ec446b698000000003c',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-EBjQXp',
+ 'GNOME_KEYRING_PID': '2031',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=6e11fec6921c803905803036768d29b5; csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/UserProfileMisc/LegalInfo/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/userprofile/UserProfileMisc/LegalInfo/new',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2050,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2050',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2082',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-EBjQXp/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-WvZhAB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1346988097.271510-1102495206',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f554c3f91e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x1f33cd0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/Views/UserProfileMisc.py", line 168, in LegalInfoInsert
+    result=UserProfileMiscObj.InsertLegalInfo(logindetails["userid"], PassPortNo, AnyLegalIssue, logindetails["userid"], ip)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 56, in InsertLegalInfo
+    return (-2,self.MakeExceptionMessage(str(ex)))
+AttributeError: UserProfileMisc instance has no attribute 'MakeExceptionMessage'
+2012-09-07 09:46:07,445 UserProfileMisc   line:55   ERROR    InsertLegalInfo : [self : <tx2.UserProfile.BusinessFunctions.UserProfileMisc.UserProfileMisc instance at 0x3130248>][User_id : 456][PassPortNo : 1234][AnyLegalIssue : dfvfarf][by_user : 456][ip : 127.0.0.1]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 47, in InsertLegalInfo
+    result=DBUserProfileMisc.DBLegalInfoInsert(details);
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/DBFunctions/DBUserProfileMisc.py", line 34, in DBLegalInfoInsert
+    query = "SELECT * FROM LegalInfoInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s');"%(details["User_id"],details["PassPortNo"],details["AnyLegalIssue"],details["RequestedOperation"],details["by_user"],details["ip"]);
+TypeError: not enough arguments for format string
+2012-09-07 09:46:07,449 UserProfileMisc   line:184  ERROR    LegalInfoInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'PassPortNo': [u'1234'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'AnyLegalIssue': [u'dfvfarf']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'sessionid': '6e11fec6921c803905803036768d29b5'},
+META:{'CONTENT_LENGTH': '90',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-UPM0QOCXW0,guid=38415b910f169ec446b698000000003c',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-EBjQXp',
+ 'GNOME_KEYRING_PID': '2031',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=6e11fec6921c803905803036768d29b5; csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/UserProfileMisc/LegalInfo/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/userprofile/UserProfileMisc/LegalInfo/new',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2050,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2050',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2082',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-EBjQXp/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-WvZhAB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1346988097.271510-1102495206',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fac7fa6b1e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x2e42750>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/Views/UserProfileMisc.py", line 168, in LegalInfoInsert
+    result=UserProfileMiscObj.InsertLegalInfo(logindetails["userid"], PassPortNo, AnyLegalIssue, logindetails["userid"], ip)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 56, in InsertLegalInfo
+    return (-2,self.MakeExceptionMessage(str(ex)))
+AttributeError: UserProfileMisc instance has no attribute 'MakeExceptionMessage'
+2012-09-07 09:46:20,459 UserProfileMisc   line:55   ERROR    InsertLegalInfo : [self : <tx2.UserProfile.BusinessFunctions.UserProfileMisc.UserProfileMisc instance at 0x32a6488>][User_id : 456][PassPortNo : 1234][AnyLegalIssue : dfedfed][by_user : 456][ip : 127.0.0.1]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 47, in InsertLegalInfo
+    result=DBUserProfileMisc.DBLegalInfoInsert(details);
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/DBFunctions/DBUserProfileMisc.py", line 34, in DBLegalInfoInsert
+    query = "SELECT * FROM LegalInfoInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s');"%(details["User_id"],details["PassPortNo"],details["AnyLegalIssue"],details["RequestedOperation"],details["by_user"],details["ip"]);
+TypeError: not enough arguments for format string
+2012-09-07 09:46:20,468 UserProfileMisc   line:184  ERROR    LegalInfoInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'PassPortNo': [u'1234'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'AnyLegalIssue': [u'dfedfed']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'sessionid': '6e11fec6921c803905803036768d29b5'},
+META:{'CONTENT_LENGTH': '90',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-UPM0QOCXW0,guid=38415b910f169ec446b698000000003c',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-EBjQXp',
+ 'GNOME_KEYRING_PID': '2031',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=6e11fec6921c803905803036768d29b5; csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/UserProfileMisc/LegalInfo/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/userprofile/UserProfileMisc/LegalInfo/new',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2050,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2050',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2082',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-EBjQXp/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-WvZhAB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1346988097.271510-1102495206',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fac7fa6b1e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x328cc50>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/Views/UserProfileMisc.py", line 168, in LegalInfoInsert
+    result=UserProfileMiscObj.InsertLegalInfo(logindetails["userid"], PassPortNo, AnyLegalIssue, logindetails["userid"], ip)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 56, in InsertLegalInfo
+    return (-2,self.MakeExceptionMessage(str(ex)))
+AttributeError: UserProfileMisc instance has no attribute 'MakeExceptionMessage'
+2012-09-07 09:46:41,676 UserProfileMisc   line:58   ERROR    InsertLegalInfo : [self : <tx2.UserProfile.BusinessFunctions.UserProfileMisc.UserProfileMisc instance at 0x2499248>][User_id : 456][PassPortNo : 1234][AnyLegalIssue : dfedfed][by_user : 456][ip : 127.0.0.1]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/BusinessFunctions/UserProfileMisc.py", line 50, in InsertLegalInfo
+    result=DBUserProfileMisc.DBLegalInfoInsert(details);
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/DBFunctions/DBUserProfileMisc.py", line 34, in DBLegalInfoInsert
+    query = "SELECT * FROM LegalInfoInsert(%s,'%s','%s','%s','%s','%s','%s',%s,'%s');"%(details["User_id"],details["PassPortNo"],details["AnyLegalIssue"],details["RequestedOperation"],details["by_user"],details["ip"]);
+TypeError: not enough arguments for format string
+2012-09-07 09:46:41,681 UserProfileMisc   line:184  ERROR    LegalInfoInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'PassPortNo': [u'1234'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'AnyLegalIssue': [u'dfedfed']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'sessionid': '6e11fec6921c803905803036768d29b5'},
+META:{'CONTENT_LENGTH': '90',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-UPM0QOCXW0,guid=38415b910f169ec446b698000000003c',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-EBjQXp',
+ 'GNOME_KEYRING_PID': '2031',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=6e11fec6921c803905803036768d29b5; csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/userprofile/UserProfileMisc/LegalInfo/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/userprofile/UserProfileMisc/LegalInfo/new',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2050,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2050',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2082',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-EBjQXp/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-WvZhAB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1346988097.271510-1102495206',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f1fab99c1e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x21ab750>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/Views/UserProfileMisc.py", line 169, in LegalInfoInsert
+    if result['result']==-2:
+TypeError: tuple indices must be integers, not str
+2012-09-07 09:50:37,782 DBUserProfileMisc line:36   DEBUG    [DBLegalInfoInsert] SELECT * FROM LegalInfoInsert(456,'1234','dfedfed','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 09:50:38,614 DBUserProfileMisc line:39   DEBUG    [DBLegalInfoInsert] [{'result': -2, 'rescode': 504}]
+2012-09-07 09:52:04,894 DBUserProfileMisc line:36   DEBUG    [DBLegalInfoInsert] SELECT * FROM LegalInfoInsert(456,'1234','dfedfed','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 09:52:05,659 DBUserProfileMisc line:39   DEBUG    [DBLegalInfoInsert] [{'result': 1, 'rescode': 1}]
+2012-09-07 09:52:14,167 DBUserProfileMisc line:69   DEBUG    [DBLegalInfoUpdate] SELECT * FROM LegalInfoUpdate(1,456,'1234','dfedfed','SYS_PER_UPDATE',456,'127.0.0.1');
+2012-09-07 09:52:14,969 DBUserProfileMisc line:72   DEBUG    [DBLegalInfoUpdate] [{'result': 1, 'rescode': 1}]
+2012-09-07 09:56:37,349 DBUserProfileMisc line:69   DEBUG    [DBLegalInfoUpdate] SELECT * FROM LegalInfoUpdate(1,456,'1234','dfedfed','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<LegalInfo<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>User_id><p7<I456<sS>AnyLegalIssue><p8<Vdfedfed<p9<sS>_state><p10<ccopy_reg<_reconstructor<p11<(cdjango.db.models.base<ModelState<p12<c__builtin__<object<p13<Ntp14<Rp15<(dp16<S>adding><p17<I00<sS>db><p18<S>default><p19<sbsS>id><p20<I1<sS>PassPortNo><p21<V1234<p22<sb.','SYS_PER_UPDATE',456,'127.0.0.1');
+2012-09-07 09:56:37,623 DBUserProfileMisc line:80   ERROR    DBLegalInfoUpdate : [details : {'ip': '127.0.0.1', 'prev': 'cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<LegalInfo<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>User_id><p7<I456<sS>AnyLegalIssue><p8<Vdfedfed<p9<sS>_state><p10<ccopy_reg<_reconstructor<p11<(cdjango.db.models.base<ModelState<p12<c__builtin__<object<p13<Ntp14<Rp15<(dp16<S>adding><p17<I00<sS>db><p18<S>default><p19<sbsS>id><p20<I1<sS>PassPortNo><p21<V1234<p22<sb.', 'User_id': 456, 'RequestedOperation': 'SYS_PER_UPDATE', 'PassPortNo': u'1234', 'AnyLegalIssue': u'dfedfed', 'by_user': 456, 'Id': u'1'}]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/UserProfile/DBFunctions/DBUserProfileMisc.py", line 71, in DBLegalInfoUpdate
+    result =  DBhelper.CallFunction(query)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/DataBaseHelper/DBhelper.py", line 20, in CallFunction
+    cursor.execute(sql)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: function legalinfoupdate(integer, integer, unknown, unknown, unknown, unknown, integer, unknown) does not exist
+LINE 1: SELECT * FROM LegalInfoUpdate(1,456,'1234','dfedfed','cdjang...
+                      ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+2012-09-07 09:57:29,117 DBUserProfileMisc line:69   DEBUG    [DBLegalInfoUpdate] SELECT * FROM LegalInfoUpdate(1,456,'1234','dfedfed','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<LegalInfo<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>User_id><p7<I456<sS>AnyLegalIssue><p8<Vdfedfed<p9<sS>_state><p10<ccopy_reg<_reconstructor<p11<(cdjango.db.models.base<ModelState<p12<c__builtin__<object<p13<Ntp14<Rp15<(dp16<S>adding><p17<I00<sS>db><p18<S>default><p19<sbsS>id><p20<I1<sS>PassPortNo><p21<V1234<p22<sb.','SYS_PER_UPDATE',456,'127.0.0.1');
+2012-09-07 09:57:29,265 DBUserProfileMisc line:72   DEBUG    [DBLegalInfoUpdate] [{'result': 1, 'rescode': 1}]

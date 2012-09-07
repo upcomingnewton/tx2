@@ -27,6 +27,9 @@ class UserProfile(object):
         Constructor
         '''
         self.UserProfileLogger=logging.getLogger(LOGGER_USER_PROFILE)
+    def MakeExceptionMessage(self,msg):
+          return 'Exception Generated : ' + str(msg) + ' Administrators have been alerted to rectify the error. We will send you a notification in this regard soon.'
+  
     def InsertBranch(self,BranchName,by_user,ip):
         try:
             details={'BranchName':BranchName,
