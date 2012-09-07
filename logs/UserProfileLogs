@@ -386,3 +386,26 @@ HINT:  No function matches the given name and argument types. You might need to 
 
 2012-09-07 09:57:29,117 DBUserProfileMisc line:69   DEBUG    [DBLegalInfoUpdate] SELECT * FROM LegalInfoUpdate(1,456,'1234','dfedfed','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<LegalInfo<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>User_id><p7<I456<sS>AnyLegalIssue><p8<Vdfedfed<p9<sS>_state><p10<ccopy_reg<_reconstructor<p11<(cdjango.db.models.base<ModelState<p12<c__builtin__<object<p13<Ntp14<Rp15<(dp16<S>adding><p17<I00<sS>db><p18<S>default><p19<sbsS>id><p20<I1<sS>PassPortNo><p21<V1234<p22<sb.','SYS_PER_UPDATE',456,'127.0.0.1');
 2012-09-07 09:57:29,265 DBUserProfileMisc line:72   DEBUG    [DBLegalInfoUpdate] [{'result': 1, 'rescode': 1}]
+2012-09-07 15:59:35,587 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'um9305',13,13,1,1,'fdfefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 15:59:35,806 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-07 15:59:36,661 UserProfile       line:159  DEBUG    [ChangeUserGroup][456] == (-1, 'ERROR : Requesting user does not have permission to perform this operation on requested object.') ==
+2012-09-07 16:04:56,563 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'um9305',13,13,1,1,'de','20650','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:04:56,852 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-07 16:04:57,243 UserProfile       line:159  DEBUG    [ChangeUserGroup][456] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 16:06:13,581 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'bjb',13,13,1,1,'cfeefefefef','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:06:13,792 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 16:06:13,792 UserProfile       line:162  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 456==
+2012-09-07 16:08:03,105 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:08:03,299 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 16:08:31,949 UserProfile       line:162  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 456==
+2012-09-07 16:09:59,168 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:09:59,357 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 16:10:14,187 UserProfile       line:162  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 456==
+2012-09-07 16:11:10,275 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:11:10,475 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 16:11:21,388 UserProfile       line:162  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 456==
+2012-09-07 16:16:39,823 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:16:39,989 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 307}]
+2012-09-07 16:17:06,779 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
+2012-09-07 16:17:06,959 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-07 16:17:07,539 UserProfile       line:159  DEBUG    [ChangeUserGroup][456] == (1, 'Group Change Sucessful') ==

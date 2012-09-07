@@ -270,14 +270,14 @@ def MarksPostSave(HttpRequest):
             _SessionNumber=HttpRequest.session["SessionNumber"]
             del HttpRequest.session['SessionNumber']
         else:
-          messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionNumber')
-          flag=-1;
+          messages.error(HttpRequest,'ERROR : Please Choose a Session First')
+          flag=-2;
         if "SessionType" in HttpRequest.session:
             SessionType=HttpRequest.session["SessionType"]
             del HttpRequest.session["SessionType"]
         else:
-            messages.error(HttpRequest,'ERROR : Error fetching data from form for SessionType')
-            flag=-1;
+            messages.error(HttpRequest,'ERROR : Please Choose a Session First')
+            flag=-2;
         if "TotalMarks" in HttpRequest.POST:
             TotaMarks=HttpRequest.POST["TotalMarks"]
             if is_integer(TotaMarks):
@@ -312,8 +312,8 @@ def MarksPostSave(HttpRequest):
             DegreeType=HttpRequest.session["DegreeType"]
             del HttpRequest.session["DegreeType"]
         else:
-            messages.error(HttpRequest,'ERROR : Error fetching data from form for DegreeType')
-            flag=-1;
+            messages.error(HttpRequest,'ERROR : Please Choose a Session First')
+            flag=-2;
         if "Board" in HttpRequest.POST:
             Boardid=HttpRequest.POST["Board"]
         else:
@@ -323,11 +323,14 @@ def MarksPostSave(HttpRequest):
             _Degree=HttpRequest.session["Degree"]
             del HttpRequest.session["Degree"]
         else:
-            messages.error(HttpRequest,'ERROR : Error fetching data from form for Degree')
-            flag=-1;
+            messages.error(HttpRequest,'ERROR : Please Choose a Session First')
+            flag=-2;
         Boardobj=Board.objects.all();
         yearlist=range(1985,2014);
         relist=range(0,20);
+        if flag==-2:
+            return HttpResponseRedirect('/userprofile/Marks/Marks/')
+        
         if flag==-1:
             return HttpResponseRedirect('/message/')
         if 'MarksObjExists' in HttpRequest.session:
