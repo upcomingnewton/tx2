@@ -409,3 +409,59 @@ HINT:  No function matches the given name and argument types. You might need to 
 2012-09-07 16:17:06,779 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(456,'fefe',13,13,1,1,'ffefe','11111','SYS_PER_INSERT',456,'127.0.0.1');
 2012-09-07 16:17:06,959 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
 2012-09-07 16:17:07,539 UserProfile       line:159  DEBUG    [ChangeUserGroup][456] == (1, 'Group Change Sucessful') ==
+2012-09-08 15:32:30,397 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('Board of Intermediate Education, Andhra Pradesh','SYS_PER_INSERT','456','127.0.0.1');
+2012-09-08 15:32:30,756 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': -2, 'rescode': 504}]
+2012-09-08 15:39:41,169 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('Board of Intermediate Education, Andhra Pradesh','SYS_PER_INSERT','456','127.0.0.1');
+2012-09-08 15:39:41,549 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': -2, 'rescode': 504}]
+2012-09-08 15:40:03,744 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('Board of Intermediate Education, Andhra Pradesh','SYS_PER_INSERT','456','127.0.0.1');
+2012-09-08 15:40:04,134 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': -2, 'rescode': 504}]
+2012-09-08 15:43:35,798 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('Board of Intermediate Education, Andhra Pradesh','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 15:43:48,806 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 3}]
+2012-09-08 17:30:57,236 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('ICSE:Council for the Indian School (Certificate Exam), New Delhi','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:30:57,405 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 4}]
+2012-09-08 17:31:21,351 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('NOS/NIOS:National Instiitute of Open Schooling, Delhi (Passed with five subjects)','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:31:21,530 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 5}]
+2012-09-08 17:31:43,355 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('GBSE:Daman & Diu Board of Sec. & Higher Sec. Ed','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:31:43,534 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 6}]
+2012-09-08 17:32:00,669 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('GSEB:Gujarat Secondary Education Board','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:32:00,868 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 7}]
+2012-09-08 17:32:18,743 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('HBSE:Haryana Board of School Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:32:18,901 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 8}]
+2012-09-08 17:32:44,118 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('HPBE:Himachal Pradesh Board of School Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:32:44,287 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 9}]
+2012-09-08 17:33:01,810 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('JKSS:&K State Board of School Education (Summer)','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:33:01,960 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 10}]
+2012-09-08 17:33:24,595 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('JKSW:J&K State Board of School Education (Winter)','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:33:24,745 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 11}]
+2012-09-08 17:33:49,080 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('KBPE:Board of Pre-University Education, Karnataka','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:33:49,270 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 12}]
+2012-09-08 17:34:07,044 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('KU:University of Kerala','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:34:07,213 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 13}]
+2012-09-08 17:34:23,908 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('BSMP:Board of Secondary Education, MP','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:34:24,067 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 14}]
+2012-09-08 17:34:59,465 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('MSBE:Maharashtra State Board of Secondary Education & Higher Secondary Board','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:34:59,634 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 15}]
+2012-09-08 17:35:20,859 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('MBSE:Board of Secondary Education, Manipur','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:35:21,028 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 16}]
+2012-09-08 17:35:37,392 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('MZSE:Mizoram Board of Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:35:37,572 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 17}]
+2012-09-08 17:35:59,937 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('NBSE:Nagaland Board of Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:36:00,086 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 18}]
+2012-09-08 17:36:17,181 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('CHSE:Council of Higher Secondary Education, Orissa','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:36:17,329 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 19}]
+2012-09-08 17:36:33,743 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('PSEB:Punjab School Education Board','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:36:33,902 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 20}]
+2012-09-08 17:36:52,337 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('RBSE:Rajasthan Board of Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:36:52,506 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 21}]
+2012-09-08 17:37:10,021 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('TNSB:Board of Secondary & Higher Secondary Exam., Tamil Nadu','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:37:10,180 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 22}]
+2012-09-08 17:37:25,245 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('TBSE:Tripura Board of Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:37:25,403 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 23}]
+2012-09-08 17:37:42,688 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('BHSI:Board of High School & Intermediate Edu., U.P.','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:37:42,846 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 24}]
+2012-09-08 17:37:59,631 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('WBSE:West Bengal Council of Higher Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:37:59,780 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 25}]
+2012-09-08 17:38:15,884 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('JAC:Jharkhand Academic Council, Ranchi','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:38:16,033 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 1, 'rescode': 26}]
+2012-09-08 17:38:38,239 DBFunctions       line:18   DEBUG    [DBInsertBoard] SELECT * FROM BoardInsert('MZSE:Mizoram Board of Secondary Education','SYS_PER_INSERT','1','127.0.0.1');
+2012-09-08 17:38:38,397 DBFunctions       line:21   DEBUG    [DBInsertBoard] [{'result': 2, 'rescode': 161}]

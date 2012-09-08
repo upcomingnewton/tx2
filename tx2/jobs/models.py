@@ -47,13 +47,13 @@ class StudentsCredit(models.Model):
   Credit = models.IntegerField(default=0)
   
 class JobsLogs(models.Model):
-	# user making changes
-	LogsUser = models.ForeignKey(User)
-	# row id being changed
-	ContentType = models.ForeignKey(ContentType)
-	LogsObject = models.IntegerField(default=0)
-	LogsPermission = models.ForeignKey(SecurityPermissions)
-	LogsIP = models.CharField(max_length=20, default="NULL")
-	LogsTimeStamp = models.DateTimeField()
-	LogsDescription = models.CharField(max_length=200, default="NULL")
-	LogsPreviousState = models.TextField(default="NULL")
+  # user making changes
+  LogsUser = models.ForeignKey(User)
+  # row id being changed
+  ContentType = models.ForeignKey(ContentType)
+  LogsObject = models.IntegerField(default=0)
+  LogsPermission = models.ForeignKey(SecurityPermissions)
+  LogsIP = models.CharField(max_length=20, default="NULL")
+  LogsTimeStamp = models.DateTimeField()
+  LogsDescription = models.CharField(max_length=200, default="NULL")
+  LogsPreviousState = models.TextField(default="NULL")
