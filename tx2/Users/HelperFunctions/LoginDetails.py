@@ -9,8 +9,8 @@ LOGGERUSER = logging.getLogger(LoggerUser)
 
 def GetLoginDetails(request):
     encdec  = Encrypt()
-    obj=User.objects.get(UserEmail='SystemInit1@init.com')
-    return {"userid":obj.id,"groupid":obj.Group.id,"loginid": 1,"fname":obj.UserFirstName,}
+    #obj=User.objects.get(UserEmail='SystemInit1@init.com')
+    #return {"userid":obj.id,"groupid":obj.Group.id,"loginid": 1,"fname":obj.UserFirstName,}
     
     try:
         if "details" in request.session.keys():
