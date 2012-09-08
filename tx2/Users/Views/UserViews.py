@@ -130,7 +130,7 @@ def CreateUserFromSite(HttpRequest):
     if len(mname) < 2 or mname == "":
       mname = "--"
     lname = HttpRequest.POST['RegisterUser_lname']
-    if len(lname) < 4:
+    if len(lname) < 2:
       messages.error(HttpRequest,'last name required')
       flag = 1
     RegisterUser_dob_date = HttpRequest.POST['RegisterUser_dob_date']
@@ -140,10 +140,12 @@ def CreateUserFromSite(HttpRequest):
       bday = datetime.date(int(RegisterUser_dob_year),int(RegisterUser_dob_month),int(RegisterUser_dob_date))
     except ValueError as err:
       messages.error(HttpRequest,'Invalid Birthdate')
+      flag = 1
     gender = HttpRequest.POST['RegisterUser_gender']
     if gender== "-1" :
       messages.error(HttpRequest,'Please select your gender')
-    if ( flag == 1 ):
+      flag = 1
+    if flag == 1:
       return HttpResponseRedirect('/message/')
     else:
       insfnx = UserFnx()
