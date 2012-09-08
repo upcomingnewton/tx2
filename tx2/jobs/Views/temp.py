@@ -8,7 +8,7 @@ def test(HttpRequest):
     ipadd = HttpRequest.META['REMOTE_ADDR']
     try:
       obj=CompanyInfoFunctions()
-      result=obj.Add(CompanyName='test1', CompanyAdress='test2', CompanyWebsite='test3', CompanyAbout='test4', CompanyOtherDetails1='test5', CompanyOtherDetails2='test6', User=1,by=1,ip=ipadd)
+      result=obj.Update(_Id=2,CompanyName='test2', CompanyAdress='test3', CompanyWebsite='test4', CompanyAbout='test5', CompanyOtherDetails1='test6', CompanyOtherDetails2='test7', User=1,by=1,ip=ipadd)
       messages.error(HttpRequest,'result: %s %s'%(result[0],result[1]))
       return HttpResponseRedirect('/message/')
     except Exception, ex:

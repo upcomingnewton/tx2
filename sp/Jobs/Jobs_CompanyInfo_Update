@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION Jobs_CompanyInfo_Insert(
+CREATE OR REPLACE FUNCTION Jobs_CompanyInfo_Update(
+_id integer,
 _CompanyName VARCHAR,
 _CompanyAdress varchar,
 _CompanyWebsite varchar,
@@ -6,6 +7,7 @@ _CompanyAbout varchar,
 _CompanyOtherDetails1 varchar,
 _CompanyOtherDetails2 varchar,
 _User_id integer,
+prev varchar,
 RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
@@ -18,10 +20,15 @@ DECLARE
 BEGIN 
 temp := 0;
 
-
-IF EXISTS ( SELECT id FROM "jobs_companyinfo" WHERE "CompanyName"=_CompanyName) THEN
-	result := 2;
+IF NOT EXISTS ( SELECT id FROM "jobs_companyinfo" WHERE id=_id) THEN
+	result := -4;
   	rescode := 161;
+	RETURN;
+END IF;
+
+IF EXISTS ( SELECT id FROM "jobs_companyinfo" WHERE "CompanyName"=_CompanyName and id<>_id) THEN
+	result := -3;
+  	rescode := 200;
 	RETURN;
 END IF;
 
@@ -32,9 +39,17 @@ IF varrec.result <> 1 THEN
 	RETURN;
 END IF;
 
-INSERT INTO "jobs_companyinfo"( "CompanyName","CompanyAdress","CompanyWebsite","CompanyAbout","CompanyOtherDetails1","CompanyOtherDetails2","User_id")
-    						VALUES (_CompanyName,_CompanyAdress,_CompanyWebsite,_CompanyAbout,_CompanyOtherDetails1,_CompanyOtherDetails2,_User_id);
-
+update 
+"jobs_companyinfo"
+set
+"CompanyName"=_CompanyName,
+"CompanyAdress"=_CompanyAdress,
+"CompanyWebsite"=_CompanyWebsite,
+"CompanyAbout"=_CompanyAbout,
+"CompanyOtherDetails1"=_CompanyOtherDetails1,
+"CompanyOtherDetails2"=_CompanyOtherDetails2,
+"User_id"=_User_id
+where id=_id;
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 162;
@@ -42,11 +57,10 @@ IF temp <> 1 THEN
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "jobs_companyinfo" WHERE "CompanyName"=_CompanyName;
-
+rescode := _id;
 
 INSERT INTO "jobs_jobslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
-VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'UPDATE',prev);
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;
