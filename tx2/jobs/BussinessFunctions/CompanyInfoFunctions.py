@@ -109,10 +109,10 @@ class CompanyInfoFunctions():
 
   def getObjectByName(self,_Name):
       try:
-        AdressObj =  CompanyInfo.objects.get(CompanyName=_Name)  
-        return (1,AdressObj)
+        CompanyInfoObj =  CompanyInfo.objects.get(CompanyName=_Name)  
+        return (1,CompanyInfoObj)
       except ObjectDoesNotExist:
-        return (-1,'No Adress Object exists in database with this name')
+        return (-1,'No ComapnyInfo Object exists in database with this name')
       except Exception, ex:
         frame = inspect.currentframe()
         args, _, _, values = inspect.getargvalues(frame)
@@ -124,10 +124,10 @@ class CompanyInfoFunctions():
       
   def getObjectByUserId(self,_User):
       try:
-        AdressObjList =  CompanyInfo.objects.filter(User=_User)  
-        return (1,AdressObjList)
+        CompanyInfoObjList =  CompanyInfo.objects.filter(User=_User)  
+        return (1,CompanyInfoObjList)
       except ObjectDoesNotExist:
-        return (-1,'No Adress Object exists in database with this name')
+        return (-1,'No CompanyInfo Object exists in database with this name')
       except Exception, ex:
         frame = inspect.currentframe()
         args, _, _, values = inspect.getargvalues(frame)
@@ -136,6 +136,19 @@ class CompanyInfoFunctions():
           msg += "[%s : %s]" % (i,values[i])
           self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
-
+  def getObjectsAll(self):
+      try:
+        CompanyInfoObjList =  CompanyInfo.objects.all() 
+        return (1,CompanyInfoObjList)
+      except ObjectDoesNotExist:
+        return (-1,'No CompanyInfo Object exists in database with this name')
+      except Exception, ex:
+        frame = inspect.currentframe()
+        args, _, _, values = inspect.getargvalues(frame)
+        msg = ''
+        for i in args:
+          msg += "[%s : %s]" % (i,values[i])
+          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+        return (-2,str(ex))
 
 

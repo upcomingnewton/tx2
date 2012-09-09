@@ -3,13 +3,17 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from tx2.jobs.BussinessFunctions.CompanyInfoFunctions import CompanyInfoFunctions
 import inspect
-
+import pickle
 def test(HttpRequest):
     ipadd = HttpRequest.META['REMOTE_ADDR']
     try:
       obj=CompanyInfoFunctions()
-      result=obj.Update(_Id=2,CompanyName='test2', CompanyAdress='test3', CompanyWebsite='test4', CompanyAbout='test5', CompanyOtherDetails1='test6', CompanyOtherDetails2='test7', User=1,by=1,ip=ipadd)
+      #result=obj.Update(_Id=2,CompanyName='test2', CompanyAdress='test3', CompanyWebsite='test4', CompanyAbout='test5', CompanyOtherDetails1='test6', CompanyOtherDetails2='test7', User=1,by=1,ip=ipadd)
+      
+      result=(obj.getObjectByUserId(1))
       messages.error(HttpRequest,'result: %s %s'%(result[0],result[1]))
+#      messages.error(HttpRequest,'result: %s'%(result))
+      
       return HttpResponseRedirect('/message/')
     except Exception, ex:
       frame = inspect.currentframe()
