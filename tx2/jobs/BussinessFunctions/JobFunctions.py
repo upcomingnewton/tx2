@@ -9,9 +9,8 @@ import inspect
 import pickle
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE
 from tx2.jobs.DBFunctions.DBMessages import decode
-from tx2.jobs.DBFunctions.DBCompanyInfo import DBInsertCompanyInfo, DBUpdateCompanyInfo
 from django.core.exceptions import ObjectDoesNotExist
-from tx2.jobs.models import CompanyInfo, Job
+from tx2.jobs.models import  Job
 from tx2.Users.models import User
 from tx2.jobs.DBFunctions.DBJobs import DBInsertJob, DBUpdateJob
 class JobFunctions():
@@ -54,7 +53,7 @@ class JobFunctions():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
   def Update(self,_Id,CompanyId,Profile,Designation,Package,DateOfVisit,JobDetails1,JobDetails2,RecruitmentRounds,ContactPersonName,ContactPersonMobile,ContactPersonEmail,ContactPersonDetails,RegistrationsUpto,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
     try:
@@ -101,7 +100,7 @@ class JobFunctions():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
   
   def getObjectByStateid(self,_State):
@@ -116,7 +115,7 @@ class JobFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
   def getObjectByDateofVisit(self,_DateofVisit):
       try:
@@ -130,7 +129,7 @@ class JobFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
   def getObjectByRegistraionUpto(self,_RegistrationsUpto):
       try:
@@ -144,7 +143,7 @@ class JobFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
       
   def getObjectByCompanyId(self,_Id):
@@ -159,7 +158,7 @@ class JobFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
   def getObjectsAll(self):
       try:
@@ -173,7 +172,7 @@ class JobFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
 
 

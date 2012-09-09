@@ -49,7 +49,7 @@ class CompanyInfoFunctions():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-      self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
   def Update(self,_Id,CompanyName,CompanyAdress,CompanyWebsite,CompanyAbout,CompanyOtherDetails1,CompanyOtherDetails2,Userid,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
     try:
@@ -88,7 +88,7 @@ class CompanyInfoFunctions():
       msg = ''
       for i in args:
         msg += "[%s : %s]" % (i,values[i])
-        self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+        self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
     
     def getObjectById(_id):
@@ -103,7 +103,7 @@ class CompanyInfoFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
 
   def getObjectByName(self,_Name):
@@ -118,7 +118,7 @@ class CompanyInfoFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
       
   def getObjectByUserId(self,_User):
@@ -133,7 +133,7 @@ class CompanyInfoFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
   def getObjectsAll(self):
       try:
@@ -147,7 +147,7 @@ class CompanyInfoFunctions():
         msg = ''
         for i in args:
           msg += "[%s : %s]" % (i,values[i])
-          self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
 
 

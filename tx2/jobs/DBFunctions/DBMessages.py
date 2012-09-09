@@ -9,6 +9,9 @@ def decode(res):
         msg += 'SUCCESS. '
     elif result == 2:
         msg += 'Requested object already exists. ' 
+    elif result == -2:
+        msg += 'User does not have permission ' 
+    
     elif result == -1:
         msg += 'Error. ' 
     elif result == 999:
@@ -16,7 +19,7 @@ def decode(res):
     try:
         msg += db_messages[int(rescode)]
     except Exception , e:
-        msg = 'EXCEPTION : ' + str(e)
+        msg += 'EXCEPTION : ' + str(e)
     return msg
     
 
