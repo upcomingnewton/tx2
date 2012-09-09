@@ -7,8 +7,7 @@ from tx2.CONFIG import LoggerJob
 import logging
 import inspect
 import pickle
-from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,\
-  SYSTEM_PERMISSION_UPDATE
+from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE
 from tx2.jobs.DBFunctions.DBMessages import decode
 from tx2.jobs.DBFunctions.DBCompanyInfo import DBInsertCompanyInfo, DBUpdateCompanyInfo
 from django.core.exceptions import ObjectDoesNotExist
@@ -31,7 +30,7 @@ class CompanyInfoFunctions():
           'CompanyAbout':CompanyAbout,
           'CompanyOtherDetails1':CompanyOtherDetails1,
           'CompanyOtherDetails2':CompanyOtherDetails2,
-          'User':User,
+          'User':Userid,
           'by':by,
           'op':req_op,
           'ip':ip,
