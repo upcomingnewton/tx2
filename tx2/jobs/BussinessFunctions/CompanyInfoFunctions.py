@@ -53,7 +53,7 @@ class CompanyInfoFunctions():
       return (-2,str(ex))
   def Update(self,_Id,CompanyName,CompanyAdress,CompanyWebsite,CompanyAbout,CompanyOtherDetails1,CompanyOtherDetails2,Userid,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
     try:
-      Id=int(_Id)
+      _Id=int(_Id)
       obj=CompanyInfo.objects.get(id=_Id);
       prev=pickle.dumps(obj)
       prev=prev.replace("'", ">");
@@ -61,7 +61,7 @@ class CompanyInfoFunctions():
       prev=prev.replace("\\", "+");
           
       details = {
-                 'Id':Id,
+                 'Id':_Id,
                  'CompanyName':CompanyName,
                  'CompanyAdress':CompanyAdress,
                  'CompanyWebsite':CompanyWebsite,
