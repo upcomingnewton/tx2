@@ -51,7 +51,7 @@ class CompanyInfoFunctions():
         msg += "[%s : %s]" % (i,values[i])
       self.AdressLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
-  def Update(self,_Id,CompanyName,CompanyAdress,CompanyWebsite,CompanyAbout,CompanyOtherDetails1,CompanyOtherDetails2,User,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
+  def Update(self,_Id,CompanyName,CompanyAdress,CompanyWebsite,CompanyAbout,CompanyOtherDetails1,CompanyOtherDetails2,Userid,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
     try:
       Id=int(_Id)
       obj=CompanyInfo.objects.get(id=_Id);
@@ -68,7 +68,7 @@ class CompanyInfoFunctions():
                  'CompanyAbout':CompanyAbout,
                  'CompanyOtherDetails1':CompanyOtherDetails1,
                  'CompanyOtherDetails2':CompanyOtherDetails2,
-                 'User':User,
+                 'User':Userid,
                  'prev':prev,
                  'by':by,
                  'op':req_op,
