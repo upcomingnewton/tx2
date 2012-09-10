@@ -1,0 +1,60 @@
+CREATE OR REPLACE FUNCTION Jobs_BranchJob_Insert(
+_Branch_id integer,
+_Job_id integer,
+_JobType_id integer,
+_Comments1 varchar,
+_Comments2 varchar,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "jobs_branchjob" WHERE "Branch_id"=_Branch_id and "Job_id"=_Job_id and "JobType_id"=_JobType_id) THEN
+	result := 2;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'branchjob','jobs');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "jobs_branchjob"( "Branch_id","Job_id","JobType_id","State_id","Comments1","Comments2")
+    						VALUES ( _Branch_id,_Job_id,_JobType_id,varrec.varsci,_Comments1,_Comments2);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "jobs_branchjob" WHERE "Branch_id"=_Branch_id and "Job_id"=_Job_id and "JobType_id"=_JobType_id;
+
+
+INSERT INTO "jobs_jobslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

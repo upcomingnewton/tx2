@@ -6,13 +6,16 @@ import inspect
 from tx2.jobs.BussinessFunctions.JobFunctions import JobFunctions
 from datetime import date
 from tx2.jobs.BussinessFunctions.JobTypeFunctions import JobTypeFunctions
+from tx2.jobs.BussinessFunctions.BranchJobFunctions import BranchJobFunctions
 def test(HttpRequest):
     ipadd = HttpRequest.META['REMOTE_ADDR']
     try:
-      obj=JobTypeFunctions()
+      obj=BranchJobFunctions()
       #result=obj.Add(Name='Name', by=1, ip=ipadd)
       #result=obj.Update(_Id=1, Name='fdfsd', by=1, ip=ipadd)
-      result=obj.getObjectsAll()
+      #result=obj.Add(Branch=13, Job=2, JobType=1, Comments1='value1', Comments2='valuue2', by=1, ip=ipadd)
+      #result=obj.Update(_Id=4, Branch=14, Job=2, JobType=1, Comments1='value2', Comments2='value3', by=1, ip=ipadd)
+      result=obj.getObjectsbyState(1)
       #result=obj.Update(3,CompanyName='test3', CompanyAdress='test3', CompanyWebsite='test4', CompanyAbout='test5', CompanyOtherDetails1='test6', CompanyOtherDetails2='test7', Userid=1,by=1,ip=ipadd)
       #result=obj.Add(CompanyId=2, Profile='valuue1', Designation='valuue2', Package='valuue3', DateOfVisit='1 Jan 2012', JobDetails1='valuue4', JobDetails2='valuue5', RecruitmentRounds='valuue6', ContactPersonName='valuue7', ContactPersonMobile='valuue8', ContactPersonEmail='valuue9', ContactPersonDetails='valuue10', RegistrationsUpto='1 jan 2013', by=1, ip=ipadd)
       #result=obj.Update(2,CompanyId=2, Profile='valuue2', Designation='valuue3', Package='valuue4', DateOfVisit='1 Jan 2013', JobDetails1='valuue5', JobDetails2='valuue6', RecruitmentRounds='valuue7', ContactPersonName='valuue8', ContactPersonMobile='valuue9', ContactPersonEmail='valuue10', ContactPersonDetails='valuue11', RegistrationsUpto='1 jan 2014', by=1, ip=ipadd)
