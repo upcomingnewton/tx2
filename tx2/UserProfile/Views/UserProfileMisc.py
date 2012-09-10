@@ -10,7 +10,7 @@ from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
 from tx2.CONFIG import   LOGGER_USER_PROFILE
 from tx2.UserProfile.BusinessFunctions.UserProfileMisc import UserProfileMisc
 from django.contrib import messages
-from tx2.UserProfile.models import MedicalInfo
+from tx2.UserProfile.models import MedicalInfo, StudentDetails, Branch, Marks
 from tx2.UserProfile.models import LegalInfo
 import logging
 import inspect
@@ -30,6 +30,56 @@ def MedicalInfoIndex(HttpRequest):
     except ObjectDoesNotExist:
       # does not exists
       return render_to_response("UserProfile/MedicalInfo.html",context_instance=RequestContext(HttpRequest))
+    except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      Logger_User.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+def SummaryInfoIndex(HttpRequest):
+    logindetails = GetLoginDetails(HttpRequest)
+    if( logindetails["userid"] == -1):
+            messages.error(HttpRequest,'Please Login to continue')
+            return HttpResponseRedirect('/user/login/')
+    try:
+      # exists
+      stuobj=StudentDetails.objects.filter(User=logindetails["userid"])
+      branchMinor=None
+      Per10=None
+      Per12=None
+      Perbesec=0
+      Perbetot=0
+      Perbe=None
+      if(stuobj.count()>0):
+        stuobj=stuobj[0]
+        branchMinor=Branch.objects.filter(id=stuobj.BranchMinor)
+        if(branchMinor.count>0):
+          branchMinor=branchMinor[0].BranchName
+        else:
+          branchMinor=None
+        Markslist=Marks.objects.filter(UserId=logindetails["userid"]).order_by('SessionStart')
+        for obj in Markslist:
+          if obj.DegreeType.Name=='10th':
+            Per10=(obj.SecuredMarks*100.00)/obj.TotalMarks
+          elif obj.DegreeType.Name=='12th':
+            Per12=(obj.SecuredMarks*100.00)/obj.TotalMarks
+          else:
+            Perbesec+=obj.SecuredMarks
+            Perbetot+=obj.TotalMarks
+            Perbe=(Perbesec*100.00)/Perbetot
+      else:
+        stuobj=None
+      
+      return render_to_response("UserProfile/Summary.html",{'StudentDetails':stuobj,'BranchMinor':branchMinor,'Marks':Markslist,'Per10':Per10,'Per12':Per12,'Perbe':Perbe},context_instance=RequestContext(HttpRequest))
+    
+    except ObjectDoesNotExist:
+      # does not exists
+      return render_to_response("UserProfile/Summary.html",context_instance=RequestContext(HttpRequest))
+    
+      
     except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
