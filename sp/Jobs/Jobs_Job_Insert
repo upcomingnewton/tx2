@@ -1,0 +1,68 @@
+CREATE OR REPLACE FUNCTION Jobs_Job_Insert(
+_Company_id integer,
+_Profile varchar,
+_Designation varchar,
+_Package varchar,
+_DateOfVisit timestamp without time zone,
+_JobDetails1 varchar,
+_JobDetails2 varchar,
+_RecruitmentRounds varchar,
+_ContactPersonName varchar,
+_ContactPersonMobile varchar,
+_ContactPersonEmail varchar,
+_ContactPersonDetails varchar,
+_RegistrationsUpto timestamp without time zone,
+RequestedOperation VARCHAR,
+by_user INTEGER,
+ip VARCHAR,
+OUT result INTEGER,
+OUT rescode INTEGER
+) RETURNS RECORD AS $$
+DECLARE 
+    temp INTEGER;
+    varrec RECORD;
+BEGIN 
+temp := 0;
+
+
+IF EXISTS ( SELECT id FROM "jobs_job" WHERE "Company_id"=_Company_id and "Profile"=_Profile and "Designation"=_Designation and "DateOfVisit"=_DateOfVisit) THEN
+	result := 2;
+  	rescode := 161;
+	RETURN;
+END IF;
+
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'job','jobs');
+IF varrec.result <> 1 THEN
+	rescode :=  varrec.rescode;
+	result := -2;
+	RETURN;
+END IF;
+
+INSERT INTO "jobs_job"( "Company_id","Profile","Designation","Package","DateOfVisit","JobDetails1","JobDetails2","RecruitmentRounds","ContactPersonName","ContactPersonMobile","ContactPersonEmail","ContactPersonDetails","RegistrationsUpto","State_id")
+    						VALUES (_Company_id,_Profile,_Designation,_Package,_DateOfVisit,_JobDetails1,_JobDetails2,_RecruitmentRounds,_ContactPersonName,_ContactPersonMobile,_ContactPersonEmail,_ContactPersonDetails,_RegistrationsUpto,varrec.varsci);
+
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 162;
+	result := -1;
+        RETURN;
+END IF;
+
+SELECT id INTO rescode FROM "jobs_job" WHERE "Company_id"=_Company_id and "Profile"=_Profile and "Designation"=_Designation and "DateOfVisit"=_DateOfVisit;
+
+
+INSERT INTO "jobs_jobslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
+GET DIAGNOSTICS temp := ROW_COUNT;
+IF temp <> 1 THEN 
+	rescode := 999;
+	result := -1;
+        RETURN;
+ELSE
+	result := 1;
+RETURN;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+

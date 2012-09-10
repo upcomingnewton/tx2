@@ -13,9 +13,9 @@ QueryLogger = logging.getLogger(LoggerQuery)
 
 ### ========================================================================================================  ### 
 
-def DBInsertCompanyInfo(details):
+def DBInsertJobType(details):
   try:
-    query = "SELECT * FROM Jobs_CompanyInfo_Insert('%s','%s','%s','%s','%s','%s',%s,'%s',%s,'%s');"%(details['CompanyName'],details['CompanyAdress'],details['CompanyWebsite'],details['CompanyAbout'],details['CompanyOtherDetails1'],details['CompanyOtherDetails2'],details['User'],details['op'],details['by'],details['ip'])
+    query = "SELECT * FROM Jobs_JobType_Insert('%s','%s',%s,'%s');"%(details['Name'],details['op'],details['by'],details['ip'])
     QueryLogger.debug('%s' % (query))
     result =  DBhelper.CallFunction(query)
     JobLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
@@ -28,9 +28,9 @@ def DBInsertCompanyInfo(details):
       msg += "[%s : %s]" % (i,values[i])
       JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
     return {'result':-5,'rescode':str(ex)}
-def DBUpdateCompanyInfo(details):
+def DBUpdateJobType(details):
   try:
-    query = "SELECT * FROM Jobs_CompanyInfo_Update(%s,'%s','%s','%s','%s','%s','%s',%s,'%s','%s',%s,'%s');"%(details['Id'],details['CompanyName'],details['CompanyAdress'],details['CompanyWebsite'],details['CompanyAbout'],details['CompanyOtherDetails1'],details['CompanyOtherDetails2'],details['User'],details['prev'],details['op'],details['by'],details['ip'])
+    query = "SELECT * FROM Jobs_JobType_Update(%s,'%s','%s','%s',%s,'%s');"%(details['Id'],details['Name'],details['prev'],details['op'],details['by'],details['ip'])
     QueryLogger.debug('%s' % (query))
     result =  DBhelper.CallFunction(query)
     JobLogger.debug("[ %s ] [ %s ]" % (str(result[0]),query))
