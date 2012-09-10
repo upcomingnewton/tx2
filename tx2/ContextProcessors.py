@@ -43,6 +43,7 @@ def UserContextProcessor(request):
                   "GroupChildMenuList":GroupChildMenuList,
                   "GroupParentMenuList":GroupParentMenuList,
               }
+        #print return_dict
         return return_dict
       else:
         # USER IS NOT LOGGED IN, GET ANONYMOUS LISTS AND PASS HERE
@@ -63,6 +64,7 @@ def UserContextProcessor(request):
                   "AnonymousChildMenuList":AnonymousChildMenuList,
                   "AnonymousParentMenuList":AnonymousParentMenuList,
                }
+        #print return_dict
         return return_dict
     except Exception, ex:
       frame = inspect.currentframe()

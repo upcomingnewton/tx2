@@ -171,7 +171,7 @@ class UserFnx():
                 }
       result = DBLoginUser(details)
       if( int(result['result']) >= 1):
-        AddLoginIdToLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
+        #AddLoginIdToLoggedInUsersDict(self.encrypt.encrypt(str(result['loginid'])))
         return(1,result)
       else:
         return(-1,decode(result))
@@ -191,7 +191,7 @@ class UserFnx():
                 }
       result = DBLogoutUser(details)
       if (result['result'] == 1 ):
-        ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
+        #ClearLoginIdFromLoggedInUsersDict(self.encrypt.encrypt(str(details['loginid'])))
         return (1,result)
       else:
         return (-1,decode(result))

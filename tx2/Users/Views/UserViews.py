@@ -326,7 +326,6 @@ def EditUser(HttpRequest,UserID):
     UserLastName = ''
     UserDOB = ''
     GroupID = ''
-    UserGender = ''
     UserEntity = ''
     op = ''
     LogsDesc = ''
@@ -342,7 +341,7 @@ def EditUser(HttpRequest,UserID):
       messages.error(HttpRequest,'UserMiddleName is not found in request')
       flag = True
     if 'UserLastName' in HttpRequest.POST:
-      UserFirstName = HttpRequest.POST['UserLastName']
+      UserLastName = HttpRequest.POST['UserLastName']
     else:
       messages.error(HttpRequest,'UserLastName is not found in request')
       flag = True
@@ -397,8 +396,18 @@ def EditUser(HttpRequest,UserID):
         UserObj.UserMiddleName = UserMiddleName
         UserObj.UserLastName = UserLastName
         UserObj.UserEntity.id = UserEntity
-        UserObj.UserGender = UserGender
         UserObj.Group.id = GroupID
+        print "== RECEIVED VALUES =="
+        print UserID
+        print UserFirstName 
+        print UserMiddleName 
+        print UserLastName 
+        print UserDOB 
+        print GroupID 
+        print UserEntity 
+        print op 
+        print LogsDesc 
+        print "==**************=="
         res = UserFnxObj.UpdateUser(UserObj,LogsDesc,'_PreviousState',int(details['userid']),ip,op)
         if (res[0] == 1):
           messages.error(HttpRequest,"Updated values sucessfully." + str(res[1]))

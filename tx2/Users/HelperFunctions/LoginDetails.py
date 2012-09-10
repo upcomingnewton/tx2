@@ -9,13 +9,12 @@ LOGGERUSER = logging.getLogger(LoggerUser)
 
 def GetLoginDetails(request):
     encdec  = Encrypt()
-    obj=User.objects.get(UserEmail='SystemInit1@init.com')
-    return {"userid":obj.id,"groupid":obj.Group.id,"loginid": 1,"fname":obj.UserFirstName,}
-    
+#    obj=User.objects.get(UserEmail='SystemInit1@init.com')
+#    return {"userid":obj.id,"groupid":obj.Group.id,"loginid": 1,"fname":obj.UserFirstName,}
     try:
         if "details" in request.session.keys():
             token = request.session["details"]
-            UpdateLoggedInUsersDict(token['loginid'])
+            #UpdateLoggedInUsersDict(token['loginid'])
             return {"userid":token['userid'],"groupid":token['groupid'],"loginid": encdec.decrypt(token['loginid']),"fname":token['fname'],}
         else:
             return {"userid":-1}

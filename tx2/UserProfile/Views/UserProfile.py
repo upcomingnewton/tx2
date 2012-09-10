@@ -26,7 +26,6 @@ def BranchIndex(HttpRequest):
 def BranchInsert(HttpRequest):
     ip = HttpRequest.META['REMOTE_ADDR']
     logindetails = GetLoginDetails(HttpRequest)
-    print logindetails
     if( logindetails["userid"] == -1):
         messages.error(HttpRequest,'Please Login to continue')
         return HttpResponseRedirect('/user/login/')

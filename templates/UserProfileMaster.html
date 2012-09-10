@@ -8,59 +8,59 @@
     <div id="left_column">
         <div class="holder">
           <h2 class="title">Links</h2>
-          <ul class="nostart">
-<!--          <div class="nostart">-->
-          {% block left_menu %}{% endblock %}
-            <li><a href="/userprofile/UserProfile/UserHome/">User Profile</a></li>
-            <li><a href="/userprofile/Marks/Marks/">Marks</a></li>
-            <li><a href="#">Notices</a></li>
-            <li><a href="#">Notifications</a></li>
-            <li><a href="http://forum.thoughtxplore.com">Discussion portal</a></li>
-            <li><a href="/user/logout/">Logout</a></li>
-<!--            {% if loggedin %}-->
-<!--              {% for allpar in AllUsersParentMenuList %}-->
-<!--                <ul class="menugroup">-->
-<!--                  <li class="parentmenu">{{ allpar.Menu.MenuName }}-->
-<!--                    <ul>-->
-<!--                  {% for allchild in AllUsersChildMenuList %}-->
-<!--                    {% if allchild.Menu.MenuPid == allpar.Menu.id and allchild.Permission == 1 %}-->
-<!--                      <li class="childmenu"><a href="{{allchild.Menu.MenuUrl}}">{{allchild.Menu.MenuName}}</a></li>-->
-<!--                    {% endif %}-->
-<!--                  {% endfor %}-->
-<!--                  </ul>-->
-<!--                 </li>-->
-<!--                </ul>-->
-<!--              {% endfor %}-->
-<!--              {% for gpar in GroupParentMenuList %}-->
-<!--                <ul class="menugroup">-->
-<!--                  <li class="parentmenu">{{ gpar.Menu.MenuName }}-->
-<!--                    <ul>-->
-<!--                  {% for gchild in GroupChildMenuList %}-->
-<!--                    {% if gchild.Menu.MenuPid == gpar.Menu.id and gchild.Permission == 1 %}-->
-<!--                      <li class="childmenu"><a href="{{gchild.Menu.MenuUrl}}">{{gchild.Menu.MenuName}}</a></li>-->
-<!--                    {% endif %}-->
-<!--                  {% endfor %}-->
-<!--                  </ul>-->
-<!--                 </li>-->
-<!--                </ul>-->
-<!--              {% endfor %}-->
-<!--            {% else %}-->
-<!--              {% for par in AnonymousParentMenuList %}-->
-<!--                <ul class="menugroup">-->
-<!--                  <li class="parentmenu">{{ par.Menu.MenuName }}-->
-<!--                    <ul>-->
-<!--                  {% for child in AnonymousChildMenuList %}-->
-<!--                    {% if child.Menu.MenuPid == par.Menu.id and child.Permission == 1 %}-->
-<!--                      <li class="childmenu"><a href="{{child.Menu.MenuUrl}}">{{child.Menu.MenuName}}</a></li>-->
-<!--                    {% endif %}-->
-<!--                  {% endfor %}-->
-<!--                  </ul>-->
-<!--                 </li>-->
-<!--                </ul>-->
-<!--              {% endfor %}-->
-<!--            {% endif %}-->
-          </ul>
-<!--          </div>-->
+<!--          <ul class="nostart">-->
+          <div class="nostart">
+<!--          {% block left_menu %}{% endblock %}-->
+<!--            <li><a href="/userprofile/UserProfile/UserHome/">User Profile</a></li>-->
+<!--            <li><a href="/userprofile/Marks/Marks/">Marks</a></li>-->
+<!--            <li><a href="#">Notices</a></li>-->
+<!--            <li><a href="#">Notifications</a></li>-->
+<!--            <li><a href="http://forum.thoughtxplore.com">Discussion portal</a></li>-->
+<!--            <li><a href="/user/logout/">Logout</a></li>-->
+            {% if loggedin %}
+              {% for allpar in AllUsersParentMenuList %}
+                <ul class="menugroup">
+                  <li class="parentmenu">{{ allpar.Menu.MenuName }}
+                    <ul>
+                  {% for allchild in AllUsersChildMenuList %}
+                    {% if allchild.Menu.MenuPid == allpar.Menu.id and allchild.Permission == 1 %}
+                      <li class="childmenu"><a href="{{allchild.Menu.MenuUrl}}">{{allchild.Menu.MenuName}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                 </li>
+                </ul>
+              {% endfor %}
+              {% for gpar in GroupParentMenuList %}
+                <ul class="menugroup">
+                  <li class="parentmenu">{{ gpar.Menu.MenuName }}
+                    <ul>
+                  {% for gchild in GroupChildMenuList %}
+                    {% if gchild.Menu.MenuPid == gpar.Menu.id and gchild.Permission == 1 %}
+                      <li class="childmenu"><a href="{{gchild.Menu.MenuUrl}}">{{gchild.Menu.MenuName}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                 </li>
+                </ul>
+              {% endfor %}
+            {% else %}
+              {% for par in AnonymousParentMenuList %}
+                <ul class="menugroup">
+                  <li class="parentmenu">{{ par.Menu.MenuName }}
+                    <ul>
+                  {% for child in AnonymousChildMenuList %}
+                    {% if child.Menu.MenuPid == par.Menu.id and child.Permission == 1 %}
+                      <li class="childmenu"><a href="{{child.Menu.MenuUrl}}">{{child.Menu.MenuName}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                 </li>
+                </ul>
+              {% endfor %}
+            {% endif %}
+<!--          </ul>-->
+          </div>
         </div>
         <div class="holder">
           <h2 class="title">Sponsored</h2>

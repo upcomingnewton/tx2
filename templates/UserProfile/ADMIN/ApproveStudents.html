@@ -1,0 +1,38 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}APPROVE USERS{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="labelclass" >SELECT GROUP</div>
+    <div class="widgetclass" ><a href="/user/menu/add/"class="widget" />Create A New Menu Item</a></div>
+  </div>
+  <div class="row">
+    <div class="formtitle">APPROVE USERS</div>
+  </div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px;">Sr.</th>
+        <th scope="col" style="width:100px;">Roll.No.</th>
+        <th scope="col" style="width:150px;">First Name</th>
+        <th scope="col" style="width:20px;">Last Name</th>
+        <th scope="col" style="width:50px;">APPROVE</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if MenuList|length %}
+        {% for Student in StudentList %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ Student.RollNo }}</td>
+            <td>{{ Student.User.UserFirstName }}</td>
+            <td>{{ Student.User.UserLastName }}</td>
+            <td><a href="/user/edit/{{Student.User.id}}/group/{{GroupID}}/post/">APPROVE</a></td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}
