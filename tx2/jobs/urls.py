@@ -17,4 +17,5 @@ urlpatterns = patterns('',
                        url(r'^jobtype/add/post/$','jobs.Views.JobTypeViews.JobTypeAdd'),
                        
                        url(r'^company/(?P<CompanyID>\d+)/jobs/add/$','jobs.Views.JobViews.EditJobIndex',{'JobID':-1}),
+                       url(r'^company/(?P<CompanyID>\d+)/jobs/add/post/$','jobs.Views.JobViews.EditJob',{'JobID':-1}),
                        )

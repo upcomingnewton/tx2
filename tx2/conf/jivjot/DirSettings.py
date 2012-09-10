@@ -29,6 +29,11 @@ TEMPLATE_DIRS = (
 LOGGING = LOG_SETTINGS = {
     'version': 1,
     'loggers':{
+               'AlumniLogger':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Alumni'],
+                                    'level':'DEBUG',
+                                },
                'LOGGER_Job':{
                                     #'handlers':['File_Security','smtp'],
                                     'handlers':['File_Job'],

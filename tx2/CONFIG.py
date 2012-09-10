@@ -19,7 +19,7 @@ LOGGER_UserReg = 'LOGGER_UserReg'
 LOGGER_COMMUNICATION = 'LOGGER_Communication'
 LoggerAdress = 'LOGGER_Adress'
 LoggerJob = 'LOGGER_Job'
-
+AlumniLogger = 'AlumniLogger'
 LOGGER_USER_PROFILE = 'LOGGER_UserProfile'
 LOGGER_ADRESS = 'LOGGER_Adress'
 

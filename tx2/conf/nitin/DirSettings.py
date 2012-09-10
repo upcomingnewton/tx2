@@ -29,6 +29,11 @@ TEMPLATE_DIRS = (
 LOGGING = LOG_SETTINGS = {
     'version': 1,
     'loggers':{
+               'AlumniLogger':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Alumni'],
+                                    'level':'DEBUG',
+                                },
                'LOGGER_Job':{
                                     #'handlers':['File_Security','smtp'],
                                     'handlers':['File_Job'],
@@ -75,9 +80,17 @@ LOGGING = LOG_SETTINGS = {
                                     #'handlers':['File_User','smtp'],
                                     'handlers':['File_Adress'],
                                     'level':'DEBUG',
-                                },
+                                },#
                },
     'handlers': {
+        'File_Alumni': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': UserPath + 'tx2/logs/AlumniLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_UserReg': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',

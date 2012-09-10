@@ -49,7 +49,6 @@ class UserFnx():
       return (-2,self.MakeExceptionMessage(str(response_code)))
 
   def ResetPswdforForums(self,email,password):
-    
     import httplib, urllib, urllib2
     url =   "http://forum.thoughtxplore.com/pswdchange_TX"
     secret= 'A2lx135sVzm$803A88'
@@ -95,6 +94,7 @@ class UserFnx():
         msg += "[%s : %s]" % (i,values[i])
       self.UserLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,self.MakeExceptionMessage(str(ex)))
+      
       
   def UpdateUser(self,user_obj,_LogsDesc,_PreviousState,by,ip,op=SYSTEM_PERMISSION_UPDATE):
     try:

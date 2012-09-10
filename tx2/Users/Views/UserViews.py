@@ -161,6 +161,7 @@ def CreateUserFromSite(HttpRequest):
       LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
+      
 
 def AuthenticateUserFromEmail(HttpRequest,token,refs):
   au_user = UserFnx()
