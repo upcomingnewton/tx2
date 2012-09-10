@@ -1,0 +1,28 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}List Company Info{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">List Company Info</div>
+</div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:50px;">Sr. No.</th>
+        <th scope="col" style="width:300px;">Company Name</th>
+        <th scope="col" style="width:150px;">Edit</th>
+        <th scope="col" style="width:150px;">Job Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for CompanyObj in CompanyList %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ CompanyObj.CompanyName }}</td>
+          <td><a href="/jobs/company/{{CompanyObj.id}}/edit/">Edit</a></td>
+          <td><a href="/jobs/company/{{CompanyObj.id}}/jobs/list/">Job Posts</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

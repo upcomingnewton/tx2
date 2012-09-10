@@ -59,7 +59,10 @@ class CompanyInfoFunctions():
       prev=prev.replace("'", ">");
       prev=prev.replace("\n", "<");
       prev=prev.replace("\\", "+");
-          
+      if by==-1:
+        by=User.objects.get(UserEmail='SystemInit1@init.com').id
+      if Userid==-1:
+        Userid=User.objects.get(UserEmail='SystemInit1@init.com').id
       details = {
                  'Id':_Id,
                  'CompanyName':CompanyName,
@@ -91,10 +94,10 @@ class CompanyInfoFunctions():
         self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
     
-    def getObjectById(_id):
+  def getObjectById(self,_id):
       try:
-        AdressObj =  CompanyInfo.objects.get(id=_id)  
-        return (1,AdressObj)
+        CompanyInfoObj =  CompanyInfo.objects.get(id=_id)  
+        return (1,CompanyInfoObj)
       except ObjectDoesNotExist:
         return (-1,'No CompanyInfo Object exists in database with this name')
       except Exception, ex:
