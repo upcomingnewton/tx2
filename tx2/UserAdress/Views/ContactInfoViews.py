@@ -57,6 +57,7 @@ def ContactInfoIndex(HttpRequest,UserID):
       Userid = int(logindetails['userid'])
     UserContactInfoFnxobj = UserContactInfoFnx()
     p = UserContactInfoFnxobj.getUserContactInfoByUserId(Userid)
+    print str(p)
     if p[0] == -1:
       # does not exist
       if 'AdressObjIDSession' in HttpRequest.session.keys():
@@ -68,6 +69,7 @@ def ContactInfoIndex(HttpRequest,UserID):
       p = p[1]
       PermanentAdressId = p.ParmanentAdress
       PresentAdressId = p.PresentAdress
+      print '==' + str(PermanentAdressId) + ' == '  + str(PresentAdressId)
       AdressFnxObj = AdressFnx()
       PermanentAdress = AdressFnxObj.getAdressObjById(PermanentAdressId)
       PresentAdress = AdressFnxObj.getAdressObjById(PresentAdressId)

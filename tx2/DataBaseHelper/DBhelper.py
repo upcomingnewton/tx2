@@ -16,6 +16,7 @@ def dictfetchall(cursor):
     ]
 
 def CallFunction(sql):
+    sql.replace("'","\'")
     cursor = connection.cursor()
     cursor.execute(sql)
     transaction.commit_unless_managed()
@@ -24,6 +25,7 @@ def CallFunction(sql):
     return row
 
 def CallSelectFunction(sql):
+    sql.replace("'","\'")
     cursor = connection.cursor()
     cursor.execute(sql)
     data=cursor.fetchall()
