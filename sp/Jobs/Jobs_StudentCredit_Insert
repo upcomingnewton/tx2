@@ -1,7 +1,7 @@
-CREATE OR REPLACE FUNCTION Jobs_JobType_Update(
-_id integer,
-_Name varchar,
-prev varchar,
+CREATE OR REPLACE FUNCTION Jobs_StudentCredit_Insert(
+_User_id integer,
+_JobType_id integer,
+_Credit integer,
 RequestedOperation VARCHAR,
 by_user INTEGER,
 ip VARCHAR,
@@ -14,28 +14,22 @@ DECLARE
 BEGIN 
 temp := 0;
 
-IF NOT EXISTS ( SELECT id FROM "jobs_jobtype" WHERE id=_id) THEN
-	result := -4;
+
+IF EXISTS ( SELECT id FROM "jobs_studentscredit" WHERE "User_id"=_User_id and "JobType_id"=_JobType_id) THEN
+	result := 2;
   	rescode := 161;
 	RETURN;
 END IF;
 
-IF EXISTS ( SELECT id FROM "jobs_jobtype" WHERE "Name"=_Name and id<>_id) THEN
-	result := -3;
-  	rescode := 200;
-	RETURN;
-END IF;
-
-SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'jobtype','jobs');
+SELECT * INTO varrec FROM CheckUserForPermission(by_user,RequestedOperation,'studentscredit','jobs');
 IF varrec.result <> 1 THEN
 	rescode :=  varrec.rescode;
 	result := -2;
 	RETURN;
 END IF;
 
-update "jobs_jobtype"
-set "Name"=_Name
-where id=_id;
+INSERT INTO "jobs_studentscredit"( "User_id","JobType_id","Credit")
+    						VALUES ( _User_id,_JobType_id,_Credit);
 
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
@@ -44,11 +38,11 @@ IF temp <> 1 THEN
         RETURN;
 END IF;
 
-SELECT id INTO rescode FROM "jobs_jobtype" WHERE "Name"=_Name;
+SELECT id INTO rescode FROM "jobs_studentscredit" WHERE "User_id"=_User_id and "JobType_id"=_JobType_id;
 
 
 INSERT INTO "jobs_jobslogs"("LogsUser_id", "ContentType_id", "LogsObject", "LogsPermission_id", "LogsIP", "LogsTimeStamp", "LogsDescription","LogsPreviousState")
-VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'UPDATE',prev);
+VALUES (by_user,varrec.var_ctid,rescode,varrec.varpci,ip,now(),'INSERT','NULL-Inserting Value');
 GET DIAGNOSTICS temp := ROW_COUNT;
 IF temp <> 1 THEN 
 	rescode := 999;
