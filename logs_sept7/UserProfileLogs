@@ -1,0 +1,520 @@
+2012-09-06 08:27:48,897 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'UE93026',13,13,1,1,' ','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 08:27:48,903 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-06 08:27:48,912 UserProfile       line:156  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:04:42,546 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'UE93026',13,13,1,1,' ','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 19:04:42,549 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-06 19:04:42,553 UserProfile       line:156  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:11:50,552 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'UE93026',13,13,1,1,' gr8','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 19:11:50,556 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-06 19:11:50,562 UserProfile       line:156  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:12:21,583 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'UE93026',13,13,1,1,' ','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 19:12:21,587 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-06 19:12:21,592 UserProfile       line:156  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:14:35,044 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'UE93026',13,13,1,1,' good','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 19:14:35,048 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 2, 'rescode': 161}]
+2012-09-06 19:14:35,054 UserProfile       line:156  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:16:51,332 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'93026',13,13,1,1,' good','17460','SYS_PER_INSERT',92,'117.197.117.57');
+2012-09-06 19:16:51,341 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-06 19:16:51,341 UserProfile       line:159  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 92==
+2012-09-06 19:17:38,314 UserProfile       line:275  ERROR    StudentDetailsInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'BranchMinor': [u'13'], u'Category': [u'1'], u'Degree': [u'1'], u'RollNo': [u'null'], u'ComputerProficiency': [u'null '], u'AIEEERank': [u'null'], u'csrfmiddlewaretoken': [u'0ee5fc75afd410a7396995e1fe7471c8'], u'BranchMajor': [u'13'], u'Id': [u'-1']}>,
+COOKIES:{'__utma': '117285699.649472240.1346947065.1346947065.1346935808.2',
+ '__utmb': '117285699.16.10.1346935808',
+ '__utmc': '117285699',
+ '__utmz': '117285699.1346947065.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)',
+ 'csrftoken': '0ee5fc75afd410a7396995e1fe7471c8',
+ 'sessionid': '76e6842f74386a007b2df4910a5d236b'},
+META:{'CONTENT_LENGTH': '161',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '0ee5fc75afd410a7396995e1fe7471c8',
+ 'DOCUMENT_ROOT': '/var/www/vhosts/thoughtxplore.com/uiet',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=76e6842f74386a007b2df4910a5d236b; csrftoken=0ee5fc75afd410a7396995e1fe7471c8; __utma=117285699.649472240.1346947065.1346947065.1346935808.2; __utmb=117285699.16.10.1346935808; __utmc=117285699; __utmz=117285699.1346947065.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)',
+ 'HTTP_HOST': 'uiet.thoughtxplore.com',
+ 'HTTP_ORIGIN': 'http://uiet.thoughtxplore.com',
+ 'HTTP_REFERER': 'http://uiet.thoughtxplore.com/userprofile/UserProfile/StudentDetails/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
+ 'PATH_INFO': u'/userprofile/UserProfile/StudentDetails/new',
+ 'PATH_TRANSLATED': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi/userprofile/UserProfile/StudentDetails/new',
+ 'PP_CUSTOM_PHP_INI': '/var/www/vhosts/uiet.thoughtxplore.com/etc/php.ini',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '117.197.114.164',
+ 'REMOTE_PORT': '11425',
+ 'REQUEST_METHOD': 'POST',
+ 'REQUEST_URI': '/userprofile/UserProfile/StudentDetails/new',
+ 'SCRIPT_FILENAME': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_ADDR': '119.18.58.211',
+ 'SERVER_ADMIN': 'upcomingnewton@gmail.com',
+ 'SERVER_NAME': 'uiet.thoughtxplore.com',
+ 'SERVER_PORT': '80',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SIGNATURE': '<address>Apache Server at uiet.thoughtxplore.com Port 80</address>\n',
+ 'SERVER_SOFTWARE': 'Apache',
+ 'mod_wsgi.application_group': 'uiet.thoughtxplore.com|',
+ 'mod_wsgi.callable_object': 'application',
+ 'mod_wsgi.handler_script': '',
+ 'mod_wsgi.input_chunked': '0',
+ 'mod_wsgi.listener_host': '',
+ 'mod_wsgi.listener_port': '80',
+ 'mod_wsgi.process_group': '',
+ 'mod_wsgi.request_handler': 'wsgi-script',
+ 'mod_wsgi.script_reloading': '1',
+ 'mod_wsgi.version': (3, 3),
+ 'wsgi.errors': <mod_wsgi.Log object at 0x2b4b449b3070>,
+ 'wsgi.file_wrapper': <built-in method file_wrapper of mod_wsgi.Adapter object at 0x2b4b4499eaf8>,
+ 'wsgi.input': <mod_wsgi.Input object at 0x2b4b449b30f0>,
+ 'wsgi.multiprocess': True,
+ 'wsgi.multithread': False,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 1)}>]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/Views/UserProfile.py", line 213, in StudentDetailsInsert
+    aieee= int(HttpRequest.POST["AIEEERank"])
+ValueError: invalid literal for int() with base 10: 'null'
+2012-09-06 19:17:55,168 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'100',13,13,1,1,'null ','100','SYS_PER_INSERT',92,'117.197.114.164');
+2012-09-06 19:17:55,174 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-06 19:17:55,174 UserProfile       line:159  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 92==
+2012-09-06 19:19:11,734 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(148,280,'ue98097',16,13,1,1,' C,C++,core java,html , php, javascript , microsoft office,
+little bit knowlwdge of c#  ','24346','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I16<sS>User_id><p8<I280<sS>RollNo><p9<Vue98097<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V     C,C++,core java,html,php,javascript,+u000alittle bit knowlwdge of c# <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V24346<p27<sS>id><p28<I148<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',280,'117.228.233.205');
+2012-09-06 19:19:11,740 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 148}]
+2012-09-06 19:19:11,743 UserProfile       line:195  DEBUG    [ChangeUserGroup][280] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:19:44,972 DBFunctions       line:288  DEBUG    [DBMarksUpdate] SELECT * FROM MarksUpdate(453,'1 Jan 1985','1 Jan 1985',1,1,450,303,0,0,4,2,3,280,'cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<Marks<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>Board_id><p7<I2<sS>SessionEnd><p8<cdatetime<date<p9<(S>+x07+xd8+x03+x01><p10<tp11<Rp12<sS>Degree_id><p13<I3<sS>TotalMarks><p14<I450<sS>_state><p15<ccopy_reg<_reconstructor<p16<(cdjango.db.models.base<ModelState<p17<c__builtin__<object<p18<Ntp19<Rp20<(dp21<S>adding><p22<I00<sS>db><p23<S>default><p24<sbsS>SessionType_id><p25<I1<sS>SecuredMarks><p26<I303<sS>ReappersRemaining><p27<I0<sS>SessionNumber><p28<I1<sS>UserId_id><p29<I280<sS>DegreeType_id><p30<I4<sS>State_id><p31<I1<sS>TotalReappers><p32<I0<sS>SessionStart><p33<g9<(S>+x07+xd7+x04+x01><p34<tp35<Rp36<sS>id><p37<I453<sb.','SYS_PER_UPDATE',280,'117.228.233.205');
+2012-09-06 19:19:44,982 DBFunctions       line:291  DEBUG    [DBMarksUpdate] [{'result': 1, 'rescode': 453}]
+2012-09-06 19:22:13,602 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(148,280,'ue98097',16,16,1,1,'   C,C++,core java,html , php, javascript , microsoft office,
+little bit knowlwdge of c#   ','24346','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I280<sS>RollNo><p9<Vue98097<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V C,C++,core java,html , php, javascript , microsoft office,+u000alittle bit knowlwdge of c#  <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V24346<p27<sS>id><p28<I148<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',280,'117.225.247.10');
+2012-09-06 19:22:13,612 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 148}]
+2012-09-06 19:22:13,617 UserProfile       line:195  DEBUG    [ChangeUserGroup][280] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 19:22:44,637 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'100',14,14,2,2,' ','100','SYS_PER_INSERT',92,'117.197.114.164');
+2012-09-06 19:22:44,645 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-06 19:22:44,645 UserProfile       line:159  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 92==
+2012-09-06 19:25:14,443 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(92,'100',13,13,1,1,' ','100','SYS_PER_INSERT',92,'117.197.114.164');
+2012-09-06 19:25:14,451 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 296}]
+2012-09-06 19:25:14,458 UserProfile       line:151  DEBUG    [ChangeUserGroup][92] == (1, 'Group Change Sucessful') ==
+2012-09-06 09:14:46,656 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(296,92,'93026',13,13,1,1,'    ','17460','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I92<sS>RollNo><p9<V100<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V100<p27<sS>id><p28<I296<sS>BranchMajor_id><p29<I13<sb.','SYS_PER_UPDATE',92,'117.197.117.57');
+2012-09-06 09:14:46,670 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 296}]
+2012-09-06 09:14:46,677 UserProfile       line:195  DEBUG    [ChangeUserGroup][92] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 09:35:54,002 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(235,404,'UE94027',15,14,1,1,'                   ','29973','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I14<sS>User_id><p8<I404<sS>RollNo><p9<VUE94027<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V                <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V29973<p27<sS>id><p28<I235<sS>BranchMajor_id><p29<I15<sb.','SYS_PER_UPDATE',404,'122.173.184.4');
+2012-09-06 09:35:54,015 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 235}]
+2012-09-06 09:35:54,030 UserProfile       line:195  DEBUG    [ChangeUserGroup][404] == (1, 'Group Change Sucessful') ==
+2012-09-06 21:13:23,503 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2005','1 Mar 2006',1,1,500,436,0,0,3,2,2,124,'SYS_PER_INSERT',124,'1.187.165.153');
+2012-09-06 21:13:23,525 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 786}]
+2012-09-06 10:52:28,864 UserProfile       line:275  ERROR    StudentDetailsInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'BranchMinor': [u'13'], u'Category': [u'1'], u'Degree': [u'1'], u'RollNo': [u'UE93018'], u'ComputerProficiency': [u' '], u'AIEEERank': [u''], u'csrfmiddlewaretoken': [u'715abcf940490042d2a64c85daea0b2f'], u'BranchMajor': [u'13'], u'Id': [u'-1']}>,
+COOKIES:{'__utma': '117285699.1042578484.1344530779.1344861430.1346946044.3',
+ '__utmb': '117285699.28.10.1346946044',
+ '__utmc': '117285699',
+ '__utmz': '117285699.1346946044.3.3.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
+ 'csrftoken': '715abcf940490042d2a64c85daea0b2f',
+ 'sessionid': 'be1d19318146f2dbf8da0b8f07f0797f'},
+META:{'CONTENT_LENGTH': '156',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '715abcf940490042d2a64c85daea0b2f',
+ 'DOCUMENT_ROOT': '/var/www/vhosts/thoughtxplore.com/uiet',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'sessionid=be1d19318146f2dbf8da0b8f07f0797f; csrftoken=715abcf940490042d2a64c85daea0b2f; __utma=117285699.1042578484.1344530779.1344861430.1346946044.3; __utmb=117285699.28.10.1346946044; __utmc=117285699; __utmz=117285699.1346946044.3.3.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
+ 'HTTP_HOST': 'uiet.thoughtxplore.com',
+ 'HTTP_ORIGIN': 'http://uiet.thoughtxplore.com',
+ 'HTTP_REFERER': 'http://uiet.thoughtxplore.com/userprofile/UserProfile/StudentDetails/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
+ 'PATH_INFO': u'/userprofile/UserProfile/StudentDetails/new',
+ 'PATH_TRANSLATED': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi/userprofile/UserProfile/StudentDetails/new',
+ 'PP_CUSTOM_PHP_INI': '/var/www/vhosts/uiet.thoughtxplore.com/etc/php.ini',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '117.197.157.217',
+ 'REMOTE_PORT': '49795',
+ 'REQUEST_METHOD': 'POST',
+ 'REQUEST_URI': '/userprofile/UserProfile/StudentDetails/new',
+ 'SCRIPT_FILENAME': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_ADDR': '119.18.58.211',
+ 'SERVER_ADMIN': 'upcomingnewton@gmail.com',
+ 'SERVER_NAME': 'uiet.thoughtxplore.com',
+ 'SERVER_PORT': '80',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SIGNATURE': '<address>Apache Server at uiet.thoughtxplore.com Port 80</address>\n',
+ 'SERVER_SOFTWARE': 'Apache',
+ 'mod_wsgi.application_group': 'uiet.thoughtxplore.com|',
+ 'mod_wsgi.callable_object': 'application',
+ 'mod_wsgi.handler_script': '',
+ 'mod_wsgi.input_chunked': '0',
+ 'mod_wsgi.listener_host': '',
+ 'mod_wsgi.listener_port': '80',
+ 'mod_wsgi.process_group': '',
+ 'mod_wsgi.request_handler': 'wsgi-script',
+ 'mod_wsgi.script_reloading': '1',
+ 'mod_wsgi.version': (3, 3),
+ 'wsgi.errors': <mod_wsgi.Log object at 0x2b4b467a8130>,
+ 'wsgi.file_wrapper': <built-in method file_wrapper of mod_wsgi.Adapter object at 0x2b4b46b5e5d0>,
+ 'wsgi.input': <mod_wsgi.Input object at 0x2b4b46b5a570>,
+ 'wsgi.multiprocess': True,
+ 'wsgi.multithread': False,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 1)}>]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/Views/UserProfile.py", line 213, in StudentDetailsInsert
+    aieee= int(HttpRequest.POST["AIEEERank"])
+ValueError: invalid literal for int() with base 10: ''
+2012-09-06 21:28:44,367 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(461,'UE93018',13,13,1,1,' C,C++,JAVA,My SQL, Microsoft Access,','21850','SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 21:28:44,387 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 297}]
+2012-09-06 21:28:44,405 UserProfile       line:151  DEBUG    [ChangeUserGroup][461] == (1, 'Group Change Sucessful') ==
+2012-09-06 11:01:16,330 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,429,0,0,3,2,2,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 11:01:16,348 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 787}]
+2012-09-06 11:02:41,205 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,404,0,0,4,2,3,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 11:02:41,216 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 788}]
+2012-09-06 21:33:37,938 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2009','1 Dec 2009',1,2,1250,1005,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 21:33:37,960 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 789}]
+2012-09-06 11:04:32,914 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2010','1 May 2010',2,2,1250,1016,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 11:04:32,925 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 790}]
+2012-09-06 21:35:06,985 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2010','1 Dec 2010',3,2,1200,927,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 21:35:07,003 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 791}]
+2012-09-06 11:05:39,388 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2011','1 May 2011',4,2,1300,1024,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 11:05:39,451 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 792}]
+2012-09-06 21:36:13,757 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2011','1 May 2011',5,2,1250,1052,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 21:36:13,775 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 793}]
+2012-09-06 11:08:29,907 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 May 2012',6,2,1250,1007,0,0,1,1,1,461,'SYS_PER_INSERT',461,'117.197.157.217');
+2012-09-06 11:08:29,925 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 794}]
+2012-09-06 21:38:50,673 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(297,461,'UE93018',13,13,1,1,'   C,C++,JAVA,My SQL, Microsoft Access, ','21850','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I461<sS>RollNo><p9<VUE93018<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V C,C++,JAVA,My SQL, Microsoft Access,<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V21850<p27<sS>id><p28<I297<sS>BranchMajor_id><p29<I13<sb.','SYS_PER_UPDATE',461,'117.197.157.217');
+2012-09-06 21:38:50,683 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 297}]
+2012-09-06 21:38:50,688 UserProfile       line:195  DEBUG    [ChangeUserGroup][461] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 11:25:10,845 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,442,0,0,3,2,2,354,'SYS_PER_INSERT',354,'117.197.156.253');
+2012-09-06 11:25:10,858 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 21:55:54,126 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,405,0,0,4,2,3,354,'SYS_PER_INSERT',354,'117.197.156.253');
+2012-09-06 21:55:54,135 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 21:57:14,277 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,460,0,0,3,2,2,108,'SYS_PER_INSERT',108,'117.197.128.97');
+2012-09-06 21:57:14,295 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 11:28:39,900 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2009','1 Dec 2009',1,2,1250,827,0,0,1,1,1,108,'SYS_PER_INSERT',108,'117.197.128.97');
+2012-09-06 11:28:39,909 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 22:00:26,082 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(152,282,'UE98025',16,16,1,1,'   ','30294','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I16<sS>User_id><p8<I282<sS>RollNo><p9<VUE98025<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<NsS>id><p27<I152<sS>BranchMajor_id><p28<I16<sb.','SYS_PER_UPDATE',282,'122.173.217.96');
+2012-09-06 22:00:26,089 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 152}]
+2012-09-06 22:00:26,092 UserProfile       line:195  DEBUG    [ChangeUserGroup][282] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 11:49:26,407 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,461,0,0,3,2,2,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:49:26,425 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 22:20:20,927 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 1985',1,1,500,461,0,0,3,2,2,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 22:20:20,943 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 11:51:45,330 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(51,103,'ue95017',14,14,1,1,'   ','18941','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I14<sS>User_id><p8<I103<sS>RollNo><p9<Vue95017<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<NsS>id><p27<I51<sS>BranchMajor_id><p28<I14<sb.','SYS_PER_UPDATE',103,'115.111.184.44');
+2012-09-06 11:51:45,342 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 51}]
+2012-09-06 11:51:45,357 UserProfile       line:195  DEBUG    [ChangeUserGroup][103] == (1, 'Group Change Sucessful') ==
+2012-09-06 11:52:23,557 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,461,0,0,3,1,2,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:52:23,577 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 795}]
+2012-09-06 11:53:02,734 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,468,0,0,4,1,3,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:53:02,752 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 796}]
+2012-09-06 22:23:37,759 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2009','1 Dec 2009',1,2,1250,967,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 22:23:37,774 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 797}]
+2012-09-06 11:54:19,710 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2010','1 Jun 2010',2,2,1250,925,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:54:19,721 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 798}]
+2012-09-06 11:55:02,864 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2010','1 Dec 2010',3,2,1250,989,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:55:02,875 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 799}]
+2012-09-06 22:25:39,347 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2011','1 Jun 2011',4,2,1250,990,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 22:25:39,365 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 800}]
+2012-09-06 22:26:20,576 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2011','1 Dec 2011',5,2,1225,941,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 22:26:20,603 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 801}]
+2012-09-06 11:57:05,080 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 Jun 2012',6,2,1275,958,0,0,1,1,1,103,'SYS_PER_INSERT',103,'115.111.184.44');
+2012-09-06 11:57:05,091 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 802}]
+2012-09-06 22:28:30,441 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(51,103,'ue95017',14,13,1,1,'      c,c++','18941','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I14<sS>User_id><p8<I103<sS>RollNo><p9<Vue95017<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V   <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V18941<p27<sS>id><p28<I51<sS>BranchMajor_id><p29<I14<sb.','SYS_PER_UPDATE',103,'115.111.184.44');
+2012-09-06 22:28:30,452 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 51}]
+2012-09-06 22:28:30,457 UserProfile       line:195  DEBUG    [ChangeUserGroup][103] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 11:59:14,162 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(234,'ue98066',16,16,1,1,' ','64056','SYS_PER_INSERT',234,'117.220.176.182');
+2012-09-06 11:59:14,174 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 298}]
+2012-09-06 11:59:14,186 UserProfile       line:151  DEBUG    [ChangeUserGroup][234] == (1, 'Group Change Sucessful') ==
+2012-09-06 22:43:53,310 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 May 2012',6,2,1275,968,0,0,1,1,1,108,'SYS_PER_INSERT',108,'117.197.128.97');
+2012-09-06 22:43:53,323 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-06 22:45:55,320 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(247,373,'ue93040',13,13,1,1,'  C,HTML, Javascript, PHP,AJAX,c++ ','19946','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I373<sS>RollNo><p9<Vue93040<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<VC,HTML, Javascript, PHP,AJAX,c++<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V19946<p27<sS>id><p28<I247<sS>BranchMajor_id><p29<I13<sb.','SYS_PER_UPDATE',373,'115.111.184.44');
+2012-09-06 22:45:55,329 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 247}]
+2012-09-06 22:45:55,343 UserProfile       line:195  DEBUG    [ChangeUserGroup][373] == (1, 'Group Change Sucessful') ==
+2012-09-06 22:55:51,405 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(147,'UE98089',16,16,1,1,' Java,J2EE,ASP.NET,C,C++','31638','SYS_PER_INSERT',147,'14.98.126.216');
+2012-09-06 22:55:51,416 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 299}]
+2012-09-06 22:55:51,429 UserProfile       line:151  DEBUG    [ChangeUserGroup][147] == (1, 'Group Change Sucessful') ==
+2012-09-06 23:35:39,092 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(48,94,'UE99055',17,17,1,1,'MATLAB, PRO-E, AUTOCAD, MS OFFICE, C   ','15545','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I17<sS>User_id><p8<I94<sS>RollNo><p9<VUE99055<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V  MATLAB, PRO-E, AUTOCAD, MS OFFICE, C  <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V15545<p27<sS>id><p28<I48<sS>BranchMajor_id><p29<I17<sb.','SYS_PER_UPDATE',94,'115.242.83.201');
+2012-09-06 23:35:39,102 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 48}]
+2012-09-06 23:35:39,107 UserProfile       line:195  DEBUG    [ChangeUserGroup][94] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 23:40:01,755 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(48,94,'UE99055',17,17,1,1,'MATLAB, PRO-E, AUTOCAD, MS OFFICE, C    ','15545','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I17<sS>User_id><p8<I94<sS>RollNo><p9<VUE99055<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<VMATLAB, PRO-E, AUTOCAD, MS OFFICE, C   <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V15545<p27<sS>id><p28<I48<sS>BranchMajor_id><p29<I17<sb.','SYS_PER_UPDATE',94,'115.242.83.201');
+2012-09-06 23:40:01,765 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 48}]
+2012-09-06 23:40:01,771 UserProfile       line:195  DEBUG    [ChangeUserGroup][94] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 00:01:56,051 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(74,'UE93077',13,13,1,1,'','22187','SYS_PER_INSERT',74,'1.38.16.125');
+2012-09-07 00:01:56,063 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 300}]
+2012-09-07 00:01:56,076 UserProfile       line:151  DEBUG    [ChangeUserGroup][74] == (1, 'Group Change Sucessful') ==
+2012-09-07 00:07:51,862 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,468,0,0,3,2,2,74,'SYS_PER_INSERT',74,'1.38.16.125');
+2012-09-07 00:07:51,881 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 803}]
+2012-09-07 00:13:59,888 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,472,0,0,4,2,3,74,'SYS_PER_INSERT',74,'1.38.16.125');
+2012-09-07 00:13:59,906 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 804}]
+2012-09-07 00:14:34,102 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(157,183,'UE95031',14,13,1,1,'  C and C++ Language, Windows Moviemaker, AutoCAD, Pspice, Microwind, AVR Studio.    ','18843','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I183<sS>RollNo><p9<VUE95031<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<VC and C++ Language, Windows Moviemaker, AutoCAD, Pspice, Microwind, AVR Studio.   <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V18843<p27<sS>id><p28<I157<sS>BranchMajor_id><p29<I14<sb.','SYS_PER_UPDATE',183,'123.237.178.39');
+2012-09-07 00:14:34,110 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 157}]
+2012-09-07 00:14:34,113 UserProfile       line:195  DEBUG    [ChangeUserGroup][183] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 00:20:15,638 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(283,78,'UE99054',17,17,1,2,'    average   ','48909','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I17<sS>User_id><p8<I78<sS>RollNo><p9<VUE99054<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V  average  <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I2<sS>AIEEE><p26<V48909<p27<sS>id><p28<I283<sS>BranchMajor_id><p29<I17<sb.','SYS_PER_UPDATE',78,'49.201.202.30');
+2012-09-07 00:20:15,652 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 283}]
+2012-09-07 00:20:15,657 UserProfile       line:195  DEBUG    [ChangeUserGroup][78] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 00:28:49,477 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,500,455,0,0,3,2,2,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:28:49,496 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 805}]
+2012-09-07 00:30:01,866 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,425,0,0,4,2,3,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:30:01,879 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 806}]
+2012-09-07 00:32:32,618 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2009','1 Dec 2009',1,2,1250,699,0,0,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:32:32,636 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 807}]
+2012-09-07 00:34:24,215 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Dec 2009','1 Jun 2010',2,2,1250,727,0,0,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:34:24,228 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 808}]
+2012-09-07 00:35:22,296 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2010','1 Dec 2010',3,2,1250,833,0,0,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:35:22,314 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 809}]
+2012-09-07 00:36:39,593 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Dec 2010','1 Jun 2011',4,2,1250,797,0,0,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:36:39,604 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 810}]
+2012-09-07 00:37:34,213 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2011','1 Dec 2011',5,2,1250,916,0,0,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:37:34,240 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 811}]
+2012-09-07 00:38:50,511 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Dec 2011','1 Jun 2012',6,2,1150,763,1,1,1,1,1,78,'SYS_PER_INSERT',78,'49.201.202.30');
+2012-09-07 00:38:50,532 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 812}]
+2012-09-07 00:42:01,891 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(463,'UE93029',13,13,1,1,' ','16667','SYS_PER_INSERT',463,'117.197.138.159');
+2012-09-07 00:42:01,901 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:42:01,901 UserProfile       line:159  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 463==
+2012-09-07 00:42:10,344 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2005','1 Mar 2006',1,1,500,363,0,0,3,2,2,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:42:10,356 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:43:09,280 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2007','1 Mar 2008',1,1,500,312,0,0,4,2,3,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:43:09,296 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:44:40,618 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2009','1 Dec 2009',1,2,1250,896,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:44:40,631 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:45:37,113 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2010','1 May 2010',2,2,1250,903,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:45:37,122 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:46:24,612 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(463,'UE93029',13,13,1,1,' good','16661','SYS_PER_INSERT',463,'117.197.138.159');
+2012-09-07 00:46:24,620 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:46:24,620 UserProfile       line:159  DEBUG    [InsertStudentDetails] == Exception {'result': -2, 'rescode': 504}, 463==
+2012-09-07 00:46:30,151 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2010','1 Dec 2010',3,2,1200,798,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:46:30,161 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:47:28,529 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2011','1 May 2011',4,2,1300,895,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:47:28,543 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:48:27,970 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2011','1 Dec 2011',5,2,1250,886,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:48:27,989 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:49:29,065 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 May 2012',6,2,1250,931,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:49:29,078 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': -2, 'rescode': 504}]
+2012-09-07 00:51:09,408 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(70,167,'ue93069',13,13,1,3,'   ','87771','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I167<sS>RollNo><p9<Vue93069<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I3<sS>AIEEE><p26<NsS>id><p27<I70<sS>BranchMajor_id><p28<I13<sb.','SYS_PER_UPDATE',167,'101.208.139.9');
+2012-09-07 00:51:09,415 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 70}]
+2012-09-07 00:51:09,423 UserProfile       line:195  DEBUG    [ChangeUserGroup][167] == (1, 'Group Change Sucessful') ==
+2012-09-07 00:54:28,354 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2005','1 Mar 2006',1,1,500,363,0,0,3,2,2,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:54:28,367 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 813}]
+2012-09-07 00:56:44,999 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2007','1 Mar 2008',1,1,500,312,0,0,4,2,3,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:56:45,022 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 814}]
+2012-09-07 00:58:00,234 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2009','1 Dec 2009',1,2,1250,896,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 00:58:00,245 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 815}]
+2012-09-07 00:58:26,911 UserProfile       line:275  ERROR    StudentDetailsInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'BranchMinor': [u'13'], u'Category': [u'3'], u'Degree': [u'1'], u'RollNo': [u'UE93090'], u'ComputerProficiency': [u' '], u'AIEEERank': [u''], u'csrfmiddlewaretoken': [u'ab8de126e15d9bd9f3ddd62f75a2440c'], u'BranchMajor': [u'13'], u'Id': [u'-1']}>,
+COOKIES:{'__utma': '117285699.782078930.1346959682.1346959682.1346959682.1',
+ '__utmb': '117285699.5.10.1346959682',
+ '__utmc': '117285699',
+ '__utmz': '117285699.1346959682.1.1.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
+ 'csrftoken': 'ab8de126e15d9bd9f3ddd62f75a2440c',
+ 'sessionid': '007f28bbc94420b1edd40edcb81589c7'},
+META:{'CONTENT_LENGTH': '156',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': 'ab8de126e15d9bd9f3ddd62f75a2440c',
+ 'DOCUMENT_ROOT': '/var/www/vhosts/thoughtxplore.com/uiet',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': '__utma=117285699.782078930.1346959682.1346959682.1346959682.1; __utmb=117285699.5.10.1346959682; __utmc=117285699; __utmz=117285699.1346959682.1.1.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/; csrftoken=ab8de126e15d9bd9f3ddd62f75a2440c; sessionid=007f28bbc94420b1edd40edcb81589c7',
+ 'HTTP_HOST': 'uiet.thoughtxplore.com',
+ 'HTTP_REFERER': 'http://uiet.thoughtxplore.com/userprofile/UserProfile/StudentDetails/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (Windows NT 5.1; rv:15.0) Gecko/20100101 Firefox/15.0',
+ 'PATH_INFO': u'/userprofile/UserProfile/StudentDetails/new',
+ 'PATH_TRANSLATED': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi/userprofile/UserProfile/StudentDetails/new',
+ 'PP_CUSTOM_PHP_INI': '/var/www/vhosts/uiet.thoughtxplore.com/etc/php.ini',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '122.173.232.198',
+ 'REMOTE_PORT': '15800',
+ 'REQUEST_METHOD': 'POST',
+ 'REQUEST_URI': '/userprofile/UserProfile/StudentDetails/new',
+ 'SCRIPT_FILENAME': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_ADDR': '119.18.58.211',
+ 'SERVER_ADMIN': 'upcomingnewton@gmail.com',
+ 'SERVER_NAME': 'uiet.thoughtxplore.com',
+ 'SERVER_PORT': '80',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SIGNATURE': '<address>Apache Server at uiet.thoughtxplore.com Port 80</address>\n',
+ 'SERVER_SOFTWARE': 'Apache',
+ 'mod_wsgi.application_group': 'uiet.thoughtxplore.com|',
+ 'mod_wsgi.callable_object': 'application',
+ 'mod_wsgi.handler_script': '',
+ 'mod_wsgi.input_chunked': '0',
+ 'mod_wsgi.listener_host': '',
+ 'mod_wsgi.listener_port': '80',
+ 'mod_wsgi.process_group': '',
+ 'mod_wsgi.request_handler': 'wsgi-script',
+ 'mod_wsgi.script_reloading': '1',
+ 'mod_wsgi.version': (3, 3),
+ 'wsgi.errors': <mod_wsgi.Log object at 0x2b4b4478f930>,
+ 'wsgi.file_wrapper': <built-in method file_wrapper of mod_wsgi.Adapter object at 0x2b4b448dcd50>,
+ 'wsgi.input': <mod_wsgi.Input object at 0x2b4b4478f4b0>,
+ 'wsgi.multiprocess': True,
+ 'wsgi.multithread': False,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 1)}>]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/Views/UserProfile.py", line 213, in StudentDetailsInsert
+    aieee= int(HttpRequest.POST["AIEEERank"])
+ValueError: invalid literal for int() with base 10: ''
+2012-09-07 01:00:42,302 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2010','1 May 2010',2,2,1250,903,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 01:00:42,315 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 816}]
+2012-09-07 01:01:38,057 UserProfile       line:275  ERROR    StudentDetailsInsert : [HttpRequest : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'BranchMinor': [u'13'], u'Category': [u'1'], u'Degree': [u'1'], u'RollNo': [u'UE93090'], u'ComputerProficiency': [u' '], u'AIEEERank': [u''], u'csrfmiddlewaretoken': [u'ab8de126e15d9bd9f3ddd62f75a2440c'], u'BranchMajor': [u'13'], u'Id': [u'-1']}>,
+COOKIES:{'__utma': '117285699.782078930.1346959682.1346959682.1346959682.1',
+ '__utmb': '117285699.18.10.1346959682',
+ '__utmc': '117285699',
+ '__utmz': '117285699.1346959682.1.1.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/',
+ 'csrftoken': 'ab8de126e15d9bd9f3ddd62f75a2440c',
+ 'sessionid': '007f28bbc94420b1edd40edcb81589c7'},
+META:{'CONTENT_LENGTH': '156',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': 'ab8de126e15d9bd9f3ddd62f75a2440c',
+ 'DOCUMENT_ROOT': '/var/www/vhosts/thoughtxplore.com/uiet',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': '__utma=117285699.782078930.1346959682.1346959682.1346959682.1; __utmb=117285699.18.10.1346959682; __utmc=117285699; __utmz=117285699.1346959682.1.1.utmcsr=tnpuiet.com|utmccn=(referral)|utmcmd=referral|utmcct=/; csrftoken=ab8de126e15d9bd9f3ddd62f75a2440c; sessionid=007f28bbc94420b1edd40edcb81589c7',
+ 'HTTP_HOST': 'uiet.thoughtxplore.com',
+ 'HTTP_REFERER': 'http://uiet.thoughtxplore.com/userprofile/UserProfile/StudentDetails/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (Windows NT 5.1; rv:15.0) Gecko/20100101 Firefox/15.0',
+ 'PATH_INFO': u'/userprofile/UserProfile/StudentDetails/new',
+ 'PATH_TRANSLATED': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi/userprofile/UserProfile/StudentDetails/new',
+ 'PP_CUSTOM_PHP_INI': '/var/www/vhosts/uiet.thoughtxplore.com/etc/php.ini',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '122.173.232.198',
+ 'REMOTE_PORT': '15914',
+ 'REQUEST_METHOD': 'POST',
+ 'REQUEST_URI': '/userprofile/UserProfile/StudentDetails/new',
+ 'SCRIPT_FILENAME': '/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/apache/apache.wsgi',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_ADDR': '119.18.58.211',
+ 'SERVER_ADMIN': 'upcomingnewton@gmail.com',
+ 'SERVER_NAME': 'uiet.thoughtxplore.com',
+ 'SERVER_PORT': '80',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SIGNATURE': '<address>Apache Server at uiet.thoughtxplore.com Port 80</address>\n',
+ 'SERVER_SOFTWARE': 'Apache',
+ 'mod_wsgi.application_group': 'uiet.thoughtxplore.com|',
+ 'mod_wsgi.callable_object': 'application',
+ 'mod_wsgi.handler_script': '',
+ 'mod_wsgi.input_chunked': '0',
+ 'mod_wsgi.listener_host': '',
+ 'mod_wsgi.listener_port': '80',
+ 'mod_wsgi.process_group': '',
+ 'mod_wsgi.request_handler': 'wsgi-script',
+ 'mod_wsgi.script_reloading': '1',
+ 'mod_wsgi.version': (3, 3),
+ 'wsgi.errors': <mod_wsgi.Log object at 0x2b4b448d25f0>,
+ 'wsgi.file_wrapper': <built-in method file_wrapper of mod_wsgi.Adapter object at 0x2b4b44627120>,
+ 'wsgi.input': <mod_wsgi.Input object at 0x2b4b444b7030>,
+ 'wsgi.multiprocess': True,
+ 'wsgi.multithread': False,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 1)}>]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserProfile/Views/UserProfile.py", line 213, in StudentDetailsInsert
+    aieee= int(HttpRequest.POST["AIEEERank"])
+ValueError: invalid literal for int() with base 10: ''
+2012-09-07 01:01:40,060 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2010','1 Dec 2010',3,2,1200,798,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 01:01:40,078 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 817}]
+2012-09-07 01:03:05,660 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2011','1 May 2011',4,2,1300,895,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 01:03:05,680 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 818}]
+2012-09-07 01:06:00,652 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jun 2011','1 Dec 2011',5,2,1250,886,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 01:06:00,673 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 819}]
+2012-09-07 01:06:53,291 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 May 2012',6,2,1250,931,0,0,1,1,1,167,'SYS_PER_INSERT',167,'101.208.139.9');
+2012-09-07 01:06:53,312 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 820}]
+2012-09-07 01:06:56,043 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(135,134,'ue93061',13,13,1,1,'   c,c++','22961','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I134<sS>RollNo><p9<Vue93061<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<NsS>id><p27<I135<sS>BranchMajor_id><p28<I13<sb.','SYS_PER_UPDATE',134,'223.180.84.81');
+2012-09-07 01:06:56,053 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 135}]
+2012-09-07 01:06:56,059 UserProfile       line:195  DEBUG    [ChangeUserGroup][134] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 01:12:22,363 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2006','1 Mar 2007',1,1,850,714,0,0,3,1,2,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-07 01:12:22,382 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 821}]
+2012-09-07 01:13:21,397 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Apr 2008','1 Mar 2009',1,1,500,417,0,0,4,2,3,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-07 01:13:21,414 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 822}]
+2012-09-06 14:44:40,855 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2009','1 Dec 2009',1,2,1250,821,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-06 14:44:40,866 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 823}]
+2012-09-07 01:15:48,813 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2010','1 May 2010',2,2,1250,864,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-07 01:15:48,839 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 824}]
+2012-09-07 01:16:42,710 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2010','1 Dec 2010',3,2,1200,893,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-07 01:16:42,731 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 825}]
+2012-09-06 14:47:50,325 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2011','1 May 2011',4,2,1300,995,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-06 14:47:50,343 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 826}]
+2012-09-06 14:48:51,443 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jul 2011','1 Dec 2011',5,2,1250,950,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-06 14:48:51,471 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 827}]
+2012-09-07 01:19:45,842 DBFunctions       line:83   DEBUG    [DBInsertMarks] SELECT * FROM MarksInsert('1 Jan 2012','1 May 2012',6,2,1250,981,0,0,1,1,1,134,'SYS_PER_INSERT',134,'223.180.84.81');
+2012-09-07 01:19:45,863 DBFunctions       line:86   DEBUG    [DBInsertMarks] [{'result': 1, 'rescode': 828}]
+2012-09-06 14:52:54,710 DBFunctions       line:288  DEBUG    [DBMarksUpdate] SELECT * FROM MarksUpdate(821,'1 Jan 1985','1 Jan 1985',1,1,750,618,0,0,3,1,2,134,'cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<Marks<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>Board_id><p7<I1<sS>SessionEnd><p8<cdatetime<date<p9<(S>+x07+xd7+x03+x01><p10<tp11<Rp12<sS>Degree_id><p13<I2<sS>TotalMarks><p14<I850<sS>_state><p15<ccopy_reg<_reconstructor<p16<(cdjango.db.models.base<ModelState<p17<c__builtin__<object<p18<Ntp19<Rp20<(dp21<S>adding><p22<I00<sS>db><p23<S>default><p24<sbsS>SessionType_id><p25<I1<sS>SecuredMarks><p26<I714<sS>ReappersRemaining><p27<I0<sS>SessionNumber><p28<I1<sS>UserId_id><p29<I134<sS>DegreeType_id><p30<I3<sS>State_id><p31<I1<sS>TotalReappers><p32<I0<sS>SessionStart><p33<g9<(S>+x07+xd6+x04+x01><p34<tp35<Rp36<sS>id><p37<I821<sb.','SYS_PER_UPDATE',134,'223.180.84.81');
+2012-09-06 14:52:54,721 DBFunctions       line:291  DEBUG    [DBMarksUpdate] [{'result': 1, 'rescode': 821}]
+2012-09-07 01:39:58,903 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(465,'UE93044',13,13,1,1,' C/C++,JAVA(J2SE,J2EE),HTML/CSS,JavaScript,Ajax,jQuery,Photoshop','21067','SYS_PER_INSERT',465,'117.197.134.33');
+2012-09-07 01:39:58,917 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 301}]
+2012-09-07 01:39:58,933 UserProfile       line:151  DEBUG    [ChangeUserGroup][465] == (1, 'Group Change Sucessful') ==
+2012-09-06 16:49:20,795 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(164,300,'UE93068',13,13,1,1,'   ','22092','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I300<sS>RollNo><p9<VUE93068<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<NsS>id><p27<I164<sS>BranchMajor_id><p28<I13<sb.','SYS_PER_UPDATE',300,'180.149.53.9');
+2012-09-06 16:49:20,802 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 164}]
+2012-09-06 16:49:20,822 UserProfile       line:195  DEBUG    [ChangeUserGroup][300] == (1, 'Group Change Sucessful') ==
+2012-09-06 20:24:56,780 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(466,'UE93049',13,13,1,1,' C, C++, Networking(CCNA), pursuing CCNP, Basic in ethical hacking and security','16999','SYS_PER_INSERT',466,'180.149.53.9');
+2012-09-06 20:24:56,788 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 302}]
+2012-09-06 20:24:56,795 UserProfile       line:151  DEBUG    [ChangeUserGroup][466] == (1, 'Group Change Sucessful') ==
+2012-09-06 20:28:45,474 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(230,214,'ue94044',15,13,1,1,' C,C++,data structure ,DBMS,computer networks
+MATLAB,Xylinx,Pspice,Power World Simulator,','26405','cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I14<sS>User_id><p8<I214<sS>RollNo><p9<Vue94044<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V26405<p27<sS>id><p28<I230<sS>BranchMajor_id><p29<I15<sb.','SYS_PER_UPDATE',214,'117.225.176.64');
+2012-09-06 20:28:45,485 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 230}]
+2012-09-06 20:28:45,491 UserProfile       line:195  DEBUG    [ChangeUserGroup][214] == (1, 'Group has been updated sucessfully.') ==
+2012-09-06 20:30:12,143 DBFunctions       line:288  DEBUG    [DBMarksUpdate] SELECT * FROM MarksUpdate(114,'1 Jan 2012','1 May 2012',6,2,1250,991,0,0,1,1,1,214,'cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<Marks<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>Board_id><p7<I1<sS>SessionEnd><p8<cdatetime<date<p9<(S>+x07+xc1+x01+x01><p10<tp11<Rp12<sS>Degree_id><p13<I1<sS>TotalMarks><p14<I1250<sS>_state><p15<ccopy_reg<_reconstructor<p16<(cdjango.db.models.base<ModelState<p17<c__builtin__<object<p18<Ntp19<Rp20<(dp21<S>adding><p22<I00<sS>db><p23<S>default><p24<sbsS>SessionType_id><p25<I2<sS>SecuredMarks><p26<I991<sS>ReappersRemaining><p27<I0<sS>SessionNumber><p28<I6<sS>UserId_id><p29<I214<sS>DegreeType_id><p30<I1<sS>State_id><p31<I1<sS>TotalReappers><p32<I0<sS>SessionStart><p33<g9<(S>+x07+xc1+x01+x01><p34<tp35<Rp36<sS>id><p37<I114<sb.','SYS_PER_UPDATE',214,'117.225.176.64');
+2012-09-06 20:30:12,155 DBFunctions       line:291  DEBUG    [DBMarksUpdate] [{'result': 1, 'rescode': 114}]
+2012-09-07 07:00:56,545 DBFunctions       line:288  DEBUG    [DBMarksUpdate] SELECT * FROM MarksUpdate(197,'1 Jul 2011','1 Dec 2011',5,2,1250,925,0,0,1,1,1,214,'cdjango.db.models.base<model_unpickle<p0<(cUserProfile.models<Marks<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>Board_id><p7<I1<sS>SessionEnd><p8<cdatetime<date<p9<(S>+x07+xc1+x01+x01><p10<tp11<Rp12<sS>Degree_id><p13<I1<sS>TotalMarks><p14<I1250<sS>_state><p15<ccopy_reg<_reconstructor<p16<(cdjango.db.models.base<ModelState<p17<c__builtin__<object<p18<Ntp19<Rp20<(dp21<S>adding><p22<I00<sS>db><p23<S>default><p24<sbsS>SessionType_id><p25<I2<sS>SecuredMarks><p26<I925<sS>ReappersRemaining><p27<I0<sS>SessionNumber><p28<I5<sS>UserId_id><p29<I214<sS>DegreeType_id><p30<I1<sS>State_id><p31<I1<sS>TotalReappers><p32<I0<sS>SessionStart><p33<g9<(S>+x07+xc1+x01+x01><p34<tp35<Rp36<sS>id><p37<I197<sb.','SYS_PER_UPDATE',214,'117.225.176.64');
+2012-09-07 07:00:56,551 DBFunctions       line:291  DEBUG    [DBMarksUpdate] [{'result': 1, 'rescode': 197}]
+2012-09-07 09:17:56,080 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(105,'UE93030',13,13,1,1,' ','13831','SYS_PER_INSERT',105,'112.196.13.130');
+2012-09-07 09:17:56,094 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 303}]
+2012-09-07 09:17:56,109 UserProfile       line:151  DEBUG    [ChangeUserGroup][105] == (1, 'Group Change Sucessful') ==
+2012-09-07 10:11:42,548 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(167,311,'94060',15,14,1,1,'      C,C++,DBMS,MS  OFFICE  ','30699','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I311<sS>RollNo><p9<V94060<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V    C,C++,DBMS,MS  OFFICE <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V30699<p27<sS>id><p28<I167<sS>BranchMajor_id><p29<I15<sb.','SYS_PER_UPDATE',311,'14.195.85.157');
+2012-09-07 10:11:42,555 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 167}]
+2012-09-07 10:11:42,559 UserProfile       line:195  DEBUG    [ChangeUserGroup][311] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 10:26:04,669 DBFunctions       line:168  DEBUG    [DBInsertStudentDetails] SELECT * FROM StudentDetailsInsert(85,'UE98060',16,16,1,1,'Languages--C,C++,JAVA CORE,
+Networking-- CCNA
+WEB TOOLS--HTML,DHTML,JAVA SCRIPT
+Operating system---WINDOWS 98,XP,7
+DBMS---basic SQL','29688','SYS_PER_INSERT',85,'117.225.176.116');
+2012-09-07 10:26:04,679 DBFunctions       line:171  DEBUG    [DBInsertStudentDetails] [{'result': 1, 'rescode': 304}]
+2012-09-07 10:26:04,690 UserProfile       line:151  DEBUG    [ChangeUserGroup][85] == (1, 'Group Change Sucessful') ==
+2012-09-07 10:38:58,264 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(304,85,'UE98060',16,13,1,1,'  Languages--C,C++,JAVA CORE,
+Networking-- CCNA
+WEB TOOLS--HTML,DHTML,JAVA SCRIPT
+Operating system---WINDOWS 98,XP,7
+DBMS---basic SQL ','29688','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I16<sS>User_id><p8<I85<sS>RollNo><p9<VUE98060<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<VLanguages--C,C++,JAVA CORE,+u000aNetworking-- CCNA+u000aWEB TOOLS--HTML,DHTML,JAVA SCRIPT+u000aOperating system---WINDOWS 98,XP,7+u000aDBMS---basic SQL<p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V29688<p27<sS>id><p28<I304<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',85,'117.225.251.154');
+2012-09-07 10:38:58,270 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 304}]
+2012-09-07 10:38:58,274 UserProfile       line:195  DEBUG    [ChangeUserGroup][85] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 10:43:41,554 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(304,85,'UE98060',16,13,1,1,'    Languages--C,C++,JAVA CORE,
+Networking-- CCNA
+WEB TOOLS--HTML,DHTML,JAVA SCRIPT
+Operating system---WINDOWS 98,XP,7
+DBMS---basic SQL  ','29688','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I85<sS>RollNo><p9<VUE98060<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V  Languages--C,C++,JAVA CORE,+u000aNetworking-- CCNA+u000aWEB TOOLS--HTML,DHTML,JAVA SCRIPT+u000aOperating system---WINDOWS 98,XP,7+u000aDBMS---basic SQL <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V29688<p27<sS>id><p28<I304<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',85,'117.224.243.150');
+2012-09-07 10:43:41,564 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 304}]
+2012-09-07 10:43:41,569 UserProfile       line:195  DEBUG    [ChangeUserGroup][85] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 00:13:41,736 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(304,85,'UE98060',16,13,1,1,'    Languages--C,C++,JAVA CORE,
+Networking-- CCNA
+WEB TOOLS--HTML,DHTML,JAVA SCRIPT
+Operating system---WINDOWS 98,XP,7
+DBMS---basic SQL  ','29688','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I85<sS>RollNo><p9<VUE98060<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V    Languages--C,C++,JAVA CORE,+u000aNetworking-- CCNA+u000aWEB TOOLS--HTML,DHTML,JAVA SCRIPT+u000aOperating system---WINDOWS 98,XP,7+u000aDBMS---basic SQL  <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V29688<p27<sS>id><p28<I304<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',85,'117.224.243.150');
+2012-09-07 00:13:41,745 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 304}]
+2012-09-07 00:13:41,750 UserProfile       line:195  DEBUG    [ChangeUserGroup][85] == (1, 'Group has been updated sucessfully.') ==
+2012-09-07 10:43:42,422 DBFunctions       line:185  DEBUG    [DBStudentDetailsUpdate] SELECT * FROM StudentDetailsUpdate(304,85,'UE98060',16,13,1,1,'    Languages--C,C++,JAVA CORE,
+Networking-- CCNA
+WEB TOOLS--HTML,DHTML,JAVA SCRIPT
+Operating system---WINDOWS 98,XP,7
+DBMS---basic SQL  ','29688','cdjango.db.models.base<model_unpickle<p0<(ctx2.UserProfile.models<StudentDetails<p1<(lp2<cdjango.db.models.base<simple_class_factory<p3<tp4<Rp5<(dp6<S>BranchMinor><p7<I13<sS>User_id><p8<I85<sS>RollNo><p9<VUE98060<p10<sS>_state><p11<ccopy_reg<_reconstructor<p12<(cdjango.db.models.base<ModelState<p13<c__builtin__<object<p14<Ntp15<Rp16<(dp17<S>adding><p18<I00<sS>db><p19<S>default><p20<sbsS>ComputerProficiency><p21<V    Languages--C,C++,JAVA CORE,+u000aNetworking-- CCNA+u000aWEB TOOLS--HTML,DHTML,JAVA SCRIPT+u000aOperating system---WINDOWS 98,XP,7+u000aDBMS---basic SQL  <p22<sS>DegreePursuing_id><p23<I1<sS>State_id><p24<I1<sS>Category_id><p25<I1<sS>AIEEE><p26<V29688<p27<sS>id><p28<I304<sS>BranchMajor_id><p29<I16<sb.','SYS_PER_UPDATE',85,'117.224.243.150');
+2012-09-07 10:43:42,432 DBFunctions       line:188  DEBUG    [DBStudentDetailsUpdate] [{'result': 1, 'rescode': 304}]
+2012-09-07 10:43:42,438 UserProfile       line:195  DEBUG    [ChangeUserGroup][85] == (1, 'Group has been updated sucessfully.') ==
