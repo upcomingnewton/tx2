@@ -1,0 +1,149 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}User Summarry{% endblock %}</title>
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">User Summary</div>
+</div>
+<div class="row">
+<center>Basic Information</center>
+</div>
+<div class="row">
+    <div class="labelclass" >RollNo: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.RollNo}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="labelclass" >BranchMajor: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.BranchMajor.BranchName}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="labelclass" >BranchMinor: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{BranchMinor}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="labelclass" >DegreePursuing: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.DegreePursuing.Name}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="labelclass" >Category: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.Category.CategoryName}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="labelclass" >AIEEE: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.AIEEE}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+<div class="rowbig">
+    <div class="labelclass" >ComputerProficiency: </div>
+    {% if StudentDetails %}
+    <div class="labelclass" >{{StudentDetails.ComputerProficiency}}</div>
+    {% else %}
+    <div class="labelclass" >Not Yet Filled By User</div>
+    {% endif %}
+</div>
+
+<div class="row">
+    <center>Percentages<center>
+</div>
+
+<div class="row">
+	    <div class="labelclass" >10th Percentage : </div>
+	    <div class="labelclass" >{{Per10}}</div>
+</div>
+
+<div class="row">
+	    <div class="labelclass" >12th Percentage : </div>
+	    <div class="labelclass" >{{Per12}}</div>
+</div>
+<div class="row">
+	    <div class="labelclass" >B.E Percentage : </div>
+	    <div class="labelclass" >{{Perbe}}</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+    <center>Student Marks<center>
+</div>
+{% if Marks|length %}
+	{% for Obj in Marks %}
+	<div class="messageclass">
+		<br/>
+		<br/>
+    <center>Marks for {% if Obj.DegreeType.Name == "10th" or Obj.DegreeType.Name == "12th"%}{{Obj.DegreeType.Name}}{% else %} {{Obj.SessionType.Name}}:{{Obj.SessionNumber}}{% endif %}<center>
+    </div>
+    <br/>
+	<div class="row">
+	    <div class="labelclass" >Degree : </div>
+	    <div class="labelclass" >{{Obj.Degree.Name}}</div>
+	</div>
+	<div class="rowbig">
+	    <div class="labelclass" >Board: </div>
+	    <div class="labelclass" >{{Obj.Board.Name}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Session Number: </div>
+	    <div class="labelclass" >{{Obj.SessionNumber}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Session Type: </div>
+	    <div class="labelclass" >{{Obj.SessionType.Name}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Session Start: </div>
+	    <div class="labelclass" >{{Obj.SessionStart.month}}-{{Obj.SessionStart.year}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Session End: </div>
+	    <div class="labelclass" >{{Obj.SessionEnd.month}}-{{Obj.SessionEnd.year}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Secured Marks: </div>
+	    <div class="labelclass" >{{Obj.SecuredMarks}}</div>
+	</div>
+	<div class="row">
+	    <div class="labelclass" >Total Marks: </div>
+	    <div class="labelclass" >{{Obj.TotalMarks}}</div>
+	</div>
+	<div class="rowbig">
+	    <div class="labelclass" >Total Reappers in this Semester </div>
+	    <div class="labelclass" >{{Obj.TotalReappers}}</div>
+	</div>
+	<div class="rowbig">
+	    <div class="labelclass" >Reappers Remaining in this Semester: </div>
+	    <div class="labelclass" >{{Obj.ReappersRemaining}}</div>
+	</div>
+	
+	{% endfor %}
+
+{% else %}
+<div class="row">
+    Marks have not been entered
+</div>
+{% endif %}
+
+
+
+
+{% endblock %}
