@@ -16,6 +16,7 @@
         <th scope="col" style="width:250px;">Dob</th>
         <th scope="col" style="width:250px;">Entity</th>
         <th scope="col" style="width:250px;">Group</th>
+        <th scope="col" style="width:50px;">Gender</th>
         <th scope="col" style="width:250px;">State</th>
         <th scope="col" style="width:250px;">Perm</th>
         <th scope="col" style="width:250px;">Logs</th>
@@ -55,12 +56,13 @@
             {% endfor %}
           </select>
           </td>
+          <td>{{ user.UserGender }}</td>
           <td>{{ user.State.StateName }}</td>
           <td>
           <select name="OperationRequest">
             <option value="-1">SELECT</option>
             {% for p in PermList %}
-              <option value="{{p.id}}">{{p.PermissionName}}</option>
+              <option value="{{p.PermissionName}}">{{p.PermissionName}}</option>
             {% endfor %}
           </select>
           </td>

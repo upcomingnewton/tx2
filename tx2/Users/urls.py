@@ -20,6 +20,7 @@ urlpatterns = patterns('',
         url(r'^search/post/$','Users.Views.SearchUserViews.SearchUser'),
         url(r'^search/$','Users.Views.SearchUserViews.SearchUserIndex'),
         url(r'^edit/(?P<UserID>\d+)/post/$','Users.Views.UserViews.EditUser'),
+        url(r'^edit/(?P<UserID>\d+)/group/(?P<GroupID>\d+)/post/$','Users.Views.UserViews.EditUser'),
         # MENU URLS
         url(r'^menu/list/$','Users.Views.MenuViews.ListAllMenu'),
         url(r'^menu/list/delete/$','Users.Views.MenuViews.ListDeletedMenu'),

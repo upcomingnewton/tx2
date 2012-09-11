@@ -1,0 +1,212 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Job Notification Form{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Edit Job Notification Form</div>
+</div>
+<form action="/jobs/company/{{CompanyID}}/jobs/{{JobObj.id}}/edit/post/" method="post">
+{% csrf_token %}
+<!-- ====================================================================================== -->
+<!--  1. Contact details for this job -->
+<!-- {% if Edit %}value="{{JobObj.ContactPersonName}}"{% endif %}  -->
+<!-- ====================================================================================== -->
+<div class="row" style="color:red;">Contact Details for this job</div>
+<div class="row">
+    <div class="labelclass" >Name</div>
+    <div class="widgetclass" ><input type="text" name="ContactPersonName" class="widget" {% if Edit %}value="{{JobObj.ContactPersonName}}"{% endif %} /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Mobile</div>
+    <div class="widgetclass" ><input type="text" name="ContactPersonMobile" class="widget" {% if Edit %}value="{{JobObj.ContactPersonMobile}}"{% endif %} /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Email</div>
+    <div class="widgetclass" ><input type="text" name="ContactPersonEmail" class="widget" {% if Edit %}value="{{JobObj.ContactPersonEmail}}"{% endif %} /></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >Details</div>
+    <div class="widgetclass" ><textarea name="ContactPersonDetails" >{% if Edit %}{{JobObj.ContactPersonDetails}}{% endif %}</textarea></div>
+</div>
+<!-- ====================================================================================== -->
+<!--  2. Requirements -->
+<!-- ====================================================================================== -->
+<div class="row" style="color:red;">Details for this job</div>
+<div class="row">
+    <div class="labelclass" >Profile</div>
+    <div class="widgetclass" ><input type="text" name="Profile" class="widget" {% if Edit %}value="{{JobObj.Profile}}"{% endif %} /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Designation</div>
+    <div class="widgetclass" ><input type="text" name="Designation" class="widget" {% if Edit %}value="{{JobObj.Designation}}"{% endif %} /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Package</div>
+    <div class="widgetclass" ><input type="text" name="Package" class="widget"  {% if Edit %}value="{{JobObj.Package}}"{% endif %} /></div>
+</div>
+<div class="row">
+  <div class="labelclass" >DateOfVisit </div>
+  <div class="widgetclass" >({% if Edit %}{{JobObj.DateOfVisit}}{% endif %} )</div>
+</div>
+<div class="row">
+    <div class="labelclass" >Change DateOfVisit </div>
+    <div class="widgetclass" >
+      <div style="float:left;width:80px;">
+        <select name="DateOfVisitDay" class="widget" style="float:left;width:75px;">
+          <option value="-1">day</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+      </div>
+      <div style="float:left;width:80px;">
+        <select name="DateOfVisitMonth" class="widget" style="float:left;width:75px;">
+          <option value="-1">month</option>
+          <option value="1">jan</option>
+          <option value="2">feb</option>
+          <option value="3">mar</option>
+          <option value="4">apr</option>
+          <option value="5">may</option>
+          <option value="6">jun</option>
+          <option value="7">jul</option>
+          <option value="8">aug</option>
+          <option value="9">sep</option>
+          <option value="10">oct</option>
+          <option value="11">nov</option>
+          <option value="12">dec</option>
+        </select>
+      </div>
+      <div style="float:left;width:80px;">
+        <select name="DateOfVisitYear" class="widget" style="float:left;width:75px;">
+          <option value="-1">year</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+        </select>
+      </div>
+    </div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >JobDetails1</div>
+    <div class="widgetclass" ><textarea name="JobDetails1" >{% if Edit %}{{JobObj.JobDetails1}}{% endif %}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >JobDetails2</div>
+    <div class="widgetclass" ><textarea name="JobDetails2" >{% if Edit %}{{JobObj.JobDetails2}}{% endif %}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >RecruitmentRounds</div>
+    <div class="widgetclass" ><textarea name="RecruitmentRounds" >{% if Edit %}{{JobObj.RecruitmentRounds}}{% endif %}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >RegistrationsUpto <br />(yyyy/mm/dd/hh/mm)<br /> (2012/09/23/20/30)</div>
+    <div class="widgetclass" ><input type="text" class="widget" name="RegistrationsUpto" value="{% if Edit %}{{JobObj.RegistrationsUpto.year}}/{{JobObj.RegistrationsUpto.month}}/{{JobObj.RegistrationsUpto.day}}/{{JobObj.RegistrationsUpto.hour}}/{{JobObj.RegistrationsUpto.minute}}{% endif %}" /></div>
+</div>
+  <div class="row"></div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+<!-- ====================================================================================== -->
+<!--  3. Eligibility -->
+<!-- ====================================================================================== -->
+<form action="/jobs/branchjob/{{CompanyID}}/jobs/{{JobObj.id}}/edit/post/" method="post">
+{% csrf_token %}
+<div class="row" style="color:red;">Eligibility</div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col" style="width:50px;">Sr.No.</th>
+        <th scope="col" style="width:100px;">Branch</th>
+        <th scope="col" style="width:100px;">JobType</th>
+        <th scope="col" style="width:50px;">Eligible</th>
+        <th scope="col" style="width:150px;">Criteria</th>
+        <th scope="col" style="width:150px;">Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for Branch in BranchList %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ Branch.BranchName }}</td>
+          {% if Branch.id in BranchJobListID %}
+            {% for BranchJob in BranchJobList %}
+              {% if Branch.id == BranchJob.Branch.id  %}
+              <td>
+                <select name="JobType_{{Branch.id}}">
+                  {% for JobType in JobTypeList %}
+                    {% if JobType.id == BranchJob.JobType.id  %}
+                      <option value="{{JobType.id}}" selected="selected">{{JobType.Name}}</option>
+                    {% else %}
+                      <option value="{{JobType.id}}" >{{JobType.Name}}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </td>
+              <td>
+                <select name="Eligible_{{Branch.id}}"> 
+                  <option value="1" selected="selected">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </td>
+              <td><input type="text" name="Criteria_{{Branch.id}}" class="widget" value="{{BranchJob.Comments1}}" /></td>
+              <td><input type="text" name="Remarks_{{Branch.id}}" class="widget" value="{{BranchJob.Comments2}}" /></td>
+              <td><input type="hidden" name="Initial_{{Branch.id}}" value="{{BranchJob.id}}" class="widget" /></td>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+              <td>
+                <select name="JobType_{{Branch.id}}">
+                  {% for JobType in JobTypeList %}
+                      <option value="{{JobType.id}}" >{{JobType.Name}}</option>
+                  {% endfor %}
+                </select>
+              </td>
+              <td>
+                <select name="Eligible_{{Branch.id}}"> 
+                  <option value="1">Yes</option>
+                  <option value="0"selected="selected">No</option>
+                </select>
+              </td>
+              <td><input type="text" name="Criteria_{{Branch.id}}" class="widget" /></td>
+              <td><input type="text" name="Remarks_{{Branch.id}}" class="widget" /></td>
+              <td><input type="hidden" name="Initial_{{Branch.id}}" value="-1" class="widget" /></td>
+            {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<!-- ====================================================================================== --> 
+  <div class="row"></div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}

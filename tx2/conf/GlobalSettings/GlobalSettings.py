@@ -106,7 +106,8 @@ INSTALLED_APPS = (
     'Communication',
     'UserAdress',
     'UserProfile',
-    
+    'jobs',
+    'alumni'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

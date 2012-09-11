@@ -25,23 +25,28 @@ TEMPLATE_DIRS = (
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+# more details on how to customize your logging configuration.  smtp_AlumniLogger
 LOGGING = LOG_SETTINGS = {
     'version': 1,
     'loggers':{
+               'AlumniLogger':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Alumni','smtp_AlumniLogger'],
+                                    'level':'DEBUG',
+                                },
                'LOGGER_Security':{
                                     #'handlers':['File_Security','smtp'],
-                                    'handlers':['File_Security'],
+                                    'handlers':['File_Security','smtp_Security'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_Query':{
                                     #'handlers':['File_Query','smtp'],
-                                    'handlers':['File_Query'],
+                                    'handlers':['File_Query','smtp_Query'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_User':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_User'],
+                                    'handlers':['File_User','smtp_User'],
                                     'level':'DEBUG',
                                 },
                'SYSTEM_INITIALISE_LOGGER':{
@@ -52,27 +57,35 @@ LOGGING = LOG_SETTINGS = {
                
                'LOGGER_UserReg':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_UserReg'],
+                                    'handlers':['File_UserReg','smtp_UserReg'],
                                     'level':'DEBUG',
                                 },
                
                'LOGGER_Communication':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Communcation'],
+                                    'handlers':['File_Communcation','smtp'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_UserProfile':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_UserProfile'],
+                                    'handlers':['File_UserProfile','smtp_UserProfile'],
                                     'level':'DEBUG',
                                 },
                'LOGGER_Adress':{
                                     #'handlers':['File_User','smtp'],
-                                    'handlers':['File_Adress'],
+                                    'handlers':['File_Adress','smtp_Adress'],
                                     'level':'DEBUG',
                                 },
                },
     'handlers': {
+        'File_Alumni': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': UserPath + 'tx2/logs/AlumniLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_UserReg': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
@@ -138,6 +151,15 @@ LOGGING = LOG_SETTINGS = {
             'backupCount': 5,
         },
 #######################################
+        'smtp_AlumniLogger': {
+            'class': 'logging.handlers.SMTPHandler',
+            'level': 'ERROR',
+            'formatter': 'email',
+            'mailhost': 'localhost',
+            'fromaddr': 'no-reply@thoughtxplore.com',
+            'toaddrs': ['thoughtxplore@gmail.com'],
+            'subject': '[ThoughtXplore-Error] Alumni',
+        },
         'smtp_UserReg': {
             'class': 'logging.handlers.SMTPHandler',
             'level': 'ERROR',

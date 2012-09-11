@@ -1,0 +1,45 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Company Registration Form{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Company Registration Form</div>
+</div>
+{% if Edit %}
+<form action="/jobs/company/{{CompanyObj.id}}/edit/post/" method="post">
+{% else %}
+<form action="/jobs/company/add/post/" method="post">
+{% endif %}
+{% csrf_token %}
+  <div class="row">
+    <div class="labelclass" >Company Name</div>
+    <div class="widgetclass" ><input type="text" name="CompanyName" class="widget" {% if Edit %}value="{{CompanyObj.CompanyName}}"{% endif %} /></div>
+  </div>
+  <div class="rowbig">
+    <div class="labelclass" >Company Adress</div>
+    <div class="widgetclass" ><textarea name="CompanyAdress" >{% if Edit %}{{CompanyObj.CompanyAdress}}{% endif %}</textarea></div>
+  </div>
+  <div class="row">
+    <div class="labelclass" >Company Website</div>
+    <div class="widgetclass" ><input type="text" name="CompanyWebsite" class="widget" {% if Edit %}value="{{CompanyObj.CompanyWebsite}}"{% endif %}/></div>
+  </div>
+  <div class="rowbig">
+    <div class="labelclass" >Company About</div>
+    <div class="widgetclass" ><textarea name="CompanyAbout" >{% if Edit %}{{CompanyObj.CompanyAbout}}{% endif %}</textarea></div>
+  </div>
+  <div class="rowbig">
+    <div class="labelclass" >Other Details (Any)</div>
+    <div class="widgetclass" ><textarea name="CompanyOtherDetails1" >{% if Edit %}{{CompanyObj.CompanyOtherDetails1}}{% endif %}</textarea>
+  </div>
+  </div>
+  <div class="rowbig">
+    <div class="labelclass" >Anything else you want us to know ?</div>
+    <div class="widgetclass" ><textarea name="CompanyOtherDetails2" >{% if Edit %}{{CompanyObj.CompanyOtherDetails2}}{% endif %}</textarea>
+  </div>
+  </div>
+  <div class="row"></div>
+  <div class="row">
+    <input type="submit" id="submit" value="SUBMIT" />
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Job Notification Form{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">Job Notification Form</div>
+</div>
+{% if Status == -1 %}
+  <div class="row">
+    <span style="color:red;">You have  not applied for this job.</span>
+    <a href="/jobs/studentjobs/{{JobBranchID}}/0/edit/post/">Apply</a>
+  </div>
+{% endif %}
+{% if Status == 99 %}
+  <div class="row">
+    <span style="color:red;">You have withdrawn from this job.</span>
+    <a href="/jobs/studentjobs/{{JobBranchID}}/0/edit/post/">Re-Apply</a>
+  </div>
+{% endif %}
+{% if Status == 0 %}
+  <div class="row">
+    <span style="color:red;">You have already applied for this job.</span>
+    <a href="/jobs/studentjobs/{{JobBranchID}}/99/edit/post/">Withdraw</a>
+  </div>
+{% endif %}
+<!-- ====================================================================================== -->
+<!--  2. Requirements -->
+<!-- ====================================================================================== -->
+<div class="row">
+    <div class="labelclass" >Profile</div>
+    <div class="widgetclass" ><input type="text" name="Profile" class="widget" value="{{JobObj.Profile}}" /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Designation</div>
+    <div class="widgetclass" ><input type="text" name="Designation" class="widget" value="{{JobObj.Designation}}" /></div>
+</div>
+<div class="row">
+    <div class="labelclass" >Package</div>
+    <div class="widgetclass" ><input type="text" name="Package" class="widget"  value="{{JobObj.Package}}" /></div>
+</div>
+<div class="row">
+  <div class="labelclass" >DateOfVisit </div>
+  <div class="widgetclass" >({{JobObj.DateOfVisit}} )</div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >JobDetails1</div>
+    <div class="widgetclass" ><textarea name="JobDetails1" >{{JobObj.JobDetails1}}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >JobDetails2</div>
+    <div class="widgetclass" ><textarea name="JobDetails2" >{{JobObj.JobDetails2}}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >RecruitmentRounds</div>
+    <div class="widgetclass" ><textarea name="RecruitmentRounds" >{{JobObj.RecruitmentRounds}}</textarea></div>
+</div>
+<div class="rowbig">
+    <div class="labelclass" >RegistrationsUpto</div>
+    <div class="widgetclass" ><input type="text" class="widget" name="RegistrationsUpto" value="{{JobObj.RegistrationsUpto}}" /></div>
+</div>
+
+{% endblock %}

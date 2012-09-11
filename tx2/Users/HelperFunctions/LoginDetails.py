@@ -3,17 +3,18 @@ from django.core.cache import cache
 from tx2.Misc.Encryption import Encrypt
 from time import time
 import logging
+from tx2.Users.models import User
 
 LOGGERUSER = logging.getLogger(LoggerUser)
 
 def GetLoginDetails(request):
     encdec  = Encrypt()
-  # return {"userid":1,"groupid":1,"loginid": 1,"fname":1,}
-    
+#    obj=User.objects.get(UserEmail='SystemInit1@init.com')
+#    return {"userid":obj.id,"groupid":obj.Group.id,"loginid": 1,"fname":obj.UserFirstName,}
     try:
         if "details" in request.session.keys():
             token = request.session["details"]
-            UpdateLoggedInUsersDict(token['loginid'])
+            #UpdateLoggedInUsersDict(token['loginid'])
             return {"userid":token['userid'],"groupid":token['groupid'],"loginid": encdec.decrypt(token['loginid']),"fname":token['fname'],}
         else:
             return {"userid":-1}

@@ -20,10 +20,14 @@ urlpatterns = patterns('',
     url(r'^security/',include('Security.urls')),
     url(r'^userreg/',include('UserReg.urls')),
     url(r'^userprofile/',include('UserProfile.urls')),
+    url(r'^jobs/', include('jobs.urls')),
     url(r'^message/','Users.Views.UserViewIndex.ShowMessages'),
     url(r'^comm/',include('Misc.urls')),
+    url(r'^alumni/',include('alumni.urls')),
     url(r'^adress/',include('UserAdress.urls')),
     url(r'^communication/',include('Communication.urls')),
     url(r'^$', 'tx2.views.home', name='home'),
     url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
+    
+    
 )

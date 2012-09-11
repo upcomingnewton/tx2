@@ -202,7 +202,7 @@ class GroupMenuFnx():
     try:
       GroupMenuList = getCache(self.getKey(groupid))
       if GroupMenuList is not -1 and GroupMenuList is not None:
-        print '===== CACHE RETURN :: %d ====== ' % (groupid)
+        #print '===== CACHE RETURN :: %d ====== ' % (groupid)
         return (1,GroupMenuList)
       else:
         return (-1,'ERROR in Retrieveing GroupMenuList from cache')

@@ -5,9 +5,6 @@
 <div class="row">
   <div class="formtitle">Student Details</div>
 </div>
-<div class="rowbig">
-  <span class="messageclass" >If you find anything missing, please bring it to <br /> our notice ( thoughtxplore@gmail.com )</span>
-</div>
 {% if StudDetailStatus %}
   <form action="/userprofile/UserProfile/StudentDetails/update" method="post">
 {% else %}
@@ -118,7 +115,7 @@
   <div class="rowbig">
     <div class="labelclass" >ComputerProficiency</div>
     <div class="widgetclass" >
-      <textarea name="ComputerProficiency"> {% if StudDetailStatus %} {{StudentDetailsObj.ComputerProficiency}} {% endif %}</textarea>
+      <textarea name="ComputerProficiency">{% if StudDetailStatus %}{{StudentDetailsObj.ComputerProficiency}}{% endif %}</textarea>
     </div>
   </div>
 

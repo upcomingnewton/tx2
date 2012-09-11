@@ -29,6 +29,16 @@ TEMPLATE_DIRS = (
 LOGGING = LOG_SETTINGS = {
     'version': 1,
     'loggers':{
+               'AlumniLogger':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Alumni'],
+                                    'level':'DEBUG',
+                                },
+               'LOGGER_Job':{
+                                    #'handlers':['File_Security','smtp'],
+                                    'handlers':['File_Job'],
+                                    'level':'DEBUG',
+                                },
                'LOGGER_Security':{
                                     #'handlers':['File_Security','smtp'],
                                     'handlers':['File_Security'],
@@ -70,9 +80,17 @@ LOGGING = LOG_SETTINGS = {
                                     #'handlers':['File_User','smtp'],
                                     'handlers':['File_Adress'],
                                     'level':'DEBUG',
-                                },
+                                },#
                },
     'handlers': {
+        'File_Alumni': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': UserPath + 'tx2/logs/AlumniLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_UserReg': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
@@ -126,6 +144,14 @@ LOGGING = LOG_SETTINGS = {
             'level': 'DEBUG',
             'formatter': 'detailed',
             'filename': UserPath + 'tx2/logs/UserProfileLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
+        'File_Job': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': UserPath + 'tx2/logs/JobLogs',
             'maxBytes': 10485760,
             'backupCount': 5,
         },
@@ -200,6 +226,15 @@ LOGGING = LOG_SETTINGS = {
             'fromaddr': 'no-reply@thoughtxplore.com',
             'toaddrs': ['thoughtxplore@gmail.com'],
             'subject': '[ThoughtXplore-Error] UserProfile',
+        },
+        'smtp_Job': {
+            'class': 'logging.handlers.SMTPHandler',
+            'level': 'ERROR',
+            'formatter': 'email',
+            'mailhost': 'localhost',
+            'fromaddr': 'no-reply@thoughtxplore.com',
+            'toaddrs': ['thoughtxplore@gmail.com'],
+            'subject': '[ThoughtXplore-Error] Job',
         },
         'smtp_Adress': {
             'class': 'logging.handlers.SMTPHandler',

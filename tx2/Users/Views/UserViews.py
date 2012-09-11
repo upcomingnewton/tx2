@@ -130,7 +130,7 @@ def CreateUserFromSite(HttpRequest):
     if len(mname) < 2 or mname == "":
       mname = "--"
     lname = HttpRequest.POST['RegisterUser_lname']
-    if len(lname) < 4:
+    if len(lname) < 2:
       messages.error(HttpRequest,'last name required')
       flag = 1
     RegisterUser_dob_date = HttpRequest.POST['RegisterUser_dob_date']
@@ -140,10 +140,12 @@ def CreateUserFromSite(HttpRequest):
       bday = datetime.date(int(RegisterUser_dob_year),int(RegisterUser_dob_month),int(RegisterUser_dob_date))
     except ValueError as err:
       messages.error(HttpRequest,'Invalid Birthdate')
+      flag = 1
     gender = HttpRequest.POST['RegisterUser_gender']
     if gender== "-1" :
       messages.error(HttpRequest,'Please select your gender')
-    if ( flag == 1 ):
+      flag = 1
+    if flag == 1:
       return HttpResponseRedirect('/message/')
     else:
       insfnx = UserFnx()
@@ -159,6 +161,7 @@ def CreateUserFromSite(HttpRequest):
       LoggerUser.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
+      
 
 def AuthenticateUserFromEmail(HttpRequest,token,refs):
   au_user = UserFnx()
@@ -324,7 +327,6 @@ def EditUser(HttpRequest,UserID):
     UserLastName = ''
     UserDOB = ''
     GroupID = ''
-    UserGender = ''
     UserEntity = ''
     op = ''
     LogsDesc = ''
@@ -340,7 +342,7 @@ def EditUser(HttpRequest,UserID):
       messages.error(HttpRequest,'UserMiddleName is not found in request')
       flag = True
     if 'UserLastName' in HttpRequest.POST:
-      UserFirstName = HttpRequest.POST['UserLastName']
+      UserLastName = HttpRequest.POST['UserLastName']
     else:
       messages.error(HttpRequest,'UserLastName is not found in request')
       flag = True
@@ -395,8 +397,18 @@ def EditUser(HttpRequest,UserID):
         UserObj.UserMiddleName = UserMiddleName
         UserObj.UserLastName = UserLastName
         UserObj.UserEntity.id = UserEntity
-        UserObj.UserGender = UserGender
         UserObj.Group.id = GroupID
+        print "== RECEIVED VALUES =="
+        print UserID
+        print UserFirstName 
+        print UserMiddleName 
+        print UserLastName 
+        print UserDOB 
+        print GroupID 
+        print UserEntity 
+        print op 
+        print LogsDesc 
+        print "==**************=="
         res = UserFnxObj.UpdateUser(UserObj,LogsDesc,'_PreviousState',int(details['userid']),ip,op)
         if (res[0] == 1):
           messages.error(HttpRequest,"Updated values sucessfully." + str(res[1]))

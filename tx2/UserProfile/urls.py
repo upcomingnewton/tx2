@@ -9,8 +9,8 @@ urlpatterns = patterns('',
                        
                        #temporary home
                        url(r'^UserProfile/UserHome/$','UserProfile.Views.UserProfile.StudentDetailsIndex'),
+                       url(r'^UserProfile/Summary/$','UserProfile.Views.UserProfileMisc.SummaryInfoIndex'),
 
-                       
                        # Board
                        
                        url(r'^Marks/Board/new$','UserProfile.Views.Marks.BoardInsert'),

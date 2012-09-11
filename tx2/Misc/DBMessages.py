@@ -7,4 +7,4 @@ def decode(result,rescode):
     else: 
         return db_messages[str(rescode)]
 
-db_messages = {}
+db_messages = {504:'User Does Not have permission to insert in this table',}

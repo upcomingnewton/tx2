@@ -1,0 +1,35 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}List JobType{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+<div class="row">
+  <div class="formtitle">List JobType</div>
+</div>
+<form action="/jobs/jobtype/add/post/" method="post">
+{% csrf_token %}
+  <div class="row">
+      <div class="labelclass" >Name</div>
+      <div class="widgetclass" ><input type="text" name="Name" class="widget" /></div>
+  </div>
+  <div class="row">
+    <input type="submit" id="submit" value="Add New JobType" />
+  </div>
+</form>
+  <div class="row"></div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:50px;">Sr. No.</th>
+        <th scope="col" style="width:300px;">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for JobType in JobTypeList %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ JobType.Name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
