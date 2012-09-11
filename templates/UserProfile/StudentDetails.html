@@ -20,7 +20,7 @@
 
   <div class="row">
     <div class="labelclass" >RollNo</div>
-    <div class="widgetclass" ><input type="text" name="RollNo" class="widget" {% if StudDetailStatus %} value="{{StudentDetailsObj.RollNo}}" {% endif %}/> </div>
+    <div class="widgetclass" ><input type="text" name="RollNo" class="widget" {% if StudDetailStatus %} value="{{StudentDetailsObj.RollNo}}" readonly="true" {% endif %}/> </div>
   </div>
 
   <div class="row">
@@ -31,13 +31,11 @@
   <div class="row">
     <div class="labelclass" >BranchMajor</div>
     <div class="widgetclass" >
-        <select name="BranchMajor" class="widget" style="float:left;width:150px;">
+        <select name="BranchMajor" class="widget" style="float:left;width:150px;"  >
           {% if StudDetailStatus %}
             {% for branch in BranchList %}
               {% if StudentDetailsObj.BranchMajor.id == branch.id %}
                 <option value="{{ branch.id }}" selected="selected">{{ branch.BranchName }}</option>
-              {% else %}
-                <option value="{{ branch.id }}" >{{ branch.BranchName }}</option>
               {% endif %}
             {% endfor %}
           {% else %}

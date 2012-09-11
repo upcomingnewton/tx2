@@ -205,7 +205,7 @@ def AddMenu(HttpRequest):
         MenuUrl = MenuName
       result = MenuFnxObj.Insert(MenuName,MenuDesc,MenuUrl,MenuPid,MenuIcon,int(details['userid']),HttpRequest.META['REMOTE_ADDR'])
       messages.error(HttpRequest,str(result))
-      return HttpResponseRedirect('/user/menu/list')
+      return HttpResponseRedirect('/user/menu/add/')
   except Exception, ex:
       frame = inspect.currentframe()
       args, _, _, values = inspect.getargvalues(frame)
