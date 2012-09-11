@@ -17,6 +17,11 @@ LOGGING = LOG_SETTINGS = {
                                     #'handlers':['File_Security','smtp'],
                                     'handlers':['File_Security','smtp_Security'],
                                     'level':'DEBUG',
+                                }, # 
+               'LOGGER_Job':{
+                                    #'handlers':['File_Query','smtp'],
+                                    'handlers':['File_Job','smtp_Job'],
+                                    'level':'DEBUG',
                                 },
                'LOGGER_Query':{
                                     #'handlers':['File_Query','smtp'],
@@ -57,6 +62,14 @@ LOGGING = LOG_SETTINGS = {
                                 },
                },
     'handlers': {
+        'File_Job': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+            'filename': UserPath + 'tx2/logs/JobLogs',
+            'maxBytes': 10485760,
+            'backupCount': 5,
+        },
         'File_UserReg': {
             'class': 'logging.handlers.RotatingFileHandler',
             'level': 'DEBUG',
@@ -122,6 +135,15 @@ LOGGING = LOG_SETTINGS = {
             'backupCount': 5,
         },
 #######################################
+        'smtp_Job': {
+            'class': 'logging.handlers.SMTPHandler',
+            'level': 'ERROR',
+            'formatter': 'email',
+            'mailhost': 'localhost',
+            'fromaddr': 'no-reply@thoughtxplore.com',
+            'toaddrs': ['thoughtxplore@gmail.com'],
+            'subject': '[ThoughtXplore-Error] UserReg',
+        },
         'smtp_UserReg': {
             'class': 'logging.handlers.SMTPHandler',
             'level': 'ERROR',
