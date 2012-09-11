@@ -10,7 +10,12 @@
       <tr>
         <th scope="col" style="width:25px;">Sr.</th>
         <th scope="col" style="width:100px;">Company Name</th>
+        <th scope="col" style="width:100px;">Designation</th>
+        <th scope="col" style="width:100px;">Package</th>
         <th scope="col" style="width:150px;">Details</th>
+        {% if Edit %}
+        <th scope="col" style="width:150px;">edit</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -19,7 +24,12 @@
           <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ Jobs.Company.CompanyName }}</td>
+            <td>{{ Jobs.Designation }}</td>
+            <td>{{ Jobs.Package }}</td>
             <td><a href="/jobs/details/{{Jobs.id}}/" />Details</td>
+              {% if Edit %}
+              <td><a href="/jobs/company/{{Jobs.Company.id}}/jobs/{{Jobs.id}}/edit/">edit</a></td>
+              {% endif %}
           </tr>
         {% endfor %}
       {% else %}

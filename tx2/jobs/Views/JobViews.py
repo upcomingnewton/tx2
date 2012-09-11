@@ -81,6 +81,30 @@ def ListJobsForStudents(HttpRequest):
       messages.error(HttpRequest,'ERROR: ' + str(ex))
       return HttpResponseRedirect('/message/')
       
+def ListJobsByCompany(HttpRequest,CompanyID):
+  details = GetLoginDetails(HttpRequest)
+  userid = -1
+  if( details['userid'] == -1):
+    return HttpResponseRedirect('/user/login/')
+  try:
+    JobFunctionsObj = JobFunctions()
+    JobsList = JobFunctionsObj.getObjectByCompanyId(CompanyID)
+    if JobsList[0] != 1:
+      messages.error(HttpRequest,"ERROR " + str(JobsList[1]))
+      return HttpResponseRedirect('/message/')
+    else:
+      return render_to_response('Jobs/ListJobs.html',{'JobsList':JobsList[1], 'Edit':True},context_instance=RequestContext(HttpRequest))
+  except Exception, ex:
+      frame = inspect.currentframe()
+      args, _, _, values = inspect.getargvalues(frame)
+      msg = ''
+      for i in args:
+        msg += "[%s : %s]" % (i,values[i])
+      LoggerJobs.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+      messages.error(HttpRequest,'ERROR: ' + str(ex))
+      return HttpResponseRedirect('/message/')
+      
+      
 def ListJobDetailsForStudents(HttpRequest,JobID):
   details = GetLoginDetails(HttpRequest)
   userid = -1
