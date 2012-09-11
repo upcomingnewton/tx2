@@ -1,0 +1,30 @@
+{% extends "UserProfileMaster.html" %}
+    <title>{% block title %}Jobs - Listing{% endblock %}</title>
+    
+{% block UserProfileMaster_content_center %}
+  <div class="row">
+    <div class="formtitle">Jobs - Listing</div>
+  </div>
+  <table id="tablecss" >
+    <thead>
+      <tr>
+        <th scope="col" style="width:25px;">Sr.</th>
+        <th scope="col" style="width:100px;">Company Name</th>
+        <th scope="col" style="width:150px;">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if JobsList|length %}
+        {% for Jobs in JobsList %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ Jobs.Company.CompanyName }}</td>
+            <td><a href="/jobs/details/{{Jobs.id}}/" />Details</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h1> there are no items </h1>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

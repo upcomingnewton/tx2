@@ -145,6 +145,21 @@ class JobFunctions():
           msg += "[%s : %s]" % (i,values[i])
           self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
+        
+  def getObjectByID(self,_id):
+      try:
+        JobObj =  Job.objects.get(id=_id)  
+        return (1,JobObj)
+      except ObjectDoesNotExist:
+        return (-1,'No Job Object exists in database with this name')
+      except Exception, ex:
+        frame = inspect.currentframe()
+        args, _, _, values = inspect.getargvalues(frame)
+        msg = ''
+        for i in args:
+          msg += "[%s : %s]" % (i,values[i])
+          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
+        return (-2,str(ex))
       
   def getObjectByCompanyId(self,_Id):
       try:

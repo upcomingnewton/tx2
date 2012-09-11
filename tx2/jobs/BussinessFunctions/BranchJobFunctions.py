@@ -18,7 +18,8 @@ class BranchJobFunctions():
     self.JobLogger = logging.getLogger(LoggerJob)
   def Add(self,Branch,Job,JobType,Comments1,Comments2,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
     try:
-        
+      if by == -1:
+        by=User.objects.get(UserEmail='SystemInit1@init.com').id
       details = {
           'Branch':Branch,
           'Job':Job,

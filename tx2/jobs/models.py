@@ -46,6 +46,11 @@ class StudentsCredit(models.Model):
   JobType = models.ForeignKey(JobType)
   Credit = models.IntegerField(default=0)
   
+class StudentJob(models.Model):
+  User = models.ForeignKey(User)
+  BranchJob = models.ForeignKey(BranchJob)
+  Status = models.IntegerField(default=0)
+  
 class JobsLogs(models.Model):
   # user making changes
   LogsUser = models.ForeignKey(User)

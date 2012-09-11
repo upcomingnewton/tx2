@@ -10,26 +10,30 @@ import pickle
 from tx2.conf.LocalProjectConfig import SYSTEM_PERMISSION_INSERT,SYSTEM_PERMISSION_UPDATE
 from tx2.jobs.DBFunctions.DBMessages import decode
 from django.core.exceptions import ObjectDoesNotExist
-from tx2.jobs.models import   JobType
-from tx2.jobs.DBFunctions.DBJobType import DBInsertJobType, DBUpdateJobType
-class JobTypeFunctions():
+from tx2.jobs.models import StudentJob
+from tx2.jobs.DBFunctions.DBStudentJobs import DBInsertStudentJob,\
+  DBUpdateStudentJob
+class StudentJobFunctions():
   def __init__(self): 
     self.JobLogger = logging.getLogger(LoggerJob)
-  def Add(self,Name,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
+  def Add(self,Userid,JobBranch,Status,by,ip,req_op=SYSTEM_PERMISSION_INSERT):
     try:
+        
       details = {
-          'Name':Name,
+          'User':Userid,
+          'Status':Status,
+          'JobBranch':JobBranch,
           'by':by,
           'op':req_op,
           'ip':ip,
         }
-      result = DBInsertJobType(details)
+      result = DBInsertStudentJob(details)
       if (result['result'] == 1):
         return (1,result['rescode'] ) 
       else:
         return (-1,decode(result))
     except ObjectDoesNotExist:
-        return (-1,'No JobType Object exists in database with this name')
+        return (-1,'No StudentJob Object exists in database with this name')
       
     except Exception, ex:
       frame = inspect.currentframe()
@@ -39,30 +43,33 @@ class JobTypeFunctions():
         msg += "[%s : %s]" % (i,values[i])
       self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
-  def Update(self,_Id,Name,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
+  def Update(self,_Id,Userid,JobBranch,Status,by,ip,req_op=SYSTEM_PERMISSION_UPDATE):
     try:
+        
       _Id=int(_Id)
-      obj=JobType.objects.get(id=_Id);
+      obj=StudentJob.objects.get(id=_Id);
       prev=pickle.dumps(obj)
       prev=prev.replace("'", ">");
       prev=prev.replace("\n", "<");
       prev=prev.replace("\\", "+");
-        
+      
       details = {
           'Id':_Id,
-          'Name':Name,
+          'User':Userid,
+          'Status':Status,
+          'JobBranch':JobBranch,
           'prev':prev,
           'by':by,
           'op':req_op,
           'ip':ip,
         }
-      result = DBUpdateJobType(details)
+      result = DBUpdateStudentJob(details)
       if (result['result'] == 1):
         return (1,result['rescode'] ) 
       else:
         return (-1,decode(result))
     except ObjectDoesNotExist:
-        return (-1,'No JobType Object exists in database with this name')
+        return (-1,'No StudentJob Object exists in database with this name')
       
     except Exception, ex:
       frame = inspect.currentframe()
@@ -73,12 +80,13 @@ class JobTypeFunctions():
       self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
       return (-2,str(ex))
   
-  def getObjectbyName(self,_Name):
+
+  def getObjectsbyUser(self,Userid):
       try:
-        JobTypeObjList =  JobType.objects.get(Name=_Name) 
-        return (1,JobTypeObjList)
+        StudentJobList =  StudentJob.objects.filter(User=Userid) 
+        return (1,StudentJobList)
       except ObjectDoesNotExist:
-        return (-1,'No JobType Object exists in database with this name')
+        return (-1,'No StudentJob Object exists in database with this name')
       except Exception, ex:
         frame = inspect.currentframe()
         args, _, _, values = inspect.getargvalues(frame)
@@ -87,21 +95,7 @@ class JobTypeFunctions():
           msg += "[%s : %s]" % (i,values[i])
           self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
-  
-      
-  def getObjectsAll(self):
-      try:
-        JobObjList =  JobType.objects.all() 
-        return (1,JobObjList)
-      except ObjectDoesNotExist:
-        return (-1,'No JobType Object exists in database with this name')
-      except Exception, ex:
-        frame = inspect.currentframe()
-        args, _, _, values = inspect.getargvalues(frame)
-        msg = ''
-        for i in args:
-          msg += "[%s : %s]" % (i,values[i])
-          self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
-        return (-2,str(ex))
+
+
 
 
