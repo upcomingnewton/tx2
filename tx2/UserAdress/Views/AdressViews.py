@@ -92,26 +92,26 @@ def AddAdress(HttpRequest):
         if 'PermanentCity' in HttpRequest.POST:
           PermanentCity = int(HttpRequest.POST['PermanentCity'])
         else:
-          messages.error("Please select some value for Permanent city adress")
+          messages.error(HttpRequest,"Please select some value for Permanent city adress")
           return HttpResponseRedirect('/message/')
         if PermanentCity == -1:
-          messages.error("Please select some value for Permanent city adress")
+          messages.error(HttpRequest,"Please select some value for Permanent city adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentState' in HttpRequest.POST:
           PermanentState = int(HttpRequest.POST['PermanentState'])
         else:
-          messages.error("Please select some value for  Permanent state adress")
+          messages.error(HttpRequest,"Please select some value for  Permanent state adress")
           return HttpResponseRedirect('/message/')
         if PermanentState == -1:
-          messages.error("Please select some value for Permanent State adress")
+          messages.error(HttpRequest,"Please select some value for Permanent State adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentCountry' in HttpRequest.POST:
           PermanentCountry = int(HttpRequest.POST['PermanentCountry'])
         else:
-          messages.error("Please select some value for Permanent country adress")
+          messages.error(HttpRequest,"Please select some value for Permanent country adress")
           return HttpResponseRedirect('/message/')
         if PermanentCountry == -1:
-          messages.error("Please select some value for Permanent Country adress")
+          messages.error(HttpRequest,"Please select some value for Permanent Country adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentPinCode' in HttpRequest.POST:
           PermanentPinCode = HttpRequest.POST['PermanentPinCode']
@@ -140,26 +140,26 @@ def AddAdress(HttpRequest):
         if 'PresentCity' in HttpRequest.POST:
           PresentCity = int(HttpRequest.POST['PresentCity'])
         else:
-          messages.error("Please select some value for Present city'")
+          messages.error(HttpRequest,"Please select some value for Present city'")
           return HttpResponseRedirect('/message/')
         if PresentCity == -1:
-          messages.error("Please select some value for Present City adress")
+          messages.error(HttpRequest,"Please select some value for Present City adress")
           return HttpResponseRedirect('/message/')
         if 'PresentState' in HttpRequest.POST:
           PresentState = int(HttpRequest.POST['PresentState'])
         else:
-          messages.error("Please select some value for Present state")
+          messages.error(HttpRequest,"Please select some value for Present state")
           return HttpResponseRedirect('/message/')
         if PresentState == -1:
-          messages.error("Please select some value for Present State adress")
+          messages.error(HttpRequest,"Please select some value for Present State adress")
           return HttpResponseRedirect('/message/')
         if 'PresentCountry' in HttpRequest.POST:
           PresentCountry = int(HttpRequest.POST['PresentCountry'])
         else:
-          messages.error("Please select some value for Present country")
+          messages.error(HttpRequest,"Please select some value for Present country")
           return HttpResponseRedirect('/message/')
         if PresentCountry == -1:
-          messages.error("Please select some value for Present Country adress")
+          messages.error(HttpRequest,"Please select some value for Present Country adress")
           return HttpResponseRedirect('/message/')
         if 'PresentPinCode' in HttpRequest.POST:
           PresentPinCode = HttpRequest.POST['PresentPinCode']
@@ -227,17 +227,17 @@ def EditAdress(HttpRequest):
         if 'PermanentCity' in HttpRequest.POST:
           PermanentCity = int(HttpRequest.POST['PermanentCity'])
         else:
-          messages.error("Please select some value for Permanent city adress")
+          messages.error(HttpRequest,"Please select some value for Permanent city adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentState' in HttpRequest.POST:
           PermanentState = int(HttpRequest.POST['PermanentState'])
         else:
-          messages.error("Please select some value for  Permanent state adress")
+          messages.error(HttpRequest,"Please select some value for  Permanent state adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentCountry' in HttpRequest.POST:
           PermanentCountry = int(HttpRequest.POST['PermanentCountry'])
         else:
-          messages.error("Please select some value for Permanent country adress")
+          messages.error(HttpRequest,"Please select some value for Permanent country adress")
           return HttpResponseRedirect('/message/')
         if 'PermanentPinCode' in HttpRequest.POST:
           PermanentPinCode = HttpRequest.POST['PermanentPinCode']
@@ -266,17 +266,17 @@ def EditAdress(HttpRequest):
         if 'PresentCity' in HttpRequest.POST:
           PresentCity = int(HttpRequest.POST['PresentCity'])
         else:
-          messages.error("Please select some value for Present city'")
+          messages.error(HttpRequest,"Please select some value for Present city'")
           return HttpResponseRedirect('/message/')
         if 'PresentState' in HttpRequest.POST:
           PresentState = int(HttpRequest.POST['PresentState'])
         else:
-          messages.error("Please select some value for Present state")
+          messages.error(HttpRequest,"Please select some value for Present state")
           return HttpResponseRedirect('/message/')
         if 'PresentCountry' in HttpRequest.POST:
           PresentCountry = int(HttpRequest.POST['PresentCountry'])
         else:
-          messages.error("Please select some value for Present country")
+          messages.error(HttpRequest,"Please select some value for Present country")
           return HttpResponseRedirect('/message/')
         if 'PresentPinCode' in HttpRequest.POST:
           PresentPinCode = HttpRequest.POST['PresentPinCode']
