@@ -95,7 +95,7 @@ class StudentJobFunctions():
           msg += "[%s : %s]" % (i,values[i])
           self.JobLogger.exception('%s : %s' % (inspect.getframeinfo(frame)[2],msg))
         return (-2,str(ex))
-
+    
 
 
 

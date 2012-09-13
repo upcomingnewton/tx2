@@ -16,6 +16,7 @@
         {% if Edit %}
         <th scope="col" style="width:150px;">edit</th>
         {% endif %}
+        <th scope="col" style="width:150px;">See Students who applied</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
               {% if Edit %}
               <td><a href="/jobs/company/{{Jobs.Company.id}}/jobs/{{Jobs.id}}/edit/">edit</a></td>
               {% endif %}
+            <td><a href="/jobs/view/job/{{Jobs.id}}/applied" target="_blank"/>Students Applied</td>
           </tr>
         {% endfor %}
       {% else %}

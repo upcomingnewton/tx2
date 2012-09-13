@@ -8,10 +8,17 @@ from datetime import date
 from tx2.jobs.BussinessFunctions.JobTypeFunctions import JobTypeFunctions
 from tx2.jobs.BussinessFunctions.BranchJobFunctions import BranchJobFunctions
 from tx2.jobs.BussinessFunctions.StudentCreditFunctions import StudentCreditFunctions
+from tx2.Users.models import User
+from tx2.Misc.ExcelResponse import ExcelResponse
+from tx2.DataBaseHelper import DBhelper
 def test(HttpRequest):
     ipadd = HttpRequest.META['REMOTE_ADDR']
     try:
-      obj=StudentCreditFunctions()
+      obj='Select * from "Users_user";'
+      obj=DBhelper.CallSelectFunction(obj)
+      obj=[(1,'jivjot'),(2,'jj')]
+      
+      return ExcelResponse(obj)
       result=obj.getObjectsbyUser(Userid=1)
       #result=obj.Update(_Id=1, Userid=1, JobType=1, Credit=3, by=1, ip=ipadd)
       #result=obj.Add(Userid=1, JobType=1, Credit=2, by=1, ip=ipadd)

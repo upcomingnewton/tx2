@@ -1,13 +1,13 @@
 drop view "View_Student";
 create or replace view "View_Student" as
 select a.id as "Id" ,
- a."UserEmail" as "Email" ,
+a."UserEmail" as "Email" ,
 a."UserBirthDate" as "BirthDate",
 a."UserFirstName" as "FirstName",
 a."UserMiddleName" as "MiddleName",
 a."UserLastName" as "LastName",
 a."UserGender" as "Gender",
-now()-a."UserBirthDate" as "Age", 
+to_char(age(now(),a."UserBirthDate"),'YY') as "Age", 
 b."RollNo" as "RollNo",
 (select tmp."BranchName" from "UserProfile_branch" as tmp where tmp.id=b."BranchMajor_id") as "BranchMajor",	
 (select tmp."BranchName" from "UserProfile_branch" as tmp where tmp.id=b."BranchMinor") as "BranchMinor",
@@ -17,12 +17,20 @@ b."RollNo" as "RollNo",
 (select sum(cast(tmp."SecuredMarks" as double precision)*100)/sum(tmp."TotalMarks") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='12th') and tmp."UserId_id"=a.id) as "12th_Percentage",
 (select sum(cast(tmp."SecuredMarks" as double precision)*100)/sum(tmp."TotalMarks") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='undergraduation') and tmp."UserId_id"=a.id) as "UG_Percentage",
 (select sum(tmp."ReappersRemaining") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='undergraduation') and tmp."UserId_id"=a.id) as "UG_ReappersRemaining",
-(select sum(cast(tmp."SecuredMarks" as double precision)*100)/sum(tmp."TotalMarks") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='postgraduation') and tmp."UserId_id"=a.id) as "PG_Percentage",
-(select sum(tmp."ReappersRemaining") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='postgraduation') and tmp."UserId_id"=a.id) as "PG_ReappersRemaining"
+b."AIEEE" as "AIEEE",
+f."MobileNo" as "MobileNo",
+c."AdressNo" as "PresentAdressNo",
+c."StreetAdress1" as "PresentStreetAdress1",
+c."StreetAdress2" as "PresentStreetAdress2",
+d."CityName" as "PresentCityName",
+e."StateName" as "PresentStateName",
+c."PinCode" as "PresentPinCode"
 
-/*b."AIEEE" as "AIEEE"*/
 from "Users_user" as a ,
-"UserProfile_studentdetails" as b
-
-where a.id=b."User_id";
-select * from "View_Student"
+"UserProfile_studentdetails" as b,
+"UserAdress_adress" as c,
+"UserAdress_city" as d,
+"UserAdress_state" as e,
+"UserAdress_usercontactinfo" as f
+where a.id=b."User_id" and  f."User_id"=a.id and c.id=f."PresentAdress" and c."City_id"=d.id and c."State_id"=e.id;
+select * from "View_Student";
