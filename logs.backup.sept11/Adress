@@ -1,0 +1,101 @@
+2012-09-11 22:18:43,649 DatabaseFunctions line:123  ERROR    DBInsertAdress : [details : {'City': -1, 'StreetAdress1': u'Sector-10', 'StreetAdress2': u'Panchkula', 'AdressNo': u'House No- 472 ', 'Country': -1, 'op': 'SYS_PER_INSERT', 'ip': '117.197.156.20', 'State': -1, 'by': 461, 'PinCode': u'134113'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 114, in DBInsertAdress
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    transaction.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/transaction.py", line 124, in commit_unless_managed
+    connection.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/__init__.py", line 183, in commit_unless_managed
+    self._commit()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 200, in _commit
+    return self.connection.commit()
+IntegrityError: insert or update on table "UserAdress_adress" violates foreign key constraint "UserAdress_adress_City_id_fkey"
+DETAIL:  Key (City_id)=(-1) is not present in table "UserAdress_city".
+
+2012-09-11 22:18:43,710 DatabaseFunctions line:123  ERROR    DBInsertAdress : [details : {'City': -1, 'StreetAdress1': u'Sector-10', 'StreetAdress2': u'Panchkula', 'AdressNo': u'House No- 472 ', 'Country': -1, 'op': 'SYS_PER_INSERT', 'ip': '117.197.156.20', 'State': -1, 'by': 461, 'PinCode': u'134113'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 114, in DBInsertAdress
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    transaction.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/transaction.py", line 124, in commit_unless_managed
+    connection.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/__init__.py", line 183, in commit_unless_managed
+    self._commit()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 200, in _commit
+    return self.connection.commit()
+IntegrityError: insert or update on table "UserAdress_adress" violates foreign key constraint "UserAdress_adress_City_id_fkey"
+DETAIL:  Key (City_id)=(-1) is not present in table "UserAdress_city".
+
+2012-09-11 23:29:05,567 DatabaseFunctions line:123  ERROR    DBInsertAdress : [details : {'City': -1, 'StreetAdress1': u'--', 'StreetAdress2': u'--', 'AdressNo': u'--', 'Country': -1, 'op': 'SYS_PER_INSERT', 'ip': '117.197.148.3', 'State': -1, 'by': 326, 'PinCode': u'--'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 114, in DBInsertAdress
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    transaction.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/transaction.py", line 124, in commit_unless_managed
+    connection.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/__init__.py", line 183, in commit_unless_managed
+    self._commit()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 200, in _commit
+    return self.connection.commit()
+IntegrityError: insert or update on table "UserAdress_adress" violates foreign key constraint "UserAdress_adress_City_id_fkey"
+DETAIL:  Key (City_id)=(-1) is not present in table "UserAdress_city".
+
+2012-09-11 23:29:05,622 DatabaseFunctions line:123  ERROR    DBInsertAdress : [details : {'City': -1, 'StreetAdress1': u'--', 'StreetAdress2': u'--', 'AdressNo': u'--', 'Country': -1, 'op': 'SYS_PER_INSERT', 'ip': '117.197.148.3', 'State': -1, 'by': 326, 'PinCode': u'--'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 114, in DBInsertAdress
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    transaction.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/transaction.py", line 124, in commit_unless_managed
+    connection.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/__init__.py", line 183, in commit_unless_managed
+    self._commit()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 200, in _commit
+    return self.connection.commit()
+IntegrityError: insert or update on table "UserAdress_adress" violates foreign key constraint "UserAdress_adress_City_id_fkey"
+DETAIL:  Key (City_id)=(-1) is not present in table "UserAdress_city".
+
+2012-09-11 13:14:06,027 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 11} ] [ SELECT * FROM UserAdress_adress_Insert('515','sector 10','--',1,1,3,'160010','SYS_PER_INSERT',326,'117.197.148.3'); ]
+2012-09-11 13:14:06,029 DatabaseFunctions line:123  ERROR    DBInsertAdress : [details : {'City': -1, 'StreetAdress1': u'--', 'StreetAdress2': u'--', 'AdressNo': u'--', 'Country': -1, 'op': 'SYS_PER_INSERT', 'ip': '117.197.148.3', 'State': -1, 'by': 326, 'PinCode': u'--'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 114, in DBInsertAdress
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    transaction.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/transaction.py", line 124, in commit_unless_managed
+    connection.commit_unless_managed()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/__init__.py", line 183, in commit_unless_managed
+    self._commit()
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 200, in _commit
+    return self.connection.commit()
+IntegrityError: insert or update on table "UserAdress_adress" violates foreign key constraint "UserAdress_adress_City_id_fkey"
+DETAIL:  Key (City_id)=(-1) is not present in table "UserAdress_city".
+
+2012-09-11 23:48:16,992 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('-aa','-aa','--aa',1,1,4,'--','SYS_PER_INSERT',373,'115.111.184.44'); ]
+2012-09-11 23:48:16,993 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--','--','--',-1,-1,-1,'--','SYS_PER_INSERT',373,'115.111.184.44'); ]
+2012-09-11 23:49:13,601 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 13} ] [ SELECT * FROM UserAdress_adress_Insert('ffgf','dfdf','gfgf',1,1,3,'4343','SYS_PER_INSERT',326,'117.197.148.3'); ]
+2012-09-11 23:49:13,603 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 14} ] [ SELECT * FROM UserAdress_adress_Insert('erer','e4er','e44',1,1,3,'343','SYS_PER_INSERT',326,'117.197.148.3'); ]
+2012-09-11 13:19:13,738 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 4} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(326,'NULL','NULL','NULL','NULL','NULL','NULL',13,14,'SYS_PER_INSERT',326,'117.197.148.3'); ]
+2012-09-12 00:02:07,775 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 15} ] [ SELECT * FROM UserAdress_adress_Insert('--','--','--',1,1,3,'--','SYS_PER_INSERT',523,'117.197.133.212'); ]
+2012-09-12 00:02:07,777 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 16} ] [ SELECT * FROM UserAdress_adress_Insert('--','--','--',1,1,3,'--','SYS_PER_INSERT',523,'117.197.133.212'); ]
+2012-09-12 00:02:07,946 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 5} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(523,'NULL','NULL','NULL','NULL','NULL','NULL',15,16,'SYS_PER_INSERT',523,'117.197.133.212'); ]
+2012-09-12 00:02:15,847 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(523,'NULL','NULL','NULL','NULL','NULL','NULL',15,16,'SYS_PER_UPDATE',523,'117.197.133.212'); ]
+2012-09-12 00:02:50,901 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(523,'updated val','updated val','updated val','updated val','updated val','updated val',15,16,'SYS_PER_UPDATE',523,'117.197.133.212'); ]
+2012-09-12 00:04:49,327 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(15,'door no','street 1','street 2',2,2,4,'pin code','SYS_PER_UPDATE',523,'117.197.133.212'); ]
+2012-09-12 00:04:49,329 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(16,'--','-street 12','--street 13',1,1,3,'street 14','SYS_PER_UPDATE',523,'117.197.133.212'); ]
+2012-09-12 00:27:56,530 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('house no 3316 a','sector 24 d','--',1,1,-1,'160023','SYS_PER_INSERT',108,'117.220.179.236'); ]
+2012-09-12 00:27:56,531 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--','--','--',-1,-1,-1,'--','SYS_PER_INSERT',108,'117.220.179.236'); ]
+2012-09-12 00:31:39,173 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('HOUSE NO 3316 A','SECTOR 24 D','--',1,1,-1,'160023','SYS_PER_INSERT',108,'117.220.179.236'); ]
+2012-09-12 00:31:39,174 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--','--','--',-1,-1,-1,'--','SYS_PER_INSERT',108,'117.220.179.236'); ]
+2012-09-12 00:48:44,289 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 17} ] [ SELECT * FROM UserAdress_adress_Insert('454','--43535','--5345',1,1,3,'--160059','SYS_PER_INSERT',171,'122.173.191.190'); ]
+2012-09-12 00:48:44,291 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 18} ] [ SELECT * FROM UserAdress_adress_Insert('--534','--5435','--534534',1,1,3,'--160059','SYS_PER_INSERT',171,'122.173.191.190'); ]
+2012-09-12 00:48:44,438 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 6} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(171,'NULL','NULL','NULL','NULL','NULL','NULL',17,18,'SYS_PER_INSERT',171,'122.173.191.190'); ]
+2012-09-12 00:49:26,931 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(171,'43543','435345','skdgfjd','45435','345346','4354353',17,18,'SYS_PER_UPDATE',171,'122.173.191.190'); ]
+2012-09-12 00:49:48,899 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(17,'null','1025','',1,1,3,'--160059','SYS_PER_UPDATE',171,'122.173.191.190'); ]
+2012-09-12 00:49:48,901 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(18,'--534','--5435','--534534',1,1,3,'--160059','SYS_PER_UPDATE',171,'122.173.191.190'); ]
+2012-09-12 00:54:31,665 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(17,'null','1025','phase 3b2 mohali',1,1,3,'160059','SYS_PER_UPDATE',171,'122.173.191.190'); ]
+2012-09-12 00:54:31,666 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(18,'NULL','1025','phase 3 b 2 mohali',1,1,3,'160059','SYS_PER_UPDATE',171,'122.173.191.190'); ]
+2012-09-12 00:55:30,151 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(171,'09501001225','happysinghsingh7@gmail.com','Mr. Lal Singh Duggal','--','Mrs. Davinder Kaur Duggal','--',17,18,'SYS_PER_UPDATE',171,'122.173.191.190'); ]

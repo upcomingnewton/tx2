@@ -1,0 +1,34 @@
+<html>
+	<body>
+		<form action="/Search/" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="ControlsInfo" value="{{ControlsInfo}}"/>
+			<select name="Search_Options">
+			{{options|safe}}
+			</select>
+			<input type="submit" name="Add" value="Add"/>
+			<br/>
+			{{Search_Controls|safe}}
+			<input type="submit" name="Search" value="Search"/>
+			<input type="submit" name="Excel" value="Save To Excel"/>
+		</form>
+		{% if StudentList|length %}
+		<table border="1">
+			{% for rows in StudentList %}
+			<tr>
+				<td>{%if forloop.counter != 1%}{{forloop.counter|add:"-1"}}{%endif%}</td>
+				{% for col in rows %}
+				<td>
+					{{ col }}
+				</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h1>
+			No Data was found
+		</h1>
+		{% endif %}
+	</body>
+</html>

@@ -3,31 +3,47 @@
     
 {% block UserProfileMaster_content_center %}
 <div class="row">
+<<<<<<< HEAD
+	
+=======
   <div class="formtitle">Student Details</div>
 </div>
 
+>>>>>>> 6cc8ed78e24499684aa64f83eda16c23b394d7e9
 	{% if  'NOTICE' in type %}
+<div class="formtitle">POST NOTICES</div>
+</div>
 <form action="/communication/Admin/Notice/Post" method="post">
 
 
 {% else %}
+<div class="formtitle">POST NEWS</div>
+</div>
 <form action="/communication/Admin/News/Post" method="post">
 
 {% endif %}
 
 	
 	
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6cc8ed78e24499684aa64f83eda16c23b394d7e9
 {% csrf_token %}
   <div class="row">
     <div class="labelclass" >Title</div>
     <div class="widgetclass" ><input type="text" name="Title" class="widget" /></div>
-  </div><br />
+  </div>
   
-  {% if  'NEWS' in type %}
-  
-  <div class="row">
+{% if  'NEWS' in type %}
+ 
+<div class="row">
     <div class="labelclass" >Date</div>
     <div class="widgetclass" ><input type="text" name="date_" class="widget" /></div>
+<<<<<<< HEAD
+  </div><br />  
+
+=======
   </div>
   
   
@@ -38,10 +54,25 @@
   </div>
   
   
+>>>>>>> 6cc8ed78e24499684aa64f83eda16c23b394d7e9
 
+
+{% endif %}
+
+<div class="rowbig">
+    <div class="labelclass" >Notice Content</div>
+    <div class="widgetclass" >
+      <textarea name="Content" ></textarea>
+    </div>
+  </div>
   <div class="row">
     <input type="submit" id="submit" value="SUBMIT" />
   </div>
 </form>
 
 {% endblock %}
+
+
+
+  
+

@@ -24,7 +24,7 @@ BEGIN
 temp := 0;
 
 
-IF EXISTS ( SELECT id FROM "UserProfile_extraacademicinfodetails" WHERE "User_id"=_User_id and "Start"=_Start and "Organisation"=_Organisation) THEN
+IF EXISTS ( SELECT id FROM "UserProfile_extraacademicinfodetails" WHERE "User_id"=_User_id and "Start"=_Start and "Organisation"=_Organisation and "Title" =_Title) THEN
 	result := 2;
   	rescode := 161;
 	RETURN;

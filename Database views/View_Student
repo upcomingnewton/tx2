@@ -18,19 +18,14 @@ b."RollNo" as "RollNo",
 (select sum(cast(tmp."SecuredMarks" as double precision)*100)/sum(tmp."TotalMarks") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='undergraduation') and tmp."UserId_id"=a.id) as "UG_Percentage",
 (select sum(tmp."ReappersRemaining") from "UserProfile_marks" as tmp where tmp."DegreeType_id"=(select id from "UserProfile_degreetype" where "Name"='undergraduation') and tmp."UserId_id"=a.id) as "UG_ReappersRemaining",
 b."AIEEE" as "AIEEE",
-f."MobileNo" as "MobileNo",
-c."AdressNo" as "PresentAdressNo",
-c."StreetAdress1" as "PresentStreetAdress1",
-c."StreetAdress2" as "PresentStreetAdress2",
-d."CityName" as "PresentCityName",
-e."StateName" as "PresentStateName",
-c."PinCode" as "PresentPinCode"
-
+(select tmp."MobileNo" from "UserAdress_usercontactinfo" as tmp where tmp."User_id"=a.id) as "MobileNo",
+(select tmp1."AdressNo" from "UserAdress_adress" as tmp1,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id) as "AdressNo",
+(select tmp1."StreetAdress1" from "UserAdress_adress" as tmp1,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id) as "PresentStreetAdressNo1",
+(select tmp1."StreetAdress2" from "UserAdress_adress" as tmp1,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id) as "PresentStreetAdressNo2",
+(select tmp3."CityName" from "UserAdress_adress" as tmp1,"UserAdress_city" as tmp3,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id and tmp3.id=tmp1."City_id") as "PresentCityName",
+(select tmp3."StateName" from "UserAdress_adress" as tmp1,"UserAdress_state" as tmp3,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id and tmp3.id=tmp1."State_id") as "PresentStateName",
+(select tmp1."PinCode" from "UserAdress_adress" as tmp1,"UserAdress_usercontactinfo" as tmp2 where tmp2."User_id"=a.id and tmp2."PresentAdress" =tmp1.id) as "PinCode"
 from "Users_user" as a ,
-"UserProfile_studentdetails" as b,
-"UserAdress_adress" as c,
-"UserAdress_city" as d,
-"UserAdress_state" as e,
-"UserAdress_usercontactinfo" as f
-where a.id=b."User_id" and  f."User_id"=a.id and c.id=f."PresentAdress" and c."City_id"=d.id and c."State_id"=e.id;
+"UserProfile_studentdetails" as b
+where a.id=b."User_id" ;
 select * from "View_Student";
