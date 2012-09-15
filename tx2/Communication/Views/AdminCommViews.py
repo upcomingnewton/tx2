@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 from django.http import HttpResponseRedirect, HttpRequest
 from tx2.Misc.MIscFunctions1 import AppendMessageList
 from tx2.Users.HelperFunctions.LoginDetails import GetLoginDetails
@@ -8,41 +10,41 @@ from tx2.Communication.BusinessFunctions import CommunicationFunctions
 import datetime
 from httplib import HTTP
 import logging
+from django.core.exceptions import ObjectDoesNotExist
+import inspect
+
 LogUser = logging.getLogger(LoggerUser)
 
 
 def adminNoticeIndex(HttpRequest):
     msglist = AppendMessageList(HttpRequest)
-    logindetails = GetLoginDetails(HttpRequest)
-    if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        
         return HttpResponseRedirect('/user/login/')
     else:
         return render_to_response("Communication/Admin/PostNotices.html",{'type':['NOTICE'],'title':"Post Notice"},context_instance=RequestContext(HttpRequest))
 
 def adminNewsIndex(HttpRequest):
-    msglist = AppendMessageList(HttpRequest)
-    logindetails = GetLoginDetails(HttpRequest)
-    if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+    details = GetLoginDetails(HttpRequest)
+    if( details['userid'] == -1):
+        
         return HttpResponseRedirect('/user/login/')
     else:
-        msglist.append('News')
+        
         return render_to_response("Communication/Admin/PostNotices.html",{'type':['NEWS'],'title':"Post News"},context_instance=RequestContext(HttpRequest))
 
 def adminNewsPost(HttpRequest):
     
-    msglist = AppendMessageList(HttpRequest)
-    logindetails = GetLoginDetails(HttpRequest)
+    
+    details = GetLoginDetails(HttpRequest)
+    
     ip = HttpRequest.META['REMOTE_ADDR']
     
 
-    if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
-        return HttpResponseRedirect('/user/login/')
+    if( details['userid'] == -1):
+        
+        return HttpResponseRedirect('/user/login/') 
     else:
         try:
             print "1"
@@ -56,33 +58,27 @@ def adminNewsPost(HttpRequest):
             #print str(tstamp)
             
             print "here"
-            result= comm_call.PostNews(title, _content, tstamp,logindetails["userid"],ip)
+            result= comm_call.PostNews(title, _content, tstamp,details["userid"],ip)
             print result
             if(result["result"]==-2):
                 return HttpResponseRedirect('/user/login')
             elif(result["result"]==1):
-                msglist.append("Notice Posted Successfully")
+                messages.info(HttpRequest, "News Posted Successfully")
             else:
-                msglist.append(result[1])
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            print msglist
+                messages.error(HttpRequest, result)
             return HttpResponseRedirect('/message/')
             
         except Exception as inst:
             LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'NoticePost'))
-            msglist.append('Some Error has occoured')
-            HttpRequest.session[SESSION_MESSAGE] = msglist
+            messages.error(HttpRequest,'Some Error has occoured')
             return HttpResponseRedirect('/message/')    
 
 def adminNoticePost(HttpRequest):
     
-    msglist = AppendMessageList(HttpRequest)
     logindetails = GetLoginDetails(HttpRequest)
     ip = HttpRequest.META['REMOTE_ADDR']
 
-    if( logindetails["userid"] == -1):
-        msglist.append('Please Login to continue')
-        HttpRequest.session[SESSION_MESSAGE] = msglist
+    if( logindetails['userid'] == -1):
         return HttpResponseRedirect('/user/login/')
     else:
         try:
@@ -93,19 +89,18 @@ def adminNoticePost(HttpRequest):
             
             result= comm_call.PostNotice(title, _content, datetime.datetime.now(),Users, "Notice Post by Admin", logindetails["userid"], ip)
             #msglist.append(result[1])
-            if(result[1]["result"]==-2):
-                return HttpResponseRedirect('/user/login')
-            elif(result[1]["result"]==1):
-                msglist.append("Notice Posted Successfully")
-            else:
-                msglist.append(result[1])
-            print msglist
-            HttpRequest.session[SESSION_MESSAGE] = msglist
-            return HttpResponseRedirect('/message/')
+            print "--------------"
+            print result
             
+            if(result["result"]==-2):
+                return HttpResponseRedirect('/user/login')
+            elif(result["result"]==1):
+                messages.info(HttpRequest, "Notice Posted Successfully")
+            else:
+                messages.error(HttpRequest, result)
+            return HttpResponseRedirect('/message/')
+            print "here"
         except Exception as inst:
             LogUser.exception('[%s][%s] == EXCEPTION ==' % (ip, 'NoticePost'))
-            msglist.append('Some Error has occoured')
-            HttpRequest.session[SESSION_MESSAGE] = msglist
+            messages.error(HttpRequest,'Some Error has occoured here')
             return HttpResponseRedirect('/message/')    
-        
