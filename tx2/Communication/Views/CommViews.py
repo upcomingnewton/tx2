@@ -107,7 +107,7 @@ def noticeIndex(HttpRequest,token):
                 
                 
                 
-            return render_to_response("Communication/User/ViewNews.html",{'pagerange':res[3],'next':res[1],'next_p':int(token)+1,'prev_p':int(token)-1,'prev':res[2],'list':list1,'title':"Notices"},context_instance=RequestContext(HttpRequest))
+            return render_to_response("Communication/User/ViewNotices.html",{'pagerange':res[3],'next':res[1],'next_p':int(token)+1,'prev_p':int(token)-1,'prev':res[2],'list':list1,'title':"Notices"},context_instance=RequestContext(HttpRequest))
 def noticeitemIndex(HttpRequest,page,item):
     try:
         msglist = AppendMessageList(HttpRequest)

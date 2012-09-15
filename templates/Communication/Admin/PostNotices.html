@@ -2,8 +2,10 @@
     <title>{% block title %}{{title}}{% endblock %}</title>
     
 {% block UserProfileMaster_content_center %}
-<div id="respond">
-	
+<div class="row">
+  <div class="formtitle">Student Details</div>
+</div>
+
 	{% if  'NOTICE' in type %}
 <form action="/communication/Admin/Notice/Post" method="post">
 
@@ -15,7 +17,6 @@
 
 	
 	
-	<h2>{{title}}</h2>
 {% csrf_token %}
   <div class="row">
     <div class="labelclass" >Title</div>
@@ -27,21 +28,14 @@
   <div class="row">
     <div class="labelclass" >Date</div>
     <div class="widgetclass" ><input type="text" name="date_" class="widget" /></div>
-  </div><br>
+  </div>
   
-  {% else %}
-  <div class="row">
-    <div class="labelclass" >Visible For</div>
-    <div class="widgetclass" ><select name="Visibility" class="widget"> 
-<option value="0">Everybody</option>
-<option value="1">Registered Users</option>
-</select></div><br>
   
   {% endif %}
-  <div class="row">
+  <div class="rowbig">
     <div class="labelclass" >Notice Content</div>
-    <div class="widgetclass" ><textarea  name="Content"  rows="10" class="widget"  spellcheck="true"  ></textarea></div>
-  </div><br>
+    <div class="widgetclass" ><textarea  name="Content"  rows="10" spellcheck="true"  ></textarea></div>
+  </div>
   
   
 
@@ -49,6 +43,5 @@
     <input type="submit" id="submit" value="SUBMIT" />
   </div>
 </form>
-</div>
-</div>
+
 {% endblock %}
