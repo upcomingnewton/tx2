@@ -1,0 +1,26 @@
+<html>
+	<title>
+		Student List
+	</title>
+	<body>
+		<a href="{{download}}">Click to download csv</a>
+		{% if StudentList|length %}
+		<table border="1">
+			{% for rows in StudentList %}
+			<tr>
+				<td>{%if forloop.counter != 1%}{{forloop.counter|add:"-1"}}{%endif%}</td>
+				{% for col in rows %}
+				<td>
+					{{ col }}
+				</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<h1>
+			No Data was found
+		</h1>
+		{% endif %}
+	</body>
+</html>

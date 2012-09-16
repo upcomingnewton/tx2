@@ -23,6 +23,8 @@ urlpatterns = patterns('',
                        url(r'^company/(?P<CompanyID>\d+)/jobs/add/post/$','jobs.Views.JobViews.AddJob'),
                        url(r'^company/(?P<CompanyID>\d+)/jobs/(?P<JobID>\d+)/edit/$','jobs.Views.JobViews.EditJobIndex'),
                        url(r'^company/(?P<CompanyID>\d+)/jobs/(?P<JobID>\d+)/edit/post/$','jobs.Views.JobViews.EditJob'),
+                       url(r'^excel/job/(?P<JobId>\d+)/applied$','jobs.Views.StudentListView.ExcelJobApplied'),
+                       url(r'^view/job/(?P<JobId>\d+)/applied$','jobs.Views.StudentListView.ViewJobApplied'),
                        
                        url(r'^branchjob/(?P<CompanyID>\d+)/jobs/(?P<JobID>\d+)/edit/post/$','jobs.Views.JobViews.BranchJobEdit'),
                        

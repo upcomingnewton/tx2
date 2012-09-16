@@ -325,7 +325,7 @@ def StudentDetailsUpdate(HttpRequest):
                 messages.error(HttpRequest,"Error fetching data from form for Id");
                 flag=-1;
             if "AIEEERank" in HttpRequest.POST:
-                aieee= int(HttpRequest.POST["AIEEERank"])
+                aieee= HttpRequest.POST["AIEEERank"]
                 if is_integer(aieee):
                   aieee=int(aieee)
                 else:
