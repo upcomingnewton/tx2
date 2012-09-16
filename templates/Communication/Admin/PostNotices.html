@@ -2,53 +2,55 @@
     <title>{% block title %}{{title}}{% endblock %}</title>
     
 {% block UserProfileMaster_content_center %}
-<div id="respond">
+<div class="row">
 	
 	{% if  'NOTICE' in type %}
+<div class="formtitle">POST NOTICES</div>
+</div>
 <form action="/communication/Admin/Notice/Post" method="post">
 
 
 {% else %}
+<div class="formtitle">POST NEWS</div>
+</div>
 <form action="/communication/Admin/News/Post" method="post">
 
 {% endif %}
 
 	
 	
-	<h2>{{title}}</h2>
+
 {% csrf_token %}
   <div class="row">
     <div class="labelclass" >Title</div>
     <div class="widgetclass" ><input type="text" name="Title" class="widget" /></div>
-  </div><br />
+  </div>
   
-  {% if  'NEWS' in type %}
-  
-  <div class="row">
+{% if  'NEWS' in type %}
+ 
+<div class="row">
     <div class="labelclass" >Date</div>
     <div class="widgetclass" ><input type="text" name="date_" class="widget" /></div>
-  </div><br>
-  
-  {% else %}
-  <div class="row">
-    <div class="labelclass" >Visible For</div>
-    <div class="widgetclass" ><select name="Visibility" class="widget"> 
-<option value="0">Everybody</option>
-<option value="1">Registered Users</option>
-</select></div><br>
-  
-  {% endif %}
-  <div class="row">
-    <div class="labelclass" >Notice Content</div>
-    <div class="widgetclass" ><textarea  name="Content"  rows="10" class="widget"  spellcheck="true"  ></textarea></div>
-  </div><br>
-  
-  
+  </div><br />  
 
+
+
+{% endif %}
+
+<div class="rowbig">
+    <div class="labelclass" >Notice Content</div>
+    <div class="widgetclass" >
+      <textarea name="Content" ></textarea>
+    </div>
+  </div>
   <div class="row">
     <input type="submit" id="submit" value="SUBMIT" />
   </div>
 </form>
-</div>
-</div>
+
 {% endblock %}
+
+
+
+  
+

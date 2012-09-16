@@ -89,11 +89,8 @@ def adminNoticePost(HttpRequest):
             comm_call=CommunicationFunctions.PostCommunicationFnx()
             title= HttpRequest.POST['Title']
             _content=HttpRequest.POST['Content']
-            visibility=HttpRequest.POST['Visibility']
-            if(visibility=='0'):
-                Users='-1'
-            else:
-                Users='0'
+            
+            Users='0'
             
             result= comm_call.PostNotice(title, _content, datetime.datetime.now(),Users, "Notice Post by Admin", logindetails["userid"], ip)
             #msglist.append(result[1])
