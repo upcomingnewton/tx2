@@ -1,0 +1,152 @@
+2012-09-12 01:12:42,089 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:12:55,054 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:13:14,122 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:12,231 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:12,233 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:12,234 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:34,883 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:34,884 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:34,885 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:35,609 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:35,610 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:35,612 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:39,151 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:39,152 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:39,152 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:40,333 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:40,334 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:40,335 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:41,950 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:41,951 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:41,953 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:42,854 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:42,858 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:42,859 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:44,299 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:44,300 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:44,302 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:45,386 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:45,387 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:45,387 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:46,565 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:46,565 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:46,566 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:47,700 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:47,701 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:47,701 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:48,944 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:48,945 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:48,945 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:51,211 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:51,212 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:51,213 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:52,604 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:52,605 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:52,606 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:53,705 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:53,706 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:53,707 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:56,101 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:56,102 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:56,102 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:57,405 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:57,407 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:57,409 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:58,595 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:58,596 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:58,597 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:15:59,908 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:15:59,908 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:15:59,909 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:01,319 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:01,320 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:01,321 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:02,775 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:02,776 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:02,777 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:04,030 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:04,032 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:04,034 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:05,340 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:05,341 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:05,342 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:06,641 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:06,642 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:06,643 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:07,995 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:07,996 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:07,996 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:09,209 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:09,211 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:09,212 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:10,472 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:10,474 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:10,475 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:11,793 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:11,794 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:11,795 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:13,393 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:13,394 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:13,395 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:14,676 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:14,677 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:14,679 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:16,046 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:16,047 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:16,048 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:18,699 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:18,700 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:18,701 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:20,197 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:20,198 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:20,199 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:21,337 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 01:16:21,338 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 01:16:21,338 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-12 01:16:37,351 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,55,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:16:37,368 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 152}]
+2012-09-12 01:16:45,743 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,55,2,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:16:45,758 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 153}]
+2012-09-12 01:16:56,110 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,52,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:16:56,120 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 154}]
+2012-09-12 01:17:05,545 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,52,2,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:17:05,561 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 155}]
+2012-09-12 01:17:23,590 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,53,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:17:23,602 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 156}]
+2012-09-12 01:17:34,327 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,53,2,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:17:34,344 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 157}]
+2012-09-12 01:17:43,282 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,54,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:17:43,297 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 158}]
+2012-09-12 01:18:06,573 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,60,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:18:06,589 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 159}]
+2012-09-12 01:18:25,353 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,60,2,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:18:25,364 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 160}]
+2012-09-12 01:18:41,613 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,56,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:18:41,631 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 161}]
+2012-09-12 01:18:57,332 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,56,2,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:18:57,349 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 162}]
+2012-09-12 01:19:13,304 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,26,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:19:13,319 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 163}]
+2012-09-12 01:19:34,025 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,27,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:19:34,036 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 164}]
+2012-09-12 01:19:58,474 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,28,1,1,'SYS_PER_INSERT',1,'117.197.133.212');
+2012-09-12 01:19:58,489 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 165}]
+2012-09-12 13:58:36,809 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-12 13:58:36,810 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-12 13:58:36,810 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-13 00:43:34,862 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-13 00:43:34,863 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-13 00:43:34,864 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-13 11:13:54,486 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(4,12,2,1,'SYS_PER_INSERT',1,'117.197.116.200');
+2012-09-13 11:13:54,492 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 2, 'rescode': 71}]
+2012-09-15 11:47:16,117 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-15 11:47:16,213 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-15 11:47:16,214 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-15 11:47:52,143 DatabaseFunctions line:50   DEBUG    [DBGroupContentSecurityInsert] SELECT * FROM SecurityGroupContent_Insert(18,23,1,1,'SYS_PER_INSERT',1,'117.220.96.217');
+2012-09-15 11:47:52,232 DatabaseFunctions line:53   DEBUG    [DBGroupContentSecurityInsert] [{'result': 1, 'rescode': 316}]
+2012-09-15 12:00:19,213 ContentTypes      line:59   DEBUG    [getDjangoContentTypes] 59
+2012-09-15 12:00:19,215 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-15 12:00:19,216 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-15 22:30:30,995 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-15 12:00:54,796 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-15 22:31:10,051 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
