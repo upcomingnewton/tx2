@@ -25,11 +25,11 @@ def CallFunction(sql):
     return row
 
 def CallSelectFunction(sql):
-    sql.replace("'","\'")
-    cursor = connection.cursor()
-    cursor.execute(sql)
-    data=cursor.fetchall()
-    return data
+  sql.replace("'","\'")
+  cursor = connection.cursor()
+  cursor.execute(sql)
+  data=cursor.fetchall()
+  return data
     #transaction.commit_unless_managed()
     #row = dictfetchall(cursor)
     #print row

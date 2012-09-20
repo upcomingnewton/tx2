@@ -1131,3 +1131,395 @@ KeyError: 1
 2012-09-15 20:11:26,188 DatabaseFunctions line:52   DEBUG    [ {'username': u'Amit', 'userstate': 1, 'rescode': 115, 'userid': 46, 'result': 1, 'groupid': 20, 'loginid': 3152} ] [ SELECT * FROM UserLogin('amit.uietian@gmail.com','jAjoFa84gxIgjWMAM0OJ5_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'180.149.53.9','2012-09-15 20:11:26.174669'); ]
 2012-09-15 22:05:37,350 DatabaseFunctions line:52   DEBUG    [ {'username': u'miss', 'userstate': 1, 'rescode': 115, 'userid': 76, 'result': 1, 'groupid': 30, 'loginid': 3153} ] [ SELECT * FROM UserLogin('rabiya076wahab@gmail.com','y7RMVdLo5sMQZNPFzHkt2_P4L5U6S98mYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'14.195.136.79','2012-09-15 22:05:37.339172'); ]
 2012-09-16 09:36:42,312 DatabaseFunctions line:52   DEBUG    [ {'username': u'admin', 'userstate': 1, 'rescode': 115, 'userid': 524, 'result': 1, 'groupid': 18, 'loginid': 3154} ] [ SELECT * FROM UserLogin('admin@tx.com','UVMnfD7Ie5XQgtYhFQG2pemYJr8Twl2Lt3h_P4L5U6S989FqYg64=',1,'117.220.176.184','2012-09-16 09:36:42.246502'); ]
+2012-09-17 23:02:29,377 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'Search': [u'Search'], u'Search_Options': [u'1'], u'Control1': [u'jivjot'], u'Control2': [u'nitin'], u'ControlsInfo': [u'1,1,'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '136',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-Jf8fMptqfR,guid=4e056982c3caab781c118b90000000c3',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-LK4tEw',
+ 'GNOME_KEYRING_PID': '2251',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/Search/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/Search/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2270,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2270',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2302',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-LK4tEw/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-teQnrB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1347893644.374453-880044054',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fecd26a51e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x26607d0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 735, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
+2012-09-17 23:02:32,530 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'Search': [u'Search'], u'Search_Options': [u'1'], u'Control1': [u'jivjot'], u'Control2': [u'nitin'], u'ControlsInfo': [u'1,1,'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '136',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-Jf8fMptqfR,guid=4e056982c3caab781c118b90000000c3',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-LK4tEw',
+ 'GNOME_KEYRING_PID': '2251',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/Search/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/Search/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2270,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2270',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2302',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-LK4tEw/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-teQnrB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1347893644.374453-880044054',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fecd26a51e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x2b5a2d0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 735, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
+2012-09-17 23:02:36,732 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'Search': [u'Search'], u'Search_Options': [u'1'], u'Control1': [u'jivjot'], u'ControlOr1': [u'on'], u'ControlsInfo': [u'1,1,'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'Control2': [u'nitin']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '150',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-Jf8fMptqfR,guid=4e056982c3caab781c118b90000000c3',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-LK4tEw',
+ 'GNOME_KEYRING_PID': '2251',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/Search/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/Search/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2270,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2270',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2302',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-LK4tEw/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-teQnrB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1347893644.374453-880044054',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fecd26a51e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x29cf950>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 735, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
+2012-09-17 23:02:42,887 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {u'Search': [u'Search'], u'Search_Options': [u'1'], u'ControlOr2': [u'on'], u'Control1': [u'jivjot'], u'ControlOr1': [u'on'], u'ControlsInfo': [u'1,1,'], u'csrfmiddlewaretoken': [u'8bc5f3a468d29cabfd55a9d00b67ff3f'], u'Control2': [u'nitin']}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '164',
+ 'CONTENT_TYPE': 'application/x-www-form-urlencoded',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-Jf8fMptqfR,guid=4e056982c3caab781c118b90000000c3',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-LK4tEw',
+ 'GNOME_KEYRING_PID': '2251',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CACHE_CONTROL': 'max-age=0',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'http://127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/Search/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/Search/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'POST',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2270,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2270',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2302',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-LK4tEw/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-teQnrB/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1347893644.374453-880044054',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7fecd26a51e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x2b5a1d0>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 735, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: current transaction is aborted, commands ignored until end of transaction block
+
