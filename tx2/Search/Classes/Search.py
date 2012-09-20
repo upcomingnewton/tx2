@@ -7,6 +7,7 @@ from tx2.Search.Classes.ByName import ByName
 from tx2.Search.Classes.ByEmail import ByEmail
 from tx2.Misc.MIscFunctions1 import is_integer
 from tx2.DataBaseHelper import DBhelper
+from tx2.Search.Classes.ByGender import ByGender
 
 class Search(object):
     '''
@@ -18,7 +19,7 @@ class Search(object):
         '''
         Constructor
         '''
-        self.myoptions=[ByName(),ByEmail()]
+        self.myoptions=[ByName(),ByEmail(),ByGender()]
         
     def getOptions(self):
       options=''
