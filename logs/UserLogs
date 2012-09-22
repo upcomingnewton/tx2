@@ -2214,3 +2214,198 @@ OperationalError: could not connect to server: Network is unreachable
 	Is the server running on host "119.18.58.214" and accepting
 	TCP/IP connections on port 5432?
 
+2012-09-22 15:49:23,267 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '',
+ 'CONTENT_TYPE': 'text/plain',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-HWZgJ3fVGm,guid=57e53c02f27b857007619de500000039',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-rfKPE3',
+ 'GNOME_KEYRING_PID': '2038',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'GET',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2057,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2057',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2089',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-rfKPE3/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-veHp5y/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1348307323.799460-1000205183',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f81e7bb01e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x181e750>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 734, in execute_sql
+    cursor = self.connection.cursor()
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/__init__.py", line 250, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 140, in _cursor
+    self.connection = Database.connect(**conn_params)
+OperationalError: could not connect to server: Network is unreachable
+	Is the server running on host "119.18.58.214" and accepting
+	TCP/IP connections on port 5432?
+
+2012-09-22 15:49:36,252 ContextProcessors line:75   ERROR    UserContextProcessor : [request : <WSGIRequest
+GET:<QueryDict: {}>,
+POST:<QueryDict: {}>,
+COOKIES:{'csrftoken': '8bc5f3a468d29cabfd55a9d00b67ff3f'},
+META:{'CONTENT_LENGTH': '',
+ 'CONTENT_TYPE': 'text/plain',
+ 'CSRF_COOKIE': '8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-HWZgJ3fVGm,guid=57e53c02f27b857007619de500000039',
+ 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path',
+ 'DESKTOP_SESSION': 'gnome',
+ 'DISPLAY': ':0.0',
+ 'DJANGO_SETTINGS_MODULE': 'tx2.settings',
+ 'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'GDMSESSION': 'gnome',
+ 'GDM_KEYBOARD_LAYOUT': 'us',
+ 'GDM_LANG': 'en_IN',
+ 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',
+ 'GNOME_KEYRING_CONTROL': '/tmp/keyring-rfKPE3',
+ 'GNOME_KEYRING_PID': '2038',
+ 'GTK_MODULES': 'canberra-gtk-module',
+ 'HOME': '/home/jivjot',
+ 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+ 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+ 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch',
+ 'HTTP_ACCEPT_LANGUAGE': 'en-US,en;q=0.8',
+ 'HTTP_CONNECTION': 'keep-alive',
+ 'HTTP_COOKIE': 'csrftoken=8bc5f3a468d29cabfd55a9d00b67ff3f',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_REFERER': 'http://127.0.0.1:8000/',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19',
+ 'LANG': 'en_IN',
+ 'LD_LIBRARY_PATH': '/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64',
+ 'LIBGL_DRIVERS_PATH': '/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri',
+ 'LOGNAME': 'jivjot',
+ 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path',
+ 'MOZILLA_FIVE_HOME': '/usr/lib64/xulrunner-1.9.2.28',
+ 'ORBIT_SOCKETDIR': '/tmp/orbit-jivjot',
+ 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+ 'PATH_INFO': u'/user/login/',
+ 'PWD': '/home/jivjot',
+ 'PYDEV_COMPLETER_PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc',
+ 'PYDEV_CONSOLE_ENCODING': 'UTF-8',
+ 'PYTHONIOENCODING': 'UTF-8',
+ 'PYTHONPATH': '/home/jivjot/eclipse/plugins/org.python.pydev_2.6.0.2012062121/pysrc/pydev_sitecustomize:/home/jivjot/Dropbox/Eclipse_workspace/tx2:/usr/lib/python2.6:/usr/lib/python2.6/plat-linux2:/usr/lib/python2.6/lib-tk:/usr/lib/python2.6/lib-old:/usr/lib/python2.6/lib-dynload:/usr/local/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages:/usr/lib/python2.6/dist-packages/PIL:/usr/lib/python2.6/dist-packages/gst-0.10:/usr/lib/pymodules/python2.6:/usr/lib/python2.6/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.6/gtk-2.0:/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_HOST': '',
+ 'REQUEST_METHOD': 'GET',
+ 'SCRIPT_NAME': u'',
+ 'SERVER_NAME': 'localhost.localdomain',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.6.6',
+ 'SESSION_MANAGER': 'local/jivjot-Inspiron-N5010:@/tmp/.ICE-unix/2057,unix/jivjot-Inspiron-N5010:/tmp/.ICE-unix/2057',
+ 'SHELL': '/bin/bash',
+ 'SSH_AGENT_PID': '2089',
+ 'SSH_AUTH_SOCK': '/tmp/keyring-rfKPE3/ssh',
+ 'TZ': 'Asia/Calcutta',
+ 'USER': 'jivjot',
+ 'USERNAME': 'jivjot',
+ 'WINDOWPATH': '7',
+ 'XAUTHORITY': '/var/run/gdm/auth-for-jivjot-veHp5y/database',
+ 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/etc/xdg',
+ 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share/:/usr/share/',
+ 'XDG_SESSION_COOKIE': '60eb9903f9f33b343af06c2000000008-1348307323.799460-1000205183',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f81e7bb01e0>,
+ 'wsgi.file_wrapper': <class 'django.core.servers.basehttp.FileWrapper'>,
+ 'wsgi.input': <socket._fileobject object at 0x1d8ae50>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': True,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0)}>]
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/ContextProcessors.py", line 16, in UserContextProcessor
+    logindetails = GetLoginDetails(request)
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Users/HelperFunctions/LoginDetails.py", line 12, in GetLoginDetails
+    obj=User.objects.get(UserEmail='admin@tx.com')
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/manager.py", line 132, in get
+    return self.get_query_set().get(*args, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 344, in get
+    num = len(clone)
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 82, in __len__
+    self._result_cache = list(self.iterator())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/query.py", line 273, in iterator
+    for row in compiler.results_iter():
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 680, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/usr/local/lib/python2.6/dist-packages/django/db/models/sql/compiler.py", line 734, in execute_sql
+    cursor = self.connection.cursor()
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/__init__.py", line 250, in cursor
+    cursor = self.make_debug_cursor(self._cursor())
+  File "/usr/local/lib/python2.6/dist-packages/django/db/backends/postgresql_psycopg2/base.py", line 140, in _cursor
+    self.connection = Database.connect(**conn_params)
+OperationalError: could not connect to server: Network is unreachable
+	Is the server running on host "119.18.58.214" and accepting
+	TCP/IP connections on port 5432?
+

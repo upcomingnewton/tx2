@@ -16,3 +16,13 @@ None
 2012-09-15 12:39:21,812 DBFunctions       line:75   DEBUG    [DBInsertCommunication] [{'result': 1, 'rescode': 100}]
 2012-09-15 14:30:08,690 DBFunctions       line:72   DEBUG    [DBInsertCommunication] SELECT * FROM MessgaeInsert('eJwLC0ktLuEqMOTSAwASJgLa','eJwL49IDAAFHAI8=',1,1,'2012-09-15 14:30:08.689599',-1,-1,'SYS_PER_INSERT',11,'115.252.35.137'); 
 2012-09-15 14:30:08,701 DBFunctions       line:75   DEBUG    [DBInsertCommunication] [{'result': 1, 'rescode': 98}]
+2012-09-22 15:49:23,196 CommunicationFunctions line:157  ERROR    [setCommunicationCache] == Exception ==
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 147, in setCommunicationCache
+    M= GetCommunicationFnx().getCommunicationByType(commType).order_by("Timestamp")
+AttributeError: 'int' object has no attribute 'order_by'
+2012-09-22 15:49:23,198 CommunicationFunctions line:54   ERROR    [getNCommunicationsbyPageIndex] == Exception ==
+Traceback (most recent call last):
+  File "/home/jivjot/Dropbox/Eclipse_workspace/tx2/tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 39, in getNCommunicationsbyPageIndex
+    Page=Pages.page(1)
+AttributeError: 'NoneType' object has no attribute 'page'
