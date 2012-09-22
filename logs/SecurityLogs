@@ -150,3 +150,10 @@
 2012-09-15 22:30:30,995 StateFunctions    line:40   DEBUG    [ListAllStates] 4
 2012-09-15 12:00:54,796 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
 2012-09-15 22:31:10,051 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-16 12:23:06,570 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-16 12:23:32,094 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-16 12:23:56,597 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-16 12:24:22,876 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-16 12:25:48,954 StateFunctions    line:40   DEBUG    [ListAllStates] 4
+2012-09-16 12:25:59,997 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4
+2012-09-16 12:26:22,141 PermissionFunctions line:40   DEBUG    [ListAllPermissions] 4

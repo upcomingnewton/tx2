@@ -16,3 +16,20 @@ None
 2012-09-15 12:39:21,812 DBFunctions       line:75   DEBUG    [DBInsertCommunication] [{'result': 1, 'rescode': 100}]
 2012-09-15 14:30:08,690 DBFunctions       line:72   DEBUG    [DBInsertCommunication] SELECT * FROM MessgaeInsert('eJwLC0ktLuEqMOTSAwASJgLa','eJwL49IDAAFHAI8=',1,1,'2012-09-15 14:30:08.689599',-1,-1,'SYS_PER_INSERT',11,'115.252.35.137'); 
 2012-09-15 14:30:08,701 DBFunctions       line:75   DEBUG    [DBInsertCommunication] [{'result': 1, 'rescode': 98}]
+2012-09-16 12:29:28,298 DBFunctions       line:72   DEBUG    [DBInsertCommunication] SELECT * FROM MessgaeInsert('eJwLC0ktLuEqMOTSAwASJgLa','eJwLC0ktLlHwyy/JTE7lKjDk0gMANYYFXA==',1,1,'2012-09-16 12:29:28.297644',-1,-1,'SYS_PER_INSERT',24,'115.252.38.20'); 
+2012-09-16 12:29:28,315 DBFunctions       line:75   DEBUG    [DBInsertCommunication] [{'result': 1, 'rescode': 111}]
+2012-09-22 16:51:05,839 CommunicationFunctions line:54   ERROR    [getNCommunicationsbyPageIndex] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 39, in getNCommunicationsbyPageIndex
+    Page=Pages.page(1)
+AttributeError: 'NoneType' object has no attribute 'page'
+2012-09-22 16:51:30,112 CommunicationFunctions line:54   ERROR    [getNCommunicationsbyPageIndex] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 39, in getNCommunicationsbyPageIndex
+    Page=Pages.page(1)
+AttributeError: 'NoneType' object has no attribute 'page'
+2012-09-22 16:51:33,543 CommunicationFunctions line:54   ERROR    [getNCommunicationsbyPageIndex] == Exception ==
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/Communication/BusinessFunctions/CommunicationFunctions.py", line 39, in getNCommunicationsbyPageIndex
+    Page=Pages.page(1)
+AttributeError: 'NoneType' object has no attribute 'page'

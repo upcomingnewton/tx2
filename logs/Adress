@@ -419,3 +419,121 @@ DatabaseError: syntax error at or near "Hostel" at character 63
 2012-09-15 10:26:09,878 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(93,'#33171','Street no. 1','Partap Nagar, Bathinda',48,24,5,'151001','SYS_PER_UPDATE',475,'117.211.87.147'); ]
 2012-09-15 10:26:09,880 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(94,'#4/27','Boys Hostel no. 2','Panjab University',4,4,5,'160014','SYS_PER_UPDATE',475,'117.211.87.147'); ]
 2012-09-15 10:32:04,003 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(475,'9463897252','sachdevayogesh8@yahoo.in','Jagdish Sachdeva','9888545325','Veena Sachdeva','9780458517',93,94,'SYS_PER_UPDATE',475,'117.211.87.147'); ]
+2012-09-16 03:36:24,224 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 95} ] [ SELECT * FROM UserAdress_adress_Insert('1106 sector 49 B','--','--',4,4,5,'160047','SYS_PER_INSERT',55,'122.173.197.151'); ]
+2012-09-16 03:36:24,226 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 95} ] [ SELECT * FROM UserAdress_adress_Insert('1106 sector 49 B','--','--',4,4,5,'160047','SYS_PER_INSERT',55,'122.173.197.151'); ]
+2012-09-16 03:36:24,383 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 46} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(55,'NULL','NULL','NULL','NULL','NULL','NULL',95,95,'SYS_PER_INSERT',55,'122.173.197.151'); ]
+2012-09-16 03:37:55,377 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(55,'9878256581','cooluniversity2009@gmail.com','Subhash Chand','9041467561','Sabita Kumari','9041467561',95,95,'SYS_PER_UPDATE',55,'122.173.197.151'); ]
+2012-09-16 03:38:04,567 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(55,'9878256581','cooluniversity2009@gmail.com','Subhash Chand','9041467561','Sabita Kumari','9041467561',95,95,'SYS_PER_UPDATE',55,'122.173.197.151'); ]
+2012-09-16 10:52:08,642 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('Postal address','Near Pal tyre services, Gurunanak nagar, Rajpura','--',48,24,5,'140401','SYS_PER_INSERT',201,'124.253.173.48'); ]
+2012-09-16 10:52:08,643 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('Postal address','Near Pal tyre services, Gurunanak nagar, Rajpura','--',48,24,5,'--140401','SYS_PER_INSERT',201,'124.253.173.48'); ]
+2012-09-17 08:03:26,372 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--#22','HOUSING BOARD COLONY ','SEC 19, BALDEV NAGAR , AMBALA CITY',12,12,5,'--134007','SYS_PER_INSERT',546,'106.76.159.28'); ]
+2012-09-17 08:03:26,373 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('22','HOUSING BOARD COLONY ','--SEC 19, BALDEV NAGAR , AMBALA CITY',12,12,5,'--134007','SYS_PER_INSERT',546,'106.76.159.28'); ]
+2012-09-18 16:58:36,966 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 97} ] [ SELECT * FROM UserAdress_adress_Insert('655','1-A','Abohar',48,24,5,'152116','SYS_PER_INSERT',374,'115.185.121.174'); ]
+2012-09-18 16:58:36,985 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 98} ] [ SELECT * FROM UserAdress_adress_Insert('G.H. - 8','Panjab University South Campus','Sec. 25',4,4,5,'160025','SYS_PER_INSERT',374,'115.185.121.174'); ]
+2012-09-18 16:58:37,549 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 47} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(374,'NULL','NULL','NULL','NULL','NULL','NULL',97,98,'SYS_PER_INSERT',374,'115.185.121.174'); ]
+2012-09-19 13:20:41,580 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('H No.46','Ward No.5, Near SBP','Assandh, Distt- KARNAL',48,12,5,'132039','SYS_PER_INSERT',549,'115.185.120.90'); ]
+2012-09-19 13:20:41,647 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('H No.46','Ward No.5, Near SBP','Assandh, Distt- KARNAL',48,12,5,'132039','SYS_PER_INSERT',549,'115.185.120.90'); ]
+2012-09-19 23:27:18,215 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 99} ] [ SELECT * FROM UserAdress_adress_Insert('--2534 A ','--Sector-20C','--',4,4,5,'--160020','SYS_PER_INSERT',353,'117.197.132.186'); ]
+2012-09-19 23:27:18,217 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 100} ] [ SELECT * FROM UserAdress_adress_Insert('--2534A','--Sector-20C','--',4,4,5,'--160020','SYS_PER_INSERT',353,'117.197.132.186'); ]
+2012-09-20 09:57:18,921 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 48} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(353,'NULL','NULL','NULL','NULL','NULL','NULL',99,100,'SYS_PER_INSERT',353,'117.197.132.186'); ]
+2012-09-20 09:58:16,386 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(353,'8054617504','','Sri Bhagwan Yadav','9023289099','Santosh Yadav','9855033484',99,100,'SYS_PER_UPDATE',353,'117.197.132.186'); ]
+2012-09-20 04:46:53,936 DatabaseFunctions line:106  ERROR    DBUpdateUserContactInfo : [details : {'FatherContactNo': u'+91-9412650781', 'ParmanentAdress': 47, 'ip': '117.211.87.147', 'MobileNo': u'+91-9023423839,+91-9888459523', 'UserID': 116, 'MotherContactNo': u'+91-8791251961', 'AltEmail': u'siddharthgarg9@gmail.com', 'by': 116, 'MotherName': u'Seema Garg', 'FatherName': u'V.K.Garg', 'PresentAdress': 48, 'op': 'SYS_PER_UPDATE'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 97, in DBUpdateUserContactInfo
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    cursor.execute(sql)
+  File "/usr/lib/python2.6/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: value too long for type character varying(20)
+CONTEXT:  SQL statement "UPDATE "UserAdress_usercontactinfo"
+SET  "MobileNo"=MobileNo, 
+     "AltEmail"=AltEmail, 
+     "FatherName"=FatherName, 
+     "FatherContactNo"=FatherContactNo, 
+     "MotherName"=MotherName, 
+     "MotherContactNo"=MotherContactNo, 
+     "ParmanentAdress"=ParmanentAdress, 
+     "PresentAdress"=PresentAdress
+WHERE "User_id" = _User"
+PL/pgSQL function "useradress_usercontactinfo_update" line 22 at SQL statement
+
+2012-09-20 21:08:15,339 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 101} ] [ SELECT * FROM UserAdress_adress_Insert('K-54','GHS-94','PGI Enclave',8,12,5,'--','SYS_PER_INSERT',253,'117.197.154.244'); ]
+2012-09-20 21:08:15,341 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 101} ] [ SELECT * FROM UserAdress_adress_Insert('K-54','GHS-94','PGI Enclave',8,12,5,'--','SYS_PER_INSERT',253,'117.197.154.244'); ]
+2012-09-20 21:08:15,743 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 49} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(253,'NULL','NULL','NULL','NULL','NULL','NULL',101,101,'SYS_PER_INSERT',253,'117.197.154.244'); ]
+2012-09-20 21:10:20,860 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(253,'9872728670','NULL','Prem Prakash Mahajan','09902481812','Kiran Mahajan','9217476496',101,101,'SYS_PER_UPDATE',253,'117.197.154.244'); ]
+2012-09-20 23:58:04,026 DatabaseFunctions line:106  ERROR    DBUpdateUserContactInfo : [details : {'FatherContactNo': u'+91-9412650781', 'ParmanentAdress': 47, 'ip': '117.211.87.147', 'MobileNo': u'+91-9023423839,+91-9888459523', 'UserID': 116, 'MotherContactNo': u'+91-8791251961', 'AltEmail': u'siddharthgarg9@gmail.com', 'by': 116, 'MotherName': u'Seema Garg', 'FatherName': u'V.K.Garg', 'PresentAdress': 48, 'op': 'SYS_PER_UPDATE'}]
+Traceback (most recent call last):
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/UserAdress/DBFunctions/DatabaseFunctions.py", line 97, in DBUpdateUserContactInfo
+    result =  DBhelper.CallFunction(query)
+  File "/var/www/vhosts/thoughtxplore.com/uiet/tx2/tx2/DataBaseHelper/DBhelper.py", line 21, in CallFunction
+    cursor.execute(sql)
+  File "/usr/lib/python2.6/site-packages/django/db/backends/util.py", line 34, in execute
+    return self.cursor.execute(sql, params)
+  File "/usr/lib/python2.6/site-packages/django/db/backends/postgresql_psycopg2/base.py", line 44, in execute
+    return self.cursor.execute(query, args)
+DatabaseError: value too long for type character varying(20)
+CONTEXT:  SQL statement "UPDATE "UserAdress_usercontactinfo"
+SET  "MobileNo"=MobileNo, 
+     "AltEmail"=AltEmail, 
+     "FatherName"=FatherName, 
+     "FatherContactNo"=FatherContactNo, 
+     "MotherName"=MotherName, 
+     "MotherContactNo"=MotherContactNo, 
+     "ParmanentAdress"=ParmanentAdress, 
+     "PresentAdress"=PresentAdress
+WHERE "User_id" = _User"
+PL/pgSQL function "useradress_usercontactinfo_update" line 22 at SQL statement
+
+2012-09-20 23:58:32,715 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(116,'+91-9888459523','siddharthgarg9@gmail.com','V.K.Garg','+91-9412650781','Seema Garg','+91-8791251961',47,48,'SYS_PER_UPDATE',116,'117.211.87.147'); ]
+2012-09-21 04:56:53,398 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 103} ] [ SELECT * FROM UserAdress_adress_Insert('2608','sector-20','--',4,4,5,'160020','SYS_PER_INSERT',138,'117.197.131.95'); ]
+2012-09-21 04:56:53,400 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 104} ] [ SELECT * FROM UserAdress_adress_Insert('2608','sector-20-c','--',4,4,5,'160020','SYS_PER_INSERT',138,'117.197.131.95'); ]
+2012-09-21 04:56:54,031 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 50} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(138,'NULL','NULL','NULL','NULL','NULL','NULL',103,104,'SYS_PER_INSERT',138,'117.197.131.95'); ]
+2012-09-21 15:28:03,691 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(138,'8427355771','kshreya97@yahoo.com','Yog Raj Kapoor','NULL','Kiran Kapoor','NULL',103,104,'SYS_PER_UPDATE',138,'117.197.131.95'); ]
+2012-09-21 08:33:14,156 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('1477/21','Adarsh Colony','--',48,12,5,'124001','SYS_PER_INSERT',302,'117.211.87.147'); ]
+2012-09-21 08:33:14,157 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('Room no-32','Block 5, Boys Hoste-1','Panjab University',4,4,5,'160014','SYS_PER_INSERT',302,'117.211.87.147'); ]
+2012-09-21 08:48:53,919 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 105} ] [ SELECT * FROM UserAdress_adress_Insert('5-A','Indira Colony','Model Town',12,12,5,'134003','SYS_PER_INSERT',243,'117.200.51.192'); ]
+2012-09-21 08:48:53,921 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 105} ] [ SELECT * FROM UserAdress_adress_Insert('5-A','Indira Colony','Model Town',12,12,5,'134003','SYS_PER_INSERT',243,'117.200.51.192'); ]
+2012-09-21 19:18:54,086 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 51} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(243,'NULL','NULL','NULL','NULL','NULL','NULL',105,105,'SYS_PER_INSERT',243,'117.200.51.192'); ]
+2012-09-21 09:35:32,957 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(243,'9416553308','harpreet4007@gmail.com','Mr. Rajvinder Singh','NULL','Mrs. Jaspal Kaur','NULL',105,105,'SYS_PER_UPDATE',243,'117.207.58.242'); ]
+2012-09-21 23:01:07,598 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 107} ] [ SELECT * FROM UserAdress_adress_Insert('House No. 875','Sector 9','--',8,12,5,'134109','SYS_PER_INSERT',401,'122.173.239.98'); ]
+2012-09-21 23:01:07,602 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 107} ] [ SELECT * FROM UserAdress_adress_Insert('House No. 875','Sector 9','--',8,12,5,'134109','SYS_PER_INSERT',401,'122.173.239.98'); ]
+2012-09-21 23:01:07,759 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 52} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(401,'NULL','NULL','NULL','NULL','NULL','NULL',107,107,'SYS_PER_INSERT',401,'122.173.239.98'); ]
+2012-09-21 23:01:54,756 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(401,'9888199931','dhruvbhanot91@hotmail.com','Lt. Col Sandeep Bhanot','','Mrs. Anju Bhanot','NULL',107,107,'SYS_PER_UPDATE',401,'122.173.239.98'); ]
+2012-09-21 23:02:05,074 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(401,'9888199931','dhruvbhanot91@hotmail.com','Lt. Col Sandeep Bhanot','','Mrs. Anju Bhanot','',107,107,'SYS_PER_UPDATE',401,'122.173.239.98'); ]
+2012-09-22 00:12:45,944 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 109} ] [ SELECT * FROM UserAdress_adress_Insert('1023','Sector-11C','',4,4,5,'160011','SYS_PER_INSERT',418,'117.197.139.145'); ]
+2012-09-22 00:12:45,946 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 110} ] [ SELECT * FROM UserAdress_adress_Insert('1023','Secor-11C','',4,4,5,'160011','SYS_PER_INSERT',418,'117.197.139.145'); ]
+2012-09-22 00:12:46,103 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 53} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(418,'NULL','NULL','NULL','NULL','NULL','NULL',109,110,'SYS_PER_INSERT',418,'117.197.139.145'); ]
+2012-09-22 00:13:30,139 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(418,'NULL','NULL','Bhupinder Singh','NULL','Sangeeta Chaudhry','NULL',109,110,'SYS_PER_UPDATE',418,'117.197.139.145'); ]
+2012-09-22 00:22:59,616 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 111} ] [ SELECT * FROM UserAdress_adress_Insert('House no 412','Model Town','Jind Road, Kaithal',48,12,5,'136027','SYS_PER_INSERT',164,'141.0.9.45'); ]
+2012-09-22 00:22:59,618 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 112} ] [ SELECT * FROM UserAdress_adress_Insert('Room 324, Hostel No. 8','Panjab University South Campus','Sector 25',4,4,5,'160014','SYS_PER_INSERT',164,'141.0.9.45'); ]
+2012-09-22 00:23:00,195 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 54} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(164,'NULL','NULL','NULL','NULL','NULL','NULL',111,112,'SYS_PER_INSERT',164,'141.0.9.45'); ]
+2012-09-22 00:26:37,348 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(164,'9023994844','neelanshu1991@gmail.com','Mr. Subhash Goyal','09416220025','Mrs. Shashi Goyal','09467727656',111,112,'SYS_PER_UPDATE',164,'141.0.9.45'); ]
+2012-09-22 09:52:49,118 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 113} ] [ SELECT * FROM UserAdress_adress_Insert('Kothi no -427','Phase-9','--',9,24,5,'160062','SYS_PER_INSERT',212,'117.220.179.135'); ]
+2012-09-22 09:52:49,120 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 114} ] [ SELECT * FROM UserAdress_adress_Insert('Kothi no-427','Phase-9','--',9,24,5,'160062','SYS_PER_INSERT',212,'117.220.179.135'); ]
+2012-09-21 23:22:49,352 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 55} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(212,'NULL','NULL','NULL','NULL','NULL','NULL',113,114,'SYS_PER_INSERT',212,'117.220.179.135'); ]
+2012-09-22 09:53:41,339 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(212,'9465216007','NULL','Gurmeet singh','9463838001','NULL','NULL',113,114,'SYS_PER_UPDATE',212,'117.220.179.135'); ]
+2012-09-21 23:57:29,719 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--H No.46','--Ward No.5, Near SBP','--Assandh, Distt-KARNAL',48,12,5,'--132039','SYS_PER_INSERT',549,'115.111.184.44'); ]
+2012-09-21 23:57:29,721 DatabaseFunctions line:115  DEBUG    [ {'result': -2, 'rescode': 504} ] [ SELECT * FROM UserAdress_adress_Insert('--H No.46','--Ward No.5, Near SBP','--Assandh, Distt-KARNAL',48,12,5,'--132039','SYS_PER_INSERT',549,'115.111.184.44'); ]
+2012-09-22 14:04:52,302 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 115} ] [ SELECT * FROM UserAdress_adress_Insert('328-E','Pocket-2','Mayur Vihar, Phase - I',5,36,5,'110091','SYS_PER_INSERT',319,'59.177.8.168'); ]
+2012-09-22 14:04:52,304 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 116} ] [ SELECT * FROM UserAdress_adress_Insert('3/11, Boys Hostel No.2','Panjab University','Sector-14',4,4,5,'160014','SYS_PER_INSERT',319,'59.177.8.168'); ]
+2012-09-22 14:04:52,514 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 56} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(319,'NULL','NULL','NULL','NULL','NULL','NULL',115,116,'SYS_PER_INSERT',319,'59.177.8.168'); ]
+2012-09-22 03:58:26,670 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 117} ] [ SELECT * FROM UserAdress_adress_Insert('House Number 1248','Sector 15-B','--',4,4,5,'160015','SYS_PER_INSERT',271,'122.173.244.1'); ]
+2012-09-22 03:58:26,672 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 117} ] [ SELECT * FROM UserAdress_adress_Insert('House Number 1248','Sector 15-B','--',4,4,5,'160015','SYS_PER_INSERT',271,'122.173.244.1'); ]
+2012-09-22 03:58:26,843 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 57} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(271,'NULL','NULL','NULL','NULL','NULL','NULL',117,117,'SYS_PER_INSERT',271,'122.173.244.1'); ]
+2012-09-22 03:59:55,449 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(271,'+919646833094','isha_18july@yahoo.com','Mr. Harbans Lal tayal','+919818401110','Mrs. Kamini Tayal','+919878831248',117,117,'SYS_PER_UPDATE',271,'122.173.244.1'); ]
+2012-09-22 04:18:51,876 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(319,'8437528580','lord.udit@gmail.com','Prem Sharma','9810307063','Sandhya Sharma','9818892141',115,116,'SYS_PER_UPDATE',319,'59.177.5.52'); ]
+2012-09-22 14:49:02,950 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(319,'8437528580','lord.udit@gmail.com','Prem Sharma','9810307063','Sandhya Sharma','9818892141',115,116,'SYS_PER_UPDATE',319,'59.177.5.52'); ]
+2012-09-22 14:55:47,917 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(319,'+91-8437528580','lord.udit@gmail.com','Prem Sharma','+91-9810307063','Sandhya Sharma','+91-9818892141',115,116,'SYS_PER_UPDATE',319,'59.177.5.52'); ]
+2012-09-22 04:43:27,230 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 119} ] [ SELECT * FROM UserAdress_adress_Insert('S/O Dr. B. Pandit (PGT ENG)','JNV Motihara','PO- Belwa, Distt-Kishanganj',48,8,5,'855107','SYS_PER_INSERT',78,'115.111.184.44'); ]
+2012-09-22 04:43:27,232 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 120} ] [ SELECT * FROM UserAdress_adress_Insert('3/37','BH-2','PU',4,4,5,'160014','SYS_PER_INSERT',78,'115.111.184.44'); ]
+2012-09-22 04:43:27,374 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 58} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(78,'NULL','NULL','NULL','NULL','NULL','NULL',119,120,'SYS_PER_INSERT',78,'115.111.184.44'); ]
+2012-09-22 16:52:17,080 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 121} ] [ SELECT * FROM UserAdress_adress_Insert('HIG - 740/C','PHASE - 9','--',9,24,5,'160062','SYS_PER_INSERT',122,'117.197.134.145'); ]
+2012-09-22 16:52:17,082 DatabaseFunctions line:115  DEBUG    [ {'result': 1, 'rescode': 121} ] [ SELECT * FROM UserAdress_adress_Insert('HIG - 740/C','PHASE - 9','--',9,24,5,'160062','SYS_PER_INSERT',122,'117.197.134.145'); ]
+2012-09-22 16:52:17,487 DatabaseFunctions line:80   DEBUG    [ {'result': 1, 'rescode': 59} ] [ SELECT * FROM UserAdress_UserContactInfo_Insert(122,'NULL','NULL','NULL','NULL','NULL','NULL',121,121,'SYS_PER_INSERT',122,'117.197.134.145'); ]
+2012-09-22 16:52:56,159 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(121,'HIG - 740/C','PHASE - 9','',9,24,5,'160062','SYS_PER_UPDATE',122,'117.197.134.145'); ]
+2012-09-22 16:52:56,160 DatabaseFunctions line:133  DEBUG    [ {'result': 1, 'rescode': 225} ] [ SELECT * FROM UserAdress_adress_Update(121,'HIG - 740/C','PHASE - 9','',9,24,5,'160062','SYS_PER_UPDATE',122,'117.197.134.145'); ]
+2012-09-22 16:53:15,883 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(122,'NULL','NULL','NULL','NULL','NULL','NULL',121,121,'SYS_PER_UPDATE',122,'117.197.134.145'); ]
+2012-09-22 17:12:21,888 DatabaseFunctions line:98   DEBUG    [ {'result': 1, 'rescode': 240} ] [ SELECT * FROM UserAdress_UserContactInfo_Update(122,'09888589006','NULL','NULL','NULL','NULL','NULL',121,121,'SYS_PER_UPDATE',122,'117.197.134.145'); ]
