@@ -41,5 +41,5 @@ class ByName(object):
           sqlstatement=sqlstatement+' or '
         else:
           sqlstatement=sqlstatement+' and '
-      sqlstatement=sqlstatement+'("UserFirstName"||"UserMiddleName"||"UserLastName") like %s'%( "'%%"+value+"%%'")
+      sqlstatement=sqlstatement+'lower("UserFirstName"||"UserMiddleName"||"UserLastName") like lower(%s)'%( "'%%"+value+"%%'")
       return sqlstatement
