@@ -57,7 +57,7 @@ class ByAge(object):
       if sqlstatement==None:
         sqlstatement='Select "Id" from "View_Student" where'
       else :
-        sqlstatement='Select "Id" from "View_Student" where id in (%s)'%(sqlstatement)
+        sqlstatement='Select "Id" from "View_Student" where "Id" in (%s)'%(sqlstatement)
         if nameor in data:
           sqlstatement=sqlstatement+' or '
         else:
