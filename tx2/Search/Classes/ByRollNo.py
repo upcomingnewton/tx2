@@ -4,7 +4,7 @@ Created on 14-Sep-2012
 @author: jivjot
 '''
 
-class ByName(object):
+class ByRollNo(object):
     '''
     classdocs
     '''
@@ -14,8 +14,8 @@ class ByName(object):
         '''
         Constructor
         '''
-        self.Id=1
-        self.Option='<option value="%s">Search By Name</option>'%(self.Id)
+        self.Id=5
+        self.Option='<option value="%s">Search By RollNo</option>'%(self.Id)
     def gethtmlControl(self,count,data):
       name='Control%s'%(count)
       nameor='ControlOr%s'%(count)
@@ -25,7 +25,7 @@ class ByName(object):
         value=data[name]
       if nameor in data:
         checked="checked='checked'"
-      html="Enter Name:<input type='text' name='%s' value='%s'/> <input type='checkbox' name='%s' %s/> OR DATA<br/>"%(name,value,nameor,checked)
+      html="Enter RollNo:<input type='text' name='%s' value='%s'/> <input type='checkbox' name='%s' %s/> OR DATA<br/>"%(name,value,nameor,checked)
       return html
     def getsqlstatement(self,count,data,sqlstatement):
       name='Control%s'%(count)
@@ -34,12 +34,12 @@ class ByName(object):
       if name in data:
         value=data[name]
       if sqlstatement==None:
-        sqlstatement='Select id from "Users_user" where '
+        sqlstatement='Select "User_id" from "UserProfile_studentdetails" where '
       else :
-        sqlstatement='Select id from "Users_user" where id in (%s)'%(sqlstatement)
+        sqlstatement='Select "User_id" from "UserProfile_studentdetails" where "User_id" in (%s)'%(sqlstatement)
         if nameor in data:
           sqlstatement=sqlstatement+' or '
         else:
           sqlstatement=sqlstatement+' and '
-      sqlstatement=sqlstatement+'lower("UserFirstName"||"UserMiddleName"||"UserLastName") like lower(%s)'%( "'%%"+value+"%%'")
+      sqlstatement=sqlstatement+'lower("RollNo") like lower(%s)'%( "'%%"+value+"%%'")
       return sqlstatement

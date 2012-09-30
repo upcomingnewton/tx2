@@ -42,6 +42,6 @@ class ByEmail(object):
           sqlstatement=sqlstatement+' or '
         else:
           sqlstatement=sqlstatement+' and '
-      sqlstatement=sqlstatement+('"UserEmail" like %s'%( "'%%"+value+"%%'"))
+      sqlstatement=sqlstatement+('lower("UserEmail") like lower(%s)'%( "'%%"+value+"%%'"))
       return sqlstatement
       
