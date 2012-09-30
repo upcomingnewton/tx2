@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^communication/',include('Communication.urls')),
     url(r'^$', 'tx2.views.home', name='home'),
     url(r'^recruiters/$', 'tx2.views.recruitersIndex', name='home'),
+    url(r'^Search/',include('Search.urls')),
     
     
 )

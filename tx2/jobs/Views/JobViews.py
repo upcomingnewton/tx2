@@ -345,7 +345,7 @@ def BranchJobEdit(HttpRequest,CompanyID, JobID):
               Comments2 = HttpRequest.POST["Remarks_" + str(branch.id)]
               JobTypeID = HttpRequest.POST["JobType_" + str(branch.id)]
               result = BranchJobFunctionsObj.Add(branch.id,JobID,JobTypeID,Comments1,Comments2,int(details['userid']),HttpRequest.META['REMOTE_ADDR'])
-          print str(result) + '==' + branch.BranchName
+          #print str(result) + '==' + branch.BranchName
           if result[0] != 1:
              messages.error(HttpRequest,'ERROR : ' + result[1])
              return HttpResponseRedirect('/message/')
