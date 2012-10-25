@@ -1,0 +1,6 @@
+1. pgadmin3
+2. pgsql - if you plan to make something on local host.
+3. psycopg2
+4. memcache 
+5. libmemcached
+6. python2-memcached

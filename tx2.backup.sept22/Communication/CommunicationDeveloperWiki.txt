@@ -1,5 +1,0 @@
-To insert any Communication (wiz Message, Notice, News, etc)
-user the Business fnx tx2.UserReg.BusinessFunctions.PriorityFnx.PriorityFnx.UpdatePriority
-
-Parameters (ContentType, Record, UserGroup, PriorityVal(use 'Default' for default Priory i.e 1), Desc )
-
