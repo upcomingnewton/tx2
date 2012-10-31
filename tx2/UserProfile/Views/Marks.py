@@ -202,7 +202,17 @@ def MarksSave(HttpRequest):
           HttpRequest.session['SessionType']=SessionSemesterId;
           HttpRequest.session['DegreeType']=DegreeTypeIdUG;
           HttpRequest.session['Degree']=DegreeIdBE;
-          Message_MarksFillingFor = 'semester ' + str(v.split("Semester")[1])
+          Message_MarksFillingFor = 'BE semester ' + str(v.split("Semester")[1])
+        elif(v.find("Mtech")!=-1):
+          SessionSemesterId=SessionType.objects.get(Name='Semester').id;
+          DegreeTypeIdPG=DegreeType.objects.get(Name="postgraduation").id;
+          DegreeIdME=Degree.objects.get(Name="M.E.").id;
+          HttpRequest.session['SessionNumber']=int(v.split("Mtech")[1]);
+          HttpRequest.session['SessionType']=SessionSemesterId;
+          HttpRequest.session['DegreeType']=DegreeTypeIdPG;
+          HttpRequest.session['Degree']=DegreeIdME;
+          Message_MarksFillingFor = 'Mtech/ME semester ' + str(v.split("Mtech")[1])
+        
         else:
           messages.error(HttpRequest,"Error: invalid url")
           flag=-1;
